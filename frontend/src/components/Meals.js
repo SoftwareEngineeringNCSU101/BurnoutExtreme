@@ -151,7 +151,7 @@ export default function Meals (props) {
           sx={{
             bgcolor: 'background.paper',
             backgroundImage: `url(${headerImage})`,
-            backgroundSize: '80%', // Cover the entire area
+            backgroundSize: '65%', // Cover the entire area
             backgroundPosition: 'center',
             backgroundRepeat: 'no-repeat',
             padding: '70px', // Top padding
