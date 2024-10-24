@@ -33,8 +33,8 @@ const WorkoutDisplay = props => {
                 sx={{
                   borderRadius: '8px',
                   height: '100%',
-                  backgroundColor: 'rgba(255, 165, 0, 0.1)',
-                  borderBlockColor: 'orange'
+                  // backgroundColor: 'rgba(255, 165, 0, 0.1)',
+                  // borderBlockColor: 'orange'
                 }}
               >
                 <CardContent>

@@ -23,12 +23,13 @@ const commonContainerStyles = {
 }
 
 const commonBoxStyles = {
-  border: '1px solid gray',
+  border: '1px solid organe',
   borderRadius: '4px',
   boxShadow: '2px 2px 5px rgba(0, 0, 0, 0.1)',
   padding: '16px',
   margin: '16px',
-  width: '100%'
+  width: '100%',
+  backgroundColor: 'rgba(255, 165, 0, 0.1)'
 }
 
 const Workouts = props => {
