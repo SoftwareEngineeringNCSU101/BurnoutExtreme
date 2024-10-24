@@ -12,10 +12,17 @@ import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import WhatshotIcon from "@material-ui/icons/Whatshot";
 import axios from "axios";
-import useToken from './authentication/useToken';
+import useToken from "./authentication/useToken";
 import { updateState } from "../burnoutReducer";
 
-const mainPages = { Home: "/", Events: "/events" , 'My Meals': "/meals", 'FAQ': "/faq", 'Contact Us': "/contactus"};
+const mainPages = {
+  Home: "/",
+  Events: "/events",
+  "My Meals": "/meals",
+  "My Workouts": "/workouts",
+  FAQ: "/faq",
+  "Contact Us": "/contactus",
+};
 const userPages = { Profile: "/profile" };
 
 function Header(props) {
@@ -50,10 +57,10 @@ function Header(props) {
           console.log(error.response.headers);
         }
       });
-  }
+  };
 
   return (
-    <AppBar position="static" sx={{ backgroundColor: '#FFA100' }}>
+    <AppBar position="static" sx={{ backgroundColor: "#FFA100" }}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <Box>
