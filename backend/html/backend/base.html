@@ -1,0 +1,2351 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<meta name="generator" content="pdoc 0.10.0" />
+<title>backend.base API documentation</title>
+<meta name="description" content="" />
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
+<link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/github.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js" integrity="sha256-Uv3H6lx7dJmRfRvH8TH6kJD1TSK1aFcwgx+mdg3epi8=" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => hljs.initHighlighting())</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>backend.base</code></h1>
+</header>
+<section id="section-intro">
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">import json
+import bcrypt
+from flask_pymongo import PyMongo
+from flask import Flask, request, jsonify
+from flask_pymongo import PyMongo
+from pymongo import MongoClient
+import mongomock
+from datetime import datetime, timedelta, timezone
+from flask_jwt_extended import create_access_token,get_jwt,get_jwt_identity, \
+                               unset_jwt_cookies, jwt_required, JWTManager
+from datetime import datetime, timedelta
+from functools import reduce
+from bson import json_util 
+from pymongo import MongoClient
+from flasgger import Swagger
+
+
+
+api = Flask(__name__)
+api.secret_key = &#39;secret&#39;
+api.config[&#34;JWT_SECRET_KEY&#34;] = &#34;softwareEngineering&#34;
+api.config[&#34;JWT_ACCESS_TOKEN_EXPIRES&#34;] = timedelta(hours=1)
+jwt = JWTManager(api)
+mongo = None
+
+Swagger(api)  
+
+
+def setup_mongo_client(app):
+    global mongo
+    if app.config[&#39;TESTING&#39;]:
+        # Use mongomock for testing
+        app.mongo_client = mongomock.MongoClient()
+        mongo = app.mongo_client[&#34;test&#34;]
+    else:
+        # Use a real MongoDB connection for production
+        app.mongo_client = MongoClient(&#39;localhost&#39;, 27017)
+        mongo = app.mongo_client[&#34;test&#34;]
+
+# Call setup_mongo_client during normal (non-test) app initialization
+setup_mongo_client(api)
+
+@api.route(&#39;/token&#39;, methods=[&#34;POST&#34;]) # pragma: no cover
+def create_token():
+    &#34;&#34;&#34;
+    Create a new access token
+
+    ---
+    tags:
+      - Authentication
+    parameters:
+      - name: email
+        in: formData
+        type: string
+        required: true
+        description: User email
+      - name: password
+        in: formData
+        type: string
+        required: true
+        description: User password
+    responses:
+      200:
+        description: Login successful
+      401:
+        description: Invalid email or password
+    &#34;&#34;&#34;
+    email = request.json.get(&#34;email&#34;, None)
+    password = request.json.get(&#34;password&#34;, None)
+    user = mongo.user.find_one({&#34;email&#34;: email})
+    if (user is not None and (user[&#34;password&#34;] == password)):
+        access_token = create_access_token(identity=email)
+        return jsonify({&#34;message&#34;: &#34;Login successful&#34;, &#34;access_token&#34;:access_token})
+    else:
+        print(&#34;Invalid email or password&#34;)
+        return jsonify({&#34;message&#34;: &#34;Invalid email or password&#34;}),401
+    
+
+@api.route(&#34;/register&#34;, methods=[&#34;POST&#34;])
+def register():
+    &#34;&#34;&#34;
+    Register a new user
+
+    ---
+    tags:
+      - User Registration
+    parameters:
+      - name: email
+        in: formData
+        type: string
+        required: true
+        description: User email
+      - name: password
+        in: formData
+        type: string
+        required: true
+        description: User password
+      - name: firstName
+        in: formData
+        type: string
+        required: true
+        description: User&#39;s first name
+      - name: lastName
+        in: formData
+        type: string
+        required: true
+        description: User&#39;s last name
+    responses:
+      200:
+        description: Registration successful
+      409:
+        description: User already exists
+      500:
+        description: Registration failed
+    &#34;&#34;&#34;
+
+    email = request.json.get(&#39;email&#39;, None)
+    password = request.json.get(&#39;password&#39;, None)
+    first_name = request.json.get(&#39;firstName&#39;, None)
+    last_name = request.json.get(&#39;lastName&#39;, None)
+    new_document = {
+    &#34;email&#34;: email,
+    &#34;password&#34;: password,
+    &#34;first_name&#34;: first_name,
+    &#34;last_name&#34;: last_name,
+    }
+    query = {
+        &#34;email&#34;: email,
+    }
+    try:
+        inserted = mongo.user.update_one(query, {&#34;$set&#34;: new_document}, upsert=True)
+        if (inserted.upserted_id):
+            response = jsonify({&#34;msg&#34;: &#34;register successful&#34;})
+        else:   
+            print(&#34;User already exists&#34;)
+            response = jsonify({&#34;msg&#34;: &#34;User already exists&#34;})
+    except Exception as e:
+        response = jsonify({&#34;msg&#34;: &#34;register failed&#34;})
+
+    return response
+
+@api.route(&#34;/logout&#34;, methods=[&#34;POST&#34;])
+def logout():
+    &#34;&#34;&#34;
+    Logout the user and clear their session
+
+    ---
+    tags:
+      - User Logout
+    responses:
+      200:
+        description: Logout successful
+    &#34;&#34;&#34;
+    response = jsonify({&#34;msg&#34;: &#34;logout successful&#34;})
+    unset_jwt_cookies(response)
+    return response
+
+@api.route(&#39;/events&#39;, methods=[&#39;GET&#39;])
+def get_events():
+    &#34;&#34;&#34;
+    Retrieve a list of events
+
+    This endpoint retrieves a list of events from the database.
+
+    ---
+    tags:
+      - Events
+    responses:
+      200:
+        description: A list of events
+        schema:
+          type: array
+          items:
+            type: object
+            properties:
+              _id:
+                type: string
+              # Add more properties as needed
+      404:
+        description: No events found
+    &#34;&#34;&#34;
+    events_collection = mongo.events
+    events = list(events_collection.find({}))
+    print(events)
+    for event in events:
+        event[&#34;_id&#34;] = str(event[&#34;_id&#34;]) # Convert ObjectId to string
+    return jsonify(events)
+
+@api.route(&#39;/is-enrolled&#39;, methods=[&#39;POST&#39;])
+@jwt_required()
+def is_enrolled():
+    &#34;&#34;&#34;
+    Check if the user is enrolled in an event
+
+    This endpoint checks if the authenticated user is enrolled in a specific event.
+
+    ---
+    tags:
+      - Events
+    parameters:
+      - in: body
+        name: data
+        description: Data containing the eventTitle
+        required: true
+        schema:
+          type: object
+          properties:
+            eventTitle:
+              type: string
+        example:
+          eventTitle: &#34;Event Name&#34;
+    security:
+      - JWT: []
+    responses:
+      200:
+        description: Indicates whether the user is enrolled
+        schema:
+          type: object
+          properties:
+            isEnrolled:
+              type: boolean
+      401:
+        description: Unauthorized access
+    &#34;&#34;&#34;
+
+    data = request.json
+    eventTitle = data[&#39;eventTitle&#39;]
+    current_user = get_jwt_identity()
+    enrollment = mongo.user.find_one({&#34;email&#34;: current_user, &#34;eventTitle&#34;: eventTitle})
+
+    if enrollment:
+        return jsonify({&#34;isEnrolled&#34;: True})
+    else:
+        return jsonify({&#34;isEnrolled&#34;: False})
+
+
+@api.route(&#39;/enroll&#39;, methods=[&#39;POST&#39;]) # pragma: no cover
+@jwt_required()
+def enroll_event(): # pragma: no cover
+    &#34;&#34;&#34;
+    Enroll the user in an event
+
+    This endpoint allows an authenticated user to enroll in an event.
+
+    ---
+    tags:
+      - Events
+    parameters:
+      - in: body
+        name: data
+        description: Data containing the eventTitle
+        required: true
+        schema:
+          type: object
+          properties:
+            eventTitle:
+              type: string
+        example:
+          eventTitle: &#34;Event Name&#34;
+    security:
+      - JWT: []
+    responses:
+      200:
+        description: User successfully enrolled in the event
+        schema:
+          type: object
+          properties:
+            status:
+              type: string
+              example: &#34;Data saved successfully&#34;
+      500:
+        description: An error occurred while enrolling the user
+    &#34;&#34;&#34;
+    data = request.get_json()  # get data from POST request
+    current_user = get_jwt_identity()
+    try:
+        # Insert data into MongoDB
+        mongo.user.insert_one({
+            &#34;email&#34;: current_user,
+            &#34;eventTitle&#34;: data[&#39;eventTitle&#39;]
+        })
+        response = {&#34;status&#34;: &#34;Data saved successfully&#34;}
+    except Exception as e:
+        response = {&#34;status&#34;: &#34;Error&#34;, &#34;message&#34;: str(e)}
+    
+    return jsonify(response)
+
+@api.route(&#39;/profile&#39;)
+@jwt_required()
+def my_profile(): # pragma: no cover
+    &#34;&#34;&#34;
+    Retrieve user profile information
+
+    This endpoint allows an authenticated user to retrieve their profile information.
+
+    ---
+    tags:
+      - User
+    security:
+      - JWT: []
+    responses:
+      200:
+        description: User profile information retrieved successfully
+        schema:
+          type: object
+        example:
+          {
+            &#34;_id&#34;: &#34;12345&#34;,
+            &#34;email&#34;: &#34;user@example.com&#34;,
+            &#34;first_name&#34;: &#34;John&#34;,
+            &#34;last_name&#34;: &#34;Doe&#34;,
+            &#34;age&#34;: 30,
+            &#34;weight&#34;: 70,
+            &#34;height&#34;: 175
+          }
+      401:
+        description: Unauthorized. User must be logged in to access their profile.
+      404:
+        description: User profile not found.
+      500:
+        description: An error occurred while retrieving the user profile.
+    &#34;&#34;&#34;
+    current_user = get_jwt_identity()
+    profile = mongo.user.find_one({&#34;email&#34;: current_user})
+    return jsonify(json_util.dumps(profile))
+
+@api.route(&#39;/caloriesConsumed&#39;,methods=[&#34;POST&#34;])
+@jwt_required()
+def addUserConsumedCalories(): # pragma: no cover
+    &#34;&#34;&#34;
+    Add consumed calories for a user
+
+    This endpoint allows an authenticated user to add consumed calories for a specific date.
+
+    ---
+    tags:
+      - User
+    security:
+      - JWT: []
+    parameters:
+      - name: body
+        in: body
+        required: true
+        schema:
+          type: object
+          properties:
+            intakeDate:
+              type: string
+              format: date
+              description: The date for which calories are being recorded (e.g., &#34;2023-10-17&#34;).
+            intakeFoodItem:
+              type: string
+              description: The name of the food item.
+            intakeCalories:
+              type: integer
+              description: The number of calories consumed for the food item.
+    responses:
+      200:
+        description: Calories consumed data saved successfully.
+        schema:
+          type: object
+        example:
+          {
+            &#34;status&#34;: &#34;Data saved successfully&#34;
+          }
+      401:
+        description: Unauthorized. User must be logged in to add consumed calories.
+      500:
+        description: An error occurred while saving consumed calories data.
+    &#34;&#34;&#34;
+    data = request.get_json()  # get data from POST request
+    current_user = get_jwt_identity()
+    try:
+        # Insert data into MongoDB
+        mongo.user.update_one({&#39;email&#39;: current_user, &#34;consumedDate&#34;: data[&#39;intakeDate&#39;]}, {&#34;$push&#34;: {&#34;foodConsumed&#34;: {&#34;item&#34;:data[&#34;intakeFoodItem&#34;],&#34;calories&#34;:data[&#34;intakeCalories&#34;]}}}, upsert=True)
+        response = {&#34;status&#34;: &#34;Data saved successfully&#34;}
+        statusCode = 200
+    except Exception as e:
+        response = {&#34;status&#34;: &#34;Error&#34;, &#34;message&#34;: str(e)}
+        statusCode = 500
+    return jsonify(response),statusCode
+
+@api.route(&#39;/profileUpdate&#39;,methods=[&#34;POST&#34;])
+@jwt_required()
+def profileUpdate(): # pragma: no cover
+    &#34;&#34;&#34;
+    Update user profile
+
+    This endpoint allows an authenticated user to update their profile information.
+
+    ---
+    tags:
+      - User
+    security:
+      - JWT: []
+    parameters:
+      - name: body
+        in: body
+        required: true
+        schema:
+          type: object
+          properties:
+            firstName:
+              type: string
+              description: The user&#39;s first name.
+            lastName:
+              type: string
+              description: The user&#39;s last name.
+            age:
+              type: integer
+              description: The user&#39;s age.
+            weight:
+              type: number
+              description: The user&#39;s weight.
+            height:
+              type: number
+              description: The user&#39;s height.
+    responses:
+      200:
+        description: User profile updated successfully.
+        schema:
+          type: object
+        example:
+          {
+            &#34;msg&#34;: &#34;Update successful&#34;
+          }
+      401:
+        description: Unauthorized. User must be logged in to update their profile.
+      500:
+        description: An error occurred while updating the user&#39;s profile.
+    &#34;&#34;&#34;
+    current_user = get_jwt_identity()
+    first_name = request.json.get(&#39;firstName&#39;, None)
+    last_name = request.json.get(&#39;lastName&#39;, None)
+    age = request.json.get(&#39;age&#39;, None)
+    weight = request.json.get(&#39;weight&#39;, None)
+    height = request.json.get(&#39;height&#39;, None)
+    new_document = {
+    &#34;first_name&#34;: first_name,
+    &#34;last_name&#34;: last_name,
+    &#34;age&#34;: age,
+    &#34;weight&#34;: weight,
+    &#34;height&#34;: height,
+    }
+    query = {
+        &#34;email&#34;: current_user,
+    }
+    try:
+        mongo.user.update_one(query, {&#34;$set&#34;: new_document}, upsert=True)
+        response = jsonify({&#34;msg&#34;: &#34;update successful&#34;})
+    except Exception as e:
+        response = jsonify({&#34;msg&#34;: &#34;update failed&#34;})
+
+    return response
+
+@api.route(&#39;/goalsUpdate&#39;,methods=[&#34;POST&#34;])
+@jwt_required()
+def goalsUpdate(): # pragma: no cover
+    &#34;&#34;&#34;
+    Update user goals
+
+    This endpoint allows an authenticated user to update their fitness goals, such as target weight, target calories, and target goal.
+
+    ---
+    tags:
+      - User
+    security:
+      - JWT: []
+    parameters:
+      - name: body
+        in: body
+        required: true
+        schema:
+          type: object
+          properties:
+            targetWeight:
+              type: number
+              description: The user&#39;s target weight goal.
+            targetCalories:
+              type: number
+              description: The user&#39;s target daily calorie intake goal.
+            targetGoal:
+              type: string
+              description: The user&#39;s fitness goal.
+    responses:
+      200:
+        description: User goals updated successfully.
+        schema:
+          type: object
+        example:
+          {
+            &#34;msg&#34;: &#34;Update successful&#34;
+          }
+      401:
+        description: Unauthorized. User must be logged in to update their goals.
+      500:
+        description: An error occurred while updating the user&#39;s goals.
+    &#34;&#34;&#34;
+    current_user = get_jwt_identity()
+    current_user = get_jwt_identity()
+    targetWeight = request.json.get(&#39;targetWeight&#39;, None)
+    targetCalories = request.json.get(&#39;targetCalories&#39;, None)
+    targetGoal = request.json.get(&#39;targetGoal&#39;, None)
+
+    new_document = {
+        &#34;target_weight&#34;: targetWeight,
+        &#34;target_calories&#34;: targetCalories,
+        &#34;target_goal&#34;: targetGoal
+    }
+    query = {
+        &#34;email&#34;: current_user,
+    }
+    try:
+        mongo.user.update_one(query, {&#34;$set&#34;: new_document}, upsert=True)
+        response = jsonify({&#34;msg&#34;: &#34;update successful&#34;})
+    except Exception as e:
+        response = jsonify({&#34;msg&#34;: &#34;update failed&#34;})
+
+    return response
+
+
+@api.route(&#39;/caloriesBurned&#39;,methods=[&#34;POST&#34;])
+@jwt_required()
+def addUserBurnedCalories(): # pragma: no cover
+    &#34;&#34;&#34;
+    Add user&#39;s burned calories
+
+    This endpoint allows an authenticated user to add information about calories burned on a specific date.
+
+    ---
+    tags:
+      - User
+    security:
+      - JWT: []
+    parameters:
+      - name: body
+        in: body
+        required: true
+        schema:
+          type: object
+          properties:
+            burnoutDate:
+              type: string
+              format: date
+              description: The date on which calories were burned.
+            burntoutCalories:
+              type: number
+              description: The number of calories burned on the specified date.
+    responses:
+      200:
+        description: Calories burned data saved successfully.
+        schema:
+          type: object
+        example:
+          {
+            &#34;status&#34;: &#34;Data saved successfully&#34;
+          }
+      401:
+        description: Unauthorized. User must be logged in to add burned calories data.
+      500:
+        description: An error occurred while saving the burned calories data.
+    &#34;&#34;&#34;
+    data = request.get_json()  # get data from POST request
+    current_user = get_jwt_identity()
+    try:
+        # Insert data into MongoDB
+        mongo.user.update_one({&#39;email&#39;: current_user, &#34;consumedDate&#34;: data[&#39;burnoutDate&#39;]}, {&#34;$inc&#34;: {&#34;burntCalories&#34;: int(data[&#34;burntoutCalories&#34;])}}, upsert=True)
+        response = {&#34;status&#34;: &#34;Data saved successfully&#34;}
+        statusCode = 200
+    except Exception as e:
+        response = {&#34;status&#34;: &#34;Error&#34;, &#34;message&#34;: str(e)}
+        statusCode = 500
+    return jsonify(response),statusCode
+
+@api.route(&#39;/weekHistory&#39;,methods=[&#34;POST&#34;])
+@jwt_required()
+def getWeekHistory(): # pragma: no cover
+    &#34;&#34;&#34;
+    Get user&#39;s weekly history
+
+    This endpoint allows an authenticated user to retrieve their food consumption and calories burned history for the past week.
+
+    ---
+    tags:
+      - User
+    security:
+      - JWT: []
+    parameters:
+      - name: body
+        in: body
+        required: true
+        schema:
+          type: object
+          properties:
+            todayDate:
+              type: string
+              format: date
+              description: The date for the end of the week (today&#39;s date).
+    responses:
+      200:
+        description: Successfully retrieved the user&#39;s weekly history.
+        schema:
+          type: array
+          items:
+            type: object
+            properties:
+              dayIndex:
+                type: integer
+                description: Integer from 0 to 6 representing the day index.
+              date:
+                type: string
+                format: date
+                description: The date for each day in the week.
+              foodConsumed:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    item:
+                      type: string
+                      description: Food item name.
+                    calories:
+                      type: number
+                      description: Calories consumed from the food item.
+                description: A list of dictionaries containing food items and their consumed calories.
+              caloriesConsumed:
+                type: number
+                description: The sum of all calories consumed for that day.
+              exceededDailyLimit:
+                type: boolean
+                description: Indicates whether the calories consumed exceeded the daily limit.
+              burntCalories:
+                type: number
+                description: Calories burned on that day.
+        example:
+          [
+            {
+              &#34;dayIndex&#34;: 0,
+              &#34;date&#34;: &#34;10/13/2023&#34;,
+              &#34;foodConsumed&#34;: [
+                {
+                  &#34;item&#34;: &#34;Chicken Salad&#34;,
+                  &#34;calories&#34;: 500
+                },
+                {
+                  &#34;item&#34;: &#34;Onion Soup&#34;,
+                  &#34;calories&#34;: 300
+                },
+                {
+                  &#34;item&#34;: &#34;Potato Salad&#34;,
+                  &#34;calories&#34;: 500
+                },
+                {
+                  &#34;item&#34;: &#34;Cheese Burger&#34;,
+                  &#34;calories&#34;: 500
+                }
+              ],
+              &#34;caloriesConsumed&#34;: 1800,
+              &#34;exceededDailyLimit&#34;: false,
+              &#34;burntCalories&#34;: 1200
+            },
+            {
+              &#34;dayIndex&#34;: 1,
+              &#34;date&#34;: &#34;10/12/2023&#34;,
+              &#34;foodConsumed&#34;: [...],
+              &#34;caloriesConsumed&#34;: ...,
+              &#34;exceededDailyLimit&#34;: ...,
+              &#34;burntCalories&#34;: ...
+            },
+            ...
+          ]
+      401:
+        description: Unauthorized. User must be logged in to retrieve weekly history.
+      500:
+        description: An error occurred while retrieving the user&#39;s weekly history.
+    &#34;&#34;&#34;
+    data = request.get_json()  # get data from POST request
+    current_user = get_jwt_identity()
+    todayDate = datetime.strptime(data[&#34;todayDate&#34;],&#34;%m/%d/%Y&#34;)
+    dates = [(todayDate-timedelta(days=x)).strftime(&#34;%m/%d/%Y&#34;) for x in range(7)]
+    calorieLimit = 1000
+    result = []
+    try:
+        for index,dateToFind in enumerate(dates):
+            # Every day&#39;s res item should like this
+            # {
+            #   dayIndex: 0,               #Interger from 0-6
+            #   date: &#34;10/13/2023&#34;,        #Date 0=today, 6=7th day ago from today
+            #   foodConsumed: [            # A list of dicts, each dict contains a food item and its calories
+            #     {
+            #       item: &#34;Chicken Salad&#34;,
+            #       calories: 500,
+            #     },
+            #     {
+            #       item: &#34;Onion Soup&#34;,
+            #       calories: 300,
+            #     },
+            #     {
+            #       item: &#34;Potato Salad&#34;,
+            #       calories: 500,
+            #     },
+            #     {
+            #       item: &#34;Cheese Burger&#34;,
+            #       calories: 500,
+            #     },
+            #   ],
+            #   caloriesConsumed: 1800,    # the sum of all calories consumed from above list
+            #   exceededDailyLimit: false, # true or false based on whether caloriesConsumed is &gt; limit user set
+            #   burntCalories: 1200,       # calories burnt out on that day
+            # }
+            res = {}
+            data = mongo.user.find_one({&#39;email&#39;: current_user, &#34;consumedDate&#34;: dateToFind})
+            res[&#34;dayIndex&#34;] = index
+            res[&#34;date&#34;] = dateToFind
+            if data:
+                if &#34;foodConsumed&#34; in data:
+                    res[&#34;foodConsumed&#34;] = data[&#34;foodConsumed&#34;]
+                    res[&#34;caloriesConsumed&#34;] = reduce(lambda a,b: a+b, [int(item[&#34;calories&#34;]) for item in data[&#34;foodConsumed&#34;]])
+                    res[&#34;exceededDailyLimit&#34;] = res[&#34;caloriesConsumed&#34;]&gt;calorieLimit
+                if &#34;burntCalories&#34; in data:
+                    res[&#34;burntCalories&#34;] = data[&#34;burntCalories&#34;]
+            if &#34;foodConsumed&#34; not in res:
+                res[&#34;foodConsumed&#34;] = []
+            if &#34;caloriesConsumed&#34; not in res:
+                res[&#34;caloriesConsumed&#34;] = 0
+            if &#34;burntCalories&#34; not in res:
+                res[&#34;burntCalories&#34;] = 0
+            if &#34;exceededDailyLimit&#34; not in res:
+                res[&#34;exceededDailyLimit&#34;] = False
+            result.append(res)
+        response = result
+        statusCode = 200
+    except Exception as e:
+        response = {&#34;status&#34;: &#34;Error&#34;, &#34;message&#34;: str(e)}
+        statusCode = 500
+    return jsonify(response),statusCode
+
+@api.route(&#39;/foodCalorieMapping&#39;,methods=[&#34;GET&#34;])
+@jwt_required()
+def getFoodCalorieMapping(): 
+    &#34;&#34;&#34;
+    Get food calorie mapping
+
+    This endpoint allows an authenticated user to retrieve a mapping of food items to their respective calorie values.
+
+    ---
+    tags:
+      - Food
+    security:
+      - JWT: []
+    responses:
+      200:
+        description: Successfully retrieved the food calorie mapping.
+        schema:
+          type: object
+          properties:
+            foodItem:
+              type: integer
+              description: Food item name.
+            calories:
+              type: number
+              description: Calories associated with the food item.
+        example:
+          {
+            &#34;Potato&#34;: 50,
+            &#34;Acai&#34;: 20,
+            &#34;Cheeseburger&#34;: 80,
+            ...
+          }
+      401:
+        description: Unauthorized. User must be logged in to retrieve the food calorie mapping.
+      500:
+        description: An error occurred while retrieving the food calorie mapping.
+    &#34;&#34;&#34;
+    try:
+        data = mongo.food.find()
+        # Response should be in this format {foodItem: calories, foodItem: calories....} 
+        # For Example { Potato: 50, Acai: 20, Cheeseburger: 80 }
+        response = {item[&#34;food&#34;]:item[&#34;calories&#34;] for item in data}
+        statusCode = 200
+    except Exception as e:
+        response = {&#34;status&#34;: &#34;Error&#34;, &#34;message&#34;: str(e)}
+        statusCode = 500
+    return jsonify(response),statusCode
+
+@api.route(&#39;/usersEvents&#39;,methods=[&#34;GET&#34;]) 
+@jwt_required()
+def getUserRegisteredEvents(): 
+    &#34;&#34;&#34;
+    Get user&#39;s registered events
+
+    This endpoint allows an authenticated user to retrieve the events they are registered for.
+
+    ---
+    tags:
+      - Events
+    security:
+      - JWT: []
+    responses:
+      200:
+        description: Successfully retrieved the user&#39;s registered events.
+        schema:
+          type: array
+          items:
+            type: object
+            properties:
+              eventName:
+                type: string
+                description: Name of the event.
+              date:
+                type: string
+                format: date
+                description: Date of the event.
+            example:
+              [
+                {
+                  &#34;eventName&#34;: &#34;Yoga&#34;,
+                  &#34;date&#34;: &#34;2023-12-11&#34;
+                },
+                {
+                  &#34;eventName&#34;: &#34;Swimming&#34;,
+                  &#34;date&#34;: &#34;2023-11-10&#34;
+                },
+                ...
+              ]
+      401:
+        description: Unauthorized. User must be logged in to retrieve their registered events.
+      500:
+        description: An error occurred while retrieving the user&#39;s registered events.
+    &#34;&#34;&#34;
+    try:
+        # current_user = get_jwt_identity()
+        current_user = get_jwt_identity()
+        data = mongo.user.find({&#34;email&#34;: current_user, &#34;eventTitle&#34;:{&#34;$exists&#34;: True}})
+        response = []
+        date=&#34;10/23/2023&#34;
+        for item in data:
+            res = {&#34;eventName&#34;: item[&#34;eventTitle&#34;], &#34;date&#34;: date}
+            response.append(res)
+        # Response should be in this format [{eventName: Yoga, date: &#34;12/11/2023&#34;},{eventName: Swimming, date: &#34;11/10/2023&#34;}]
+        # For Example { Potato: 50, Acai: 20, Cheeseburger: 80 }
+        statusCode = 200
+    except Exception as e:
+        response = {&#34;status&#34;: &#34;Error&#34;, &#34;message&#34;: str(e)}
+        statusCode = 500
+    return jsonify(response),statusCode</code></pre>
+</details>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-functions">Functions</h2>
+<dl>
+<dt id="backend.base.addUserBurnedCalories"><code class="name flex">
+<span>def <span class="ident">addUserBurnedCalories</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Add user's burned calories</p>
+<p>This endpoint allows an authenticated user to add information about calories burned on a specific date.</p>
+<hr>
+<p>tags:
+- User
+security:
+- JWT: []
+parameters:
+- name: body
+in: body
+required: true
+schema:
+type: object
+properties:
+burnoutDate:
+type: string
+format: date
+description: The date on which calories were burned.
+burntoutCalories:
+type: number
+description: The number of calories burned on the specified date.
+responses:
+200:
+description: Calories burned data saved successfully.
+schema:
+type: object
+example:
+{
+"status": "Data saved successfully"
+}
+401:
+description: Unauthorized. User must be logged in to add burned calories data.
+500:
+description: An error occurred while saving the burned calories data.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@api.route(&#39;/caloriesBurned&#39;,methods=[&#34;POST&#34;])
+@jwt_required()
+def addUserBurnedCalories(): # pragma: no cover
+    &#34;&#34;&#34;
+    Add user&#39;s burned calories
+
+    This endpoint allows an authenticated user to add information about calories burned on a specific date.
+
+    ---
+    tags:
+      - User
+    security:
+      - JWT: []
+    parameters:
+      - name: body
+        in: body
+        required: true
+        schema:
+          type: object
+          properties:
+            burnoutDate:
+              type: string
+              format: date
+              description: The date on which calories were burned.
+            burntoutCalories:
+              type: number
+              description: The number of calories burned on the specified date.
+    responses:
+      200:
+        description: Calories burned data saved successfully.
+        schema:
+          type: object
+        example:
+          {
+            &#34;status&#34;: &#34;Data saved successfully&#34;
+          }
+      401:
+        description: Unauthorized. User must be logged in to add burned calories data.
+      500:
+        description: An error occurred while saving the burned calories data.
+    &#34;&#34;&#34;
+    data = request.get_json()  # get data from POST request
+    current_user = get_jwt_identity()
+    try:
+        # Insert data into MongoDB
+        mongo.user.update_one({&#39;email&#39;: current_user, &#34;consumedDate&#34;: data[&#39;burnoutDate&#39;]}, {&#34;$inc&#34;: {&#34;burntCalories&#34;: int(data[&#34;burntoutCalories&#34;])}}, upsert=True)
+        response = {&#34;status&#34;: &#34;Data saved successfully&#34;}
+        statusCode = 200
+    except Exception as e:
+        response = {&#34;status&#34;: &#34;Error&#34;, &#34;message&#34;: str(e)}
+        statusCode = 500
+    return jsonify(response),statusCode</code></pre>
+</details>
+</dd>
+<dt id="backend.base.addUserConsumedCalories"><code class="name flex">
+<span>def <span class="ident">addUserConsumedCalories</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Add consumed calories for a user</p>
+<p>This endpoint allows an authenticated user to add consumed calories for a specific date.</p>
+<hr>
+<p>tags:
+- User
+security:
+- JWT: []
+parameters:
+- name: body
+in: body
+required: true
+schema:
+type: object
+properties:
+intakeDate:
+type: string
+format: date
+description: The date for which calories are being recorded (e.g., "2023-10-17").
+intakeFoodItem:
+type: string
+description: The name of the food item.
+intakeCalories:
+type: integer
+description: The number of calories consumed for the food item.
+responses:
+200:
+description: Calories consumed data saved successfully.
+schema:
+type: object
+example:
+{
+"status": "Data saved successfully"
+}
+401:
+description: Unauthorized. User must be logged in to add consumed calories.
+500:
+description: An error occurred while saving consumed calories data.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@api.route(&#39;/caloriesConsumed&#39;,methods=[&#34;POST&#34;])
+@jwt_required()
+def addUserConsumedCalories(): # pragma: no cover
+    &#34;&#34;&#34;
+    Add consumed calories for a user
+
+    This endpoint allows an authenticated user to add consumed calories for a specific date.
+
+    ---
+    tags:
+      - User
+    security:
+      - JWT: []
+    parameters:
+      - name: body
+        in: body
+        required: true
+        schema:
+          type: object
+          properties:
+            intakeDate:
+              type: string
+              format: date
+              description: The date for which calories are being recorded (e.g., &#34;2023-10-17&#34;).
+            intakeFoodItem:
+              type: string
+              description: The name of the food item.
+            intakeCalories:
+              type: integer
+              description: The number of calories consumed for the food item.
+    responses:
+      200:
+        description: Calories consumed data saved successfully.
+        schema:
+          type: object
+        example:
+          {
+            &#34;status&#34;: &#34;Data saved successfully&#34;
+          }
+      401:
+        description: Unauthorized. User must be logged in to add consumed calories.
+      500:
+        description: An error occurred while saving consumed calories data.
+    &#34;&#34;&#34;
+    data = request.get_json()  # get data from POST request
+    current_user = get_jwt_identity()
+    try:
+        # Insert data into MongoDB
+        mongo.user.update_one({&#39;email&#39;: current_user, &#34;consumedDate&#34;: data[&#39;intakeDate&#39;]}, {&#34;$push&#34;: {&#34;foodConsumed&#34;: {&#34;item&#34;:data[&#34;intakeFoodItem&#34;],&#34;calories&#34;:data[&#34;intakeCalories&#34;]}}}, upsert=True)
+        response = {&#34;status&#34;: &#34;Data saved successfully&#34;}
+        statusCode = 200
+    except Exception as e:
+        response = {&#34;status&#34;: &#34;Error&#34;, &#34;message&#34;: str(e)}
+        statusCode = 500
+    return jsonify(response),statusCode</code></pre>
+</details>
+</dd>
+<dt id="backend.base.create_token"><code class="name flex">
+<span>def <span class="ident">create_token</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Create a new access token</p>
+<hr>
+<p>tags:
+- Authentication
+parameters:
+- name: email
+in: formData
+type: string
+required: true
+description: User email
+- name: password
+in: formData
+type: string
+required: true
+description: User password
+responses:
+200:
+description: Login successful
+401:
+description: Invalid email or password</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@api.route(&#39;/token&#39;, methods=[&#34;POST&#34;]) # pragma: no cover
+def create_token():
+    &#34;&#34;&#34;
+    Create a new access token
+
+    ---
+    tags:
+      - Authentication
+    parameters:
+      - name: email
+        in: formData
+        type: string
+        required: true
+        description: User email
+      - name: password
+        in: formData
+        type: string
+        required: true
+        description: User password
+    responses:
+      200:
+        description: Login successful
+      401:
+        description: Invalid email or password
+    &#34;&#34;&#34;
+    email = request.json.get(&#34;email&#34;, None)
+    password = request.json.get(&#34;password&#34;, None)
+    user = mongo.user.find_one({&#34;email&#34;: email})
+    if (user is not None and (user[&#34;password&#34;] == password)):
+        access_token = create_access_token(identity=email)
+        return jsonify({&#34;message&#34;: &#34;Login successful&#34;, &#34;access_token&#34;:access_token})
+    else:
+        print(&#34;Invalid email or password&#34;)
+        return jsonify({&#34;message&#34;: &#34;Invalid email or password&#34;}),401</code></pre>
+</details>
+</dd>
+<dt id="backend.base.enroll_event"><code class="name flex">
+<span>def <span class="ident">enroll_event</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Enroll the user in an event</p>
+<p>This endpoint allows an authenticated user to enroll in an event.</p>
+<hr>
+<p>tags:
+- Events
+parameters:
+- in: body
+name: data
+description: Data containing the eventTitle
+required: true
+schema:
+type: object
+properties:
+eventTitle:
+type: string
+example:
+eventTitle: "Event Name"
+security:
+- JWT: []
+responses:
+200:
+description: User successfully enrolled in the event
+schema:
+type: object
+properties:
+status:
+type: string
+example: "Data saved successfully"
+500:
+description: An error occurred while enrolling the user</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@api.route(&#39;/enroll&#39;, methods=[&#39;POST&#39;]) # pragma: no cover
+@jwt_required()
+def enroll_event(): # pragma: no cover
+    &#34;&#34;&#34;
+    Enroll the user in an event
+
+    This endpoint allows an authenticated user to enroll in an event.
+
+    ---
+    tags:
+      - Events
+    parameters:
+      - in: body
+        name: data
+        description: Data containing the eventTitle
+        required: true
+        schema:
+          type: object
+          properties:
+            eventTitle:
+              type: string
+        example:
+          eventTitle: &#34;Event Name&#34;
+    security:
+      - JWT: []
+    responses:
+      200:
+        description: User successfully enrolled in the event
+        schema:
+          type: object
+          properties:
+            status:
+              type: string
+              example: &#34;Data saved successfully&#34;
+      500:
+        description: An error occurred while enrolling the user
+    &#34;&#34;&#34;
+    data = request.get_json()  # get data from POST request
+    current_user = get_jwt_identity()
+    try:
+        # Insert data into MongoDB
+        mongo.user.insert_one({
+            &#34;email&#34;: current_user,
+            &#34;eventTitle&#34;: data[&#39;eventTitle&#39;]
+        })
+        response = {&#34;status&#34;: &#34;Data saved successfully&#34;}
+    except Exception as e:
+        response = {&#34;status&#34;: &#34;Error&#34;, &#34;message&#34;: str(e)}
+    
+    return jsonify(response)</code></pre>
+</details>
+</dd>
+<dt id="backend.base.getFoodCalorieMapping"><code class="name flex">
+<span>def <span class="ident">getFoodCalorieMapping</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Get food calorie mapping</p>
+<p>This endpoint allows an authenticated user to retrieve a mapping of food items to their respective calorie values.</p>
+<hr>
+<p>tags:
+- Food
+security:
+- JWT: []
+responses:
+200:
+description: Successfully retrieved the food calorie mapping.
+schema:
+type: object
+properties:
+foodItem:
+type: integer
+description: Food item name.
+calories:
+type: number
+description: Calories associated with the food item.
+example:
+{
+"Potato": 50,
+"Acai": 20,
+"Cheeseburger": 80,
+&hellip;
+}
+401:
+description: Unauthorized. User must be logged in to retrieve the food calorie mapping.
+500:
+description: An error occurred while retrieving the food calorie mapping.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@api.route(&#39;/foodCalorieMapping&#39;,methods=[&#34;GET&#34;])
+@jwt_required()
+def getFoodCalorieMapping(): 
+    &#34;&#34;&#34;
+    Get food calorie mapping
+
+    This endpoint allows an authenticated user to retrieve a mapping of food items to their respective calorie values.
+
+    ---
+    tags:
+      - Food
+    security:
+      - JWT: []
+    responses:
+      200:
+        description: Successfully retrieved the food calorie mapping.
+        schema:
+          type: object
+          properties:
+            foodItem:
+              type: integer
+              description: Food item name.
+            calories:
+              type: number
+              description: Calories associated with the food item.
+        example:
+          {
+            &#34;Potato&#34;: 50,
+            &#34;Acai&#34;: 20,
+            &#34;Cheeseburger&#34;: 80,
+            ...
+          }
+      401:
+        description: Unauthorized. User must be logged in to retrieve the food calorie mapping.
+      500:
+        description: An error occurred while retrieving the food calorie mapping.
+    &#34;&#34;&#34;
+    try:
+        data = mongo.food.find()
+        # Response should be in this format {foodItem: calories, foodItem: calories....} 
+        # For Example { Potato: 50, Acai: 20, Cheeseburger: 80 }
+        response = {item[&#34;food&#34;]:item[&#34;calories&#34;] for item in data}
+        statusCode = 200
+    except Exception as e:
+        response = {&#34;status&#34;: &#34;Error&#34;, &#34;message&#34;: str(e)}
+        statusCode = 500
+    return jsonify(response),statusCode</code></pre>
+</details>
+</dd>
+<dt id="backend.base.getUserRegisteredEvents"><code class="name flex">
+<span>def <span class="ident">getUserRegisteredEvents</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Get user's registered events</p>
+<p>This endpoint allows an authenticated user to retrieve the events they are registered for.</p>
+<hr>
+<p>tags:
+- Events
+security:
+- JWT: []
+responses:
+200:
+description: Successfully retrieved the user's registered events.
+schema:
+type: array
+items:
+type: object
+properties:
+eventName:
+type: string
+description: Name of the event.
+date:
+type: string
+format: date
+description: Date of the event.
+example:
+[
+{
+"eventName": "Yoga",
+"date": "2023-12-11"
+},
+{
+"eventName": "Swimming",
+"date": "2023-11-10"
+},
+&hellip;
+]
+401:
+description: Unauthorized. User must be logged in to retrieve their registered events.
+500:
+description: An error occurred while retrieving the user's registered events.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@api.route(&#39;/usersEvents&#39;,methods=[&#34;GET&#34;]) 
+@jwt_required()
+def getUserRegisteredEvents(): 
+    &#34;&#34;&#34;
+    Get user&#39;s registered events
+
+    This endpoint allows an authenticated user to retrieve the events they are registered for.
+
+    ---
+    tags:
+      - Events
+    security:
+      - JWT: []
+    responses:
+      200:
+        description: Successfully retrieved the user&#39;s registered events.
+        schema:
+          type: array
+          items:
+            type: object
+            properties:
+              eventName:
+                type: string
+                description: Name of the event.
+              date:
+                type: string
+                format: date
+                description: Date of the event.
+            example:
+              [
+                {
+                  &#34;eventName&#34;: &#34;Yoga&#34;,
+                  &#34;date&#34;: &#34;2023-12-11&#34;
+                },
+                {
+                  &#34;eventName&#34;: &#34;Swimming&#34;,
+                  &#34;date&#34;: &#34;2023-11-10&#34;
+                },
+                ...
+              ]
+      401:
+        description: Unauthorized. User must be logged in to retrieve their registered events.
+      500:
+        description: An error occurred while retrieving the user&#39;s registered events.
+    &#34;&#34;&#34;
+    try:
+        # current_user = get_jwt_identity()
+        current_user = get_jwt_identity()
+        data = mongo.user.find({&#34;email&#34;: current_user, &#34;eventTitle&#34;:{&#34;$exists&#34;: True}})
+        response = []
+        date=&#34;10/23/2023&#34;
+        for item in data:
+            res = {&#34;eventName&#34;: item[&#34;eventTitle&#34;], &#34;date&#34;: date}
+            response.append(res)
+        # Response should be in this format [{eventName: Yoga, date: &#34;12/11/2023&#34;},{eventName: Swimming, date: &#34;11/10/2023&#34;}]
+        # For Example { Potato: 50, Acai: 20, Cheeseburger: 80 }
+        statusCode = 200
+    except Exception as e:
+        response = {&#34;status&#34;: &#34;Error&#34;, &#34;message&#34;: str(e)}
+        statusCode = 500
+    return jsonify(response),statusCode</code></pre>
+</details>
+</dd>
+<dt id="backend.base.getWeekHistory"><code class="name flex">
+<span>def <span class="ident">getWeekHistory</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Get user's weekly history</p>
+<p>This endpoint allows an authenticated user to retrieve their food consumption and calories burned history for the past week.</p>
+<hr>
+<p>tags:
+- User
+security:
+- JWT: []
+parameters:
+- name: body
+in: body
+required: true
+schema:
+type: object
+properties:
+todayDate:
+type: string
+format: date
+description: The date for the end of the week (today's date).
+responses:
+200:
+description: Successfully retrieved the user's weekly history.
+schema:
+type: array
+items:
+type: object
+properties:
+dayIndex:
+type: integer
+description: Integer from 0 to 6 representing the day index.
+date:
+type: string
+format: date
+description: The date for each day in the week.
+foodConsumed:
+type: array
+items:
+type: object
+properties:
+item:
+type: string
+description: Food item name.
+calories:
+type: number
+description: Calories consumed from the food item.
+description: A list of dictionaries containing food items and their consumed calories.
+caloriesConsumed:
+type: number
+description: The sum of all calories consumed for that day.
+exceededDailyLimit:
+type: boolean
+description: Indicates whether the calories consumed exceeded the daily limit.
+burntCalories:
+type: number
+description: Calories burned on that day.
+example:
+[
+{
+"dayIndex": 0,
+"date": "10/13/2023",
+"foodConsumed": [
+{
+"item": "Chicken Salad",
+"calories": 500
+},
+{
+"item": "Onion Soup",
+"calories": 300
+},
+{
+"item": "Potato Salad",
+"calories": 500
+},
+{
+"item": "Cheese Burger",
+"calories": 500
+}
+],
+"caloriesConsumed": 1800,
+"exceededDailyLimit": false,
+"burntCalories": 1200
+},
+{
+"dayIndex": 1,
+"date": "10/12/2023",
+"foodConsumed": [&hellip;],
+"caloriesConsumed": &hellip;,
+"exceededDailyLimit": &hellip;,
+"burntCalories": &hellip;
+},
+&hellip;
+]
+401:
+description: Unauthorized. User must be logged in to retrieve weekly history.
+500:
+description: An error occurred while retrieving the user's weekly history.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@api.route(&#39;/weekHistory&#39;,methods=[&#34;POST&#34;])
+@jwt_required()
+def getWeekHistory(): # pragma: no cover
+    &#34;&#34;&#34;
+    Get user&#39;s weekly history
+
+    This endpoint allows an authenticated user to retrieve their food consumption and calories burned history for the past week.
+
+    ---
+    tags:
+      - User
+    security:
+      - JWT: []
+    parameters:
+      - name: body
+        in: body
+        required: true
+        schema:
+          type: object
+          properties:
+            todayDate:
+              type: string
+              format: date
+              description: The date for the end of the week (today&#39;s date).
+    responses:
+      200:
+        description: Successfully retrieved the user&#39;s weekly history.
+        schema:
+          type: array
+          items:
+            type: object
+            properties:
+              dayIndex:
+                type: integer
+                description: Integer from 0 to 6 representing the day index.
+              date:
+                type: string
+                format: date
+                description: The date for each day in the week.
+              foodConsumed:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    item:
+                      type: string
+                      description: Food item name.
+                    calories:
+                      type: number
+                      description: Calories consumed from the food item.
+                description: A list of dictionaries containing food items and their consumed calories.
+              caloriesConsumed:
+                type: number
+                description: The sum of all calories consumed for that day.
+              exceededDailyLimit:
+                type: boolean
+                description: Indicates whether the calories consumed exceeded the daily limit.
+              burntCalories:
+                type: number
+                description: Calories burned on that day.
+        example:
+          [
+            {
+              &#34;dayIndex&#34;: 0,
+              &#34;date&#34;: &#34;10/13/2023&#34;,
+              &#34;foodConsumed&#34;: [
+                {
+                  &#34;item&#34;: &#34;Chicken Salad&#34;,
+                  &#34;calories&#34;: 500
+                },
+                {
+                  &#34;item&#34;: &#34;Onion Soup&#34;,
+                  &#34;calories&#34;: 300
+                },
+                {
+                  &#34;item&#34;: &#34;Potato Salad&#34;,
+                  &#34;calories&#34;: 500
+                },
+                {
+                  &#34;item&#34;: &#34;Cheese Burger&#34;,
+                  &#34;calories&#34;: 500
+                }
+              ],
+              &#34;caloriesConsumed&#34;: 1800,
+              &#34;exceededDailyLimit&#34;: false,
+              &#34;burntCalories&#34;: 1200
+            },
+            {
+              &#34;dayIndex&#34;: 1,
+              &#34;date&#34;: &#34;10/12/2023&#34;,
+              &#34;foodConsumed&#34;: [...],
+              &#34;caloriesConsumed&#34;: ...,
+              &#34;exceededDailyLimit&#34;: ...,
+              &#34;burntCalories&#34;: ...
+            },
+            ...
+          ]
+      401:
+        description: Unauthorized. User must be logged in to retrieve weekly history.
+      500:
+        description: An error occurred while retrieving the user&#39;s weekly history.
+    &#34;&#34;&#34;
+    data = request.get_json()  # get data from POST request
+    current_user = get_jwt_identity()
+    todayDate = datetime.strptime(data[&#34;todayDate&#34;],&#34;%m/%d/%Y&#34;)
+    dates = [(todayDate-timedelta(days=x)).strftime(&#34;%m/%d/%Y&#34;) for x in range(7)]
+    calorieLimit = 1000
+    result = []
+    try:
+        for index,dateToFind in enumerate(dates):
+            # Every day&#39;s res item should like this
+            # {
+            #   dayIndex: 0,               #Interger from 0-6
+            #   date: &#34;10/13/2023&#34;,        #Date 0=today, 6=7th day ago from today
+            #   foodConsumed: [            # A list of dicts, each dict contains a food item and its calories
+            #     {
+            #       item: &#34;Chicken Salad&#34;,
+            #       calories: 500,
+            #     },
+            #     {
+            #       item: &#34;Onion Soup&#34;,
+            #       calories: 300,
+            #     },
+            #     {
+            #       item: &#34;Potato Salad&#34;,
+            #       calories: 500,
+            #     },
+            #     {
+            #       item: &#34;Cheese Burger&#34;,
+            #       calories: 500,
+            #     },
+            #   ],
+            #   caloriesConsumed: 1800,    # the sum of all calories consumed from above list
+            #   exceededDailyLimit: false, # true or false based on whether caloriesConsumed is &gt; limit user set
+            #   burntCalories: 1200,       # calories burnt out on that day
+            # }
+            res = {}
+            data = mongo.user.find_one({&#39;email&#39;: current_user, &#34;consumedDate&#34;: dateToFind})
+            res[&#34;dayIndex&#34;] = index
+            res[&#34;date&#34;] = dateToFind
+            if data:
+                if &#34;foodConsumed&#34; in data:
+                    res[&#34;foodConsumed&#34;] = data[&#34;foodConsumed&#34;]
+                    res[&#34;caloriesConsumed&#34;] = reduce(lambda a,b: a+b, [int(item[&#34;calories&#34;]) for item in data[&#34;foodConsumed&#34;]])
+                    res[&#34;exceededDailyLimit&#34;] = res[&#34;caloriesConsumed&#34;]&gt;calorieLimit
+                if &#34;burntCalories&#34; in data:
+                    res[&#34;burntCalories&#34;] = data[&#34;burntCalories&#34;]
+            if &#34;foodConsumed&#34; not in res:
+                res[&#34;foodConsumed&#34;] = []
+            if &#34;caloriesConsumed&#34; not in res:
+                res[&#34;caloriesConsumed&#34;] = 0
+            if &#34;burntCalories&#34; not in res:
+                res[&#34;burntCalories&#34;] = 0
+            if &#34;exceededDailyLimit&#34; not in res:
+                res[&#34;exceededDailyLimit&#34;] = False
+            result.append(res)
+        response = result
+        statusCode = 200
+    except Exception as e:
+        response = {&#34;status&#34;: &#34;Error&#34;, &#34;message&#34;: str(e)}
+        statusCode = 500
+    return jsonify(response),statusCode</code></pre>
+</details>
+</dd>
+<dt id="backend.base.get_events"><code class="name flex">
+<span>def <span class="ident">get_events</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Retrieve a list of events</p>
+<p>This endpoint retrieves a list of events from the database.</p>
+<hr>
+<p>tags:
+- Events
+responses:
+200:
+description: A list of events
+schema:
+type: array
+items:
+type: object
+properties:
+_id:
+type: string
+# Add more properties as needed
+404:
+description: No events found</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@api.route(&#39;/events&#39;, methods=[&#39;GET&#39;])
+def get_events():
+    &#34;&#34;&#34;
+    Retrieve a list of events
+
+    This endpoint retrieves a list of events from the database.
+
+    ---
+    tags:
+      - Events
+    responses:
+      200:
+        description: A list of events
+        schema:
+          type: array
+          items:
+            type: object
+            properties:
+              _id:
+                type: string
+              # Add more properties as needed
+      404:
+        description: No events found
+    &#34;&#34;&#34;
+    events_collection = mongo.events
+    events = list(events_collection.find({}))
+    print(events)
+    for event in events:
+        event[&#34;_id&#34;] = str(event[&#34;_id&#34;]) # Convert ObjectId to string
+    return jsonify(events)</code></pre>
+</details>
+</dd>
+<dt id="backend.base.goalsUpdate"><code class="name flex">
+<span>def <span class="ident">goalsUpdate</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Update user goals</p>
+<p>This endpoint allows an authenticated user to update their fitness goals, such as target weight, target calories, and target goal.</p>
+<hr>
+<p>tags:
+- User
+security:
+- JWT: []
+parameters:
+- name: body
+in: body
+required: true
+schema:
+type: object
+properties:
+targetWeight:
+type: number
+description: The user's target weight goal.
+targetCalories:
+type: number
+description: The user's target daily calorie intake goal.
+targetGoal:
+type: string
+description: The user's fitness goal.
+responses:
+200:
+description: User goals updated successfully.
+schema:
+type: object
+example:
+{
+"msg": "Update successful"
+}
+401:
+description: Unauthorized. User must be logged in to update their goals.
+500:
+description: An error occurred while updating the user's goals.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@api.route(&#39;/goalsUpdate&#39;,methods=[&#34;POST&#34;])
+@jwt_required()
+def goalsUpdate(): # pragma: no cover
+    &#34;&#34;&#34;
+    Update user goals
+
+    This endpoint allows an authenticated user to update their fitness goals, such as target weight, target calories, and target goal.
+
+    ---
+    tags:
+      - User
+    security:
+      - JWT: []
+    parameters:
+      - name: body
+        in: body
+        required: true
+        schema:
+          type: object
+          properties:
+            targetWeight:
+              type: number
+              description: The user&#39;s target weight goal.
+            targetCalories:
+              type: number
+              description: The user&#39;s target daily calorie intake goal.
+            targetGoal:
+              type: string
+              description: The user&#39;s fitness goal.
+    responses:
+      200:
+        description: User goals updated successfully.
+        schema:
+          type: object
+        example:
+          {
+            &#34;msg&#34;: &#34;Update successful&#34;
+          }
+      401:
+        description: Unauthorized. User must be logged in to update their goals.
+      500:
+        description: An error occurred while updating the user&#39;s goals.
+    &#34;&#34;&#34;
+    current_user = get_jwt_identity()
+    current_user = get_jwt_identity()
+    targetWeight = request.json.get(&#39;targetWeight&#39;, None)
+    targetCalories = request.json.get(&#39;targetCalories&#39;, None)
+    targetGoal = request.json.get(&#39;targetGoal&#39;, None)
+
+    new_document = {
+        &#34;target_weight&#34;: targetWeight,
+        &#34;target_calories&#34;: targetCalories,
+        &#34;target_goal&#34;: targetGoal
+    }
+    query = {
+        &#34;email&#34;: current_user,
+    }
+    try:
+        mongo.user.update_one(query, {&#34;$set&#34;: new_document}, upsert=True)
+        response = jsonify({&#34;msg&#34;: &#34;update successful&#34;})
+    except Exception as e:
+        response = jsonify({&#34;msg&#34;: &#34;update failed&#34;})
+
+    return response</code></pre>
+</details>
+</dd>
+<dt id="backend.base.is_enrolled"><code class="name flex">
+<span>def <span class="ident">is_enrolled</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Check if the user is enrolled in an event</p>
+<p>This endpoint checks if the authenticated user is enrolled in a specific event.</p>
+<hr>
+<p>tags:
+- Events
+parameters:
+- in: body
+name: data
+description: Data containing the eventTitle
+required: true
+schema:
+type: object
+properties:
+eventTitle:
+type: string
+example:
+eventTitle: "Event Name"
+security:
+- JWT: []
+responses:
+200:
+description: Indicates whether the user is enrolled
+schema:
+type: object
+properties:
+isEnrolled:
+type: boolean
+401:
+description: Unauthorized access</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@api.route(&#39;/is-enrolled&#39;, methods=[&#39;POST&#39;])
+@jwt_required()
+def is_enrolled():
+    &#34;&#34;&#34;
+    Check if the user is enrolled in an event
+
+    This endpoint checks if the authenticated user is enrolled in a specific event.
+
+    ---
+    tags:
+      - Events
+    parameters:
+      - in: body
+        name: data
+        description: Data containing the eventTitle
+        required: true
+        schema:
+          type: object
+          properties:
+            eventTitle:
+              type: string
+        example:
+          eventTitle: &#34;Event Name&#34;
+    security:
+      - JWT: []
+    responses:
+      200:
+        description: Indicates whether the user is enrolled
+        schema:
+          type: object
+          properties:
+            isEnrolled:
+              type: boolean
+      401:
+        description: Unauthorized access
+    &#34;&#34;&#34;
+
+    data = request.json
+    eventTitle = data[&#39;eventTitle&#39;]
+    current_user = get_jwt_identity()
+    enrollment = mongo.user.find_one({&#34;email&#34;: current_user, &#34;eventTitle&#34;: eventTitle})
+
+    if enrollment:
+        return jsonify({&#34;isEnrolled&#34;: True})
+    else:
+        return jsonify({&#34;isEnrolled&#34;: False})</code></pre>
+</details>
+</dd>
+<dt id="backend.base.logout"><code class="name flex">
+<span>def <span class="ident">logout</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Logout the user and clear their session</p>
+<hr>
+<p>tags:
+- User Logout
+responses:
+200:
+description: Logout successful</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@api.route(&#34;/logout&#34;, methods=[&#34;POST&#34;])
+def logout():
+    &#34;&#34;&#34;
+    Logout the user and clear their session
+
+    ---
+    tags:
+      - User Logout
+    responses:
+      200:
+        description: Logout successful
+    &#34;&#34;&#34;
+    response = jsonify({&#34;msg&#34;: &#34;logout successful&#34;})
+    unset_jwt_cookies(response)
+    return response</code></pre>
+</details>
+</dd>
+<dt id="backend.base.my_profile"><code class="name flex">
+<span>def <span class="ident">my_profile</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Retrieve user profile information</p>
+<p>This endpoint allows an authenticated user to retrieve their profile information.</p>
+<hr>
+<p>tags:
+- User
+security:
+- JWT: []
+responses:
+200:
+description: User profile information retrieved successfully
+schema:
+type: object
+example:
+{
+"_id": "12345",
+"email": "user@example.com",
+"first_name": "John",
+"last_name": "Doe",
+"age": 30,
+"weight": 70,
+"height": 175
+}
+401:
+description: Unauthorized. User must be logged in to access their profile.
+404:
+description: User profile not found.
+500:
+description: An error occurred while retrieving the user profile.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@api.route(&#39;/profile&#39;)
+@jwt_required()
+def my_profile(): # pragma: no cover
+    &#34;&#34;&#34;
+    Retrieve user profile information
+
+    This endpoint allows an authenticated user to retrieve their profile information.
+
+    ---
+    tags:
+      - User
+    security:
+      - JWT: []
+    responses:
+      200:
+        description: User profile information retrieved successfully
+        schema:
+          type: object
+        example:
+          {
+            &#34;_id&#34;: &#34;12345&#34;,
+            &#34;email&#34;: &#34;user@example.com&#34;,
+            &#34;first_name&#34;: &#34;John&#34;,
+            &#34;last_name&#34;: &#34;Doe&#34;,
+            &#34;age&#34;: 30,
+            &#34;weight&#34;: 70,
+            &#34;height&#34;: 175
+          }
+      401:
+        description: Unauthorized. User must be logged in to access their profile.
+      404:
+        description: User profile not found.
+      500:
+        description: An error occurred while retrieving the user profile.
+    &#34;&#34;&#34;
+    current_user = get_jwt_identity()
+    profile = mongo.user.find_one({&#34;email&#34;: current_user})
+    return jsonify(json_util.dumps(profile))</code></pre>
+</details>
+</dd>
+<dt id="backend.base.profileUpdate"><code class="name flex">
+<span>def <span class="ident">profileUpdate</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Update user profile</p>
+<p>This endpoint allows an authenticated user to update their profile information.</p>
+<hr>
+<p>tags:
+- User
+security:
+- JWT: []
+parameters:
+- name: body
+in: body
+required: true
+schema:
+type: object
+properties:
+firstName:
+type: string
+description: The user's first name.
+lastName:
+type: string
+description: The user's last name.
+age:
+type: integer
+description: The user's age.
+weight:
+type: number
+description: The user's weight.
+height:
+type: number
+description: The user's height.
+responses:
+200:
+description: User profile updated successfully.
+schema:
+type: object
+example:
+{
+"msg": "Update successful"
+}
+401:
+description: Unauthorized. User must be logged in to update their profile.
+500:
+description: An error occurred while updating the user's profile.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@api.route(&#39;/profileUpdate&#39;,methods=[&#34;POST&#34;])
+@jwt_required()
+def profileUpdate(): # pragma: no cover
+    &#34;&#34;&#34;
+    Update user profile
+
+    This endpoint allows an authenticated user to update their profile information.
+
+    ---
+    tags:
+      - User
+    security:
+      - JWT: []
+    parameters:
+      - name: body
+        in: body
+        required: true
+        schema:
+          type: object
+          properties:
+            firstName:
+              type: string
+              description: The user&#39;s first name.
+            lastName:
+              type: string
+              description: The user&#39;s last name.
+            age:
+              type: integer
+              description: The user&#39;s age.
+            weight:
+              type: number
+              description: The user&#39;s weight.
+            height:
+              type: number
+              description: The user&#39;s height.
+    responses:
+      200:
+        description: User profile updated successfully.
+        schema:
+          type: object
+        example:
+          {
+            &#34;msg&#34;: &#34;Update successful&#34;
+          }
+      401:
+        description: Unauthorized. User must be logged in to update their profile.
+      500:
+        description: An error occurred while updating the user&#39;s profile.
+    &#34;&#34;&#34;
+    current_user = get_jwt_identity()
+    first_name = request.json.get(&#39;firstName&#39;, None)
+    last_name = request.json.get(&#39;lastName&#39;, None)
+    age = request.json.get(&#39;age&#39;, None)
+    weight = request.json.get(&#39;weight&#39;, None)
+    height = request.json.get(&#39;height&#39;, None)
+    new_document = {
+    &#34;first_name&#34;: first_name,
+    &#34;last_name&#34;: last_name,
+    &#34;age&#34;: age,
+    &#34;weight&#34;: weight,
+    &#34;height&#34;: height,
+    }
+    query = {
+        &#34;email&#34;: current_user,
+    }
+    try:
+        mongo.user.update_one(query, {&#34;$set&#34;: new_document}, upsert=True)
+        response = jsonify({&#34;msg&#34;: &#34;update successful&#34;})
+    except Exception as e:
+        response = jsonify({&#34;msg&#34;: &#34;update failed&#34;})
+
+    return response</code></pre>
+</details>
+</dd>
+<dt id="backend.base.register"><code class="name flex">
+<span>def <span class="ident">register</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Register a new user</p>
+<hr>
+<p>tags:
+- User Registration
+parameters:
+- name: email
+in: formData
+type: string
+required: true
+description: User email
+- name: password
+in: formData
+type: string
+required: true
+description: User password
+- name: firstName
+in: formData
+type: string
+required: true
+description: User's first name
+- name: lastName
+in: formData
+type: string
+required: true
+description: User's last name
+responses:
+200:
+description: Registration successful
+409:
+description: User already exists
+500:
+description: Registration failed</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@api.route(&#34;/register&#34;, methods=[&#34;POST&#34;])
+def register():
+    &#34;&#34;&#34;
+    Register a new user
+
+    ---
+    tags:
+      - User Registration
+    parameters:
+      - name: email
+        in: formData
+        type: string
+        required: true
+        description: User email
+      - name: password
+        in: formData
+        type: string
+        required: true
+        description: User password
+      - name: firstName
+        in: formData
+        type: string
+        required: true
+        description: User&#39;s first name
+      - name: lastName
+        in: formData
+        type: string
+        required: true
+        description: User&#39;s last name
+    responses:
+      200:
+        description: Registration successful
+      409:
+        description: User already exists
+      500:
+        description: Registration failed
+    &#34;&#34;&#34;
+
+    email = request.json.get(&#39;email&#39;, None)
+    password = request.json.get(&#39;password&#39;, None)
+    first_name = request.json.get(&#39;firstName&#39;, None)
+    last_name = request.json.get(&#39;lastName&#39;, None)
+    new_document = {
+    &#34;email&#34;: email,
+    &#34;password&#34;: password,
+    &#34;first_name&#34;: first_name,
+    &#34;last_name&#34;: last_name,
+    }
+    query = {
+        &#34;email&#34;: email,
+    }
+    try:
+        inserted = mongo.user.update_one(query, {&#34;$set&#34;: new_document}, upsert=True)
+        if (inserted.upserted_id):
+            response = jsonify({&#34;msg&#34;: &#34;register successful&#34;})
+        else:   
+            print(&#34;User already exists&#34;)
+            response = jsonify({&#34;msg&#34;: &#34;User already exists&#34;})
+    except Exception as e:
+        response = jsonify({&#34;msg&#34;: &#34;register failed&#34;})
+
+    return response</code></pre>
+</details>
+</dd>
+<dt id="backend.base.setup_mongo_client"><code class="name flex">
+<span>def <span class="ident">setup_mongo_client</span></span>(<span>app)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def setup_mongo_client(app):
+    global mongo
+    if app.config[&#39;TESTING&#39;]:
+        # Use mongomock for testing
+        app.mongo_client = mongomock.MongoClient()
+        mongo = app.mongo_client[&#34;test&#34;]
+    else:
+        # Use a real MongoDB connection for production
+        app.mongo_client = MongoClient(&#39;localhost&#39;, 27017)
+        mongo = app.mongo_client[&#34;test&#34;]</code></pre>
+</details>
+</dd>
+</dl>
+</section>
+<section>
+</section>
+</article>
+<nav id="sidebar">
+<h1>Index</h1>
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="backend" href="index.html">backend</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-functions">Functions</a></h3>
+<ul class="">
+<li><code><a title="backend.base.addUserBurnedCalories" href="#backend.base.addUserBurnedCalories">addUserBurnedCalories</a></code></li>
+<li><code><a title="backend.base.addUserConsumedCalories" href="#backend.base.addUserConsumedCalories">addUserConsumedCalories</a></code></li>
+<li><code><a title="backend.base.create_token" href="#backend.base.create_token">create_token</a></code></li>
+<li><code><a title="backend.base.enroll_event" href="#backend.base.enroll_event">enroll_event</a></code></li>
+<li><code><a title="backend.base.getFoodCalorieMapping" href="#backend.base.getFoodCalorieMapping">getFoodCalorieMapping</a></code></li>
+<li><code><a title="backend.base.getUserRegisteredEvents" href="#backend.base.getUserRegisteredEvents">getUserRegisteredEvents</a></code></li>
+<li><code><a title="backend.base.getWeekHistory" href="#backend.base.getWeekHistory">getWeekHistory</a></code></li>
+<li><code><a title="backend.base.get_events" href="#backend.base.get_events">get_events</a></code></li>
+<li><code><a title="backend.base.goalsUpdate" href="#backend.base.goalsUpdate">goalsUpdate</a></code></li>
+<li><code><a title="backend.base.is_enrolled" href="#backend.base.is_enrolled">is_enrolled</a></code></li>
+<li><code><a title="backend.base.logout" href="#backend.base.logout">logout</a></code></li>
+<li><code><a title="backend.base.my_profile" href="#backend.base.my_profile">my_profile</a></code></li>
+<li><code><a title="backend.base.profileUpdate" href="#backend.base.profileUpdate">profileUpdate</a></code></li>
+<li><code><a title="backend.base.register" href="#backend.base.register">register</a></code></li>
+<li><code><a title="backend.base.setup_mongo_client" href="#backend.base.setup_mongo_client">setup_mongo_client</a></code></li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.10.0</a>.</p>
+</footer>
+</body>
+</html>
