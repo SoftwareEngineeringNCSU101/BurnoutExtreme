@@ -196,7 +196,7 @@ export default function Events (props) {
           sx={{
             bgcolor: 'background.paper',
             backgroundImage: `url(${headerImage})`,
-            backgroundSize: '50%',
+            backgroundSize: '45%',
             backgroundPosition: 'center',
             backgroundRepeat: 'no-repeat',
             pt: 8,
