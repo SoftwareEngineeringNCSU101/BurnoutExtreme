@@ -1,18 +1,19 @@
 import unittest
 from base import api, setup_mongo_client
-from unittest.mock import patch, Mock 
+from unittest.mock import patch, Mock
 from flask import json
 
+
 class APITestCase(unittest.TestCase):
-    
+
     def setUp(self):
         self.app = api
         self.app.config['TESTING'] = True
-        setup_mongo_client(self.app)  # Set up the mongo client after changing the TESTING flag
+        # Set up the mongo client after changing the TESTING flag
+        setup_mongo_client(self.app)
         self.client = self.app.test_client()
-        print("Using MongoDB client:", type(self.app.mongo_client)) 
+        print("Using MongoDB client:", type(self.app.mongo_client))
 
-    
     def test_get_events(self):
         # Create a mock collection
         db = self.app.mongo_client['test']
@@ -28,7 +29,6 @@ class APITestCase(unittest.TestCase):
 
         response = self.client.get('/events')
         self.assertEqual(response.status_code, 200)
-
 
     @patch("pymongo.collection.Collection.update_one")
     def test_register_success(self, mock_update_one):
@@ -55,7 +55,8 @@ class APITestCase(unittest.TestCase):
         # Mock the database query result
         app_client = api.test_client()
 
-        db = app_client.application.mongo_client['test']  # Access the app's Mongo client
+        # Access the app's Mongo client
+        db = app_client.application.mongo_client['test']
         collection = db['user']
         mock_find = Mock()
 
@@ -70,7 +71,6 @@ class APITestCase(unittest.TestCase):
 
         self.assertEqual(response.status_code, 401)
 
-
     @patch('base.request')
     @patch('base.jwt_required')
     @patch('base.mongo')
@@ -78,12 +78,13 @@ class APITestCase(unittest.TestCase):
         app_client = api.test_client()
         # Mock request.json() method to return test data
         mock_request.json.return_value = {'eventTitle': 'Event Name'}
-        
+
         # Mock get_jwt_identity() to return a test user identity
         mock_jwt_required.return_value = lambda f: f
 
         # Mock the find_one method to return an enrollment
-        mock_mongo.user.find_one.return_value = {'email': 'test@example.com', 'eventTitle': 'Event Name'}
+        mock_mongo.user.find_one.return_value = {
+            'email': 'test@example.com', 'eventTitle': 'Event Name'}
 
         response = app_client.post('/is-enrolled')
         data = json.loads(response.get_data(as_text=True))
@@ -123,7 +124,6 @@ class APITestCase(unittest.TestCase):
 
         self.assertEqual(response.status_code, 401)
 
-
     @patch('base.get_jwt_identity')
     @patch('base.mongo')
     def test_weekHistory_unauthorized(self, mock_mongo, mock_get_jwt_identity):
@@ -133,7 +133,7 @@ class APITestCase(unittest.TestCase):
 
         response = app_client .get('/weekHistory')
 
-        self.assertEqual(response.status_code, 405)  
+        self.assertEqual(response.status_code, 405)
 
     @patch('base.get_jwt_identity')
     @patch('base.mongo')
@@ -144,7 +144,7 @@ class APITestCase(unittest.TestCase):
 
         response = app_client .get('/caloriesBurned')
 
-        self.assertEqual(response.status_code, 405) 
+        self.assertEqual(response.status_code, 405)
 
     @patch('base.get_jwt_identity')
     @patch('base.mongo')
@@ -155,7 +155,7 @@ class APITestCase(unittest.TestCase):
 
         response = app_client .get('/goalsUpdate')
 
-        self.assertEqual(response.status_code, 405) 
+        self.assertEqual(response.status_code, 405)
 
     @patch('base.get_jwt_identity')
     @patch('base.mongo')
@@ -166,7 +166,7 @@ class APITestCase(unittest.TestCase):
 
         response = app_client .get('/profileUpdate')
 
-        self.assertEqual(response.status_code, 405) 
+        self.assertEqual(response.status_code, 405)
 
     @patch('base.get_jwt_identity')
     @patch('base.mongo')
@@ -177,7 +177,7 @@ class APITestCase(unittest.TestCase):
 
         response = app_client .get('/caloriesConsumed')
 
-        self.assertEqual(response.status_code, 405) 
+        self.assertEqual(response.status_code, 405)
 
     @patch('base.get_jwt_identity')
     @patch('base.mongo')
@@ -194,7 +194,7 @@ class APITestCase(unittest.TestCase):
         response = app_client .post('/createFood', json=test_data)
 
         self.assertEqual(response.status_code, 200)
-        
+
         response_data = response.get_json()
         self.assertEqual(response_data['status'], "Data saved successfully")
 
@@ -239,6 +239,49 @@ class APITestCase(unittest.TestCase):
         response = app_client .get('/myMeals')
 
         self.assertEqual(response.status_code, 401)
+
+    @patch('base.get_jwt_identity')
+    @patch('base.mongo')
+    def test_myWorkouts_unauthorized(self, mock_mongo, mock_get_jwt_identity):
+        app_client = api.test_client()
+
+        mock_get_jwt_identity.return_value = None
+
+        response = app_client .get('/mySchedule')
+
+        self.assertEqual(response.status_code, 401)
+
+    @patch('base.get_jwt_identity')
+    @patch('base.mongo')
+    def test_createWorkouts_unauthorized(self, mock_mongo, mock_get_jwt_identity):
+        app_client = api.test_client()
+
+        mock_get_jwt_identity.return_value = None
+
+        response = app_client.post('/createSchedule', json={
+            "weekSchedule": {
+                "Monday": [],
+                "Tuesday": [],
+                "Wednesday": [],
+                "Thursday": [],
+                "Friday": [],
+                "Saturday": [],
+                "Sunday": []
+            }
+        })
+        self.assertEqual(response.status_code, 401)
+
+    @patch('base.get_jwt_identity')
+    @patch('base.mongo')
+    def test_deleteSchedule_unauthorized(self, mock_mongo, mock_get_jwt_identity):
+        app_client = api.test_client()
+
+        mock_get_jwt_identity.return_value = None
+
+        response = app_client.delete('/deleteSchedule/Monday/Run')
+
+        self.assertEqual(response.status_code, 401)
+
 
 if __name__ == "__main__":
     unittest.main()
