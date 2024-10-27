@@ -1,192 +1,190 @@
-import * as React from 'react'
-import { useLocation } from 'react-router-dom'
-import { useState, useEffect } from 'react'
-import Button from '@mui/material/Button'
-import Card from '@mui/material/Card'
-import CardContent from '@mui/material/CardContent'
-import CardMedia from '@mui/material/CardMedia'
-import CssBaseline from '@mui/material/CssBaseline'
-import Grid from '@mui/material/Grid'
-import Stack from '@mui/material/Stack'
-import Box from '@mui/material/Box'
-import Typography from '@mui/material/Typography'
-import Container from '@mui/material/Container'
-import Modal from '@mui/material/Modal'
-import TextField from '@mui/material/TextField'
-import { createTheme, ThemeProvider } from '@mui/material/styles'
-import axios from 'axios'
-import Footer from './Footer'
-import { CardActionArea } from '@mui/material'
-import headerImage from '../images/e.jpg'
+import * as React from "react";
+import { useLocation } from "react-router-dom";
+import { useState, useEffect } from "react";
+import Button from "@mui/material/Button";
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+import CardMedia from "@mui/material/CardMedia";
+import CssBaseline from "@mui/material/CssBaseline";
+import Grid from "@mui/material/Grid";
+import Stack from "@mui/material/Stack";
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
+import Container from "@mui/material/Container";
+import Modal from "@mui/material/Modal";
+import TextField from "@mui/material/TextField";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+import axios from "axios";
+import Footer from "./Footer";
+import { CardActionArea } from "@mui/material";
+import Map from "./mapevents";
 
 const SearchBar = ({ setSearchQuery }) => (
   <form>
     <TextField
-      id='search-bar'
-      className='text'
-      onInput={e => {
-        setSearchQuery(e.target.value)
+      id="search-bar"
+      className="text"
+      onInput={(e) => {
+        setSearchQuery(e.target.value);
       }}
-      label='Enter an event'
-      variant='outlined'
-      placeholder='Search...'
-      size='small'
+      label="Enter an event"
+      variant="outlined"
+      placeholder="Search..."
+      size="small"
     />
   </form>
-)
+);
 
 const filterData = (query, cards) => {
   if (!query) {
-    return cards
+    return cards;
   } else {
-    return cards.filter(e =>
+    return cards.filter((e) =>
       e.title.toLowerCase().includes(query.toLowerCase())
-    )
+    );
   }
-}
+};
 
-const defaultTheme = createTheme()
+const defaultTheme = createTheme();
 
-export default function Events (props) {
-  const [events, setEvents] = useState([])
-  const [enrollmentStatus, setEnrollmentStatus] = useState({})
-  // Create state for modal visibility
-  const [eventModals, setEventModals] = useState({})
-  // Function to open and close the modal
-  const handleOpenModal = eventTitle => {
+export default function Events(props) {
+  const [events, setEvents] = useState([]);
+  const [enrollmentStatus, setEnrollmentStatus] = useState({});
+  const [eventModals, setEventModals] = useState({});
+  const [searchQuery, setSearchQuery] = useState("");
+  const eventsFiltered = filterData(searchQuery, events);
+  const location = useLocation();
+
+  const handleOpenModal = (eventTitle) => {
     axios
       .post(
-        '/is-enrolled',
+        "/is-enrolled",
         {
-          eventTitle: eventTitle
+          eventTitle: eventTitle,
         },
         {
           headers: {
-            Authorization: 'Bearer ' + props.state.token
-          }
+            Authorization: "Bearer " + props.state.token,
+          },
         }
       )
-      .then(response => {
+      .then((response) => {
         if (response.data.isEnrolled) {
-          setEnrollmentStatus(prevStatus => ({
+          setEnrollmentStatus((prevStatus) => ({
             ...prevStatus,
-            [eventTitle]: true
-          }))
+            [eventTitle]: true,
+          }));
         } else {
-          setEnrollmentStatus(prevStatus => ({
+          setEnrollmentStatus((prevStatus) => ({
             ...prevStatus,
-            [eventTitle]: false
-          }))
+            [eventTitle]: false,
+          }));
         }
-        setEventModals({ ...eventModals, [eventTitle]: true })
+        setEventModals({ ...eventModals, [eventTitle]: true });
       })
-      .catch(error => {
+      .catch((error) => {
         console.error(
-          'An error occurred while checking enrollment status: ',
+          "An error occurred while checking enrollment status: ",
           error
-        )
-      })
-  }
+        );
+      });
+  };
 
-  const handleCloseModal = eventTitle => {
-    setEventModals({ ...eventModals, [eventTitle]: false })
-  }
-
-  const [searchQuery, setSearchQuery] = useState('')
-  const eventsFiltered = filterData(searchQuery, events)
-  const location = useLocation()
+  const handleCloseModal = (eventTitle) => {
+    setEventModals({ ...eventModals, [eventTitle]: false });
+  };
 
   useEffect(() => {
-    fetch('/events')
-      .then(response => response.json())
-      .then(data => setEvents(data))
-      .catch(error => console.error('Error fetching events:', error))
-    const eventToOpen = location.state?.openModalForEvent
+    fetch("/events")
+      .then((response) => response.json())
+      .then((data) => setEvents(data))
+      .catch((error) => console.error("Error fetching events:", error));
+    const eventToOpen = location.state?.openModalForEvent;
     if (eventToOpen) {
-      handleOpenModal(eventToOpen)
+      handleOpenModal(eventToOpen);
     }
     // eslint-disable-next-line
-  }, [location.state])
+  }, [location.state]);
 
-  const handleEnrollUnenroll = eventTitle => {
-    const userEmail = 'user@example.com' // Get user email here
+  const handleEnrollUnenroll = (eventTitle) => {
+    const userEmail = "user@example.com"; // Get user email here
 
     axios
       .post(
-        '/is-enrolled',
+        "/is-enrolled",
         {
-          eventTitle: eventTitle
+          eventTitle: eventTitle,
         },
         {
           headers: {
-            Authorization: 'Bearer ' + props.state.token
-          }
+            Authorization: "Bearer " + props.state.token,
+          },
         }
       )
-      .then(response => {
+      .then((response) => {
         if (response.data.isEnrolled) {
           axios
             .post(
-              '/unenroll',
+              "/unenroll",
               {
                 email: userEmail,
-                eventTitle: eventTitle
+                eventTitle: eventTitle,
               },
               {
                 headers: {
-                  Authorization: 'Bearer ' + props.state.token
-                }
+                  Authorization: "Bearer " + props.state.token,
+                },
               }
             )
-            .then(response => {
-              console.log(response.data)
-              if (response.data.status === 'Data saved successfully') {
-                setEnrollmentStatus(prevStatus => ({
+            .then((response) => {
+              console.log(response.data);
+              if (response.data.status === "Data saved successfully") {
+                setEnrollmentStatus((prevStatus) => ({
                   ...prevStatus,
-                  [eventTitle]: false
-                }))
+                  [eventTitle]: false,
+                }));
               }
             })
-            .catch(error => {
-              console.error('An error occurred while sending the data: ', error)
-              setEnrollmentStatus(prevStatus => ({
+            .catch((error) => {
+              console.error("An error occurred while sending the data: ", error);
+              setEnrollmentStatus((prevStatus) => ({
                 ...prevStatus,
-                [eventTitle]: true
-              }))
-            })
+                [eventTitle]: true,
+              }));
+            });
         } else {
           axios
             .post(
-              '/enroll',
+              "/enroll",
               {
                 email: userEmail,
-                eventTitle: eventTitle
+                eventTitle: eventTitle,
               },
               {
                 headers: {
-                  Authorization: 'Bearer ' + props.state.token
-                }
+                  Authorization: "Bearer " + props.state.token,
+                },
               }
             )
-            .then(response => {
-              console.log(response.data)
-              if (response.data.status === 'Data saved successfully') {
-                setEnrollmentStatus(prevStatus => ({
+            .then((response) => {
+              console.log(response.data);
+              if (response.data.status === "Data saved successfully") {
+                setEnrollmentStatus((prevStatus) => ({
                   ...prevStatus,
-                  [eventTitle]: true
-                }))
+                  [eventTitle]: true,
+                }));
               }
             })
-            .catch(error => {
-              console.error('An error occurred while sending the data: ', error)
-              setEnrollmentStatus(prevStatus => ({
+            .catch((error) => {
+              console.error("An error occurred while sending the data: ", error);
+              setEnrollmentStatus((prevStatus) => ({
                 ...prevStatus,
-                [eventTitle]: false
-              }))
-            })
+                [eventTitle]: false,
+              }));
+            });
         }
-      })
-  }
+      });
+  };
 
   return (
     <ThemeProvider theme={defaultTheme}>
@@ -195,96 +193,80 @@ export default function Events (props) {
         <Box
           sx={{
             bgcolor: 'background.paper',
-            backgroundImage: `url(${headerImage})`,
-            backgroundSize: '45%',
-            backgroundPosition: 'center',
-            backgroundRepeat: 'no-repeat',
             pt: 8,
-            pb: 6
+            pb: 6,
           }}
         >
-          <Container maxWidth='sm'>
+          <Container maxWidth="sm">
             <Typography
-              component='h1'
-              variant='h2'
-              align='center'
-              color='text.primary'
+              component="h1"
+              variant="h2"
+              align="center"
+              color="text.primary"
               gutterBottom
             >
-              <strong>Events</strong>
+              Events
             </Typography>
-            <Typography
-              variant='h6'
-              align='center'
-              color='text.primary'
-              paragraph
-            >
-              Start your wellness journey with us today! Discover yoga,
-              swimming, gym, and more. Click "More Information" for event
-              details, and enroll into events that motivate you.
+            <Typography variant="h5" align="center" color="text.secondary" paragraph>
+              Start your wellness journey with us today! Discover yoga, swimming, gym, and more. Click "More Information" for event details, and enroll into events that motivate you.
             </Typography>
             <Stack
               sx={{ pt: 4 }}
-              direction='row'
+              direction="row"
               spacing={2}
-              justifyContent='center'
+              justifyContent="center"
             >
-              <SearchBar
-                searchQuery={searchQuery}
-                setSearchQuery={setSearchQuery}
-              />
+              <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
             </Stack>
           </Container>
         </Box>
 
-        <Container sx={{ py: 8 }} maxWidth='md'>
+        <Container sx={{ py: 8 }} maxWidth="md">
           <Grid container spacing={4}>
-            {eventsFiltered.map(event => (
-              <Grid item key={event} xs={12} sm={6} md={4}>
+            {eventsFiltered.map((event) => (
+              <Grid item key={event.title} xs={12} sm={6} md={6}>
                 <Card
-                  sx={{
-                    height: '100%',
-                    display: 'flex',
-                    flexDirection: 'column'
-                  }}
+                  sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}
                 >
                   <CardActionArea onClick={() => handleOpenModal(event.title)}>
                     <CardMedia
-                      component='div'
+                      component="div"
                       sx={{
-                        pt: '56.25%'
+                        pt: '56.25%',
                       }}
                       image={event.imageUrl}
                     />
                     <CardContent sx={{ flexGrow: 1 }}>
-                      <Typography gutterBottom variant='h5' component='h2'>
+                      <Typography gutterBottom variant="h5" component="h2">
                         {event.title}
                       </Typography>
-                      <Typography>{event.description}</Typography>
+                      <Typography>
+                        {event.description}
+                      </Typography>
+                      <Typography>
+                        <Map location={{ lat: Number(event.latitude), lng: Number(event.longitude) }} />
+                      </Typography>
                     </CardContent>
                   </CardActionArea>
                 </Card>
-                <Modal
-                  open={eventModals[event.title]}
-                  onClose={() => handleCloseModal(event.title)}
-                >
+                <Modal open={eventModals[event.title]} onClose={() => handleCloseModal(event.title)}>
                   <Box
                     sx={{
-                      position: 'absolute',
-                      top: '50%',
-                      left: '50%',
-                      transform: 'translate(-50%, -50%)',
-                      width: '50%',
-                      bgcolor: 'background.paper',
-                      border: '2px solid #000',
+                      position: "absolute",
+                      top: "50%",
+                      left: "50%",
+                      transform: "translate(-50%, -50%)",
+                      width: "50%",
+                      bgcolor: "background.paper",
+                      border: "2px solid #000",
                       boxShadow: 24,
-                      p: 4
+                      p: 4,
                     }}
                   >
-                    <Typography variant='h6' component='div'>
+                    <Typography variant="h6" component="div">
                       <strong>{event.title}</strong>
                     </Typography>
-                    <Typography sx={{ mt: 2 }}> {event.eventInfo} </Typography>
+                    <Typography sx={{ mt: 2 }}>{event.eventInfo}</Typography>
                     <Typography sx={{ mt: 2 }}>
                       <strong>Location:</strong> {event.eventLocation}
                     </Typography>
@@ -294,14 +276,15 @@ export default function Events (props) {
                     <Typography sx={{ mt: 2 }}>
                       <strong>Time:</strong> {event.eventTime}
                     </Typography>
+                    <div className="testkam">
+                      <Map location={{ lat: event.latitude, lng: event.longitude }} />
+                    </div>
                     <Button onClick={() => handleEnrollUnenroll(event.title)}>
-                      {enrollmentStatus[event.title] ? 'Unenroll' : 'Enroll'}
+                      {enrollmentStatus[event.title] ? "Unenroll" : "Enroll"}
                     </Button>
-                    <Button onClick={() => handleCloseModal(event.title)}>
-                      Close
-                    </Button>
+                    <Button onClick={() => handleCloseModal(event.title)}>Close</Button>
                     {enrollmentStatus[event.title] && (
-                      <Typography variant='body2' color='green' component='p'>
+                      <Typography variant="body2" color="green" component="p">
                         You have successfully enrolled for the event!
                       </Typography>
                     )}
@@ -314,5 +297,5 @@ export default function Events (props) {
         <Footer />
       </main>
     </ThemeProvider>
-  )
+  );
 }
