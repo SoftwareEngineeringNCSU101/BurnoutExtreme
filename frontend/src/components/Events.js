@@ -18,6 +18,7 @@ import axios from "axios";
 import Footer from "./Footer";
 import { CardActionArea } from "@mui/material";
 import Map from "./mapevents";
+import headerImage from '../images/e.jpg';
 
 const SearchBar = ({ setSearchQuery }) => (
   <form>
@@ -52,47 +53,9 @@ export default function Events(props) {
   const [enrollmentStatus, setEnrollmentStatus] = useState({});
   const [eventModals, setEventModals] = useState({});
   const [searchQuery, setSearchQuery] = useState("");
+  const [mapLocation, setMapLocation] = useState(null); // Store the map location
   const eventsFiltered = filterData(searchQuery, events);
   const location = useLocation();
-
-  const handleOpenModal = (eventTitle) => {
-    axios
-      .post(
-        "/is-enrolled",
-        {
-          eventTitle: eventTitle,
-        },
-        {
-          headers: {
-            Authorization: "Bearer " + props.state.token,
-          },
-        }
-      )
-      .then((response) => {
-        if (response.data.isEnrolled) {
-          setEnrollmentStatus((prevStatus) => ({
-            ...prevStatus,
-            [eventTitle]: true,
-          }));
-        } else {
-          setEnrollmentStatus((prevStatus) => ({
-            ...prevStatus,
-            [eventTitle]: false,
-          }));
-        }
-        setEventModals({ ...eventModals, [eventTitle]: true });
-      })
-      .catch((error) => {
-        console.error(
-          "An error occurred while checking enrollment status: ",
-          error
-        );
-      });
-  };
-
-  const handleCloseModal = (eventTitle) => {
-    setEventModals({ ...eventModals, [eventTitle]: false });
-  };
 
   useEffect(() => {
     fetch("/events")
@@ -103,87 +66,64 @@ export default function Events(props) {
     if (eventToOpen) {
       handleOpenModal(eventToOpen);
     }
-    // eslint-disable-next-line
   }, [location.state]);
+
+  const handleOpenModal = (eventTitle) => {
+    axios
+      .post("/is-enrolled", { eventTitle: eventTitle }, {
+        headers: { Authorization: "Bearer " + props.state.token },
+      })
+      .then((response) => {
+        setEnrollmentStatus((prevStatus) => ({
+          ...prevStatus,
+          [eventTitle]: response.data.isEnrolled,
+        }));
+        const event = events.find((e) => e.title === eventTitle);
+        if (event) {
+          setMapLocation({ lat: Number(event.latitude), lng: Number(event.longitude) }); // Set the map location when modal opens
+        }
+        setEventModals({ ...eventModals, [eventTitle]: true });
+      })
+      .catch((error) => {
+        console.error("An error occurred while checking enrollment status: ", error);
+      });
+  };
+
+  const handleCloseModal = (eventTitle) => {
+    setEventModals({ ...eventModals, [eventTitle]: false });
+    setMapLocation(null); // Clear map location when modal is closed
+  };
 
   const handleEnrollUnenroll = (eventTitle) => {
     const userEmail = "user@example.com"; // Get user email here
-
-    axios
-      .post(
-        "/is-enrolled",
-        {
-          eventTitle: eventTitle,
-        },
-        {
-          headers: {
-            Authorization: "Bearer " + props.state.token,
-          },
-        }
-      )
+    axios.post("/is-enrolled", { eventTitle: eventTitle }, {
+      headers: { Authorization: "Bearer " + props.state.token },
+    })
+    .then((response) => {
+      const action = response.data.isEnrolled ? "unenroll" : "enroll";
+      axios.post(`/${action}`, { email: userEmail, eventTitle: eventTitle }, {
+        headers: { Authorization: "Bearer " + props.state.token },
+      })
       .then((response) => {
-        if (response.data.isEnrolled) {
-          axios
-            .post(
-              "/unenroll",
-              {
-                email: userEmail,
-                eventTitle: eventTitle,
-              },
-              {
-                headers: {
-                  Authorization: "Bearer " + props.state.token,
-                },
-              }
-            )
-            .then((response) => {
-              console.log(response.data);
-              if (response.data.status === "Data saved successfully") {
-                setEnrollmentStatus((prevStatus) => ({
-                  ...prevStatus,
-                  [eventTitle]: false,
-                }));
-              }
-            })
-            .catch((error) => {
-              console.error("An error occurred while sending the data: ", error);
-              setEnrollmentStatus((prevStatus) => ({
-                ...prevStatus,
-                [eventTitle]: true,
-              }));
-            });
-        } else {
-          axios
-            .post(
-              "/enroll",
-              {
-                email: userEmail,
-                eventTitle: eventTitle,
-              },
-              {
-                headers: {
-                  Authorization: "Bearer " + props.state.token,
-                },
-              }
-            )
-            .then((response) => {
-              console.log(response.data);
-              if (response.data.status === "Data saved successfully") {
-                setEnrollmentStatus((prevStatus) => ({
-                  ...prevStatus,
-                  [eventTitle]: true,
-                }));
-              }
-            })
-            .catch((error) => {
-              console.error("An error occurred while sending the data: ", error);
-              setEnrollmentStatus((prevStatus) => ({
-                ...prevStatus,
-                [eventTitle]: false,
-              }));
-            });
+        if (response.data.status === "Data saved successfully") {
+          setEnrollmentStatus((prevStatus) => ({
+            ...prevStatus,
+            [eventTitle]: action === "enroll",
+          }));
         }
+      })
+      .catch((error) => {
+        console.error("An error occurred while sending the data: ", error);
       });
+    });
+  };
+
+  const handleMapClick = () => {
+    if (mapLocation) {
+      const { lat, lng } = mapLocation;
+      const googleMapsUrl = `https://www.google.com/maps/@${lat},${lng},15z`;
+      window.open(googleMapsUrl, "_blank");
+    }
   };
 
   return (
@@ -193,6 +133,10 @@ export default function Events(props) {
         <Box
           sx={{
             bgcolor: 'background.paper',
+            backgroundImage: `url(${headerImage})`,
+            backgroundSize: '45%',
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat',
             pt: 8,
             pb: 6,
           }}
@@ -210,12 +154,7 @@ export default function Events(props) {
             <Typography variant="h5" align="center" color="text.secondary" paragraph>
               Start your wellness journey with us today! Discover yoga, swimming, gym, and more. Click "More Information" for event details, and enroll into events that motivate you.
             </Typography>
-            <Stack
-              sx={{ pt: 4 }}
-              direction="row"
-              spacing={2}
-              justifyContent="center"
-            >
+            <Stack sx={{ pt: 4 }} direction="row" spacing={2} justifyContent="center">
               <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
             </Stack>
           </Container>
@@ -224,16 +163,12 @@ export default function Events(props) {
         <Container sx={{ py: 8 }} maxWidth="md">
           <Grid container spacing={4}>
             {eventsFiltered.map((event) => (
-              <Grid item key={event.title} xs={12} sm={6} md={6}>
-                <Card
-                  sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}
-                >
+              <Grid item key={event.title} xs={12} sm={6} md={4}>
+                <Card sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
                   <CardActionArea onClick={() => handleOpenModal(event.title)}>
                     <CardMedia
                       component="div"
-                      sx={{
-                        pt: '56.25%',
-                      }}
+                      sx={{ pt: '56.25%' }}
                       image={event.imageUrl}
                     />
                     <CardContent sx={{ flexGrow: 1 }}>
@@ -242,9 +177,6 @@ export default function Events(props) {
                       </Typography>
                       <Typography>
                         {event.description}
-                      </Typography>
-                      <Typography>
-                        <Map location={{ lat: Number(event.latitude), lng: Number(event.longitude) }} />
                       </Typography>
                     </CardContent>
                   </CardActionArea>
@@ -276,26 +208,29 @@ export default function Events(props) {
                     <Typography sx={{ mt: 2 }}>
                       <strong>Time:</strong> {event.eventTime}
                     </Typography>
-                    <div className="testkam">
-                      <Map location={{ lat: event.latitude, lng: event.longitude }} />
-                    </div>
-                    <Button onClick={() => handleEnrollUnenroll(event.title)}>
-                      {enrollmentStatus[event.title] ? "Unenroll" : "Enroll"}
-                    </Button>
-                    <Button onClick={() => handleCloseModal(event.title)}>Close</Button>
-                    {enrollmentStatus[event.title] && (
-                      <Typography variant="body2" color="green" component="p">
-                        You have successfully enrolled for the event!
-                      </Typography>
+                    {mapLocation && (
+                      <div className="testkam" onClick={handleMapClick}> {/* Trigger map click */}
+                        <Map location={mapLocation} />
+                      </div>
                     )}
+                    <Stack spacing={2} direction="row" justifyContent="space-between" sx={{ mt: 2 }}>
+                      <Button 
+                        size="small" 
+                        color="primary" 
+                        onClick={() => handleEnrollUnenroll(event.title)}
+                      >
+                        {enrollmentStatus[event.title] ? "Unenroll" : "Enroll"}
+                      </Button>
+                      <Button size="small" onClick={() => handleCloseModal(event.title)}>Close</Button>
+                    </Stack>
                   </Box>
                 </Modal>
               </Grid>
             ))}
           </Grid>
         </Container>
-        <Footer />
       </main>
+      <Footer />
     </ThemeProvider>
   );
 }
