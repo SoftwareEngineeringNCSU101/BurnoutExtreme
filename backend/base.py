@@ -6,13 +6,14 @@ from flask_pymongo import PyMongo
 from pymongo import MongoClient
 import mongomock
 from datetime import datetime, timedelta, timezone
-from flask_jwt_extended import create_access_token, get_jwt, get_jwt_identity, \
-    unset_jwt_cookies, jwt_required, JWTManager
+from flask_jwt_extended import create_access_token,get_jwt,get_jwt_identity, \
+                               unset_jwt_cookies, jwt_required, JWTManager
 from datetime import datetime, timedelta
 from functools import reduce
-from bson import json_util
+from bson import json_util 
 from pymongo import MongoClient
 from flasgger import Swagger
+
 
 
 api = Flask(__name__)
@@ -22,7 +23,7 @@ api.config["JWT_ACCESS_TOKEN_EXPIRES"] = timedelta(hours=1)
 jwt = JWTManager(api)
 mongo = None
 
-Swagger(api)
+Swagger(api)  
 
 
 def setup_mongo_client(app):
@@ -36,12 +37,10 @@ def setup_mongo_client(app):
         app.mongo_client = MongoClient('localhost', 27017)
         mongo = app.mongo_client["test"]
 
-
 # Call setup_mongo_client during normal (non-test) app initialization
 setup_mongo_client(api)
 
-
-@api.route('/token', methods=["POST"])  # pragma: no cover
+@api.route('/token', methods=["POST"]) # pragma: no cover
 def create_token():
     """
     Create a new access token
@@ -71,12 +70,11 @@ def create_token():
     user = mongo.user.find_one({"email": email})
     if (user is not None and (user["password"] == password)):
         access_token = create_access_token(identity=email)
-        return jsonify({"message": "Login successful", "access_token": access_token})
+        return jsonify({"message": "Login successful", "access_token":access_token})
     else:
         print("Invalid email or password")
-        return jsonify({"message": "Invalid email or password"}), 401
-
-
+        return jsonify({"message": "Invalid email or password"}),401
+    
 @api.route("/google-login", methods=["POST"])
 def google_login():
     email = request.json.get("email", None)
@@ -84,11 +82,11 @@ def google_login():
     lastName = request.json.get("last_name", None)
     user = mongo.user.find_one({"email": email})
     if (user is None):
-        mongo.user.insert_one(
-            {"email": email, "first_name": firstName, "last_name": lastName})
+        mongo.user.insert_one({"email": email, "first_name": firstName, "last_name": lastName})
     access_token = create_access_token(identity=email)
-    return jsonify({"message": "Login successful", "access_token": access_token})
-
+    return jsonify({"message": "Login successful", "access_token":access_token})
+        
+    
 
 @api.route("/register", methods=["POST"])
 def register():
@@ -133,27 +131,25 @@ def register():
     first_name = request.json.get('firstName', None)
     last_name = request.json.get('lastName', None)
     new_document = {
-        "email": email,
-        "password": password,
-        "first_name": first_name,
-        "last_name": last_name,
+    "email": email,
+    "password": password,
+    "first_name": first_name,
+    "last_name": last_name,
     }
     query = {
         "email": email,
     }
     try:
-        inserted = mongo.user.update_one(
-            query, {"$set": new_document}, upsert=True)
+        inserted = mongo.user.update_one(query, {"$set": new_document}, upsert=True)
         if (inserted.upserted_id):
             response = jsonify({"msg": "register successful"})
-        else:
+        else:   
             print("User already exists")
             response = jsonify({"msg": "User already exists"})
     except Exception as e:
         response = jsonify({"msg": "register failed"})
 
     return response
-
 
 @api.route("/logout", methods=["POST"])
 def logout():
@@ -170,7 +166,6 @@ def logout():
     response = jsonify({"msg": "logout successful"})
     unset_jwt_cookies(response)
     return response
-
 
 @api.route('/events', methods=['GET'])
 def get_events():
@@ -199,9 +194,8 @@ def get_events():
     events_collection = mongo.events
     events = list(events_collection.find({}))
     for event in events:
-        event["_id"] = str(event["_id"])  # Convert ObjectId to string
+        event["_id"] = str(event["_id"]) # Convert ObjectId to string
     return jsonify(events)
-
 
 @api.route('/is-enrolled', methods=['POST'])
 @jwt_required()
@@ -243,8 +237,7 @@ def is_enrolled():
     data = request.json
     eventTitle = data['eventTitle']
     current_user = get_jwt_identity()
-    enrollment = mongo.user.find_one(
-        {"email": current_user, "eventTitle": eventTitle})
+    enrollment = mongo.user.find_one({"email": current_user, "eventTitle": eventTitle})
 
     if enrollment:
         return jsonify({"isEnrolled": True})
@@ -252,9 +245,9 @@ def is_enrolled():
         return jsonify({"isEnrolled": False})
 
 
-@api.route('/enroll', methods=['POST'])  # pragma: no cover
+@api.route('/enroll', methods=['POST']) # pragma: no cover
 @jwt_required()
-def enroll_event():  # pragma: no cover
+def enroll_event(): # pragma: no cover
     """
     Enroll the user in an event
 
@@ -300,13 +293,12 @@ def enroll_event():  # pragma: no cover
         response = {"status": "Data saved successfully"}
     except Exception as e:
         response = {"status": "Error", "message": str(e)}
-
+    
     return jsonify(response)
 
-
-@api.route('/unenroll', methods=['POST'])  # pragma: no cover
+@api.route('/unenroll', methods=['POST']) # pragma: no cover
 @jwt_required()
-def unenroll_event():  # pragma: no cover
+def unenroll_event(): # pragma: no cover
     """
     Unenroll the user from an event
 
@@ -352,13 +344,12 @@ def unenroll_event():  # pragma: no cover
         response = {"status": "Data saved successfully"}
     except Exception as e:
         response = {"status": "Error", "message": str(e)}
-
+    
     return jsonify(response)
-
 
 @api.route('/profile')
 @jwt_required()
-def my_profile():  # pragma: no cover
+def my_profile(): # pragma: no cover
     """
     Retrieve user profile information
 
@@ -395,10 +386,9 @@ def my_profile():  # pragma: no cover
     profile = mongo.user.find_one({"email": current_user})
     return jsonify(json_util.dumps(profile))
 
-
-@api.route('/caloriesConsumed', methods=["POST"])
+@api.route('/caloriesConsumed',methods=["POST"])
 @jwt_required()
-def addUserConsumedCalories():  # pragma: no cover
+def addUserConsumedCalories(): # pragma: no cover
     """
     Add consumed calories for a user
 
@@ -444,19 +434,17 @@ def addUserConsumedCalories():  # pragma: no cover
     current_user = get_jwt_identity()
     try:
         # Insert data into MongoDB
-        mongo.user.update_one({'email': current_user, "consumedDate": data['intakeDate']}, {"$push": {
-                              "foodConsumed": {"item": data["intakeFoodItem"], "calories": data["intakeCalories"]}}}, upsert=True)
+        mongo.user.update_one({'email': current_user, "consumedDate": data['intakeDate']}, {"$push": {"foodConsumed": {"item":data["intakeFoodItem"],"calories":data["intakeCalories"]}}}, upsert=True)
         response = {"status": "Data saved successfully"}
         statusCode = 200
     except Exception as e:
         response = {"status": "Error", "message": str(e)}
         statusCode = 500
-    return jsonify(response), statusCode
+    return jsonify(response),statusCode
 
-
-@api.route('/profileUpdate', methods=["POST"])
+@api.route('/profileUpdate',methods=["POST"])
 @jwt_required()
-def profileUpdate():  # pragma: no cover
+def profileUpdate(): # pragma: no cover
     """
     Update user profile
 
@@ -515,17 +503,17 @@ def profileUpdate():  # pragma: no cover
     sex = request.json.get('sex', None)
     activityLevel = request.json.get('activityLevel', None)
     bmi = (0.453*float(weight))/((0.3048*float(height))**2)
-    bmi = round(bmi, 2)
+    bmi = round(bmi,2)
     tdee = calculate_tdee(height, weight, age, sex, activityLevel)
     new_document = {
-        "first_name": first_name,
-        "last_name": last_name,
-        "age": age,
-        "weight": weight,
-        "height": height,
-        "sex": sex,
-        "bmi": bmi,
-        "target_calories": tdee,
+    "first_name": first_name,
+    "last_name": last_name,
+    "age": age,
+    "weight": weight,
+    "height": height,
+    "sex": sex,
+    "bmi": bmi,
+    "target_calories": tdee,
     }
     query = {
         "email": current_user,
@@ -538,10 +526,9 @@ def profileUpdate():  # pragma: no cover
 
     return response
 
-
-@api.route('/goalsUpdate', methods=["POST"])
+@api.route('/goalsUpdate',methods=["POST"])
 @jwt_required()
-def goalsUpdate():  # pragma: no cover
+def goalsUpdate(): # pragma: no cover
     """
     Update user goals
 
@@ -595,10 +582,9 @@ def goalsUpdate():  # pragma: no cover
     }
     try:
         profile = mongo.user.find_one(query)
-        tdee = calculate_tdee(
-            profile["height"], profile["weight"], profile["age"], profile["sex"], activityLevel)
-        if tdee:
-            new_document["target_calories"] = tdee
+        tdee = calculate_tdee(profile["height"], profile["weight"], profile["age"], profile["sex"], activityLevel)
+        if tdee:  
+          new_document["target_calories"] = tdee
         mongo.user.update_one(query, {"$set": new_document}, upsert=True)
         response = jsonify({"msg": "update successful"})
     except Exception as e:
@@ -607,9 +593,9 @@ def goalsUpdate():  # pragma: no cover
     return response
 
 
-@api.route('/caloriesBurned', methods=["POST"])
+@api.route('/caloriesBurned',methods=["POST"])
 @jwt_required()
-def addUserBurnedCalories():  # pragma: no cover
+def addUserBurnedCalories(): # pragma: no cover
     """
     Add user's burned calories
 
@@ -652,15 +638,13 @@ def addUserBurnedCalories():  # pragma: no cover
     current_user = get_jwt_identity()
     try:
         # Insert data into MongoDB
-        mongo.user.update_one({'email': current_user, "consumedDate": data['burnoutDate']}, {
-                              "$inc": {"burntCalories": int(data["burntoutCalories"])}}, upsert=True)
+        mongo.user.update_one({'email': current_user, "consumedDate": data['burnoutDate']}, {"$inc": {"burntCalories": int(data["burntoutCalories"])}}, upsert=True)
         response = {"status": "Data saved successfully"}
         statusCode = 200
     except Exception as e:
         response = {"status": "Error", "message": str(e)}
         statusCode = 500
-    return jsonify(response), statusCode
-
+    return jsonify(response),statusCode
 
 @api.route('/createFood', methods=["POST"])
 def createFood():
@@ -701,7 +685,7 @@ def createFood():
         description: An error occurred while creating the custom food.
 
     """
-    data = request.get_json()  # get data from POST request
+    data = request.get_json() # get data from POST request
     foodName = data['foodName']
     calories = data['calories']
     try:
@@ -712,8 +696,7 @@ def createFood():
     except Exception as e:
         response = {"status": "Error", "message": str(e)}
         statusCode = 500
-    return jsonify(response), statusCode
-
+    return jsonify(response),statusCode
 
 @api.route('/createMeal', methods=["POST"])
 @jwt_required()
@@ -757,7 +740,7 @@ def createMeal():
         description: An error occurred while creating the custom meal.
 
     """
-    data = request.get_json()  # get data from POST request
+    data = request.get_json() # get data from POST request
     current_user = get_jwt_identity()
     mealName = data['mealName']
     ingredients = data['ingredients']
@@ -779,12 +762,11 @@ def createMeal():
     except Exception as e:
         response = {"status": "Error", "message": str(e)}
         statusCode = 500
-    return jsonify(response), statusCode
+    return jsonify(response),statusCode
 
-
-@api.route('/weekHistory', methods=["POST"])
+@api.route('/weekHistory',methods=["POST"])
 @jwt_required()
-def getWeekHistory():  # pragma: no cover
+def getWeekHistory(): # pragma: no cover
     """
     Get user's weekly history
 
@@ -886,13 +868,12 @@ def getWeekHistory():  # pragma: no cover
     """
     data = request.get_json()  # get data from POST request
     current_user = get_jwt_identity()
-    todayDate = datetime.strptime(data["todayDate"], "%m/%d/%Y")
-    dates = [(todayDate-timedelta(days=x)).strftime("%m/%d/%Y")
-             for x in range(7)]
+    todayDate = datetime.strptime(data["todayDate"],"%m/%d/%Y")
+    dates = [(todayDate-timedelta(days=x)).strftime("%m/%d/%Y") for x in range(7)]
     calorieLimit = 1000
     result = []
     try:
-        for index, dateToFind in enumerate(dates):
+        for index,dateToFind in enumerate(dates):
             # Every day's res item should like this
             # {
             #   dayIndex: 0,               #Interger from 0-6
@@ -920,16 +901,14 @@ def getWeekHistory():  # pragma: no cover
             #   burntCalories: 1200,       # calories burnt out on that day
             # }
             res = {}
-            data = mongo.user.find_one(
-                {'email': current_user, "consumedDate": dateToFind})
+            data = mongo.user.find_one({'email': current_user, "consumedDate": dateToFind})
             res["dayIndex"] = index
             res["date"] = dateToFind
             if data:
                 if "foodConsumed" in data:
                     res["foodConsumed"] = data["foodConsumed"]
-                    res["caloriesConsumed"] = reduce(
-                        lambda a, b: a+b, [int(item["calories"]) for item in data["foodConsumed"]])
-                    res["exceededDailyLimit"] = res["caloriesConsumed"] > calorieLimit
+                    res["caloriesConsumed"] = reduce(lambda a,b: a+b, [int(item["calories"]) for item in data["foodConsumed"]])
+                    res["exceededDailyLimit"] = res["caloriesConsumed"]>calorieLimit
                 if "burntCalories" in data:
                     res["burntCalories"] = data["burntCalories"]
             if "foodConsumed" not in res:
@@ -946,10 +925,9 @@ def getWeekHistory():  # pragma: no cover
     except Exception as e:
         response = {"status": "Error", "message": str(e)}
         statusCode = 500
-    return jsonify(response), statusCode
+    return jsonify(response),statusCode
 
-
-@api.route("/myMeals", methods=["GET"])
+@api.route("/myMeals",methods=["GET"])
 @jwt_required()
 def getMyMeals():
     """
@@ -988,29 +966,28 @@ def getMyMeals():
     current_user = get_jwt_identity()
     result = []
     try:
-        data = mongo.user.find(
-            {"email": current_user, "meal_name": {"$exists": True}})
+        data = mongo.user.find({"email": current_user,"meal_name":{"$exists": True}})
         for meal in data:
             cal_info = []
             for item in meal['ingredients']:
-                food_item = mongo.food.find_one({'food': item})
-                cal_info.append({str(item): food_item['calories']})
-            res = {}
-            res['meal_name'] = meal['meal_name']
-            res['ingredients'] = meal['ingredients']
-            res['total_calories'] = meal['total_calories']
+                food_item = mongo.food.find_one({'food':item})
+                cal_info.append({str(item):food_item['calories']})
+            res={}
+            res['meal_name']=meal['meal_name']
+            res['ingredients']=meal['ingredients']
+            res['total_calories']=meal['total_calories']
             result.append(res)
         response = result
         statusCode = 200
     except Exception as e:
         response = {"status": "Error", "message": str(e)}
         statusCode = 500
-    return jsonify(response), statusCode
+    return jsonify(response),statusCode
+        
 
-
-@api.route('/foodCalorieMapping', methods=["GET"])
+@api.route('/foodCalorieMapping',methods=["GET"])
 @jwt_required()
-def getFoodCalorieMapping():
+def getFoodCalorieMapping(): 
     """
     Get food calorie mapping
 
@@ -1047,19 +1024,18 @@ def getFoodCalorieMapping():
     """
     try:
         data = mongo.food.find()
-        # Response should be in this format {foodItem: calories, foodItem: calories....}
+        # Response should be in this format {foodItem: calories, foodItem: calories....} 
         # For Example { Potato: 50, Acai: 20, Cheeseburger: 80 }
-        response = {item["food"]: item["calories"] for item in data}
+        response = {item["food"]:item["calories"] for item in data}
         statusCode = 200
     except Exception as e:
         response = {"status": "Error", "message": str(e)}
         statusCode = 500
-    return jsonify(response), statusCode
+    return jsonify(response),statusCode
 
-
-@api.route('/usersEvents', methods=["GET"])
+@api.route('/usersEvents',methods=["GET"]) 
 @jwt_required()
-def getUserRegisteredEvents():
+def getUserRegisteredEvents(): 
     """
     Get user's registered events
 
@@ -1105,10 +1081,9 @@ def getUserRegisteredEvents():
     try:
         # current_user = get_jwt_identity()
         current_user = get_jwt_identity()
-        data = mongo.user.find(
-            {"email": current_user, "eventTitle": {"$exists": True}})
+        data = mongo.user.find({"email": current_user, "eventTitle":{"$exists": True}})
         response = []
-        date = "10/23/2023"
+        date="10/23/2023"
         for item in data:
             res = {"eventName": item["eventTitle"], "date": date}
             response.append(res)
@@ -1118,114 +1093,52 @@ def getUserRegisteredEvents():
     except Exception as e:
         response = {"status": "Error", "message": str(e)}
         statusCode = 500
-    return jsonify(response), statusCode
+    return jsonify(response),statusCode
 
-
-def calculate_tdee(height, weight, age, sex, activityLevel):
+def calculate_tdee(height,weight,age,sex,activityLevel):
     if height and weight and age and sex and activityLevel:
         pass
     else:
         return None
     kg_weight = float(weight)*0.45359237
     cm_height = float(height)*30.48
-    common_calc_for_male_female = (
-        10*kg_weight) + (6.25*cm_height) - (5*int(age))
+    common_calc_for_male_female = (10*kg_weight) + (6.25*cm_height) - (5*int(age))
     if sex == "Male":
         bmr = common_calc_for_male_female + 5
     else:
         bmr = common_calc_for_male_female - 161
-    personal_activity_levels = {
-        'Minimal': 1.2, 'Light': 1.375, 'Moderate': 1.55, 'Heavy': 1.725, 'Athlete': 1.9}
+    personal_activity_levels = {'Minimal': 1.2,'Light': 1.375, 'Moderate': 1.55, 'Heavy':1.725, 'Athlete': 1.9}
     tdee = int((bmr * personal_activity_levels[activityLevel]))
     return tdee
 
-
-@api.route('/createSchedule', methods=["POST"])
+@api.route('/trackActivity', methods=["POST"])
 @jwt_required()
-def createSchedule():
+def track_activity():
     data = request.get_json()
     current_user = get_jwt_identity()
-    week_schedule = data['weekSchedule']
+    
+    steps = data.get('steps', 0)
+    calories_burned = data.get('calories_burned', 0)
+    workout_intensity = data.get('workout_intensity', 'low')  # default to 'low' if not provided
+    activity_date = data.get('activity_date', datetime.now(timezone.utc).isoformat())
 
     try:
-        # Replace the existing schedule if it exists, or insert a new one
-        result = mongo.schedules.replace_one(
-            {'user_id': current_user},  # Filter by user_id to check existence
-            # New or updated schedule data
-            {'user_id': current_user, 'week_schedule': week_schedule},
-            upsert=True  # Create a new document if none exists
+        # Insert or update activity data into MongoDB
+        mongo.user.update_one(
+            {'email': current_user, 'activity_date': activity_date},
+            {
+                "$set": {
+                    "steps": steps,
+                    "calories_burned": calories_burned,
+                    "workout_intensity": workout_intensity,
+                }
+            },
+            upsert=True
         )
-
-        if result.matched_count > 0:
-            # A schedule was replaced (old one existed)
-            response = {"status": "Schedule updated successfully"}
-        else:
-            # No matching schedule found, so a new one was created
-            response = {"status": "Schedule created successfully"}
-
-        status_code = 200
-    except Exception as e:
-        response = {"status": "Error", "message": str(e)}
-        status_code = 500
-
-    return jsonify(response), status_code
-
-
-@api.route('/mySchedule', methods=["GET"])
-@jwt_required()  # Ensure the decorator has parentheses
-def my_schedules():
-    try:
-        current_user = get_jwt_identity()
-        user_schedules = mongo.schedules.find_one({"user_id": current_user})
-
-        if user_schedules:
-            response = {
-                "status": "Success",
-                "data": user_schedules['week_schedule']
-            }
-            statusCode = 200
-        else:
-            response = {"status": "Error",
-                        "message": "No schedules found for the user."}
-            statusCode = 404
-
+        response = {"status": "Activity tracked successfully"}
+        statusCode = 200
     except Exception as e:
         response = {"status": "Error", "message": str(e)}
         statusCode = 500
-
+        
     return jsonify(response), statusCode
-
-
-@api.route('/deleteSchedule/<string:selected_day>/<string:workout_title>', methods=["DELETE"])
-@jwt_required()
-def deleteSchedule(selected_day, workout_title):
-    current_user = get_jwt_identity()
-
-    try:
-        # Find the user's schedule
-        user_schedule = mongo.schedules.find_one({"user_id": current_user})
-
-        if not user_schedule:
-            return jsonify({"status": "Error", "message": "No schedule found for the user."}), 404
-
-        # Filter out the workout to be removed from the specified day
-        week_schedule = user_schedule['week_schedule']
-        if selected_day in week_schedule:
-            # Remove the workout from the specified day's array
-            week_schedule[selected_day] = [
-                workout for workout in week_schedule[selected_day]
-                if workout['workoutTitle'] != workout_title
-            ]
-
-            # Update the user's schedule in the database
-            mongo.schedules.update_one(
-                {'user_id': current_user},
-                {'$set': {'week_schedule': week_schedule}}
-            )
-
-            return jsonify({"status": "Success", "message": "Workout removed successfully."}), 200
-        else:
-            return jsonify({"status": "Error", "message": f"No workouts found for {selected_day}."}), 404
-
-    except Exception as e:
-        return jsonify({"status": "Error", "message": str(e)}), 500
