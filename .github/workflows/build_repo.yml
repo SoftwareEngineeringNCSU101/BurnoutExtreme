@@ -1,0 +1,37 @@
+
+name: Build repo
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  schedule: 
+    - cron: '0 0 * * *'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install Python 3.7.17
+        uses: actions/setup-python@v1
+        with:
+          python-version: 3.7.17
+      - name: Install dependencies
+        working-directory: ./backend
+        run: |
+          pip install -r requirements.txt
+          echo python requirements installed
+
+      - name: Install dependencies
+        working-directory: ./frontend
+        run: |
+          npm install --legacy-peer-deps
+          echo npm requirements installed
+        
+      - name: Run frontend tests
+        working-directory: ./frontend
+        run: |
+          npm run build
