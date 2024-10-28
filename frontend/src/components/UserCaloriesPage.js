@@ -554,6 +554,40 @@ const handleUnenroll = (eventName) => {
                 </Box>
               </form>
             </CardContent>
+            <Card sx={{ gridArea: "activity" }} elevation={5}>
+          <CardHeader
+              title={"Advanced Activity Monitoring"}
+              subheader={"Track your steps, calories burned, and workout intensity"}
+              avatar={<FitnessCenterIcon />}
+            />
+            <CardContent>
+    <ResponsiveContainer width="100%" height={300}>
+      <LineChart
+        width={500}
+        height={300}
+        data={[
+          { day: "Mon", steps: 6000, calories: 200, intensity: 7 },
+          { day: "Tue", steps: 8000, calories: 250, intensity: 8 },
+          { day: "Wed", steps: 7000, calories: 230, intensity: 7.5 },
+          { day: "Thu", steps: 9000, calories: 270, intensity: 9 },
+          { day: "Fri", steps: 10000, calories: 300, intensity: 9.5 },
+          { day: "Sat", steps: 12000, calories: 350, intensity: 10 },
+          { day: "Sun", steps: 11000, calories: 320, intensity: 9 },
+        ]}
+        margin={{ top: 20, right: 30, left: 20, bottom: 5 }}
+      >
+        <CartesianGrid strokeDasharray="3 3" />
+        <XAxis dataKey="day" />
+        <YAxis yAxisId="left" label={{ value: "Steps", angle: -90, position: "insideLeft" }} />
+        <YAxis yAxisId="right" orientation="right" label={{ value: "Calories Burned", angle: 90, position: "insideRight" }} />
+        <Tooltip />
+        <Line yAxisId="left" type="monotone" dataKey="steps" stroke="#8884d8" activeDot={{ r: 8 }} />
+        <Line yAxisId="right" type="monotone" dataKey="calories" stroke="#82ca9d" />
+      </LineChart>
+    </ResponsiveContainer>
+  </CardContent>
+           
+          </Card>
           </Card>
           <Card sx={{ gridArea: "hist" }} elevation={5}>
             <CardHeader
