@@ -26,7 +26,9 @@ const SearchBar = ({ setSearchQuery }) => (
       id="search-bar"
       className="text"
       onInput={(e) => {
-        setSearchQuery(e.target.value);
+        const query = e.target.value;
+        console.log("Search query:", query); // Log the search query
+        setSearchQuery(query);
       }}
       label="Enter an event"
       variant="outlined"
@@ -40,11 +42,14 @@ const filterData = (query, cards) => {
   if (!query) {
     return cards;
   } else {
-    return cards.filter((e) =>
+    const filtered = cards.filter((e) =>
       e.title.toLowerCase().includes(query.toLowerCase())
     );
+    console.log("Filtered events count:", filtered.length); // Log the count of filtered events
+    return filtered;
   }
 };
+
 
 const defaultTheme = createTheme();
 
@@ -60,13 +65,13 @@ export default function Events(props) {
   useEffect(() => {
     fetch("/events")
       .then((response) => response.json())
-      .then((data) => setEvents(data))
+      .then((data) => {
+        console.log("Fetched events:", data); // Log the fetched events
+        setEvents(data);
+      })
       .catch((error) => console.error("Error fetching events:", error));
-    const eventToOpen = location.state?.openModalForEvent;
-    if (eventToOpen) {
-      handleOpenModal(eventToOpen);
-    }
   }, [location.state]);
+  
 
   const handleOpenModal = (eventTitle) => {
     axios
@@ -155,7 +160,7 @@ export default function Events(props) {
               Start your wellness journey with us today! Discover yoga, swimming, gym, and more. Click "More Information" for event details, and enroll into events that motivate you.
             </Typography>
             <Stack sx={{ pt: 4 }} direction="row" spacing={2} justifyContent="center">
-              <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
+              <SearchBar setSearchQuery={setSearchQuery} />
             </Stack>
           </Container>
         </Box>
