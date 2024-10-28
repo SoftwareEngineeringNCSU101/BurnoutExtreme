@@ -1135,7 +1135,7 @@ def track_activity():
             },
             upsert=True
         )
-        response = {"status": "Activity tracked successfully"}
+        response = {"status": "Activity tracked successfully for user."}
         statusCode = 200
     except Exception as e:
         response = {"status": "Error", "message": str(e)}
