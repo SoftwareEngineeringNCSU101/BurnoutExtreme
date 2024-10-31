@@ -85,13 +85,12 @@
                   display: "flex",
                   fontFamily: "monospace",
                   fontWeight: 700,
-                  letterSpacing: ".3rem",
                   color: theme.color,
                   textDecoration: "none",
                   paddingLeft: "10px",
                 }}
               >
-                BurnOut
+                BurnoutExtreme
               </Typography>
             </Box>
             <Box sx={{ flexGrow: 1, display: "flex" }}>
