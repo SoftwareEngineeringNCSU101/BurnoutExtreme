@@ -127,40 +127,28 @@ Link to the implementation video of the BurnoutExtreme application: [Video](http
 # Application Screenshots
 
 ## Sign-In
-
 ![image](https://github.com/user-attachments/assets/5b33ec30-987c-4e4b-87db-f68fc51efa1e)
 
-
 ## Homepage
-
 ![image](https://github.com/user-attachments/assets/9b72fca2-937e-4146-afcb-0c78cf69dbd3)
 
-
 ## Profile
-
 ![image](https://github.com/user-attachments/assets/44c901eb-9ccd-4144-8518-ccadf021adf0)
 
-
 ## Events
-
 ![image](https://github.com/user-attachments/assets/e80bb60a-39bf-4624-b864-8a1c05ced4dc)
 
 ## My-Meals
-
 ![image](https://github.com/user-attachments/assets/31ebf532-b129-4696-8ff7-8962f9298b5c)
 
 ## My-Workouts
-
 ![image](https://github.com/user-attachments/assets/67f52cf7-72ec-455c-ac8c-b7137af4d464)
 
-
 ## FAQs
-
-TODO: Add image later...
+![image](https://github.com/user-attachments/assets/5ed1d156-9cad-429f-889d-891b238adac8)
 
 ## Contact-Us
-
-![image](https://github.com/user-attachments/assets/5ed1d156-9cad-429f-889d-891b238adac8)
+![image](https://github.com/user-attachments/assets/a1b829c7-ece2-4ae4-8af7-b81364999ec5)
 
 TODO: replaced with updated Tutorials.md 
 
