@@ -26,10 +26,13 @@ import { Container, Typography } from '@mui/material'
 import Footer from './Footer'
 import headerImage from '../images/meal.webp'
 
+import { useTheme } from './ThemeContext';
+
 const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
 const containsText = (text, searchText) =>
   text.toLowerCase().indexOf(searchText.toLowerCase()) > -1
 export default function Meals (props) {
+  const { theme } = useTheme();
   const [foodName, setFoodName] = useState('')
   const [calories, setCalories] = useState('')
   const [mealName, setMealName] = useState('')
@@ -232,7 +235,7 @@ export default function Meals (props) {
                       type='submit'
                       variant='contained'
                       size='large'
-                      style={{ backgroundColor: 'orange', color: 'white' }}
+                      style={{ backgroundColor: theme.headerColor, color: 'white' }}
                     >
                       Create Food
                     </Button>
@@ -319,7 +322,7 @@ export default function Meals (props) {
                     type='submit'
                     variant='contained'
                     size='large'
-                    style={{ backgroundColor: 'orange', color: 'white' }}
+                    style={{ backgroundColor: theme.headerColor, color: 'white' }}
                   >
                     Create Meal
                   </Button>

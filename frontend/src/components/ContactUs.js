@@ -9,8 +9,10 @@ import {
 } from '@mui/material'
 import Footer from './Footer'
 import headerImage from '../images/contact.avif'
+import { useTheme } from './ThemeContext';
 
 const ContactUs = props => {
+  const { theme } = useTheme();
   const handleFormSubmit = event => {
     event.preventDefault()
 
@@ -118,11 +120,7 @@ const ContactUs = props => {
               type='submit'
               variant='contained'
               color='primary'
-              style={{
-                marginTop: '20px',
-                backgroundColor: 'orange',
-                color: 'white'
-              }}
+              style={{ marginTop: '20px', backgroundColor: theme.headerColor, color: 'white' }}
             >
               Submit
             </Button>

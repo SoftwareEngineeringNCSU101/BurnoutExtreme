@@ -15,8 +15,10 @@ import {
   InputLabel,
   MenuItem
 } from '@mui/material'
+import { useTheme } from './ThemeContext';
 
 const WorkoutForm = props => {
+  const { theme } = useTheme();
   const [workoutData, setWorkoutData] = useState({
     selectedDay: '',
     workoutTitle: '',
@@ -134,10 +136,14 @@ const WorkoutForm = props => {
         {renderTextField('description', 'Description', 'text', true, 4)}
       </DialogContent>
       <DialogActions>
-        <Button onClick={handleClose} color='primary'>
+        <Button onClick={handleClose} 
+        style={{ backgroundColor: theme.headerColor, color: 'white' }}
+        color='primary'>
           Cancel
         </Button>
-        <Button type='submit' color='primary' onClick={handleSubmit}>
+        <Button type='submit' 
+        style={{ backgroundColor: theme.headerColor, color: 'white' }}
+        color='primary' onClick={handleSubmit}>
           Submit
         </Button>
       </DialogActions>

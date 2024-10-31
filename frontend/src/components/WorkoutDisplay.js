@@ -8,6 +8,7 @@ import {
   Button,
   Grid
 } from '@mui/material'
+import { useTheme } from './ThemeContext';
 
 /**
  * Display the schedule
@@ -15,6 +16,7 @@ import {
  * @returns
  */
 const WorkoutDisplay = props => {
+  const { theme } = useTheme();
   const [workoutsData, setWorkoutsData] = useState([])
 
   // If props.schedules changes, update workoutsData
@@ -55,13 +57,14 @@ const WorkoutDisplay = props => {
                       variant='contained'
                       size='small'
                       href={workout.link}
-                      style={{ backgroundColor: 'orange', color: 'white' }}
+                      style={{ backgroundColor: theme.headerColor, color: 'white' }}
                     >
                       Watch Video
                     </Button>
                   )}
                   {props.editMode && (
                     <Button
+                    style={{ backgroundColor: theme.headerColor, color: 'white' }}
                       size='small'
                       variant='outlined'
                       color='error'
