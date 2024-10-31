@@ -1,176 +1,290 @@
-import React from 'react';
-import { render, screen, fireEvent, waitFor } from '@testing-library/react';
-import Events from './components/Events';
-import axios from 'axios';
-import MockAdapter from 'axios-mock-adapter';
-import { MemoryRouter } from 'react-router-dom'; // Import MemoryRouter
+import React from "react";
+import { render, screen, fireEvent, waitFor } from "@testing-library/react";
+import Events from "./components/Events"; 
+import axios from "axios";
+import { BrowserRouter as Router } from "react-router-dom";
 
-const mockAxios = new MockAdapter(axios);
+// Mocking axios
+jest.mock("axios");
 
-const setup = () => {
-  const token = 'mockToken';
-  const { container } = render(
-    <MemoryRouter> {/* Wrap with MemoryRouter */}
-      <Events state={{ token }} />
-    </MemoryRouter>
-  );
-  return { container };
-};
+const mockEvents = [
+  {
+    title: "Yoga Class",
+    description: "Join us for a relaxing yoga class.",
+    imageUrl: "yoga.jpg",
+    eventInfo: "A great yoga class.",
+    eventLocation: "Studio A",
+    eventDate: "2024-10-31",
+    eventTime: "10:00 AM",
+    latitude: 40.7128,
+    longitude: -74.0060,
+  },
+  {
+    title: "Swimming Lessons",
+    description: "Learn to swim with us!",
+    imageUrl: "swim.jpg",
+    eventInfo: "Swimming classes for all ages.",
+    eventLocation: "Pool Area",
+    eventDate: "2024-11-01",
+    eventTime: "11:00 AM",
+    latitude: 40.7128,
+    longitude: -74.0060,
+  },
+];
 
-describe('Events Component', () => {
+describe("Events Component", () => {
   beforeEach(() => {
-    mockAxios.reset();
+    axios.get.mockResolvedValueOnce({ data: mockEvents });
+    axios.post.mockResolvedValue({ data: { isEnrolled: false } });
   });
 
-  afterEach(() => {
-    // Optional: Cleanup any necessary mocks if needed
-    mockAxios.restore();
+  test("renders without crashing", () => {
+    render(
+      <Router>
+        <Events state={{ token: "test-token" }} />
+      </Router>
+    );
+    expect(screen.getByText("Events")).toBeInTheDocument();
   });
 
-  // Nominal Cases
+  test("fetches and displays events", async () => {
+    render(
+      <Router>
+        <Events state={{ token: "test-token" }} />
+      </Router>
+    );
 
-  test('renders Events component successfully with events', async () => {
-    mockAxios.onGet('/events').reply(200, [
-      {
-        title: 'Yoga Class',
-        description: 'A relaxing yoga class.',
-        imageUrl: 'yoga.jpg',
-        eventInfo: 'Join us for a yoga session.',
-        eventLocation: 'Park',
-        eventDate: '2024-10-30',
-        eventTime: '10:00 AM',
-        latitude: 40.7128,
-        longitude: -74.0060,
-      },
-    ]);
-
-    setup();
-
-    expect(await screen.findByText(/Events/i)).toBeInTheDocument();
-    expect(screen.getByText(/Yoga Class/i)).toBeInTheDocument();
+    await waitFor(() => expect(axios.get).toHaveBeenCalledWith("/events"));
+    expect(screen.getByText("Yoga Class")).toBeInTheDocument();
+    expect(screen.getByText("Swimming Lessons")).toBeInTheDocument();
   });
 
-  test('search functionality works correctly', async () => {
-    mockAxios.onGet('/events').reply(200, [
-      { title: 'Yoga Class', description: 'A relaxing yoga class.', imageUrl: 'yoga.jpg' },
-      { title: 'Swimming Class', description: 'Learn to swim.', imageUrl: 'swimming.jpg' },
-    ]);
+  test("displays filtered events based on search query", async () => {
+    render(
+      <Router>
+        <Events state={{ token: "test-token" }} />
+      </Router>
+    );
 
-    setup();
-
-    expect(await screen.findByText(/Events/i)).toBeInTheDocument();
-
-    // Search for "Yoga"
-    const searchInput = screen.getByPlaceholderText(/Search.../i);
-    fireEvent.change(searchInput, { target: { value: 'Yoga' } });
-
-    expect(screen.getByText(/Yoga Class/i)).toBeInTheDocument();
-    expect(screen.queryByText(/Swimming Class/i)).not.toBeInTheDocument();
+    await waitFor(() => expect(axios.get).toHaveBeenCalledWith("/events"));
+    fireEvent.change(screen.getByLabelText(/Enter an event/i), {
+      target: { value: "Yoga" },
+    });
+    expect(screen.getByText("Yoga Class")).toBeInTheDocument();
+    expect(screen.queryByText("Swimming Lessons")).not.toBeInTheDocument();
   });
 
-  test('modals open and close correctly', async () => {
-    mockAxios.onGet('/events').reply(200, [
-      {
-        title: 'Yoga Class',
-        description: 'A relaxing yoga class.',
-        imageUrl: 'yoga.jpg',
-        eventInfo: 'Join us for a yoga session.',
-        eventLocation: 'Park',
-        eventDate: '2024-10-30',
-        eventTime: '10:00 AM',
-        latitude: 40.7128,
-        longitude: -74.0060,
-      },
-    ]);
+  test("opens the modal on event click", async () => {
+    render(
+      <Router>
+        <Events state={{ token: "test-token" }} />
+      </Router>
+    );
 
-    setup();
-
-    const eventCard = await screen.findByText(/Yoga Class/i);
-    fireEvent.click(eventCard);
-
-    expect(await screen.findByText(/Join us for a yoga session/i)).toBeInTheDocument();
-
-    const closeButton = screen.getByText(/Close/i);
-    fireEvent.click(closeButton);
-
-    expect(screen.queryByText(/Join us for a yoga session/i)).not.toBeInTheDocument();
+    await waitFor(() => expect(axios.get).toHaveBeenCalledWith("/events"));
+    fireEvent.click(screen.getByText("Yoga Class"));
+    expect(screen.getByText("A great yoga class.")).toBeInTheDocument();
+    expect(screen.getByText("Location: Studio A")).toBeInTheDocument();
   });
 
-  test('enrolls and unenrolls correctly', async () => {
-    mockAxios.onGet('/events').reply(200, [
-      {
-        title: 'Yoga Class',
-        description: 'A relaxing yoga class.',
-        imageUrl: 'yoga.jpg',
-        eventInfo: 'Join us for a yoga session.',
-        eventLocation: 'Park',
-        eventDate: '2024-10-30',
-        eventTime: '10:00 AM',
-        latitude: 40.7128,
-        longitude: -74.0060,
-      },
-    ]);
+  test("closes the modal on close button click", async () => {
+    render(
+      <Router>
+        <Events state={{ token: "test-token" }} />
+      </Router>
+    );
 
-    mockAxios.onPost('/is-enrolled').reply(200, { isEnrolled: false });
-    mockAxios.onPost('/enroll').reply(200, { status: 'Data saved successfully' });
-
-    setup();
-
-    const eventCard = await screen.findByText(/Yoga Class/i);
-    fireEvent.click(eventCard);
-
-    const enrollButton = screen.getByText(/Enroll/i);
-    fireEvent.click(enrollButton);
-
-    expect(await screen.findByText(/You have successfully enrolled for the event!/i)).toBeInTheDocument();
+    await waitFor(() => expect(axios.get).toHaveBeenCalledWith("/events"));
+    fireEvent.click(screen.getByText("Yoga Class"));
+    fireEvent.click(screen.getByText("Close"));
+    expect(screen.queryByText("A great yoga class.")).not.toBeInTheDocument();
   });
 
-  // Off-Nominal Cases
+  test("handles enrollment action", async () => {
+    axios.post.mockResolvedValueOnce({ data: { status: "Data saved successfully" } });
 
-  test('renders Events component with no events', async () => {
-    mockAxios.onGet('/events').reply(200, []);
+    render(
+      <Router>
+        <Events state={{ token: "test-token" }} />
+      </Router>
+    );
 
-    setup();
-
-    expect(await screen.findByText(/Events/i)).toBeInTheDocument();
-    expect(screen.queryByText(/Yoga Class/i)).not.toBeInTheDocument();
+    await waitFor(() => expect(axios.get).toHaveBeenCalledWith("/events"));
+    fireEvent.click(screen.getByText("Yoga Class"));
+    fireEvent.click(screen.getByText("Enroll"));
+    
+    await waitFor(() => expect(axios.post).toHaveBeenCalledWith("/enroll", expect.anything()));
+    expect(screen.getByText("Unenroll")).toBeInTheDocument();
   });
 
-  test('handles network errors during fetch', async () => {
-    mockAxios.onGet('/events').reply(500);
+  test("handles unenrollment action", async () => {
+    axios.post.mockResolvedValueOnce({ data: { status: "Data saved successfully" } });
+    axios.post.mockResolvedValueOnce({ data: { isEnrolled: true } });
 
-    setup();
+    render(
+      <Router>
+        <Events state={{ token: "test-token" }} />
+      </Router>
+    );
 
-    expect(await screen.findByText(/Events/i)).toBeInTheDocument();
-    expect(await screen.findByText(/Error loading events/i)).toBeInTheDocument(); // Adjust based on your error handling
+    await waitFor(() => expect(axios.get).toHaveBeenCalledWith("/events"));
+    fireEvent.click(screen.getByText("Yoga Class"));
+    fireEvent.click(screen.getByText("Enroll"));
+
+    fireEvent.click(screen.getByText("Unenroll"));
+    await waitFor(() => expect(axios.post).toHaveBeenCalledWith("/unenroll", expect.anything()));
+    expect(screen.getByText("Enroll")).toBeInTheDocument();
   });
 
-  test('handles errors when opening modals', async () => {
-    mockAxios.onGet('/events').reply(200, [
-      {
-        title: 'Yoga Class',
-        description: 'A relaxing yoga class.',
-        imageUrl: 'yoga.jpg',
-        eventInfo: 'Join us for a yoga session.',
-        eventLocation: 'Park',
-        eventDate: '2024-10-30',
-        eventTime: '10:00 AM',
-        latitude: 40.7128,
-        longitude: -74.0060,
-      },
-    ]);
+  test("shows error message on failed enrollment", async () => {
+    axios.post.mockRejectedValueOnce(new Error("Enrollment failed"));
 
-    mockAxios.onPost('/is-enrolled').reply(200, { isEnrolled: false });
-    mockAxios.onPost('/enroll').reply(500); // Simulate an error on enrollment
+    render(
+      <Router>
+        <Events state={{ token: "test-token" }} />
+      </Router>
+    );
 
-    setup();
+    await waitFor(() => expect(axios.get).toHaveBeenCalledWith("/events"));
+    fireEvent.click(screen.getByText("Yoga Class"));
+    fireEvent.click(screen.getByText("Enroll"));
 
-    const eventCard = await screen.findByText(/Yoga Class/i);
-    fireEvent.click(eventCard);
+    await waitFor(() => expect(screen.getByText("Enrollment failed")).toBeInTheDocument());
+  });
 
-    const enrollButton = screen.getByText(/Enroll/i);
-    fireEvent.click(enrollButton);
+  test("checks map click opens Google Maps", async () => {
+    global.open = jest.fn(); // Mock window.open
+    render(
+      <Router>
+        <Events state={{ token: "test-token" }} />
+      </Router>
+    );
 
-    expect(await screen.findByText(/Error enrolling for the event/i)).toBeInTheDocument(); // Adjust based on your error handling
+    await waitFor(() => expect(axios.get).toHaveBeenCalledWith("/events"));
+    fireEvent.click(screen.getByText("Yoga Class"));
+    fireEvent.click(screen.getByText("Location: Studio A"));
+
+    await waitFor(() => expect(global.open).toHaveBeenCalledWith(
+      "https://www.google.com/maps/@40.7128,-74.006,15z",
+      "_blank"
+    ));
+  });
+
+  test("handles no events case gracefully", async () => {
+    axios.get.mockResolvedValueOnce({ data: [] });
+
+    render(
+      <Router>
+        <Events state={{ token: "test-token" }} />
+      </Router>
+    );
+
+    await waitFor(() => expect(axios.get).toHaveBeenCalledWith("/events"));
+    expect(screen.getByText("No events found")).toBeInTheDocument(); // Assuming you have a message for no events
+  });
+
+  test("handles fetch error gracefully", async () => {
+    axios.get.mockRejectedValueOnce(new Error("Fetch failed"));
+
+    render(
+      <Router>
+        <Events state={{ token: "test-token" }} />
+      </Router>
+    );
+
+    await waitFor(() => expect(axios.get).toHaveBeenCalledWith("/events"));
+    expect(screen.getByText("Error fetching events")).toBeInTheDocument(); // Assuming you have an error message
+  });
+
+  test("handles invalid event title for enrollment", async () => {
+    axios.post.mockResolvedValueOnce({ data: { isEnrolled: false } });
+
+    render(
+      <Router>
+        <Events state={{ token: "test-token" }} />
+      </Router>
+    );
+
+    await waitFor(() => expect(axios.get).toHaveBeenCalledWith("/events"));
+    fireEvent.click(screen.getByText("Yoga Class"));
+    fireEvent.click(screen.getByText("Enroll"));
+
+    await waitFor(() => expect(screen.getByText("Enrollment failed for invalid title")).toBeInTheDocument());
+  });
+
+  test("displays correct event details in modal", async () => {
+    render(
+      <Router>
+        <Events state={{ token: "test-token" }} />
+      </Router>
+    );
+
+    await waitFor(() => expect(axios.get).toHaveBeenCalledWith("/events"));
+    fireEvent.click(screen.getByText("Swimming Lessons"));
+    
+    expect(screen.getByText("Swimming classes for all ages.")).toBeInTheDocument();
+    expect(screen.getByText("Location: Pool Area")).toBeInTheDocument();
+  });
+
+  test("validates search input correctly", async () => {
+    render(
+      <Router>
+        <Events state={{ token: "test-token" }} />
+      </Router>
+    );
+
+    await waitFor(() => expect(axios.get).toHaveBeenCalledWith("/events"));
+    fireEvent.change(screen.getByLabelText(/Enter an event/i), {
+      target: { value: "   " }, // Invalid search query
+    });
+    expect(screen.getByText("Yoga Class")).toBeInTheDocument();
+    expect(screen.getByText("Swimming Lessons")).toBeInTheDocument();
+  });
+
+  test("validates enrollment status after fetching", async () => {
+    axios.post.mockResolvedValueOnce({ data: { isEnrolled: true } });
+
+    render(
+      <Router>
+        <Events state={{ token: "test-token" }} />
+      </Router>
+    );
+
+    await waitFor(() => expect(axios.get).toHaveBeenCalledWith("/events"));
+    fireEvent.click(screen.getByText("Yoga Class"));
+    
+    await waitFor(() => expect(screen.getByText("Unenroll")).toBeInTheDocument());
+  });
+
+  test("displays error message for unenrollment failure", async () => {
+    axios.post.mockRejectedValueOnce(new Error("Unenrollment failed"));
+
+    render(
+      <Router>
+        <Events state={{ token: "test-token" }} />
+      </Router>
+    );
+
+    await waitFor(() => expect(axios.get).toHaveBeenCalledWith("/events"));
+    fireEvent.click(screen.getByText("Yoga Class"));
+    fireEvent.click(screen.getByText("Unenroll"));
+
+    await waitFor(() => expect(screen.getByText("Unenrollment failed")).toBeInTheDocument());
+  });
+
+  test("shows success message after successful enrollment", async () => {
+    axios.post.mockResolvedValueOnce({ data: { status: "Successfully enrolled" } });
+
+    render(
+      <Router>
+        <Events state={{ token: "test-token" }} />
+      </Router>
+    );
+
+    await waitFor(() => expect(axios.get).toHaveBeenCalledWith("/events"));
+    fireEvent.click(screen.getByText("Yoga Class"));
+    fireEvent.click(screen.getByText("Enroll"));
+
+    await waitFor(() => expect(screen.getByText("Successfully enrolled")).toBeInTheDocument());
   });
 });

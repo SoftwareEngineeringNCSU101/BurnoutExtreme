@@ -23,10 +23,39 @@
     font-size: calc(10px + 2vmin);
     color: white;
   }
+
+  select {
+    transition: background-color 0.3s ease;
+  }
+  
+  select:hover {
+    opacity: 0.9;
+  }
+  
   
   .App-link {
     color: #61dafb;
   }
+
+  .genderNeutral1 {
+    background-color: #f0f0f0;
+    color: #333333;
+}
+
+.genderNeutral2 {
+    background-color: #e0e0ff;
+    color: #1a1a99;
+}
+
+.colorful {
+    background-color: #ffeb3b;
+    color: #6200ea;
+}
+
+.earthy {
+    background-color: #c8e6c9;
+    color: #3e2723;
+}
   
   @keyframes App-logo-spin {
     from {

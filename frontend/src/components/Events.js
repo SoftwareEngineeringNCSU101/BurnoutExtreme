@@ -27,7 +27,7 @@ const SearchBar = ({ setSearchQuery }) => (
       className="text"
       onInput={(e) => {
         const query = e.target.value;
-        console.log("Search query:", query); // Log the search query
+        console.log("Search query:", query);
         setSearchQuery(query);
       }}
       label="Enter an event"
@@ -45,11 +45,10 @@ const filterData = (query, cards) => {
     const filtered = cards.filter((e) =>
       e.title.toLowerCase().includes(query.toLowerCase())
     );
-    console.log("Filtered events count:", filtered.length); // Log the count of filtered events
+    console.log("Filtered events count:", filtered.length);
     return filtered;
   }
 };
-
 
 const defaultTheme = createTheme();
 
@@ -58,24 +57,27 @@ export default function Events(props) {
   const [enrollmentStatus, setEnrollmentStatus] = useState({});
   const [eventModals, setEventModals] = useState({});
   const [searchQuery, setSearchQuery] = useState("");
-  const [mapLocation, setMapLocation] = useState(null); // Store the map location
+  const [mapLocation, setMapLocation] = useState(null);
+  const [errorMessage, setErrorMessage] = useState(""); // For error messages
+  const [successMessage, setSuccessMessage] = useState(""); // For success messages
   const eventsFiltered = filterData(searchQuery, events);
   const location = useLocation();
 
   useEffect(() => {
-    fetch("/events")
-      .then((response) => response.json())
-      .then((data) => {
-        console.log("Fetched events:", data); // Log the fetched events
-        setEvents(data);
+    axios.get("/events")
+      .then((response) => {
+        console.log("Fetched events:", response.data);
+        setEvents(response.data);
       })
-      .catch((error) => console.error("Error fetching events:", error));
+      .catch((error) => {
+        console.error("Error fetching events:", error);
+        setErrorMessage("Error fetching events. Please try again later.");
+      });
   }, [location.state]);
-  
 
   const handleOpenModal = (eventTitle) => {
     axios
-      .post("/is-enrolled", { eventTitle: eventTitle }, {
+      .post("/is-enrolled", { eventTitle }, {
         headers: { Authorization: "Bearer " + props.state.token },
       })
       .then((response) => {
@@ -85,28 +87,31 @@ export default function Events(props) {
         }));
         const event = events.find((e) => e.title === eventTitle);
         if (event) {
-          setMapLocation({ lat: Number(event.latitude), lng: Number(event.longitude) }); // Set the map location when modal opens
+          setMapLocation({ lat: Number(event.latitude), lng: Number(event.longitude) });
         }
         setEventModals({ ...eventModals, [eventTitle]: true });
       })
       .catch((error) => {
         console.error("An error occurred while checking enrollment status: ", error);
+        setErrorMessage("Error checking enrollment status.");
       });
   };
 
   const handleCloseModal = (eventTitle) => {
     setEventModals({ ...eventModals, [eventTitle]: false });
-    setMapLocation(null); // Clear map location when modal is closed
+    setMapLocation(null);
+    setErrorMessage(""); // Clear error messages when closing modal
+    setSuccessMessage(""); // Clear success messages when closing modal
   };
 
   const handleEnrollUnenroll = (eventTitle) => {
-    const userEmail = "user@example.com"; // Get user email here
-    axios.post("/is-enrolled", { eventTitle: eventTitle }, {
+    const userEmail = "user@example.com"; // Replace with actual user email logic
+    axios.post("/is-enrolled", { eventTitle }, {
       headers: { Authorization: "Bearer " + props.state.token },
     })
     .then((response) => {
       const action = response.data.isEnrolled ? "unenroll" : "enroll";
-      axios.post(`/${action}`, { email: userEmail, eventTitle: eventTitle }, {
+      axios.post(`/${action}`, { email: userEmail, eventTitle }, {
         headers: { Authorization: "Bearer " + props.state.token },
       })
       .then((response) => {
@@ -115,11 +120,20 @@ export default function Events(props) {
             ...prevStatus,
             [eventTitle]: action === "enroll",
           }));
+          setSuccessMessage(`Successfully ${action === "enroll" ? "enrolled in" : "unenrolled from"} ${eventTitle}`);
+          setErrorMessage(""); // Clear error message
+        } else {
+          throw new Error("Failed to update enrollment status.");
         }
       })
       .catch((error) => {
         console.error("An error occurred while sending the data: ", error);
+        setErrorMessage("Error during enrollment action. Please try again.");
       });
+    })
+    .catch((error) => {
+      console.error("An error occurred while checking enrollment status: ", error);
+      setErrorMessage("Error checking enrollment status.");
     });
   };
 
@@ -214,19 +228,30 @@ export default function Events(props) {
                       <strong>Time:</strong> {event.eventTime}
                     </Typography>
                     {mapLocation && (
-                      <div className="testkam" onClick={handleMapClick}> {/* Trigger map click */}
+                      <div className="testkam" onClick={handleMapClick}>
                         <Map location={mapLocation} />
                       </div>
                     )}
+                    {errorMessage && (
+                      <Typography color="error" sx={{ mt: 2 }}>
+                        {errorMessage}
+                      </Typography>
+                    )}
+                    {successMessage && (
+                      <Typography color="primary" sx={{ mt: 2 }}>
+                        {successMessage}
+                      </Typography>
+                    )}
                     <Stack spacing={2} direction="row" justifyContent="space-between" sx={{ mt: 2 }}>
-                      <Button 
-                        size="small" 
-                        color="primary" 
+                      <Button
+                        variant="contained"
                         onClick={() => handleEnrollUnenroll(event.title)}
                       >
                         {enrollmentStatus[event.title] ? "Unenroll" : "Enroll"}
                       </Button>
-                      <Button size="small" onClick={() => handleCloseModal(event.title)}>Close</Button>
+                      <Button variant="outlined" onClick={() => handleCloseModal(event.title)}>
+                        Close
+                      </Button>
                     </Stack>
                   </Box>
                 </Modal>

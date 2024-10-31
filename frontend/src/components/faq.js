@@ -1,10 +1,12 @@
-
 import React from 'react';
-import { Accordion, AccordionSummary, AccordionDetails, Typography } from '@material-ui/core';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import { Accordion, AccordionSummary, AccordionDetails, Typography } from '@mui/material'; // Updated to use @mui/material
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore'; // Updated to use @mui/icons-material
 import Footer from './Footer';
+import { useTheme } from './ThemeContext'; // Import the theme context
 
 const FAQ = () => {
+  const theme = useTheme(); // Access the current theme
+
   const faqData = [
     {
       question: 'What is TDEE?',
@@ -12,7 +14,7 @@ const FAQ = () => {
     },
     {
       question: 'What is BMI?',
-      answer: 'Body Mass Index (BMI) is a calcualtion based on height and weight. It is an approximate measure of body fat.',
+      answer: 'Body Mass Index (BMI) is a calculation based on height and weight. It is an approximate measure of body fat.',
     },
     {
       question: 'What should I do if I encounter technical issues with the app?',
@@ -33,10 +35,10 @@ const FAQ = () => {
   ];
 
   return (
-    <div>
+    <div style={{ backgroundColor: theme.background, color: theme.color, padding: '20px' }}>
       {faqData.map((faq, index) => (
-        <Accordion key={index}>
-          <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+        <Accordion key={index} sx={{ backgroundColor: theme.accordionBackground, color: theme.accordionColor }}>
+          <AccordionSummary expandIcon={<ExpandMoreIcon sx={{ color: theme.iconColor }} />}>
             <Typography variant="h6">{faq.question}</Typography>
           </AccordionSummary>
           <AccordionDetails>
