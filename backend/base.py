@@ -745,9 +745,11 @@ def createMeal():
     mealName = data['mealName']
     ingredients = data['ingredients']
     calories = 0
+    ingredientCalories=[]
     for item in ingredients:
         food_item = mongo.food.find_one({"food": item})
         calories += int(food_item["calories"])
+        ingredientCalories.append(int(food_item["calories"]))
     try:
         # Insert data into MongoDB
         mongo.food.insert_one({'food': mealName, "calories": calories})
@@ -755,6 +757,7 @@ def createMeal():
             "email": current_user,
             "meal_name": mealName,
             "ingredients": ingredients,
+            "ingredientCalories": ingredientCalories,
             "total_calories": calories
         })
         response = {"status": "Data saved successfully"}
@@ -975,6 +978,7 @@ def getMyMeals():
             res={}
             res['meal_name']=meal['meal_name']
             res['ingredients']=meal['ingredients']
+            res['ingredientCalories'] = meal.get('ingredientCalories', [])
             res['total_calories']=meal['total_calories']
             result.append(res)
         response = result

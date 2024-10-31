@@ -1,5 +1,6 @@
 import React from 'react'
 import { useState, useEffect, useMemo } from 'react'
+import { PieChart, Pie, Cell, Tooltip, Legend } from 'recharts';
 import {
   Card,
   CardContent,
@@ -25,6 +26,7 @@ import { Container, Typography } from '@mui/material'
 import Footer from './Footer'
 import headerImage from '../images/meal.webp'
 
+const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
 const containsText = (text, searchText) =>
   text.toLowerCase().indexOf(searchText.toLowerCase()) > -1
 export default function Meals (props) {
@@ -32,6 +34,7 @@ export default function Meals (props) {
   const [calories, setCalories] = useState('')
   const [mealName, setMealName] = useState('')
   const [ingredients, setIngredients] = useState([])
+  const [ingredientCalories, setIngredientCalories] = useState([])
   const [searchText, setSearchText] = useState('')
   const [foodItems, setFoodItems] = useState({})
   const [meals, setMeals] = useState([])
@@ -388,6 +391,38 @@ export default function Meals (props) {
                         >
                           {meal.total_calories}
                         </div>
+                      </div>
+                      <div>
+                        {(() => {
+                          const data = meal?.ingredientCalories?.map((calories, index) => ({
+                            name: meal?.ingredients[index],
+                            calories,
+                          })) || [];
+
+                          console.log("data", data);
+
+                          return (
+                            <PieChart width={300} height={400}>
+                              <Pie
+                                data={data}
+                                dataKey="calories"  // The key representing calorie count in each object
+                                nameKey="name" // The key representing ingredient name in each objec
+                                cx="50%"
+                                cy="50%"
+                                outerRadius={100}
+                               innerRadius={30}
+                                fill="#8884d8"
+                                label
+                              >
+                                {data.map((entry, index) => (
+                                  <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                                ))}
+                              </Pie>
+                              <Tooltip />
+                              <Legend />
+                            </PieChart>
+                          );
+                        })()}
                       </div>
                     </CardContent>
                   </Card>
