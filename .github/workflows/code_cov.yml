@@ -1,35 +1,28 @@
-name: Running Code Coverage
-on:
-  push:
-    branches:
-      - main
-  pull_request:
-    branches:
-      - main
+name: Run tests and upload coverage
+
+on: 
+  push
 
 jobs:
-  build:
+  test:
+    name: Run tests and collect coverage
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v2
-    - name: Install Python 3.7.17
-      uses: actions/setup-python@v1
-      with:
-        python-version: 3.7.17
-    - name: Install dependencies
-      working-directory: ./backend
-      run: |
-        pip install -r requirements.txt
-        echo requirements installed  
-    - name: Run tests
-      working-directory: ./backend
-      run: |
-        python -m coverage run -m unittest test_api.py
-        coverage json
-    - name: Upload coverage to Codecov
-      uses: codecov/codecov-action@v3
-      with:
-        token: ${{ secrets.CODECOV_TOKEN }}
-        files: ./backend/coverage.json
-    
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run tests
+        run: npx jest --coverage
+
+      - name: Upload results to Codecov
+        uses: codecov/codecov-action@v4
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
