@@ -45,6 +45,8 @@ import {
 } from "recharts";
 import axios from "axios";
 import Footer from "./Footer";
+import { useTheme } from './ThemeContext'; // Adjust the path as necessary
+
 
 const containsText = (text, searchText) =>
   text.toLowerCase().indexOf(searchText.toLowerCase()) > -1;
@@ -55,6 +57,8 @@ function getRandomInt(min, max) {
 }
 
 function UserCaloriesPage(props) {
+  const { theme } = useTheme(); // Access the theme object
+
   const [todayCaloriesConsumed, setTodayCaloriesConsumed] = useState(0);
   const [todayCaloriesBurned, setTodayCaloriesBurned] = useState(0);
   const [todayGoal, setTodayGoal] = useState(0);
@@ -437,7 +441,7 @@ const handleUnenroll = (eventName) => {
                       maxDate={dayjs()}
                       required
                     />
-                    <Button type="submit" variant="contained" size="large" style={{ backgroundColor: 'orange', color: 'white' }}>
+                    <Button type="submit" variant="contained" size="large" style={{ backgroundColor: theme.headerColor, color: 'white' }}>
                       Add
                     </Button>
                   </Box>
@@ -475,7 +479,7 @@ const handleUnenroll = (eventName) => {
                       <div>{eventObj.date}</div>
                       <Button
         variant="contained"
-        style={{ backgroundColor: 'orange' }}
+        style={{ backgroundColor: theme.headerColor }}
         onClick={() => handleUnenroll(eventObj.eventName)}  // Replace `eventName` with the actual property name if different
       >
         Unenroll
@@ -548,7 +552,7 @@ const handleUnenroll = (eventName) => {
                     maxDate={dayjs()}
                     required
                   />
-                  <Button type="submit" variant="contained" size="large" style={{ backgroundColor: 'orange', color: 'white' }}>
+                  <Button type="submit" variant="contained" size="large" style={{ backgroundColor: theme.headerColor, color: 'white' }}>
                     Add
                   </Button>
                 </Box>

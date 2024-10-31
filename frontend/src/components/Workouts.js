@@ -14,6 +14,7 @@ import WorkoutDisplay from './WorkoutDisplay'
 import WorkoutForm from './WorkoutForm'
 import { DAYSOFWEEK, workoutTitles } from '../constants/DaysOfWeek'
 import headerImage from '../images/header.webp'
+import { useTheme } from './ThemeContext';
 
 const commonContainerStyles = {
   width: '100%',
@@ -33,6 +34,7 @@ const commonBoxStyles = {
 }
 
 const Workouts = props => {
+  const { theme } = useTheme();
   const [day, setDay] = useState('Monday')
   const [editMode, setEditMode] = useState(false)
   const [addMode, setAddMode] = useState(false)
@@ -144,15 +146,13 @@ const Workouts = props => {
             <Button
               type='submit'
               variant='contained'
+              
               size='small'
               onClick={() => {
                 setAddMode(!addMode)
               }}
-              style={{
-                backgroundColor: 'orange',
-                color: 'white',
-                width: '100px'
-              }}
+              style={{ backgroundColor: theme.headerColor, color: 'white', width: '100px'}}
+              
             >
               Add
             </Button>
@@ -163,11 +163,7 @@ const Workouts = props => {
               onClick={() => {
                 setEditMode(!editMode)
               }}
-              style={{
-                backgroundColor: 'orange',
-                color: 'white',
-                width: '100px'
-              }}
+              style={{ backgroundColor: theme.headerColor, color: 'white', width: '100px'}}
             >
               Edit
             </Button>
@@ -191,21 +187,25 @@ const Workouts = props => {
         disableGutters
         maxWidth={false}
       >
-        <Box sx={{ ...commonBoxStyles }}>
+        <Box sx={{ ...commonBoxStyles }}
+        >
           <Tabs
+
             value={day}
             onChange={(e, newValue) => {
               setDay(newValue)
+              
             }}
             TabIndicatorProps={{
-              sx: { backgroundColor: '#FFA000' }
+              sx: { backgroundColor: theme.headerColor }
+              
             }}
             sx={{
               width: '100%',
               '& .MuiTab-root': {
                 color: 'black',
                 '&.Mui-selected': {
-                  color: '#FFA000'
+                  color: theme.headerColor
                 }
               }
             }}
@@ -216,7 +216,7 @@ const Workouts = props => {
               <Tab key={day.value} label={day.label} value={day.value} />
             ))}
           </Tabs>
-          <Divider sx={{ width: '100%', margin: '8px 0' }} />
+          <Divider sx={{ width: '100%', margin: '8px 0' , backgroundColor: theme.headerColor }} />
           {schedules && day && (
             <WorkoutDisplay
               schedules={schedules[day]}

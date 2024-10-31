@@ -19,6 +19,7 @@ import Footer from "./Footer";
 import { CardActionArea } from "@mui/material";
 import Map from "./mapevents";
 import headerImage from '../images/e.jpg';
+import { useTheme } from './ThemeContext';
 
 const SearchBar = ({ setSearchQuery }) => (
   <form style={{ paddingTop: '20px' }}> {/* Add top padding here */}
@@ -68,6 +69,7 @@ const filterData = (query, cards) => {
 const defaultTheme = createTheme();
 
 export default function Events(props) {
+  const { theme } = useTheme();
   const [events, setEvents] = useState([]);
   const [enrollmentStatus, setEnrollmentStatus] = useState({});
   const [eventModals, setEventModals] = useState({});
@@ -270,12 +272,15 @@ export default function Events(props) {
                   )}
                   <Stack spacing={2} direction="row" justifyContent="space-between" sx={{ mt: 2 }}>
                     <Button
+                    style={{ backgroundColor: theme.headerColor, color: 'white' }}
                       variant="contained"
                       onClick={() => handleEnrollUnenroll(event.title)}
                     >
                       {enrollmentStatus[event.title] ? "Unenroll" : "Enroll"}
                     </Button>
-                    <Button variant="outlined" onClick={() => handleCloseModal(event.title)}>
+                    <Button
+                    style={{ backgroundColor: 'white' , color: theme.headerColor }}
+                     variant="outlined" onClick={() => handleCloseModal(event.title)}>
                       Close
                     </Button>
                   </Stack>
