@@ -105,6 +105,8 @@
                     display: "block",
                     color: theme.color,
                     textDecoration: "none",
+                    backgroundColor: window.location.pathname === mainPages[page] ? theme.background : 'transparent', // Highlight active tab
+                    transition: 'background-color 0.3s ease',
                   }}
                 >
                   {page}
