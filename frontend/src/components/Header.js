@@ -14,6 +14,7 @@ import WhatshotIcon from "@material-ui/icons/Whatshot";
 import axios from "axios";
 import useToken from "./authentication/useToken";
 import { updateState } from "../burnoutReducer";
+import { useTheme } from "./ThemeContext"; // Import the theme context
 
 const mainPages = {
   Home: "/",
@@ -27,6 +28,8 @@ const userPages = { Profile: "/profile" };
 
 function Header(props) {
   const [userMenuToggle, setUserMenuToggle] = useState(null);
+  const { removeToken } = useToken();
+  const { theme, toggleTheme, themeName } = useTheme(); // Access theme, toggleTheme, and themeName
 
   const handleOpenUserMenu = (event) => {
     setUserMenuToggle(event.currentTarget);
@@ -35,7 +38,7 @@ function Header(props) {
   const handleCloseUserMenu = () => {
     setUserMenuToggle(null);
   };
-  const { removeToken } = useToken();
+
   const handleLogOut = () => {
     handleCloseUserMenu();
     axios({
@@ -59,8 +62,13 @@ function Header(props) {
       });
   };
 
+  // Handle theme change
+  const handleThemeChange = (event) => {
+    toggleTheme(event.target.value);
+  };
+
   return (
-    <AppBar position="static" sx={{ backgroundColor: "#FFA100" }}>
+    <AppBar position="static" sx={{ backgroundColor: theme.headerColor }}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <Box>
@@ -78,7 +86,7 @@ function Header(props) {
                 fontFamily: "monospace",
                 fontWeight: 700,
                 letterSpacing: ".3rem",
-                color: "inherit",
+                color: theme.color,
                 textDecoration: "none",
                 paddingLeft: "10px",
               }}
@@ -95,13 +103,62 @@ function Header(props) {
                 sx={{
                   mr: 2,
                   display: "block",
-                  color: "white",
+                  color: theme.color,
                   textDecoration: "none",
                 }}
               >
                 {page}
               </Button>
             ))}
+          </Box>
+          {/* Display the current theme name */}
+          <Box sx={{ marginRight: 2 }}>
+            <Typography
+              variant="subtitle1"
+              sx={{ color: theme.color }}
+            >
+              
+            </Typography>
+          </Box>
+          {/* Add a dropdown for theme selection */}
+          <Box sx={{ marginRight: 2 }}>
+            <select
+              onChange={handleThemeChange}
+              value={themeName}
+              style={{
+                padding: "5px",
+                border: "none",
+                borderRadius: "4px",
+                backgroundColor: theme.dropdownBg || "#f0f0f0",
+                color: theme.color || "#000",
+                fontSize: "16px",
+              }}
+            >
+              <option value="sunnyDay" style={{ backgroundColor: "#ffeb3b", color: "#000" }}>
+                Sunny Day
+              </option>
+              <option value="midnightMystique" style={{ backgroundColor: "#212121", color: "#fff" }}>
+                Midnight Mystique
+              </option>
+              <option value="blushBloom" style={{ backgroundColor: "#f06292", color: "#000" }}>
+                Blush & Bloom
+              </option>
+              <option value="boldBrave" style={{ backgroundColor: "#d32f2f", color: "#fff" }}>
+                Bold & Brave
+              </option>
+              <option value="sleekSimple" style={{ backgroundColor: "#90a4ae", color: "#000" }}>
+                Sleek & Simple
+              </option>
+              <option value="neutralGround" style={{ backgroundColor: "#bdbdbd", color: "#000" }}>
+                Neutral Ground
+              </option>
+              <option value="vibrantVibes" style={{ backgroundColor: "#4caf50", color: "#fff" }}>
+                Vibrant Vibes
+              </option>
+              <option value="earthyEssence" style={{ backgroundColor: "#795548", color: "#fff" }}>
+                Earth & Essence
+              </option>
+            </select>
           </Box>
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
