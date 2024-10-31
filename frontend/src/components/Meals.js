@@ -343,11 +343,12 @@ export default function Meals (props) {
             />
             <CardContent
               sx={{
-                display: 'grid',
-                gridTemplateColumns: 'repeat(6, 1fr)',
-                gap: 2,
-                gridTemplateRows: 'auto',
-                gridTemplateAreas: `"meal-0 meal-1 meal-2 meal-3 meal-4 meal-5"`
+                display: 'flex',  // Change from 'grid' to 'flex'
+    flexDirection: 'column',  // Use column direction
+    alignItems: 'center',  // Center align the content
+    gap: 2,
+                
+            
               }}
             >
               {meals.map((meal, index) => {
@@ -363,7 +364,8 @@ export default function Meals (props) {
                         style={{
                           textAlign: 'center',
                           fontWeight: 'bold',
-                          paddingBottom: '5px'
+                          paddingBottom: '5px',
+                    
                         }}
                       >
                         {meal.meal_name}
@@ -405,7 +407,7 @@ export default function Meals (props) {
                           console.log("data", data);
 
                           return (
-                            <PieChart width={300} height={400}>
+                            <PieChart width={800} height={300}>
                               <Pie
                                 data={data}
                                 dataKey="calories"  // The key representing calorie count in each object
