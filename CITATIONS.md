@@ -7,7 +7,7 @@ November 2024
 @misc{SEg23:Project2,
 title = {BurnoutExtreme: Daily Health & Diet Tracker},
 version = {4}
-author = {Jing Huang and Soundarya Khanapur and Mugdha Joshi and Iyer, Aditya and Killedar, Aditi and Madan, Shashank and Srinivasan, Srinath and Kiran, Adithya and Visalam, Amrita and Maurya, Diksha and Joji, Sharon and Somashekar, Prakruthi and Kumar, Devand and Hegde, Sunidhi and J, Atharva and Patil, Atharva and Sinha, Rohan and Raman, Radhika and Chhabra, Banpreet Singh and Patil, Vaishnavi and Pednekar, Shivam and Nande, Sahil and Pathak, Urmi and Serrao, Leanne},
+author = {Jing Huang, Soundarya Khanapur, Mugdha Joshi and Iyer, Aditya and Killedar, Aditi and Madan, Shashank and Srinivasan, Srinath and Kiran, Adithya and Visalam, Amrita and Maurya, Diksha and Joji, Sharon and Somashekar, Prakruthi and Kumar, Devand and Hegde, Sunidhi and J, Atharva and Patil, Atharva and Sinha, Rohan and Raman, Radhika and Chhabra, Banpreet Singh and Patil, Vaishnavi and Pednekar, Shivam and Nande, Sahil and Pathak, Urmi and Serrao, Leanne},
 year = {2024},
 month = {October},
 note = {New features added:
