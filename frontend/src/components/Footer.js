@@ -11,7 +11,7 @@ function Copyright() {
         <Typography variant="body2" color="text.secondary">
             {'Copyright © '}
             {new Date().getFullYear()}{' '}
-                Aditya Iyer, Aditi Killedar, Shashank U M, Srinath Srinivasan
+                Mugdha Joshi, Soundharya Khanapur, Jing Huang
             {'.'}
         </Typography>
     );
@@ -44,7 +44,7 @@ export default function Footer() {
                 >
                     <Container maxWidth="sm">
                         <div align="center">
-                            <Link variant="body2" href="https://github.com/adi-kiran/burnout-healthgoalsapp/blob/main/LICENSE" color="text.secondary" align="center">
+                            <Link variant="body2" href="https://github.com/Software-Engineering-2024-Group/BurnoutExtreme" color="text.secondary" align="center">
                                 MIT License
                             </Link>
                         </div>
