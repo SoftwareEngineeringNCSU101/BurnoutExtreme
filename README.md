@@ -28,12 +28,19 @@
 </div>
 <br>
 
-[![GitHub license](https://img.shields.io/github/license/Naereen/StrapDown.js.svg)](https://github.com/Naereen/StrapDown.js/blob/master/LICENSE)
-[![DOI](https://zenodo.org/badge/878072890.svg)](https://doi.org/10.5281/zenodo.14020325)
+
+[![GitHub license](https://img.shields.io/github/license/mugdhaajoshi/Software-Engineering-2024-Group/BurnoutExtreme.svg)](https://github.com/mugdhaajoshi/Software-Engineering-2024-Group/BurnoutExtreme/blob/master/LICENSE)
+[![DOI](https://zenodo.org/badge/714758791.svg)](https://zenodo.org/doi/10.5281/zenodo.10208054)
 [![made-with-python](https://img.shields.io/badge/Made%20with-Python-1f425f.svg)](https://www.python.org/)
-[![Build Status](https://github.com/Software-Engineering-2024-Group/BurnoutExtreme/actions/workflows/build_repo.yml/badge.svg)](https://github.com/Software-Engineering-2024-Group/BurnoutExtreme/actions/workflows/build_repo.yml)
-[![AutoPep8](https://github.com/Software-Engineering-2024-Group/BurnoutExtreme/actions/workflows/autopep8.yml/badge.svg)](https://github.com/Software-Engineering-2024-Group/BurnoutExtreme/actions/workflows/autopep8.yml)
+[![Build Status](https://github.com/mugdhaajoshi/BurnoutExtreme/actions/workflows/build.yml/badge.svg)](https://github.com/mugdhaajoshi/BurnoutExtreme/actions/workflows/build.yml)
 [![PEP8](https://img.shields.io/badge/code%20style-pep8-orange.svg)](https://www.python.org/dev/peps/pep-0008/)
+![last commit](https://img.shields.io/github/last-commit/mugdhaajoshi/BurnoutExtreme)
+![github workflow](https://github.com/mugdhaajoshi/BurnoutExtreme/actions/workflows/unit_test.yml/badge.svg)
+![style checker](https://github.com/mugdhaajoshi/BurnoutExtreme/actions/workflows/style_checker.yml/badge.svg)
+![syntax checker](https://github.com/mugdhaajoshi/BurnoutExtreme/actions/workflows/syntax_checker.yml/badge.svg)
+[![codecov](https://codecov.io/gh/mugdhaajoshi/BurnoutExtreme/graph/badge.svg?token=383569ea-a964-438e-956f-61d2efbc5382)](https://codecov.io/gh/mugdhaajoshi/BurnoutExtreme)
+=======
+[![AutoPep8](https://github.com/Software-Engineering-2024-Group/BurnoutExtreme/actions/workflows/autopep8.yml/badge.svg)](https://github.com/Software-Engineering-2024-Group/BurnoutExtreme/actions/workflows/autopep8.yml)
 
 // TODO: add more
 
