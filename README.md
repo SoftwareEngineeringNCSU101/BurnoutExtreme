@@ -233,7 +233,7 @@ The application can be extended with features like:
 4. Sorting and filtering capabilities.
 5. Counting macros.
 
-   # Contributors
+# Contributors
 
 <center>
   <table>
@@ -266,6 +266,19 @@ The application can be extended with features like:
             ><br />
           </td>
         </tr>
+  </table>
+</center>
+
+   # Previous Team Contributors
+   
+<center>
+  <table>
+    <tr>
+        <td align="center"><a href="https://github.com/aiyer786"><img src="https://avatars.githubusercontent.com/u/60314222?s=400&u=0984f88aeb3a9c30f4ec8145176134e626843fd5&v=4" width="100px;" alt=""/><br /><sub><b>Aditya Iyer</b></sub></a><br /></td>
+      <td align="center"><a href="https://github.com/aditikilledar"><img src="https://avatars.githubusercontent.com/u/73051765?v=4" width="100px;" alt=""/><br /><sub><b>Aditi Killedar</b></sub></a></td>
+    <td align="center"><a href="https://github.com/shashank-madan"><img src="https://avatars.githubusercontent.com/u/52149707?s=80&v=4" width="100px;" alt=""/><br /><sub><b>Shashank Madan</b></sub></a><br /></td>
+      <td align="center"><a href="https://github.com/srina1h"><img src="https://avatars.githubusercontent.com/u/47570142?v=4" width="100px;" alt=""/><br /><sub><b>Srinath Srinivasan</b></sub></a><br /></td>
+    </tr>
   </table>
 </center>
 
