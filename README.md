@@ -26,16 +26,16 @@
 </div>
 <br>
 
-[![GitHub license](https://img.shields.io/github/license/Naereen/StrapDown.js.svg)](https://github.com/Naereen/StrapDown.js/blob/master/LICENSE)
+[![GitHub license](https://img.shields.io/github/license/mugdhaajoshi/Software-Engineering-2024-Group/BurnoutExtreme.svg)](https://github.com/mugdhaajoshi/Software-Engineering-2024-Group/BurnoutExtreme/blob/master/LICENSE)
 [![DOI](https://zenodo.org/badge/714758791.svg)](https://zenodo.org/doi/10.5281/zenodo.10208054)
 [![made-with-python](https://img.shields.io/badge/Made%20with-Python-1f425f.svg)](https://www.python.org/)
-![Build Status](https://github.com/aditikilledar/burnout-proj3/actions/workflows/build_repo.yml/badge.svg)
+<!-- ![Build Status](https://github.com/aditikilledar/burnout-proj3/actions/workflows/build_repo.yml/badge.svg) -->
 [![PEP8](https://img.shields.io/badge/code%20style-pep8-orange.svg)](https://www.python.org/dev/peps/pep-0008/)
-![last commit](https://img.shields.io/github/last-commit/aditikilledar/burnout-proj3)
-![github workflow](https://github.com/aditikilledar/burnout-proj3/actions/workflows/unit_test.yml/badge.svg)
-![github workflow](https://github.com/aditikilledar/burnout-proj3/actions/workflows/style_checker.yml/badge.svg)
-![github workflow](https://github.com/aditikilledar/burnout-proj3/actions/workflows/syntax_checker.yml/badge.svg)
-[![codecov](https://codecov.io/gh/aditikilledar/burnout-proj3/graph/badge.svg?token=8DO6VMEZ7J)](https://codecov.io/gh/aditikilledar/burnout-proj3)
+![last commit](https://img.shields.io/github/last-commit/mugdhaajoshi/BurnoutExtreme)
+![github workflow](https://github.com/mugdhaajoshi/BurnoutExtreme/actions/workflows/unit_test.yml/badge.svg)
+![style checker](https://github.com/mugdhaajoshi/BurnoutExtreme/actions/workflows/style_checker.yml/badge.svg)
+![syntax checker](https://github.com/mugdhaajoshi/BurnoutExtreme/actions/workflows/syntax_checker.yml/badge.svg)
+<!-- [![codecov](https://codecov.io/gh/mugdhaajoshi/BurnoutExtreme/graph/badge.svg?token=8DO6VMEZ7J)](https://codecov.io/gh/mugdhaajoshi/BurnoutExtreme) -->
 <a href="https://github.com/aditikilledar/burnout-proj3/fork" target="blank">
 <img src="https://img.shields.io/github/forks/aditikilledar/burnout-proj3?style=flat-square" alt="burnout-healthgoalsapp forks"/></a>
 <a href="https://github.com/aditikilledar/burnout-proj3/stargazers" target="blank">
