@@ -133,6 +133,7 @@
                   backgroundColor: theme.dropdownBg || "#f0f0f0",
                   color: theme.color || "#000",
                   fontSize: "16px",
+                  cursor: "pointer"
                 }}
               >
                 <option value="sunnyDay" style={{ backgroundColor: "#ffeb3b", color: "#000" }}>
