@@ -279,7 +279,6 @@ The BurnoutExtreme application can be extended with the following features:
 ---
 
 ## 📊 Score Card
----
 #### Total Grade: 151
 
 | Factor | Score | Notes |
