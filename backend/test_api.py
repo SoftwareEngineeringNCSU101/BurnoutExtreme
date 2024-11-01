@@ -1,7 +1,7 @@
 import unittest
 from base import api, setup_mongo_client
 from unittest.mock import patch, Mock
-from flask import json
+from flask import request
 
 
 class APITestCase(unittest.TestCase):
@@ -71,25 +71,19 @@ class APITestCase(unittest.TestCase):
 
         self.assertEqual(response.status_code, 401)
 
-    @patch('base.request')
-    @patch('base.jwt_required')
+    @patch('base.get_jwt_identity')
     @patch('base.mongo')
-    def test_unauthorized_enrolled_true(self, mock_mongo, mock_jwt_required, mock_request):
-        app_client = api.test_client()
-        # Mock request.json() method to return test data
-        mock_request.json.return_value = {'eventTitle': 'Event Name'}
+    def test_unauthorized_enrolled_true(self, mock_mongo, mock_get_jwt_identity):
+        # Mock `get_jwt_identity` to return `None` to simulate an unauthorized user
+        mock_get_jwt_identity.return_value = None
 
-        # Mock get_jwt_identity() to return a test user identity
-        mock_jwt_required.return_value = lambda f: f
-
-        # Mock the find_one method to return an enrollment
-        mock_mongo.user.find_one.return_value = {
-            'email': 'test@example.com', 'eventTitle': 'Event Name'}
-
-        response = app_client.post('/is-enrolled')
-        data = json.loads(response.get_data(as_text=True))
-
-        self.assertEqual(response.status_code, 401)
+        # Create request context for the '/is-enrolled' endpoint
+        with self.app.test_request_context('/is-enrolled', method='POST', json={'eventTitle': 'Event Name'}):
+            # Now we can call the endpoint
+            response = self.client.post('/is-enrolled')
+            
+            # Check if the response status code is 401 for unauthorized
+            self.assertEqual(response.status_code, 401)
 
     @patch('base.get_jwt_identity')
     @patch('base.mongo')
