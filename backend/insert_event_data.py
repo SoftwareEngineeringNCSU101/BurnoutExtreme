@@ -45,7 +45,7 @@ cards = [
         "description": "Join us to get the best of the walk workouts to burn more calories than a stroll around the park.",
         "eventLocation": "Pullen Park, near NCSU, Raleigh, NC",
         "eventTime": "5:30 AM - 6:30 AM",
-        "eventDate": "October 30, 2023"
+        "eventDate": "October 31, 2024"
     },
     {
         "title": "Belly Burner",
@@ -55,7 +55,7 @@ cards = [
         "description": "Join Sasha for a 30-minute no-equipment workout that will work on that stubborn belly fat.",
         "eventLocation": "Carmichael Gym Studio 2, NCSU, Raleigh, NC",
         "eventTime": "2:00 PM - 3:00 PM",
-        "eventDate": "November 3, 2023"
+        "eventDate": "November 3, 2024"
     },
     {
         "title": "HRX Fitness",
@@ -65,7 +65,7 @@ cards = [
         "description": "Shake it off and groove to some fun tracks with Tom and his squad in this dance fitness session!",
         "eventLocation": "Carmichael Gym, NCSU, Raleigh, NC",
         "eventTime": "8:00 AM - 9:00 AM",
-        "eventDate": "November 12, 2023"
+        "eventDate": "November 12, 2024"
     },
     {
         "title": "Dance Fitness",
@@ -75,7 +75,7 @@ cards = [
         "description": "It's time to push yourself to the limit! Join us for some intense workout sessions.",
         "eventLocation": "Carmichael Gym, NCSU, Raleigh, NC",
         "eventTime": "10:00 AM - 11:30 AM",
-        "eventDate": "December 17, 2023"
+        "eventDate": "December 17, 2024"
     },
     {
         "title": "Core Conditioning",
@@ -85,7 +85,7 @@ cards = [
         "description": "Develop core muscle strength that improves posture and contributes to a trimmer appearance.",
         "eventLocation": "Carmichael Gym, NCSU, Raleigh, NC",
         "eventTime": "5:00 PM - 6:15 PM",
-        "eventDate": "December 19, 2023"
+        "eventDate": "December 19, 2024"
     },
     {
         "title": "Gym",
@@ -95,7 +95,7 @@ cards = [
         "description": "A collection of Dumbbells workouts by skilled trainers specific to particular muscle groups.",
         "eventLocation": "Carmichael Gym, NCSU, Raleigh, NC",
         "eventTime": "11:00 AM - 1:00 PM",
-        "eventDate": "October 23, 2023"
+        "eventDate": "October 23, 2024"
     }
 ]
 
