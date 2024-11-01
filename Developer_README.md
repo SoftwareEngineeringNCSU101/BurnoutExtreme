@@ -8,47 +8,29 @@
   <p align="center">
     Your daily health companion 🏃‍♀️
     <br />
-    <a href="https://aditikilledar.github.io/burnout-proj3/index.html"><strong>Explore the API docs »</strong></a>
+    <a href="https://github.com/Software-Engineering-2024-Group/BurnoutExtreme/blob/master/backend/html/backend/index.html"><strong>Explore the API docs »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/aditikilledar/burnout-proj3/blob/main/Tutorials.md">View Demo</a>
+    <a href="">View Demo</a>
     ·
-    <a href="https://github.com/aditikilledar/burnout-proj3/issues/new?assignees=&labels=&projects=&template=bug_report.md&title=">Report Bug</a>
+    <a href="">Report Bug</a>
     ·
-    <a href="https://github.com/aditikilledar/burnout-proj3/issues/new?assignees=&labels=&projects=&template=feature_request.md&title=">Request Feature</a>
+    <a href="">Request Feature</a>
     <br>
-    <a href="https://youtu.be/bYTZT8vcICI">View Video</a>
+    <a href="">View Video</a>
     ·
-    <a href="https://github.com/aditikilledar/burnout-proj3/blob/main/Project3Scores.md">Scores</a>
+    <a href="https://github.com/Software-Engineering-2024-Group/BurnoutExtreme/blob/master/Project2_Group23.md">Scores</a>
     ·
   </p>
 </div>
 <br>
 
 [![GitHub license](https://img.shields.io/github/license/Naereen/StrapDown.js.svg)](https://github.com/Naereen/StrapDown.js/blob/master/LICENSE)
-[![DOI](https://zenodo.org/badge/714758791.svg)](https://zenodo.org/doi/10.5281/zenodo.10208054)
+[![DOI](https://zenodo.org/badge/878072890.svg)](https://doi.org/10.5281/zenodo.14020325)
 [![made-with-python](https://img.shields.io/badge/Made%20with-Python-1f425f.svg)](https://www.python.org/)
-![Build Status](https://github.com/aditikilledar/burnout-proj3/actions/workflows/build_repo.yml/badge.svg)
+[![Build Status](https://github.com/Software-Engineering-2024-Group/BurnoutExtreme/actions/workflows/build_repo.yml/badge.svg)](https://github.com/Software-Engineering-2024-Group/BurnoutExtreme/actions/workflows/build_repo.yml)
+[![AutoPep8](https://github.com/Software-Engineering-2024-Group/BurnoutExtreme/actions/workflows/autopep8.yml/badge.svg)](https://github.com/Software-Engineering-2024-Group/BurnoutExtreme/actions/workflows/autopep8.yml)
 [![PEP8](https://img.shields.io/badge/code%20style-pep8-orange.svg)](https://www.python.org/dev/peps/pep-0008/)
-![last commit](https://img.shields.io/github/last-commit/aditikilledar/burnout-proj3)
-![github workflow](https://github.com/aditikilledar/burnout-proj3/actions/workflows/unit_test.yml/badge.svg)
-![github workflow](https://github.com/aditikilledar/burnout-proj3/actions/workflows/style_checker.yml/badge.svg)
-![github workflow](https://github.com/aditikilledar/burnout-proj3/actions/workflows/syntax_checker.yml/badge.svg)
-[![codecov](https://codecov.io/gh/aditikilledar/burnout-proj3/graph/badge.svg?token=8DO6VMEZ7J)](https://codecov.io/gh/aditikilledar/burnout-proj3)
-<a href="https://github.com/aditikilledar/burnout-proj3/fork" target="blank">
-<img src="https://img.shields.io/github/forks/aditikilledar/burnout-proj3?style=flat-square" alt="burnout-healthgoalsapp forks"/></a>
-<a href="https://github.com/aditikilledar/burnout-proj3/stargazers" target="blank">
-<img src="https://img.shields.io/github/stars/aditikilledar/burnout-proj3?style=flat-square" alt="burnout-healthgoalsapp stars"/>
-<a href="https://github.com/aditikilledar/burnout-proj3/issues" target="blank"> <img src="https://img.shields.io/github/issues-closed/aditikilledar/burnout-proj3" alt="burnout-healthgoalsapp issues closed"/>
-</a>
-<a href="https://github.com/aditikilledar/burnout-proj3/graphs/contributors" alt="Contributors">
-<img src="https://img.shields.io/github/contributors/aditikilledar/burnout-proj3" /></a>
-<a href="https://github.com/aditikilledar/burnout-proj3/graphs/commit-activity" alt="commit activity">
-<img src="https://img.shields.io/github/commit-activity/w/aditikilledar/burnout-proj3" /></a> 
-<a href="https://github.com/aditikilledar/burnout-proj3/discussions" alt="discussion">
-<img src="https://img.shields.io/github/discussions/aditikilledar/burnout-proj3" /></a> 
-<a href="https://img.shields.io/github/repo-size/aditikilledar/burnout-proj3" alt="repo size">
-<img src="https://img.shields.io/github/repo-size/aditikilledar/burnout-proj3" /></a>
 
 # Developer Documentation
 
@@ -96,7 +78,7 @@ Before you begin, make sure you have the following installed:
  Step 1: 
   Git Clone the Repository 
   
-    git clone https://github.com/aditikilledar/burnout-proj3
+    git clone https://github.com/aditikilledar/burnout-proj3](https://github.com/Software-Engineering-2024-Group/BurnoutExtreme.git
 
 Step 2:
    Ensure mongodb is running and execute the below to populate the tables:
@@ -159,37 +141,54 @@ Step 2:
 This version enhanced and built on the previous version, making it 10x more interesting and easier to use!
 Here's what we added in this release.
 
-1. Ability to add custom foods and track their calories.
-2. Fully customizable meal creation.
-3. An intuitive and searchable dropdown.
-4. BMI Calculation for your personal profile.
-5. Intelligent automatic calorie burn calculation.
-6. Enhanced UI.
-7. Randomized Exercise of the Day.
-8. Google Sign-in is now an option!
-9. Better progress tracking on the landing page.
+1. Google maps integration for events.
+2. Advanced activity monitoring.
+3. Custom workout plans.
+4. Personalized themes.
+5. Diet Tracker enhancements.
+6. Enhanced UIs.
 
 ## Bug Fixes
 We fixed many bugs, but here are the most notable ones...
 
-1. Sign up / Sign in issues, especially when an existing user tries to sign up again.
+1. Testcases were updated and fixed.
 2. The proxy in the config files were wrong, making it difficult to run the website. Proxy issues were fixed.
-3. Testcases were updated and fixed.
-4. Event were not un-enrollable. Now events can be enrolled and unenrolled.
-5. Exercise of the day was static, which defeats the purpose. Fixed, it is now random.
-6. Linechart on the landing page was incorrect. Fixed.
+3. UIs fixed
 
 :bulb: **Tip:** More enhancements/fixes can be found here : https://github.com/adi-kiran/burnout-healthgoalsapp/issues
    
-   # Contributors
+# Contributors
  <center>
   <table>
     <tr>
-        <td align="center"><a href="https://github.com/aiyer786"><img src="https://avatars.githubusercontent.com/u/60314222?s=400&u=0984f88aeb3a9c30f4ec8145176134e626843fd5&v=4" width="100px;" alt=""/><br /><sub><b>Aditya Iyer</b></sub></a><br /></td>
-      <td align="center"><a href="https://github.com/aditikilledar"><img src="https://avatars.githubusercontent.com/u/73051765?v=4" width="100px;" alt=""/><br /><sub><b>Aditi Killedar</b></sub></a></td>
-    <td align="center"><a href="https://github.com/shashank-madan"><img src="https://avatars.githubusercontent.com/u/52149707?s=80&v=4" width="100px;" alt=""/><br /><sub><b>Shashank Madan</b></sub></a><br /></td>
-      <td align="center"><a href="https://github.com/srina1h"><img src="https://avatars.githubusercontent.com/u/47570142?v=4" width="100px;" alt=""/><br /><sub><b>Srinath Srinivasan</b></sub></a><br /></td>
-    </tr>
+          <td align="center">
+            <a href="https://github.com/SoundaryaKhanapur"
+              ><img
+                src="https://avatars.githubusercontent.com/u/36791174?v=4"
+                width="100px;"
+                alt=""
+              /><br /><sub><b>Soundarya Khanapur</b></sub></a
+            ><br />
+          </td>
+          <td align="center">
+            <a href="https://github.com/mugdhaajoshi"
+              ><img
+                src="https://avatars.githubusercontent.com/u/157236410?v=4"
+                width="100px;"
+                alt=""
+              /><br /><sub><b>Mugdha Joshi</b></sub></a
+            ><br />
+          </td>
+          <td align="center">
+            <a href="https://github.com/Jing27540"
+              ><img
+                src="https://avatars.githubusercontent.com/u/131999715?v=4"
+                width="100px;"
+                alt=""
+              /><br /><sub><b>Jing Huang</b></sub></a
+            ><br />
+          </td>
+        </tr>
   </table>
 </center>
 
