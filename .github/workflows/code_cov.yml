@@ -1,0 +1,45 @@
+#Copyright (C) 2024 SE24-Team23
+
+# Licensed under the MIT License.
+# See the LICENSE file in the project root for the full license information.
+
+# This workflow will install Python dependencies, run tests and create a Code Coverage Report
+
+name: Running Code Coverage
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Install Python 3.10.15
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.10.15
+      - name: Install dependencies
+        run: |
+          pip install coverage
+          pip install pytest-cov
+          pip install -r requirements.txt
+          echo requirements installed
+      - name: Run the tests
+        run: |
+          cd tests
+          pytest --cov=./ --cov-report=xml
+        continue-on-error: true
+        
+      - name: Upload coverage to Codecov
+        if: always()
+        uses: codecov/codecov-action@v4
+        with:
+          token: ${{ secrets.CODECOV_TOKEN}}
+          file: coverage.xml
+

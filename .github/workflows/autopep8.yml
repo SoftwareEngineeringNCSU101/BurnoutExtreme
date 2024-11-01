@@ -1,0 +1,22 @@
+name: AutoPep8
+
+on: [push, pull_request]
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.12'
+
+    - name: Install AutoPep8
+      run: pip install autopep8
+
+    - name: Run AutoPep8
+      run: |
+        autopep8 --diff --recursive . || true

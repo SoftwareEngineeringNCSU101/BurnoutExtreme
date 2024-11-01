@@ -1,12 +1,12 @@
+import apps
 import sys
 import os
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-import apps
 app = apps.App()
 mongo = app.mongo
 
-f = open('../food_data/calories.csv', 'r', encoding = "ISO-8859-1")
+f = open('../food_data/calories.csv', 'r', encoding="ISO-8859-1")
 l = f.readlines()
 
 for i in range(1, len(l)):

@@ -6,7 +6,9 @@
   </a>
   <h3 align="center">BurnoutExtreme</h3>
   <p align="center">
-    Your daily health companion 🏃‍♀️
+    Your ultimate health and wellness companion 🏃‍♀️💪
+    <br />
+    A holistic platform to help you manage fitness, diet, and health goals, built on the success of the original Burnout project.
     <br />
     <a href="https://aditikilledar.github.io/burnout-proj3/index.html"><strong>Explore the API docs »</strong></a>
     <br />
@@ -26,6 +28,7 @@
 </div>
 <br>
 
+
 [![GitHub license](https://img.shields.io/github/license/mugdhaajoshi/Software-Engineering-2024-Group/BurnoutExtreme.svg)](https://github.com/mugdhaajoshi/Software-Engineering-2024-Group/BurnoutExtreme/blob/master/LICENSE)
 [![DOI](https://zenodo.org/badge/714758791.svg)](https://zenodo.org/doi/10.5281/zenodo.10208054)
 [![made-with-python](https://img.shields.io/badge/Made%20with-Python-1f425f.svg)](https://www.python.org/)
@@ -36,6 +39,11 @@
 ![style checker](https://github.com/mugdhaajoshi/BurnoutExtreme/actions/workflows/style_checker.yml/badge.svg)
 ![syntax checker](https://github.com/mugdhaajoshi/BurnoutExtreme/actions/workflows/syntax_checker.yml/badge.svg)
 [![codecov](https://codecov.io/gh/mugdhaajoshi/BurnoutExtreme/graph/badge.svg?token=383569ea-a964-438e-956f-61d2efbc5382)](https://codecov.io/gh/mugdhaajoshi/BurnoutExtreme)
+=======
+[![AutoPep8](https://github.com/Software-Engineering-2024-Group/BurnoutExtreme/actions/workflows/autopep8.yml/badge.svg)](https://github.com/Software-Engineering-2024-Group/BurnoutExtreme/actions/workflows/autopep8.yml)
+
+// TODO: add more
+
 <a href="https://github.com/aditikilledar/burnout-proj3/fork" target="blank">
 <img src="https://img.shields.io/github/forks/aditikilledar/burnout-proj3?style=flat-square" alt="burnout-healthgoalsapp forks"/></a>
 <a href="https://github.com/aditikilledar/burnout-proj3/stargazers" target="blank">
@@ -55,7 +63,8 @@ https://github.com/aditikilledar/burnout-proj3/assets/52149707/5873f399-194b-4a9
 
 # Table of Contents
 
-- [Why Choose BurnoutExtreme?](#-why-choose-burnout)
+- [What's new?](#whats-new)
+- [Why Choose BurnoutExtreme?](#-why-choose-burnoutextreme)
 - [Walkthrough](#walkthrough)
 - [Application Screenshots:](#application-screenshots)
   - [Sign In](#sign-in)
@@ -68,16 +77,66 @@ https://github.com/aditikilledar/burnout-proj3/assets/52149707/5873f399-194b-4a9
   - [Contact Us](#contact-us)
 - [Project Techstack:](#project-techstack)
 - <a href="https://github.com/aditikilledar/burnout-proj3/blob/main/README.md#getting-started"> Get Started: Installation </a>
-- [What's new?](#whats-new)
 - [Bug Fixes](#bug-fixes)
-- [Future Scope](#future-scope)
+- [Future Enhancements](#future-enhancements)
 - [Contributors](#contributors)
 - [Contribution](#contribution)
 - [License](#license)
 
-## **🔥 BurnoutExtreme: Elevate Your Health & Fitness Game! 🔥**
+---
+## **🔥 BurnoutExtreme: More Power, More Progress, More You! 🔥**
 
 Are you determined to achieve your dream physique? Desiring to take charge of your health? Looking for a platform that offers everything from calorie counting to enrolling in exciting fitness events? Welcome to **BurnoutExtreme** – the only health and fitness companion you'll ever need.
+
+---
+
+## 🚀What's New?
+
+### New and Improved Features!
+
+- **🗺️ Google Maps Integration for Events**  
+  Easily find and join local fitness events in your area. Discover meet-ups, classes, and other events happening near you with integrated Google Maps functionality.
+
+- **🎨 Personalized Themes**  
+  Customize BurnoutExtreme with a variety of themes, including dark mode, minimalist, or vibrant options to match your personal style.
+
+- **🏋️‍♂️ Custom Workout Plans**  
+  Personalize your fitness journey with custom workout routines tailored to your goals. Includes a built-in calendar to keep you on schedule and motivated.
+
+- **🍲 Enhanced Diet Tracker**  
+  Track your nutrition more effectively! Our improved diet tracker records the calorie count of each ingredient in your meals, helping you stay within daily goals.
+
+- **📈 Advanced Activity Monitoring**  
+  Track real-time data on steps, calories burned, and workout intensity, providing deep insights to keep you motivated.
+
+---
+
+## 💡 Why Choose BurnoutExtreme?
+
+- **📊 Comprehensive Tracking**: From what you eat to how much you burn, monitor everything in one place. Our app integrates **diet tracking** and **activity tracking**, allowing you to see a complete picture of your health journey.
+
+- **🔍 Personalized Recommendations**: Receive customized health tips and recommendations tailored to your unique health data.
+
+- **🗺️ Diverse Fitness Events**: Never fall into the monotony of routine. Stay excited about fitness with new events to join regularly. Discover local fitness meet-ups and classes using Google Maps integration.
+
+- **🏋️ Custom Workout Plans**: Tailor your fitness experience with personalized workout routines that match your preferences and goals. Create your custom workouts and track your progress to achieve the results you desire.
+
+- **📈 Real-Time Progress Tracking**: Monitor your journey with real-time updates on your calorie intake and activity levels. Celebrate milestones as you see your improvements firsthand, helping you stay committed to your goals.
+
+- **🧘 Mental Wellness Support**: Balance physical fitness with mental wellness tracking and tips.
+
+- **🌟 Community Support**: Engage with a like-minded community, exchange tips, and stay motivated. Share your experiences, challenges, and triumphs with others who understand your journey.
+
+- **🔒 Data Security**: Your data is precious, and we guard it like our own. Rest assured, your information stays private and secure.
+
+- **📍 Event Mapping**: Our Google Maps integration enhances your experience by providing detailed information about fitness events. Find nearby activities, view routes, and explore new locations, making every event an adventure.
+
+In today's fast-paced world, maintaining health is a challenge. But with the right tools and community, this challenge becomes an enjoyable journey. And BurnoutExtreme is here to make sure of that.
+
+
+---
+
+## 🌟 Key Features
 
 - **🍎 Nutrition Made Simple:**
   Navigating the complex world of nutrition can be daunting. With BurnoutExtreme, you can effortlessly track what you eat and gain insights into your calorie consumption. Whether you're having a quick salad or indulging in a cheat meal, every bite counts. And we're here to count it for you!
@@ -104,19 +163,7 @@ So, are you ready to take the leap towards a healthier, happier you? Dive into *
 
 🔥 _Because it's not just about burning calories; it's about burning doubts, burning procrastination, and lighting up confidence!_ 🔥
 
-# **💡 Why Choose BurnoutExtreme?**
-
-- **Comprehensive Tracking:** From what you eat to how much you burn, monitor everything in one place.Our app integrates **diet tracking** and **activity tracking**, allowing you to see a complete picture of your health journey.
-- **Diverse Fitness Events:** Never fall into the monotony of routine. Stay excited about fitness with new events to join regularly.
-- **Personalized Insights:** Understand your body and habits better with data-driven feedback.
-- **Community Support:** Engage with a like-minded community, exchange tips, and stay motivated. Share your experiences, challenges, and triumphs with others who understand your journey.
-- **Security:** Your data is precious, and we guard it like our own. Rest assured, your information stays private and secure.
-- **Custom Workout Plans:** Tailor your fitness experience with personalized workout routines that match your preferences and goals. Create your custom workouts and track your progress to achieve the results you desire.
-- **Real-Time Progress Tracking:** Monitor your journey with real-time updates on your calorie intake and activity levels. Celebrate milestones as you see your improvements firsthand, helping you stay committed to your goals.
-- **Event Mapping:** Our Google Maps integration enhances your experience by providing detailed information about fitness events. Find nearby activities, view routes, and explore new locations, making every event an adventure.
-
-In today's fast-paced world, maintaining health is a challenge. But with the right tools and community, this challenge becomes an enjoyable journey. And BurnoutExtreme is here to make sure of that.
-
+---
 
 # Walkthrough
 
@@ -124,39 +171,34 @@ TODO: Change vedio link
 
 Link to the implementation video of the BurnoutExtreme application: [Video](https://www.youtube.com/watch?v=Ozbn9nNFr1Y)
 
-# Application Screenshots
+## 📸Application Screenshots
 
-## Sign-In
+## 🔐Sign-In
+![image](https://github.com/user-attachments/assets/1cfa2dfe-284d-48d1-9bdc-a4588924b0e8)
 
-Add image later...
+## 🏠Homepage
+![image](https://github.com/user-attachments/assets/9b72fca2-937e-4146-afcb-0c78cf69dbd3)
 
-<img width='600' src="https://github.com/aditikilledar/burnout-proj3/assets/60314222/acbc01b2-56ef-4d3e-9981-77b427f970ef">
+## 🎨Personalised Themes
+![image](https://github.com/user-attachments/assets/1f608def-59c8-4e48-b317-8901e043e76a)
 
-## Homepage
-
-TODO: Add image later...
-
-## Profile
-
-TODO: Add image later...
+## 👤Profile
+![image](https://github.com/user-attachments/assets/e13f7785-baed-432a-8e7e-d99fae7b8441)
 
 ## Events
+![image](https://github.com/user-attachments/assets/e80bb60a-39bf-4624-b864-8a1c05ced4dc)
 
-TODO: Add image later...
+## My Meals
+![image](https://github.com/user-attachments/assets/31ebf532-b129-4696-8ff7-8962f9298b5c)
 
-## My-Meals
+## My Workouts
+![image](https://github.com/user-attachments/assets/67f52cf7-72ec-455c-ac8c-b7137af4d464)
 
-TODO: Add image later...
+## ❓FAQs
+![image](https://github.com/user-attachments/assets/5ed1d156-9cad-429f-889d-891b238adac8)
 
-## My-Workouts
-
-## FAQs
-
-TODO: Add image later...
-
-## Contact-Us
-
-TODO: Add image later...
+## 📞Contact Us
+![image](https://github.com/user-attachments/assets/a1b829c7-ece2-4ae4-8af7-b81364999ec5)
 
 TODO: replaced with updated Tutorials.md 
 
@@ -168,6 +210,7 @@ TODO: replaced with updated Tutorials.md
 <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/mongodb/mongodb-original.svg" alt="mongo" width="20" height="20"/> MongoDB </br>
 <img src="https://upload.wikimedia.org/wikipedia/commons/c/c3/Python-logo-notext.svg" alt="python" width="20" height="20"/> Python </br>
 
+---
 # Getting started
 
 Follow these steps to set up and run the application on your local machine.
@@ -213,75 +256,98 @@ Step 5:
 Open the URL in your browser:  
  http://127.0.0.1:3000
 
-# What's new?
-
-This version enhanced and built on the previous version, making it 10x more interesting and easier to use!
-Here's what we added in this release.
-
-1. Google maps integration for events.
-2. Advanced activity monitoring.
-3. Custom workout plans.
-4. Personalized themes.
-5. Diet Tracker enhancements.
-6. Enhanced UIs.
-
-# Bug Fixes
+---
+## Bug Fixes
 
 We fixed many bugs, but here are the most notable ones...
 
 1. The proxy in the config files were wrong, making it difficult to run the website. Proxy issues were fixed.
 2. TODO: add more
+---
+## 🚀Future Enhancements
 
-# Future Scope
+The BurnoutExtreme application can be extended with the following features:
 
-The application can be extended with features like:
+1. **🍽️ Categorize Meals**  
+   Automatically categorize meals into breakfast, lunch, dinner, or snacks, making meal tracking faster and more intuitive.
 
-1. Categorize meals.
-2. Mobile support.
-3. Weekly health checking(e.g. BMI, Sleep Quality). 
-4. Sorting and filtering capabilities.
-5. Counting macros.
+2. **📱 Mobile Support**  
+   Fully optimized interface for seamless use across all devices, ensuring users can access their fitness journey anywhere.
 
-   # Contributors
+3. **📅 Weekly Tracking**  
+   Track weight weekly and compare actual progress with target goals, helping users stay accountable and motivated.
+
+4. **🔍 Sorting & Filtering Capabilities**  
+   Implement sorting and filtering options to help users easily navigate their meals and workouts.
+
+5. **🍏 Personalized Suggestions**  
+   Receive personalized meal and workout suggestions tailored to individual health goals, promoting a balanced and effective approach to wellness.
+
+---
+## 🙌Contributors
 
 <center>
   <table>
     <tr>
-          <td align="center">
-            <a href="https://github.com/SoundaryaKhanapur"
-              ><img
-                src="https://avatars.githubusercontent.com/u/36791174?v=4"
-                width="100px;"
-                alt=""
-              /><br /><sub><b>Soundarya Khanapur</b></sub></a
-            ><br />
-          </td>
-          <td align="center">
-            <a href="https://github.com/mugdhaajoshi"
-              ><img
-                src="https://avatars.githubusercontent.com/u/157236410?v=4"
-                width="100px;"
-                alt=""
-              /><br /><sub><b>Mugdha Joshi</b></sub></a
-            ><br />
-          </td>
-          <td align="center">
-            <a href="https://github.com/Jing27540"
-              ><img
-                src="https://avatars.githubusercontent.com/u/131999715?v=4"
-                width="100px;"
-                alt=""
-              /><br /><sub><b>Jing Huang</b></sub></a
-            ><br />
-          </td>
-        </tr>
+      <td align="center">
+        <a href="https://github.com/SoundaryaKhanapur">
+          <img src="https://avatars.githubusercontent.com/u/36791174?v=4" width="100px;" alt="Soundarya Khanapur"/><br />
+          <sub><b>Soundarya Khanapur</b></sub>
+        </a><br />
+      </td>
+      <td align="center">
+        <a href="https://github.com/mugdhaajoshi">
+          <img src="https://avatars.githubusercontent.com/u/157236410?v=4" width="100px;" alt="Mugdha Joshi"/><br />
+          <sub><b>Mugdha Joshi</b></sub>
+        </a><br />
+      </td>
+      <td align="center">
+        <a href="https://github.com/Jing27540">
+          <img src="https://avatars.githubusercontent.com/u/131999715?v=4" width="100px;" alt="Jing Huang"/><br />
+          <sub><b>Jing Huang</b></sub>
+        </a><br />
+      </td>
+    </tr>
   </table>
 </center>
 
-# Contribution
+## 🌟 Previous Team Contributors
 
-Please refer the [CONTRIBUTING.md](https://github.com/adi-kiran/burnout-healthgoalsapp/blob/main/CONTRIBUTING.md) file for instructions on how to contribute to our repository.
+<center>
+  <table>
+    <tr>
+      <td align="center">
+        <a href="https://github.com/aiyer786">
+          <img src="https://avatars.githubusercontent.com/u/60314222?s=400&u=0984f88aeb3a9c30f4ec8145176134e626843fd5&v=4" width="100px;" alt="Aditya Iyer"/><br />
+          <sub><b>Aditya Iyer</b></sub>
+        </a><br />
+      </td>
+      <td align="center">
+        <a href="https://github.com/aditikilledar">
+          <img src="https://avatars.githubusercontent.com/u/73051765?v=4" width="100px;" alt="Aditi Killedar"/><br />
+          <sub><b>Aditi Killedar</b></sub>
+        </a>
+      </td>
+      <td align="center">
+        <a href="https://github.com/shashank-madan">
+          <img src="https://avatars.githubusercontent.com/u/52149707?s=80&v=4" width="100px;" alt="Shashank Madan"/><br />
+          <sub><b>Shashank Madan</b></sub>
+        </a><br />
+      </td>
+      <td align="center">
+        <a href="https://github.com/srina1h">
+          <img src="https://avatars.githubusercontent.com/u/47570142?v=4" width="100px;" alt="Srinath Srinivasan"/><br />
+          <sub><b>Srinath Srinivasan</b></sub>
+        </a><br />
+      </td>
+    </tr>
+  </table>
+</center>
 
-# License
+## 🤝Contribution
 
-This project is licensed under the MIT License. Please refer to [LICENSE](https://github.com/adi-kiran/burnout-healthgoalsapp/blob/main/LICENSE) for more details.
+Please refer to the [CONTRIBUTING.md](https://github.com/adi-kiran/burnout-healthgoalsapp/blob/main/CONTRIBUTING.md) file for instructions on how to contribute to our repository.
+
+## 📜License
+
+This project is licensed under the MIT License. Please refer to the [LICENSE](https://github.com/adi-kiran/burnout-healthgoalsapp/blob/main/LICENSE) for more details.

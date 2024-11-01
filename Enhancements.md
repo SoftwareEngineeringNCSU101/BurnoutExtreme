@@ -1,15 +1,23 @@
-# Added Features in the Burnout v3.0 (What's new?)
+# Added Features in the Burnout v4.0 (What's new?)
 
-### <li> Bug fixes.
+### <li> Added interactive map functionality for event locations.
 
-### <li> Created a chatbot for user interaction.
+### <li> Enhanced tracking of physical activities, including distance and duration.
 
-### <li> Incorporated a reminder/alert to ensure users don't forget to track their progress by adding their weight data regularly.
+### <li> Allowed users to create personalized workout plans.
 
-### <li> Included short workout demos and added a seperate button for further information about each workout plan.
+### <li> Implemented customizable themes for user interface.
 
-### <li> Enabled data sharing with friends via e-mail, using which users can share their progress with friends.
+### <li> Improved diet tracking with meal logging and caloric intake monitoring.
 
-### <li> Added user profile page to display the details like height, weight and target weight
+### <li> Updated UI components for better aesthetics and usability.
+
+### <li> Bug fixes:
+
+1.	Routing Errors: Resolved rendering issues outside of the router context.
+2.	UI Responsiveness: Fixed layout problems for better adaptability on different screen sizes.
+3.	State Management Issues: Addressed unexpected behaviors in user interactions.
+4.	API Integration Errors: Corrected data fetching issues for accurate information display.
+5.	Testing Issues: Fixed unit test errors related to component wrapping and dependencies.
 
 

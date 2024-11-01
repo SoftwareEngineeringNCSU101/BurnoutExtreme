@@ -23,7 +23,7 @@ import FitnessCenterIcon from "@mui/icons-material/FitnessCenter";
 import DirectionsRunIcon from '@mui/icons-material/DirectionsRun';
 import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
-
+import { useTheme } from "./ThemeContext";
 
 const weightCardStyles = {
   weightContainer: {
@@ -38,6 +38,7 @@ const weightCardStyles = {
 };
 
 function Profile(props) {
+  const { theme } = useTheme();
   const [targetWeight, settargetWeight] = useState("");
   const [currentTargetCalories, setTargetCalories] = useState("");
   const [activityLevel, setActivityLevel] = useState("");
@@ -251,7 +252,7 @@ function Profile(props) {
                   onChange={handleImageUpload}
                 />
                 <label htmlFor="upload-button">
-                  <Button variant="contained" component="span" style={{ marginTop: "10px" }}>
+                  <Button variant="contained" component="span" style={{ marginTop: "10px", backgroundColor: theme.headerColor}}>
                     Upload Photo
                   </Button>
                 </label>
@@ -330,7 +331,7 @@ function Profile(props) {
                   </Select>
                 </FormControl>
               </Box>
-              <Button variant="contained" color="primary" style={{ backgroundColor: 'orange' }} onClick={handleProfileSubmit}>
+              <Button variant="contained" color="primary" style={{ backgroundColor: theme.headerColor }} onClick={handleProfileSubmit}>
                 Update
               </Button>
             </CardContent>
@@ -349,6 +350,7 @@ function Profile(props) {
                 gridTemplateAreas: `"targetWeight activityLevel targetCalories"
                                     ". saveButton ."`,
                 paddingTop: "2rem",
+                
               }}
             >
               <Card
@@ -358,7 +360,7 @@ function Profile(props) {
                 <CardContent>
                   <div style={weightCardStyles.weightContainer}>
                     <IconButton
-                      style={{ color: 'orange' }}
+                     style={{ backgroundColor: theme.headerColor }}
                       aria-label="weighing scale icon"
                     >
                       <FitnessCenterIcon fontSize="large" />
@@ -383,7 +385,7 @@ function Profile(props) {
                 <CardContent>
                   <div style={weightCardStyles.weightContainer}>
                     <IconButton
-                      style={{ color: 'orange' }}
+                      style={{ backgroundColor: theme.headerColor }}
                       aria-label="running icon"
                     >
                       <DirectionsRunIcon fontSize="large" />
@@ -417,7 +419,7 @@ function Profile(props) {
                 <CardContent>
                   <div style={weightCardStyles.weightContainer}>
                     <IconButton
-                      style={{ color: 'orange' }}
+                      style={{ backgroundColor: theme.headerColor }}
                       aria-label="calories icon"
                     >
                       <WhatshotIcon fontSize="large" />
@@ -439,7 +441,7 @@ function Profile(props) {
               <Button
                 sx={{ gridArea: "saveButton" }}
                 variant="contained"
-                style={{ backgroundColor: 'orange' }}
+                style={{ backgroundColor: theme.headerColor }}
                 color="primary"
                 onClick={handleSaveInput}
                 maxWidth

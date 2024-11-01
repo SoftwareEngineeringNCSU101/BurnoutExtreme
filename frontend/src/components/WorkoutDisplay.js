@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect } from "react";
 import {
   Container,
   Typography,
@@ -6,26 +6,26 @@ import {
   CardContent,
   CardActions,
   Button,
-  Grid
-} from '@mui/material'
-import { useTheme } from './ThemeContext';
+  Grid,
+} from "@mui/material";
+import { useTheme } from "./ThemeContext";
 
 /**
  * Display the schedule
  * @param {*} props
  * @returns
  */
-const WorkoutDisplay = props => {
+const WorkoutDisplay = (props) => {
   const { theme } = useTheme();
-  const [workoutsData, setWorkoutsData] = useState([])
+  const [workoutsData, setWorkoutsData] = useState([]);
 
   // If props.schedules changes, update workoutsData
   useEffect(() => {
-    setWorkoutsData(Array.isArray(props.schedules) ? props.schedules : [])
-  }, [props.schedules])
+    setWorkoutsData(Array.isArray(props.schedules) ? props.schedules : []);
+  }, [props.schedules]);
 
   return (
-    <Container sx={{ marginTop: '20px' }}>
+    <Container sx={{ marginTop: "20px" }}>
       {workoutsData.length > 0 ? (
         <Grid container spacing={3}>
           {workoutsData.map((workout, index) => (
@@ -33,41 +33,46 @@ const WorkoutDisplay = props => {
               <Card
                 elevation={3}
                 sx={{
-                  borderRadius: '8px',
-                  height: '100%',
-                  // backgroundColor: 'rgba(255, 165, 0, 0.1)',
-                  // borderBlockColor: 'orange'
+                  borderRadius: "8px",
+                  height: "100%",
+                  textAlign: "left",
+                  display: "flex",
+                  flexDirection: "column",
                 }}
               >
                 <CardContent>
-                  <Typography variant='h5' component='div' gutterBottom>
+                  <Typography variant="h5" component="div" gutterBottom>
                     {workout.workoutTitle}
                   </Typography>
-                  <Typography color='text.secondary'>
+                  <Typography color="text.secondary">
                     Duration: <strong> {workout.duration} minutes</strong>
                   </Typography>
-                  <Typography color='text.secondary'>
+                  <Typography color="text.secondary">
                     Description: {workout.description}
                   </Typography>
                 </CardContent>
-                <CardActions sx={{ justifyContent: 'space-between' }}>
+                <CardActions
+                  sx={{ justifyContent: "space-between", marginTop: "auto" }}
+                >
                   {workout.link && (
                     <Button
-                      type='submit'
-                      variant='contained'
-                      size='small'
+                      type="submit"
+                      variant="contained"
+                      size="small"
                       href={workout.link}
-                      style={{ backgroundColor: theme.headerColor, color: 'white' }}
+                      style={{
+                        backgroundColor: theme.headerColor,
+                        color: "white",
+                      }}
                     >
                       Watch Video
                     </Button>
                   )}
                   {props.editMode && (
                     <Button
-                    style={{ backgroundColor: theme.headerColor, color: 'white' }}
-                      size='small'
-                      variant='outlined'
-                      color='error'
+                      size="small"
+                      variant="outlined"
+                      color="error"
                       onClick={() =>
                         props.handleRemove(
                           workout.selectedDay,
@@ -84,11 +89,11 @@ const WorkoutDisplay = props => {
           ))}
         </Grid>
       ) : (
-        <Typography variant='h4' align='center' gutterBottom>
+        <Typography variant="h4" align="center" gutterBottom>
           Today is Rest Day !
         </Typography>
       )}
     </Container>
-  )
-}
-export default WorkoutDisplay
+  );
+};
+export default WorkoutDisplay;
