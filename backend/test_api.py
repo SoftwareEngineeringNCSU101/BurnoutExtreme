@@ -81,7 +81,7 @@ class APITestCase(unittest.TestCase):
         with self.app.test_request_context('/is-enrolled', method='POST', json={'eventTitle': 'Event Name'}):
             # Now we can call the endpoint
             response = self.client.post('/is-enrolled')
-            
+
             # Check if the response status code is 401 for unauthorized
             self.assertEqual(response.status_code, 401)
 
