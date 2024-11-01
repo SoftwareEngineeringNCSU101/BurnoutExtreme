@@ -289,14 +289,15 @@ The BurnoutExtreme application can be extended with the following features:
 | Number of commits: by different people | 3 | https://github.com/Software-Engineering-2024-Group/BurnoutExtreme/graphs/contributors|
 | Issues report: There are many | 3 | https://github.com/Software-Engineering-2024-Group/BurnoutExtreme/pulse |
 | Issues are being closed | 3 | https://github.com/Software-Engineering-2024-Group/BurnoutExtreme/pulse |
-| DOI badge | 3 |  |
-| Docs: format | 3 |  |
+| DOI badge | 3 | https://zenodo.org/records/14020326 |
+| Docs: format | 3 | https://github.com/Software-Engineering-2024-Group/BurnoutExtreme/blob/master/.github/workflows/autopep8.yml
+https://github.com/Software-Engineering-2024-Group/BurnoutExtreme/blob/master/.github/workflows/flake8.yml|
 | Docs: description  | 3 |  |
 | Docs: short animated video | 2 |  |
 | Docs: strong punchlines | 3 |  |
-| Docs: mini tutorials | 3 |  |
+| Docs: mini tutorials | 3 | https://github.com/Software-Engineering-2024-Group/BurnoutExtreme/blob/master/Tutorials.md#signup-and-sign-in |
 | Use of version control tools | 3 |  |
-| Use of style checkers | 3 |  |
+| Use of style checkers | 3 | https://github.com/Software-Engineering-2024-Group/BurnoutExtreme/blob/master/.github/workflows/autopep8.yml |
 | Use of code formatters. | 3 |  |
 | Use of syntax checkers. | 3 |  |
 | Use of code coverage | 3 |  |
@@ -305,7 +306,7 @@ The BurnoutExtreme application can be extended with the following features:
 | Test cases are routinely executed | 2 |  |
 | The files http://contributing.md/ lists coding standards and lots of tips | 3 |  |
 | Issues are discussed before they are closed | 3 |  |
-| Chat channel: exists | 3 |  |
+| Chat channel: exists | 3 | whatsapp  |
 | Test cases: a large proportion of the issues related to handling failing cases. | 3 |  |
 | Evidence that the whole team is using the same tools | 3 |  |
 | Evidence that the members of the team are working across multiple places in the code base | 3 |  |
