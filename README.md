@@ -10,7 +10,7 @@
     <br />
     A holistic platform to help you manage fitness, diet, and health goals, built on the success of the original Burnout project.
     <br />
-    <a href="https://aditikilledar.github.io/burnout-proj3/index.html"><strong>Explore the API docs »</strong></a>
+    <a href="https://github.com/Software-Engineering-2024-Group/BurnoutExtreme/blob/master/backend/html/backend/index.html"><strong>Explore the API docs »</strong></a>
     <br />
     <br />
     <a href="https://github.com/aditikilledar/burnout-proj3/blob/main/Tutorials.md">View Demo</a>
@@ -325,7 +325,7 @@ https://github.com/Software-Engineering-2024-Group/BurnoutExtreme/blob/master/.g
 | If you provide more extensive documentation, does this provide clear, step-by-step instructions on how to deploy and use your software? | 3 |  |
 | Do you provide a comprehensive guide to all your software’s commands, functions and options? | 3 |  |
 | Do you provide troubleshooting information that describes the symptoms and step-by-step solutions for problems and error messages? | 3 |  |
-| If your software can be used as a library, package or service by other software, do you provide comprehensive API documentation? | 3 |  |
+| If your software can be used as a library, package or service by other software, do you provide comprehensive API documentation? | 3 | https://github.com/Software-Engineering-2024-Group/BurnoutExtreme/blob/master/backend/html/backend/index.html |
 | Do you store your documentation under revision control with your source code? | 2 |  |
 | Do you publish your release history e.g. release data, version numbers, key features of each release etc. on your web site or in your documentation? | 3 |  |
 | Does your software describe how a user can get help with using your software? | 3 |  |
