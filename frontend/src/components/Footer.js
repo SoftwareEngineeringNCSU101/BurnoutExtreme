@@ -8,14 +8,17 @@ import { Link } from '@mui/material';
 
 function Copyright() {
     return (
-        <Typography variant="body2" color="text.secondary">
+        <Typography variant="body2" color="text.secondary" align="center">
             {'Copyright © '}
             {new Date().getFullYear()}{' '}
-                Mugdha Joshi, Soundharya Khanapur, Jing Huang
-            {'.'}
+            Mugdha Joshi, Soundharya Khanapur, Jing Huang. <br />
+            {'BurnoutExtreme is built on top of the original Burnout application.'}
+
+            
         </Typography>
     );
 }
+
 
 const defaultTheme = createTheme();
 
