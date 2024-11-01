@@ -1,11 +1,8 @@
-import React, { useState } from 'react'
-import { DAYSOFWEEK } from '../constants/DaysOfWeek'
+import React, { useState } from "react";
+import { DAYSOFWEEK } from "../constants/DaysOfWeek";
 import {
   TextField,
   Button,
-  Container,
-  Typography,
-  Grid,
   Select,
   Dialog,
   DialogActions,
@@ -13,81 +10,81 @@ import {
   DialogTitle,
   FormControl,
   InputLabel,
-  MenuItem
-} from '@mui/material'
-import { useTheme } from './ThemeContext';
+  MenuItem,
+} from "@mui/material";
+import { useTheme } from "./ThemeContext";
 
-const WorkoutForm = props => {
+const WorkoutForm = (props) => {
   const { theme } = useTheme();
   const [workoutData, setWorkoutData] = useState({
-    selectedDay: '',
-    workoutTitle: '',
-    description: '',
-    duration: '',
-    link: ''
+    selectedDay: "",
+    workoutTitle: "",
+    description: "",
+    duration: "",
+    link: "",
   });
 
-  const [errors, setErrors] = useState({})
+  const [errors, setErrors] = useState({});
 
   // Handle input changes
-  const handleInputChange = event => {
-    const { name, value } = event.target
-    setWorkoutData({ ...workoutData, [name]: value })
-    setErrors({ ...errors, [name]: '' }) // Clear error when user starts typing
-  }
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    setWorkoutData((prevData) => ({ ...prevData, [name]: value }));
+    setErrors((prevErrors) => ({ ...prevErrors, [name]: "" })); // Clear error when user starts typing
+  };
 
   // Handle form submission
 
-  const isValidURL = url => {
-    const urlPattern = /^(https?:\/\/)?([a-z0-9-]+\.)+[a-z]{2,6}(\/[^\s]*)?$/i
-    return urlPattern.test(url)
-  }
+  const isValidURL = (url) => {
+    const urlPattern = /^(https?:\/\/)?([a-z0-9-]+\.)+[a-z]{2,6}(\/[^\s]*)?$/i;
+    return urlPattern.test(url);
+  };
 
   // Handle submit clicks
-  const handleSubmit = event => {
-    event.preventDefault()
+  const handleSubmit = (event) => {
+    event.preventDefault();
 
-    const newErrors = {}
+    const newErrors = {};
 
     // Validation
     if (!workoutData.selectedDay) {
-      newErrors.selectedDay = 'Please select a day.'
+      newErrors.selectedDay = "Please select a day.";
     }
     if (!workoutData.workoutTitle) {
-      newErrors.workoutTitle = 'Workout title is required.'
+      newErrors.workoutTitle = "Workout title is required.";
     }
     if (!workoutData.duration || workoutData.duration <= 0) {
-      newErrors.duration = 'Please enter a valid duration in minutes.'
+      newErrors.duration = "Please enter a valid duration in minutes.";
     }
     if (workoutData.link && !isValidURL(workoutData.link)) {
-      newErrors.link = 'Please enter a valid URL.'
+      newErrors.link = "Please enter a valid URL.";
     }
 
     // Check for duplicate workout title
-    const existingSchedules = props.schedules || [] // Default to an empty array
+    const existingSchedules = props.schedules || []; // Default to an empty array
     const isDuplicateTitle = existingSchedules.some(
-      workout => workout.workoutTitle === workoutData.workoutTitle
-    )
+      (workout) => workout.workoutTitle === workoutData.workoutTitle
+    );
     if (isDuplicateTitle) {
-      newErrors.workoutTitle = 'Workout title must be unique.'
+      newErrors.workoutTitle = "Workout title must be unique.";
     }
 
-    setErrors(newErrors)
+    setErrors(newErrors);
     if (Object.keys(newErrors).length === 0) {
-      props.onChange(workoutData.selectedDay, workoutData)
-      handleClose() // Close the modal after submission
+      props.onChange(workoutData.selectedDay, workoutData);
+      handleClose(); // Close the modal after submission
     }
-  }
+  };
 
   const handleClose = () => {
-    props.setAddMode(false)
-  }
+    props.setAddMode(false);
+  };
 
   // Reusable text field function
   const renderTextField = (
     name,
     label,
-    type = 'text',
+    type = "text",
     multiline = false,
     rows = 1
   ) => (
@@ -98,29 +95,29 @@ const WorkoutForm = props => {
       type={type}
       value={workoutData[name]}
       onChange={handleInputChange}
-      sx={{ marginTop: '20px' }}
+      sx={{ marginTop: "20px" }}
       multiline={multiline}
       rows={rows}
       error={!!errors[name]}
       helperText={errors[name]}
     />
-  )
+  );
 
   return (
-    <Dialog open={props.addMode} onClose={handleClose} fullWidth maxWidth='md'>
+    <Dialog open={props.addMode} onClose={handleClose} fullWidth maxWidth="md">
       <DialogTitle>New Workout Form</DialogTitle>
       <DialogContent>
-        <FormControl fullWidth sx={{ marginTop: '10px' }}>
-          <InputLabel id='day-in-week-label'>Select Day</InputLabel>
+        <FormControl fullWidth sx={{ marginTop: "10px" }}>
+          <InputLabel id="day-in-week-label">Select Day</InputLabel>
           <Select
-            labelId='day-in-week-label'
-            id='day-in-week-select'
+            labelId="day-in-week-label"
+            id="day-in-week-select"
             value={workoutData.selectedDay}
             onChange={handleInputChange}
-            label='Select Day'
-            name='selectedDay'
+            label="Select Day"
+            name="selectedDay"
           >
-            {DAYSOFWEEK.map(day => (
+            {DAYSOFWEEK.map((day) => (
               <MenuItem key={day.value} value={day.value}>
                 {day.label}
               </MenuItem>
@@ -128,27 +125,32 @@ const WorkoutForm = props => {
           </Select>
         </FormControl>
         {errors.selectedDay && (
-          <span style={{ color: 'red' }}>{errors.selectedDay}</span>
+          <span style={{ color: "red" }}>{errors.selectedDay}</span>
         )}
-        {renderTextField('workoutTitle', 'Workout Title')}
-        {renderTextField('duration', 'Duration (minutes)', 'number')}
-        {renderTextField('link', 'Video Link')}
-        {renderTextField('description', 'Description', 'text', true, 4)}
+        {renderTextField("workoutTitle", "Workout Title")}
+        {renderTextField("duration", "Duration (minutes)", "number")}
+        {renderTextField("link", "Video Link")}
+        {renderTextField("description", "Description", "text", true, 4)}
       </DialogContent>
       <DialogActions>
-        <Button onClick={handleClose} 
-        style={{ backgroundColor: theme.headerColor, color: 'white' }}
-        color='primary'>
+        <Button
+          onClick={handleClose}
+          style={{ backgroundColor: theme.headerColor, color: "white" }}
+          color="primary"
+        >
           Cancel
         </Button>
-        <Button type='submit' 
-        style={{ backgroundColor: theme.headerColor, color: 'white' }}
-        color='primary' onClick={handleSubmit}>
+        <Button
+          type="submit"
+          style={{ backgroundColor: theme.headerColor, color: "white" }}
+          color="primary"
+          onClick={handleSubmit}
+        >
           Submit
         </Button>
       </DialogActions>
     </Dialog>
-  )
-}
+  );
+};
 
-export default WorkoutForm
+export default WorkoutForm;
