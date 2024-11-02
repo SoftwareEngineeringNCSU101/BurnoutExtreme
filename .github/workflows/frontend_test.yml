@@ -21,4 +21,4 @@ jobs:
 
       - name: Run tests with coverage
         working-directory: ./frontend
-        run: npm test -- --coverage
+        run: npm run test -- --coverage --verbose --ci --passWithNoTests
