@@ -15,7 +15,7 @@ cards = [
         "description": "New to Yoga? You are at the right place! Learn easy yoga poses to build strength, flexibility and mental clarity.",
         "eventLocation": "Wellness and Recreation Center, NCSU, Raleigh, NC",
         "eventTime": "10:00 AM - 11:30 AM",
-        "eventDate": "October 15, 2023"
+        "eventDate": "October 15, 2024"
     },
     {
         "title": "Swimming",
@@ -25,7 +25,7 @@ cards = [
         "description": "Swimming is an activity that burns lots of calories, is easy on the joints, supports your weight...",
         "eventLocation": "Carmichael Aquatics Center, NCSU, Raleigh, NC",
         "eventTime": "11:30 AM - 12:30 PM",
-        "eventDate": "November 20, 2023"
+        "eventDate": "November 20, 2024"
     },
     {
         "title": "Abs Smash",
@@ -35,7 +35,7 @@ cards = [
         "description": "Whether your goal is a six-pack or just a little more definition around your midsection...",
         "eventLocation": "Carmichael Gym Studio 1, NCSU, Raleigh, NC",
         "eventTime": "7:00 PM - 8:00 PM",
-        "eventDate": "December 2, 2023"
+        "eventDate": "December 2, 2024"
     },
     {
         "title": "Walk Fitness",
