@@ -279,7 +279,7 @@ The BurnoutExtreme application can be extended with the following features:
 
 | Factor | Score | Notes |
 | --- | --- | --- |
-| Video | 3 | Link Updated () |
+| Video | 3 | https://youtu.be/xQB6AbBLLWU?si=4RX05gmUf6D-M-7v |
 | Workload | 3 | Distributed |
 | Number of commits | 3 | 50+ |
 | Number of commits: by different people | 3 | https://github.com/Software-Engineering-2024-Group/BurnoutExtreme/graphs/contributors|
@@ -302,7 +302,7 @@ https://github.com/Software-Engineering-2024-Group/BurnoutExtreme/blob/master/.g
 | Test cases are routinely executed | 2 |  |
 | The files http://contributing.md/ lists coding standards and lots of tips | 3 |  |
 | Issues are discussed before they are closed | 3 |  |
-| Chat channel: exists | 3 | whatsapp  |
+| Chat channel: exists | 3 | whatsapp, discord  |
 | Test cases: a large proportion of the issues related to handling failing cases. | 3 |  |
 | Evidence that the whole team is using the same tools | 3 |  |
 | Evidence that the members of the team are working across multiple places in the code base | 3 |  |
