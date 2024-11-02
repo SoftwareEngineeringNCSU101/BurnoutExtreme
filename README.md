@@ -33,6 +33,10 @@
 [![made-with-python](https://img.shields.io/badge/Made%20with-Python-1f425f.svg)](https://www.python.org/)
 [![Build Status](https://github.com/Software-Engineering-2024-Group/BurnoutExtreme/actions/workflows/build_repo.yml/badge.svg)](https://github.com/Software-Engineering-2024-Group/BurnoutExtreme/actions/workflows/build_repo.yml)
 [![codecov](https://codecov.io/gh/Software-Engineering-2024-Group/BurnoutExtreme/branch/master/graph/badge.svg)](https://codecov.io/gh/Software-Engineering-2024-Group/BurnoutExtreme)
+
+// TESTING ---------
+[![Unit Test](https://github.com/Software-Engineering-2024-Group/BurnoutExtreme/actions/workflows/unit_test.yml/badge.svg?branch=master)](https://github.com/Software-Engineering-2024-Group/BurnoutExtreme/actions/workflows/unit_test.yml)
+// TESTING ---------
 [![Coverage Status](https://coveralls.io/repos/github/Software-Engineering-2024-Group/BurnoutExtreme/badge.svg?branch=master)](https://coveralls.io/github/Software-Engineering-2024-Group/BurnoutExtreme?branch=master)
 [![AutoPep8](https://github.com/Software-Engineering-2024-Group/BurnoutExtreme/actions/workflows/autopep8.yml/badge.svg)](https://github.com/Software-Engineering-2024-Group/BurnoutExtreme/actions/workflows/autopep8.yml)
 [![PEP8](https://img.shields.io/badge/code%20style-pep8-orange.svg)](https://www.python.org/dev/peps/pep-0008/)
