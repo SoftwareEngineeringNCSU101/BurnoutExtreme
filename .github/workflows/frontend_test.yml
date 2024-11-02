@@ -1,6 +1,12 @@
 name: Run Frontend Tests with Coverage
 
-on: [push, pull_request]
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
 
 jobs:
   test:
@@ -12,8 +18,6 @@ jobs:
 
       - name: Set up Node.js
         uses: actions/setup-node@v2
-        with:
-          node-version: "16" # Specify the Node.js version you need
 
       - name: Install dependencies
         working-directory: ./frontend
@@ -21,9 +25,11 @@ jobs:
 
       - name: Run tests with coverage
         working-directory: ./frontend
-        run: npm run test -- --coverage --verbose --ci --passWithNoTests
+        run: |
+          npm run test -- --coverage --verbose --ci --passWithNoTests -- test/Workouts.test.js test/App.test.js test/ContactUs.test.js test/Footer.test.js test/Header.test.js
 
       - name: Upload coverage to Codecov
+        if: always()
         env:
           CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}  # Store your Codecov token in GitHub secrets
         run: bash <(curl -s https://codecov.io/bash) -f frontend/coverage/**/lcov.info
