@@ -34,29 +34,15 @@
 [![Build Status](https://github.com/Software-Engineering-2024-Group/BurnoutExtreme/actions/workflows/build_repo.yml/badge.svg)](https://github.com/Software-Engineering-2024-Group/BurnoutExtreme/actions/workflows/build_repo.yml)
 [![AutoPep8](https://github.com/Software-Engineering-2024-Group/BurnoutExtreme/actions/workflows/autopep8.yml/badge.svg)](https://github.com/Software-Engineering-2024-Group/BurnoutExtreme/actions/workflows/autopep8.yml)
 [![PEP8](https://img.shields.io/badge/code%20style-pep8-orange.svg)](https://www.python.org/dev/peps/pep-0008/)
-[![Join the Discord Server](https://img.shields.io/badge/Join%20the%20Discord%20Server-7289DA?style=flat&logo=discord&logoColor=white)](https://discord.gg/jqCNWqET)
+[![Repository size](https://img.shields.io/github/repo-size/Software-Engineering-2024-Group/BurnoutExtreme)](https://github.com/Software-Engineering-2024-Group/BurnoutExtreme)
 [![Open Issues](https://img.shields.io/github/issues/Software-Engineering-2024-Group/BurnoutExtreme?color=red&label=Open%20Issues&style=flat-square)](https://github.com/Software-Engineering-2024-Group/BurnoutExtreme/issues?q=is%3Aopen)
 [![Closed Issues](https://img.shields.io/github/issues-closed/Software-Engineering-2024-Group/BurnoutExtreme?color=success&label=Closed%20Issues&style=flat-square)](https://github.com/Software-Engineering-2024-Group/BurnoutExtreme/issues?q=is%3Aissue+is%3Aclosed)
 [![Closed Pull Requests](https://img.shields.io/badge/Closed%20PRs-19-success?style=flat-square)](https://github.com/Software-Engineering-2024-Group/BurnoutExtreme/pulls?q=is%3Apr+is%3Aclosed)
-
-
-
-// TODO: add more
-
-<a href="https://github.com/aditikilledar/burnout-proj3/fork" target="blank">
-<img src="https://img.shields.io/github/forks/aditikilledar/burnout-proj3?style=flat-square" alt="burnout-healthgoalsapp forks"/></a>
-<a href="https://github.com/aditikilledar/burnout-proj3/stargazers" target="blank">
-<img src="https://img.shields.io/github/stars/aditikilledar/burnout-proj3?style=flat-square" alt="burnout-healthgoalsapp stars"/>
-<a href="https://github.com/aditikilledar/burnout-proj3/issues" target="blank"> <img src="https://img.shields.io/github/issues-closed/aditikilledar/burnout-proj3" alt="burnout-healthgoalsapp issues closed"/>
-</a>
-<a href="https://github.com/aditikilledar/burnout-proj3/graphs/contributors" alt="Contributors">
-<img src="https://img.shields.io/github/contributors/aditikilledar/burnout-proj3" /></a>
-<a href="https://github.com/aditikilledar/burnout-proj3/graphs/commit-activity" alt="commit activity">
-<img src="https://img.shields.io/github/commit-activity/w/aditikilledar/burnout-proj3" /></a>
-<a href="https://github.com/aditikilledar/burnout-proj3/discussions" alt="discussion">
-<img src="https://img.shields.io/github/discussions/aditikilledar/burnout-proj3" /></a>
-<a href="https://img.shields.io/github/repo-size/aditikilledar/burnout-proj3" alt="repo size">
-<img src="https://img.shields.io/github/repo-size/aditikilledar/burnout-proj3" /></a>
+[![Python Style Checker](https://github.com/Software-Engineering-2024-Group/BurnoutExtreme/actions/workflows/flake8.yml/badge.svg)](https://github.com/Software-Engineering-2024-Group/BurnoutExtreme/actions/workflows/flake8.yml)
+[![Contributors](https://img.shields.io/github/contributors/Software-Engineering-2024-Group/BurnoutExtreme)](https://github.com/Software-Engineering-2024-Group/BurnoutExtreme/graphs/contributors)
+[![Forks](https://img.shields.io/github/forks/Software-Engineering-2024-Group/BurnoutExtreme?style=social)](https://github.com/Software-Engineering-2024-Group/BurnoutExtreme/network/members) 
+[![Stars](https://img.shields.io/github/stars/Software-Engineering-2024-Group/BurnoutExtreme?style=social)](https://github.com/Software-Engineering-2024-Group/BurnoutExtreme/stargazers)
+[![Join the Discord Server](https://img.shields.io/badge/Join%20the%20Discord%20Server-7289DA?style=flat&logo=discord&logoColor=white)](https://discord.gg/jqCNWqET)
 
 ![BE](https://github.com/user-attachments/assets/fd9b3003-ccda-4dfd-a77b-49bce694dbaf)
 
