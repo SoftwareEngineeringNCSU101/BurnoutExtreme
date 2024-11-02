@@ -35,6 +35,10 @@
 [![AutoPep8](https://github.com/Software-Engineering-2024-Group/BurnoutExtreme/actions/workflows/autopep8.yml/badge.svg)](https://github.com/Software-Engineering-2024-Group/BurnoutExtreme/actions/workflows/autopep8.yml)
 [![PEP8](https://img.shields.io/badge/code%20style-pep8-orange.svg)](https://www.python.org/dev/peps/pep-0008/)
 [![Join the Discord Server](https://img.shields.io/badge/Join%20the%20Discord%20Server-7289DA?style=flat&logo=discord&logoColor=white)](https://discord.gg/jqCNWqET)
+[![Open Issues](https://img.shields.io/github/issues/Software-Engineering-2024-Group/BurnoutExtreme?color=red&label=Open%20Issues&style=flat-square)](https://github.com/Software-Engineering-2024-Group/BurnoutExtreme/issues?q=is%3Aopen)
+[![Closed Issues](https://img.shields.io/github/issues-closed/Software-Engineering-2024-Group/BurnoutExtreme?color=success&label=Closed%20Issues&style=flat-square)](https://github.com/Software-Engineering-2024-Group/BurnoutExtreme/issues?q=is%3Aissue+is%3Aclosed)
+[![Closed Pull Requests](https://img.shields.io/badge/Closed%20PRs-19-success?style=flat-square)](https://github.com/Software-Engineering-2024-Group/BurnoutExtreme/pulls?q=is%3Apr+is%3Aclosed)
+
 
 
 // TODO: add more
