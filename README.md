@@ -13,11 +13,9 @@
     <a href="https://github.com/Software-Engineering-2024-Group/BurnoutExtreme/blob/master/backend/html/backend/index.html"><strong>Explore the API docs »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/Software-Engineering-2024-Group/BurnoutExtreme/blob/master/Tutorials.md">View Demo</a>
+    <a href="https://youtu.be/xQB6AbBLLWU?si=4RX05gmUf6D-M-7v">View Demo</a>
     ·
-    <a href="https://github.com/aditikilledar/burnout-proj3/issues/new?assignees=&labels=&projects=&template=feature_request.md&title=">Request Feature</a>
-    <br>
-    <a href="https://youtu.be/xQB6AbBLLWU?si=4RX05gmUf6D-M-7v">View Video</a>
+    <a href="https://github.com/Software-Engineering-2024-Group/BurnoutExtreme/blob/master/Tutorials.md">View Detail Demo</a>
     ·
     <a href="https://github.com/Software-Engineering-2024-Group/BurnoutExtreme?tab=readme-ov-file#-score-card">Scores</a>
     ·
@@ -190,9 +188,7 @@ Link to the implementation video of the BurnoutExtreme application: [Video](http
 ## 📞Contact Us
 ![image](https://github.com/user-attachments/assets/a1b829c7-ece2-4ae4-8af7-b81364999ec5)
 
-TODO: replaced with updated Tutorials.md 
-
-### :memo: **Note:** Additional screenshots and a mini tutorials can be found here:[Tutorials.md](https://github.com/aditikilledar/burnout-proj3/blob/main/Tutorials.md) 
+### :memo: **Note:** Additional screenshots and a mini tutorials can be found here:[Tutorials.md](https://github.com/Software-Engineering-2024-Group/BurnoutExtreme/blob/master/Tutorials.md) 
 
 # Project TechStack
 
@@ -216,7 +212,7 @@ Before you begin, make sure you have the following installed:
 Step 1:
 Git Clone the Repository
 
-    git clone https://github.com/aditikilledar/burnout-proj3
+    https://github.com/Software-Engineering-2024-Group/BurnoutExtreme.git
 
 Step 2:
 Ensure mongodb is running and execute the below to populate the tables:
