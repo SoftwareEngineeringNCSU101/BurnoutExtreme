@@ -15,8 +15,6 @@
     <br />
     <a href="https://github.com/aditikilledar/burnout-proj3/blob/main/Tutorials.md">View Demo</a>
     ·
-    <a ">Report Bug</a>
-    ·
     <a href="https://github.com/aditikilledar/burnout-proj3/issues/new?assignees=&labels=&projects=&template=feature_request.md&title=">Request Feature</a>
     <br>
     <a href="https://youtu.be/bYTZT8vcICI">View Video</a>
@@ -32,12 +30,9 @@
 [![DOI](https://zenodo.org/badge/878072890.svg)](https://doi.org/10.5281/zenodo.14020325)
 [![made-with-python](https://img.shields.io/badge/Made%20with-Python-1f425f.svg)](https://www.python.org/)
 [![Build Status](https://github.com/Software-Engineering-2024-Group/BurnoutExtreme/actions/workflows/build_repo.yml/badge.svg)](https://github.com/Software-Engineering-2024-Group/BurnoutExtreme/actions/workflows/build_repo.yml)
-[![codecov](https://codecov.io/gh/Software-Engineering-2024-Group/BurnoutExtreme/branch/master/graph/badge.svg)](https://codecov.io/gh/Software-Engineering-2024-Group/BurnoutExtreme)
-
-// TESTING ---------
-[![Unit Test](https://github.com/Software-Engineering-2024-Group/BurnoutExtreme/actions/workflows/unit_test.yml/badge.svg?branch=master)](https://github.com/Software-Engineering-2024-Group/BurnoutExtreme/actions/workflows/unit_test.yml)
-// TESTING ---------
-[![Coverage Status](https://coveralls.io/repos/github/Software-Engineering-2024-Group/BurnoutExtreme/badge.svg?branch=master)](https://coveralls.io/github/Software-Engineering-2024-Group/BurnoutExtreme?branch=master)
+![Frontend Test Status](https://github.com/Software-Engineering-2024-Group/BurnoutExtreme/actions/workflows/frontend_test.yml/badge.svg?branch=master)
+![Unit Test Status](https://github.com/Software-Engineering-2024-Group/BurnoutExtreme/actions/workflows/unit_test.yml/badge.svg?branch=master)
+![Coverage Status](https://codecov.io/gh/Software-Engineering-2024-Group/BurnoutExtreme/branch/master/graph/badge.svg)
 [![AutoPep8](https://github.com/Software-Engineering-2024-Group/BurnoutExtreme/actions/workflows/autopep8.yml/badge.svg)](https://github.com/Software-Engineering-2024-Group/BurnoutExtreme/actions/workflows/autopep8.yml)
 [![PEP8](https://img.shields.io/badge/code%20style-pep8-orange.svg)](https://www.python.org/dev/peps/pep-0008/)
 [![Flake8 Status](https://github.com/Software-Engineering-2024-Group/BurnoutExtreme/workflows/Flake8/badge.svg)](https://github.com/Software-Engineering-2024-Group/BurnoutExtreme/actions)
@@ -253,10 +248,8 @@ Open the URL in your browser:
 ---
 ## Bug Fixes
 
-We fixed many bugs, but here are the most notable ones...
+We fixed many bugs, more details in our Issues view...
 
-1. The proxy in the config files were wrong, making it difficult to run the website. Proxy issues were fixed.
-2. TODO: add more
 ---
 ## 🚀Future Enhancements
 
