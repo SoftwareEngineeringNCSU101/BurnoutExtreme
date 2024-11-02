@@ -153,12 +153,6 @@ So, are you ready to take the leap towards a healthier, happier you? Dive into *
 
 ---
 
-# Walkthrough
-
-TODO: Change vedio link
-
-Link to the implementation video of the BurnoutExtreme application: [Video](https://www.youtube.com/watch?v=Ozbn9nNFr1Y)
-
 ## 📸Application Screenshots
 
 ## 🔐Sign-In
