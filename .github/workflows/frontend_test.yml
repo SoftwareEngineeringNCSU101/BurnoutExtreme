@@ -22,3 +22,8 @@ jobs:
       - name: Run tests with coverage
         working-directory: ./frontend
         run: npm run test -- --coverage --verbose --ci --passWithNoTests
+
+      - name: Upload coverage to Codecov
+        env:
+          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}  # Store your Codecov token in GitHub secrets
+        run: bash <(curl -s https://codecov.io/bash) -f frontend/coverage/**/lcov.info
