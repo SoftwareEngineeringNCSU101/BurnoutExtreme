@@ -13,12 +13,12 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: '16'  # Specify the Node.js version you need
+          node-version: "16" # Specify the Node.js version you need
 
       - name: Install dependencies
-        working-directory: ./frontend  
+        working-directory: ./frontend
         run: npm install
 
       - name: Run tests with coverage
-        working-directory: ./frontend 
-        run: npm test -- --coverage  
+        working-directory: ./frontend
+        run: npm test -- --coverage
