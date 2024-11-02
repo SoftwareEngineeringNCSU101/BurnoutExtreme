@@ -17,7 +17,7 @@
     ·
     <a href="https://github.com/aditikilledar/burnout-proj3/issues/new?assignees=&labels=&projects=&template=feature_request.md&title=">Request Feature</a>
     <br>
-    <a href="https://youtu.be/bYTZT8vcICI">View Video</a>
+    <a href="https://youtu.be/xQB6AbBLLWU?si=4RX05gmUf6D-M-7v">View Video</a>
     ·
     <a href="https://github.com/Software-Engineering-2024-Group/BurnoutExtreme?tab=readme-ov-file#-score-card">Scores</a>
     ·
