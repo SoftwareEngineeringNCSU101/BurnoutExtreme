@@ -13,7 +13,7 @@
     <a href="https://github.com/Software-Engineering-2024-Group/BurnoutExtreme/blob/master/backend/html/backend/index.html"><strong>Explore the API docs »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/aditikilledar/burnout-proj3/blob/main/Tutorials.md">View Demo</a>
+    <a href="https://github.com/Software-Engineering-2024-Group/BurnoutExtreme/blob/master/Tutorials.md">View Demo</a>
     ·
     <a href="https://github.com/aditikilledar/burnout-proj3/issues/new?assignees=&labels=&projects=&template=feature_request.md&title=">Request Feature</a>
     <br>
