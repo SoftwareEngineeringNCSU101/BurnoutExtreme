@@ -282,14 +282,13 @@ The BurnoutExtreme application can be extended with the following features:
 | Video | 3 | https://youtu.be/xQB6AbBLLWU?si=4RX05gmUf6D-M-7v |
 | Workload | 3 | Distributed |
 | Number of commits | 3 | 50+ |
-| Number of commits: by different people | 3 | https://github.com/Software-Engineering-2024-Group/BurnoutExtreme/graphs/contributors|
+| Number of commits: by different people | 3 | https://github.com/Software-Engineering-2024-Group/BurnoutExtreme/graphs/contributors |
 | Issues report: There are many | 3 | https://github.com/Software-Engineering-2024-Group/BurnoutExtreme/pulse |
 | Issues are being closed | 3 | https://github.com/Software-Engineering-2024-Group/BurnoutExtreme/pulse |
-| DOI badge | 3 | https://zenodo.org/records/14020326 |
-| Docs: format | 3 | https://github.com/Software-Engineering-2024-Group/BurnoutExtreme/blob/master/.github/workflows/autopep8.yml
-https://github.com/Software-Engineering-2024-Group/BurnoutExtreme/blob/master/.github/workflows/flake8.yml|
+| DOI badge | 3 |  |
+| Docs: format | 3 |  |
 | Docs: description  | 3 |  |
-| Docs: short animated video | 2 |  |
+| Docs: short animated video | 3 |  |
 | Docs: strong punchlines | 3 |  |
 | Docs: mini tutorials | 3 | https://github.com/Software-Engineering-2024-Group/BurnoutExtreme/blob/master/Tutorials.md#signup-and-sign-in |
 | Use of version control tools | 3 |  |
@@ -302,7 +301,7 @@ https://github.com/Software-Engineering-2024-Group/BurnoutExtreme/blob/master/.g
 | Test cases are routinely executed | 2 |  |
 | The files http://contributing.md/ lists coding standards and lots of tips | 3 |  |
 | Issues are discussed before they are closed | 3 |  |
-| Chat channel: exists | 3 | whatsapp, discord  |
+| Chat channel: exists | 3 | whatsapp, discord |
 | Test cases: a large proportion of the issues related to handling failing cases. | 3 |  |
 | Evidence that the whole team is using the same tools | 3 |  |
 | Evidence that the members of the team are working across multiple places in the code base | 3 |  |
@@ -330,6 +329,7 @@ https://github.com/Software-Engineering-2024-Group/BurnoutExtreme/blob/master/.g
 | Are e-mails to your support e-mail address received by more than one person? | 3 |  |
 | Does your project have a ticketing system to manage bug reports and feature requests? | 2 |  |
 | Is your project's ticketing system publicly visible to your users, so they can view bug reports and feature requests? | 3 |  |
+
 
 
 ---
