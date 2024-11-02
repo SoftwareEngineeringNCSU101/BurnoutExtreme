@@ -306,7 +306,7 @@ https://github.com/Software-Engineering-2024-Group/BurnoutExtreme/blob/master/.g
 | Test cases are routinely executed | 2 |  |
 | The files http://contributing.md/ lists coding standards and lots of tips | 3 |  |
 | Issues are discussed before they are closed | 3 |  |
-| Chat channel: exists | 3 | whatsapp, discord  |
+| Chat channel: exists | 3 | whatsapp  |
 | Test cases: a large proportion of the issues related to handling failing cases. | 3 |  |
 | Evidence that the whole team is using the same tools | 3 |  |
 | Evidence that the members of the team are working across multiple places in the code base | 3 |  |
