@@ -1,4 +1,4 @@
-name: Run Tests On Push
+name: Unit Test
 on:
   push:
     branches:
@@ -6,22 +6,27 @@ on:
   pull_request:
     branches:
       - main
+  schedule: 
+    - cron: '0 0 * * *'
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout code
+        uses: actions/checkout@v2
+
       - name: Install Python 3.7.17
         uses: actions/setup-python@v1
         with:
           python-version: 3.7.17
-      - name: Install dependencies
+
+      - name: Install backend dependencies
         working-directory: ./backend
         run: |
           pip install -r requirements.txt
-          echo requirements installed
-        
+          echo "Python requirements installed"
+
       - name: Run tests
         working-directory: ./backend
         run: |
