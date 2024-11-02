@@ -47,7 +47,8 @@
 [![Stars](https://img.shields.io/github/stars/Software-Engineering-2024-Group/BurnoutExtreme?style=social)](https://github.com/Software-Engineering-2024-Group/BurnoutExtreme/stargazers)
 [![Join the Discord Server](https://img.shields.io/badge/Join%20the%20Discord%20Server-7289DA?style=flat&logo=discord&logoColor=white)](https://discord.gg/jqCNWqET)
 
-![BE](https://github.com/user-attachments/assets/fd9b3003-ccda-4dfd-a77b-49bce694dbaf)
+[![BurnoutExtreme Demo](https://github.com/user-attachments/assets/fd9b3003-ccda-4dfd-a77b-49bce694dbaf)](https://github.com/Software-Engineering-2024-Group/BurnoutExtreme/blob/master/frontend/public/assets/BurnoutExtreme.mp4)
+
 
 
 # Table of Contents
