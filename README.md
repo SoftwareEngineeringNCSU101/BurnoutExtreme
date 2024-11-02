@@ -15,15 +15,15 @@
     <br />
     <a href="https://github.com/aditikilledar/burnout-proj3/blob/main/Tutorials.md">View Demo</a>
     ·
-    <a href="https://github.com/aditikilledar/burnout-proj3/issues/new?assignees=&labels=&projects=&template=bug_report.md&title=">Report Bug</a>
+    <a ">Report Bug</a>
     ·
     <a href="https://github.com/aditikilledar/burnout-proj3/issues/new?assignees=&labels=&projects=&template=feature_request.md&title=">Request Feature</a>
     <br>
     <a href="https://youtu.be/bYTZT8vcICI">View Video</a>
     ·
-    <a href="https://github.com/aditikilledar/burnout-proj3/blob/main/Project3Scores.md">Scores</a>
+    <a href="https://github.com/Software-Engineering-2024-Group/BurnoutExtreme?tab=readme-ov-file#-score-card">Scores</a>
     ·
-    <a href="https://github.com/aditikilledar/burnout-proj3/blob/main/Developer_README.md">Developer Documentation</a>
+    <a href="https://github.com/Software-Engineering-2024-Group/BurnoutExtreme/blob/master/Developer_README.md">Developer Documentation</a>
   </p>
 </div>
 <br>
@@ -34,6 +34,8 @@
 [![Build Status](https://github.com/Software-Engineering-2024-Group/BurnoutExtreme/actions/workflows/build_repo.yml/badge.svg)](https://github.com/Software-Engineering-2024-Group/BurnoutExtreme/actions/workflows/build_repo.yml)
 [![AutoPep8](https://github.com/Software-Engineering-2024-Group/BurnoutExtreme/actions/workflows/autopep8.yml/badge.svg)](https://github.com/Software-Engineering-2024-Group/BurnoutExtreme/actions/workflows/autopep8.yml)
 [![PEP8](https://img.shields.io/badge/code%20style-pep8-orange.svg)](https://www.python.org/dev/peps/pep-0008/)
+![Discord Chat](https://img.shields.io/badge/Discord-Join%20Chat-7289DA?style=flat&logo=discord&logoColor=white&link=https://discord.com/channels/1302072215545843722/1302072216002887732)
+
 
 // TODO: add more
 
