@@ -12,7 +12,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout repository
-      uses: actions/checkout@v2
+      uses: actions/checkout@v4
+      with:
+          fetch-depth: 0
     - name: Install Python 3.9.20
       uses: actions/setup-python@v1
       with:
@@ -22,6 +24,7 @@ jobs:
       run: |
         pip install -r requirements.txt
         echo requirements installed  
+        pip install pytest pytest-cov
     - name: Run tests
       working-directory: ./backend
       run: |
