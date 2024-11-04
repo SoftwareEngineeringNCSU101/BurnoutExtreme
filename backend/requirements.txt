@@ -9,3 +9,6 @@ coverage==7.2.7
 flask_mail==0.9.1
 pymongo==4.6.0
 setuptools==68.0.0
+llama-index-llms-ollama
+Werkzeug==2.2.3
+mistralai==1.1.0
