@@ -28,7 +28,6 @@
 [![DOI](https://zenodo.org/badge/878072890.svg)](https://doi.org/10.5281/zenodo.14020325)
 [![made-with-python](https://img.shields.io/badge/Made%20with-Python-1f425f.svg)](https://www.python.org/)
 [![Unit Test Status](https://github.com/Software-Engineering-2024-Group/BurnoutExtreme/actions/workflows/unit_test.yml/badge.svg?branch=master)](https://github.com/Software-Engineering-2024-Group/BurnoutExtreme/actions/workflows/unit_test.yml)
-[![codecov](https://codecov.io/gh/Software-Engineering-2024-Group/BurnoutExtreme/graph/badge.svg?token=ieiAb2GlAh)](https://codecov.io/gh/Software-Engineering-2024-Group/BurnoutExtreme)
 [![AutoPep8](https://github.com/Software-Engineering-2024-Group/BurnoutExtreme/actions/workflows/autopep8.yml/badge.svg)](https://github.com/Software-Engineering-2024-Group/BurnoutExtreme/actions/workflows/autopep8.yml)
 [![PEP8](https://img.shields.io/badge/code%20style-pep8-orange.svg)](https://www.python.org/dev/peps/pep-0008/)
 [![Flake8 Status](https://github.com/Software-Engineering-2024-Group/BurnoutExtreme/workflows/Flake8/badge.svg)](https://github.com/Software-Engineering-2024-Group/BurnoutExtreme/actions)
