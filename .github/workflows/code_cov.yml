@@ -24,16 +24,15 @@ jobs:
       run: |
         pip install -r requirements.txt
         echo requirements installed  
-        pip install pytest pytest-cov
     - name: Run tests
       working-directory: ./backend
       run: |
         python -m coverage run -m unittest test_api.py
-        coverage json -o ../coverage/coverage.json
+        coverage json
     - name: Upload coverage to Codecov
       if: always()
       uses: codecov/codecov-action@v4
       with:
         token: ${{ secrets.CODECOV_TOKEN }}
-        files: coverage/coverage.json
+        files: ./backend/coverage.json
         
