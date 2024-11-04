@@ -1,12 +1,4 @@
-# Copyright (C) 2024 SE24-Team23
-
-# Licensed under the MIT License.
-# See the LICENSE file in the project root for the full license information.
-
-# This workflow will install Python dependencies, run tests and create a Code Coverage Report
-
 name: Running Code Coverage
-
 on:
   push:
     branches:
@@ -17,32 +9,26 @@ on:
 
 jobs:
   build:
-    name: Run tests with coverage
     runs-on: ubuntu-latest
-    
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-        
-      - name: Set up Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: 3.10.15
-          
-      - name: Install dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install -r requirements.txt
-          pip install coverage pytest pytest-cov  # Install testing and coverage tools
-
-      - name: Run the tests
-        run: |
-          pytest --cov=./ --cov-report=xml  # Run tests and generate coverage report
-        continue-on-error: true
-        
-      - name: Upload coverage to Codecov
-        if: always()
-        uses: codecov/codecov-action@v4
-        with:
-          token: ${{ secrets.CODECOV_TOKEN }}
-          file: coverage.xml
+    - name: Checkout repository
+      uses: actions/checkout@v2
+    - name: Install Python 3.9.20
+      uses: actions/setup-python@v1
+      with:
+        python-version: 3.9.20
+    - name: Install dependencies
+      working-directory: ./backend
+      run: |
+        pip install -r requirements.txt
+        echo requirements installed  
+    - name: Run tests
+      working-directory: ./backend
+      run: |
+        python -m coverage run -m unittest test_api.py
+        coverage json
+    - name: Upload coverage to Codecov
+      uses: codecov/codecov-action@v3
+      with:
+        token: ${{ secrets.CODECOV_TOKEN }}
+        files: ./backend/coverage.json
