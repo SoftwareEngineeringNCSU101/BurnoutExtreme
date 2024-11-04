@@ -27,7 +27,6 @@
 [![GitHub license](https://img.shields.io/github/license/Naereen/StrapDown.js.svg)](https://github.com/Naereen/StrapDown.js/blob/master/LICENSE)
 [![DOI](https://zenodo.org/badge/878072890.svg)](https://doi.org/10.5281/zenodo.14020325)
 [![made-with-python](https://img.shields.io/badge/Made%20with-Python-1f425f.svg)](https://www.python.org/)
-[![Build Status](https://github.com/Software-Engineering-2024-Group/BurnoutExtreme/actions/workflows/build_repo.yml/badge.svg)](https://github.com/Software-Engineering-2024-Group/BurnoutExtreme/actions/workflows/build_repo.yml)
 [![Unit Test Status](https://github.com/Software-Engineering-2024-Group/BurnoutExtreme/actions/workflows/unit_test.yml/badge.svg?branch=master)](https://github.com/Software-Engineering-2024-Group/BurnoutExtreme/actions/workflows/unit_test.yml)
 [![codecov](https://codecov.io/gh/Software-Engineering-2024-Group/BurnoutExtreme/graph/badge.svg?token=ieiAb2GlAh)](https://codecov.io/gh/Software-Engineering-2024-Group/BurnoutExtreme)
 [![AutoPep8](https://github.com/Software-Engineering-2024-Group/BurnoutExtreme/actions/workflows/autopep8.yml/badge.svg)](https://github.com/Software-Engineering-2024-Group/BurnoutExtreme/actions/workflows/autopep8.yml)
