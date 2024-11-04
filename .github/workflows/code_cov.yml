@@ -29,11 +29,11 @@ jobs:
       working-directory: ./backend
       run: |
         python -m coverage run -m unittest test_api.py
-        coverage json
+        coverage json -o ../coverage/coverage.json
     - name: Upload coverage to Codecov
       if: always()
       uses: codecov/codecov-action@v4
       with:
         token: ${{ secrets.CODECOV_TOKEN }}
-        files: backend/coverage.json
+        files: coverage/coverage.json
         
