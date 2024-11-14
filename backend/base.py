@@ -4,16 +4,23 @@ from flask_pymongo import PyMongo
 from flask import Flask, request, jsonify
 from flask_pymongo import PyMongo
 from pymongo import MongoClient
+from flask import Flask
 import mongomock
 from datetime import datetime, timedelta, timezone
-from flask_jwt_extended import create_access_token, get_jwt, get_jwt_identity, \
-    unset_jwt_cookies, jwt_required, JWTManager
+from flask_jwt_extended import (
+    create_access_token, 
+    get_jwt, 
+    get_jwt_identity, 
+    unset_jwt_cookies, 
+    jwt_required, 
+    JWTManager
+)
 from datetime import datetime, timedelta
 from functools import reduce
 from bson import json_util
 from pymongo import MongoClient
 from flasgger import Swagger
-
+import os
 
 api = Flask(__name__)
 api.secret_key = 'secret'
@@ -69,7 +76,7 @@ def create_token():
     email = request.json.get("email", None)
     password = request.json.get("password", None)
     user = mongo.user.find_one({"email": email})
-    if (user is not None and (user["password"] == password)):
+    if user is not None and bcrypt.checkpw(password.encode('utf-8'), user["password"].encode('utf-8')):
         access_token = create_access_token(identity=email)
         return jsonify({"message": "Login successful", "access_token": access_token})
     else:
@@ -132,9 +139,13 @@ def register():
     password = request.json.get('password', None)
     first_name = request.json.get('firstName', None)
     last_name = request.json.get('lastName', None)
+
+    # Encrypt the password
+    hashed_password = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt())
+
     new_document = {
         "email": email,
-        "password": password,
+        "password": hashed_password.decode('utf-8'),
         "first_name": first_name,
         "last_name": last_name,
     }
@@ -240,7 +251,7 @@ def is_enrolled():
         description: Unauthorized access
     """
 
-    data = request.json
+    data = request.get_json()
     eventTitle = data['eventTitle']
     current_user = get_jwt_identity()
     enrollment = mongo.user.find_one(
@@ -295,7 +306,8 @@ def enroll_event():  # pragma: no cover
         # Insert data into MongoDB
         mongo.user.insert_one({
             "email": current_user,
-            "eventTitle": data['eventTitle']
+            "eventTitle": data['eventTitle'],
+            "eventDate": data['eventDate']
         })
         response = {"status": "Data saved successfully"}
     except Exception as e:
@@ -1112,12 +1124,9 @@ def getUserRegisteredEvents():
         data = mongo.user.find(
             {"email": current_user, "eventTitle": {"$exists": True}})
         response = []
-        date = "10/23/2023"
         for item in data:
-            res = {"eventName": item["eventTitle"], "date": date}
+            res = {"eventName": item["eventTitle"], "date": item["eventDate"]}
             response.append(res)
-        # Response should be in this format [{eventName: Yoga, date: "12/11/2023"},{eventName: Swimming, date: "11/10/2023"}]
-        # For Example { Potato: 50, Acai: 20, Cheeseburger: 80 }
         statusCode = 200
     except Exception as e:
         response = {"status": "Error", "message": str(e)}

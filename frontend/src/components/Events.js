@@ -122,13 +122,16 @@ export default function Events(props) {
   };
 
   const handleEnrollUnenroll = (eventTitle) => {
-    const userEmail = "user@example.com"; // Replace with actual user email logic
-    axios.post("/is-enrolled", { eventTitle }, {
-      headers: { Authorization: "Bearer " + props.state.token },
-    })
-    .then((response) => {
-      const action = response.data.isEnrolled ? "unenroll" : "enroll";
-      axios.post(`/${action}`, { email: userEmail, eventTitle }, {
+      const userEmail = props.state.userEmail; // Replace with actual user email logic
+      const event = events.find((e) => e.title === eventTitle);
+      const eventDate = event ? event.eventDate : null;
+      console.log("Enrolling/unenrolling user:", userEmail, "for event:", eventTitle, "on date:", eventDate);
+      axios.post("/is-enrolled", { eventTitle }, {
+        headers: { Authorization: "Bearer " + props.state.token },
+      })
+      .then((response) => {
+        const action = response.data.isEnrolled ? "unenroll" : "enroll";
+        axios.post(`/${action}`, { email: userEmail, eventTitle, eventDate }, {
         headers: { Authorization: "Bearer " + props.state.token },
       })
       .then((response) => {
