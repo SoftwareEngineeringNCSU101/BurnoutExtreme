@@ -1,9 +1,11 @@
-import apps
 import sys
 import os
 
+# Add the project root directory to sys.path
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-app = apps.App()
+
+import backend.app as app
+app = app.App()
 mongo = app.mongo
 
 f = open('../food_data/calories.csv', 'r', encoding="ISO-8859-1")

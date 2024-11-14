@@ -210,6 +210,13 @@ Navigate to the backend folder.
 
     cd backend
 
+Add the following .env File under the backend folder
+```
+MONGODB_URI='mongodb://localhost:27017/test'
+
+MAIL_USERNAME = "bogusdummy123@gmail.com"
+MAIL_PASSWORD = "helloworld123!"
+```
 Once in the backend, run:
 
     python insert_event_data.py
