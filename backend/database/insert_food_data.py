@@ -2,14 +2,18 @@ import sys
 import os
 
 # Add the project root directory to sys.path
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..')))
 
 import backend.app as app
 app = app.App()
 mongo = app.mongo
 
-f = open('../food_data/calories.csv', 'r', encoding="ISO-8859-1")
-l = f.readlines()
+# Correct the file path
+file_path = os.path.join(os.path.dirname(__file__), 'food_data', 'calories.csv')
+
+with open(file_path, 'r', encoding="ISO-8859-1") as f:
+    l = f.readlines()
+
 
 for i in range(1, len(l)):
     l[i] = l[i][1:len(l[i]) - 2]

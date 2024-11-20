@@ -212,11 +212,13 @@ function Profile(props) {
         <Box
           sx={{
             display: "grid",
-            gridTemplateColumns: "repeat(5, 1fr)",
+            gridTemplateColumns: { xs: "1fr", sm: "repeat(2, 1fr)", md: "repeat(5, 1fr)" },
             gap: 2,
-            gridTemplateRows: "auto",
-            gridTemplateAreas: `"profile  goals goals goals bmi"
-                                "profile  . . . ."`,
+            gridTemplateAreas: {
+              xs: `"profile" "goals" "bmi"`,
+              sm: `"profile goals" "profile goals" "bmi bmi"`,
+              md: `"profile goals goals goals bmi" "profile . . . ."`
+            },
             paddingTop: "2rem",
           }}
         >
@@ -237,11 +239,11 @@ function Profile(props) {
                   paddingBottom: "5px",
                 }}
               >
-                <Avatar sx={{ width: 100, height: 100 }}>
+                <Avatar sx={{ width: { xs: 80, sm: 100 }, height: { xs: 80, sm: 100 } }}>
                   {profileImage ? (
-                    <img src={profileImage} alt="Profile" style={{ width: "100%", height: "100%", borderRadius: "50%" }} />
+                    <img src={profileImage} alt="Profile" style={{ width: "100%", height: "100%", borderRadius: "50%", objectFit: "cover" }} />
                   ) : (
-                    <AccountCircleIcon sx={{ width: 70, height: 70 }} />
+                    <AccountCircleIcon sx={{ width: { xs: 50, sm: 70 }, height: { xs: 50, sm: 70 } }} />
                   )}
                 </Avatar>
                 <input
@@ -252,7 +254,11 @@ function Profile(props) {
                   onChange={handleImageUpload}
                 />
                 <label htmlFor="upload-button">
-                  <Button variant="contained" component="span" style={{ marginTop: "10px", backgroundColor: theme.headerColor}}>
+                  <Button variant="contained" component="span"  sx={{ 
+                    marginTop: "10px", 
+                    backgroundColor: theme.headerColor,
+                    padding: { xs: '12px 24px', sm: '8px 16px' }
+                  }}>
                     Upload Photo
                   </Button>
                 </label>
@@ -267,6 +273,7 @@ function Profile(props) {
                   value={lastName}
                   onChange={(e) => setLastName(e.target.value)}
                   fullWidth
+                  sx={{ mb: 2, '& .MuiInputBase-input': { fontSize: { xs: '0.9rem', sm: '1rem' } } }}
                 />
               </Box>
               <Box mb={2}>
@@ -275,6 +282,7 @@ function Profile(props) {
                   value={firstName}
                   onChange={(e) => setFirstName(e.target.value)}
                   fullWidth
+                  sx={{ mb: 2, '& .MuiInputBase-input': { fontSize: { xs: '0.9rem', sm: '1rem' } } }}
                 />
               </Box>
               <Box mb={2}>
@@ -283,6 +291,7 @@ function Profile(props) {
                   value={age}
                   onChange={(e) => setAge(e.target.value)}
                   fullWidth
+                  sx={{ mb: 2, '& .MuiInputBase-input': { fontSize: { xs: '0.9rem', sm: '1rem' } } }}
                 />
               </Box>
               <Box mb={2}>
@@ -303,6 +312,7 @@ function Profile(props) {
                   value={weight}
                   onChange={(e) => setWeight(e.target.value)}
                   fullWidth
+                  sx={{ mb: 2, '& .MuiInputBase-input': { fontSize: { xs: '0.9rem', sm: '1rem' } } }}
                 />
               </Box>
               <Box mb={2}>
@@ -311,6 +321,7 @@ function Profile(props) {
                   value={height}
                   onChange={(e) => setHeight(e.target.value)}
                   fullWidth
+                  sx={{ mb: 2, '& .MuiInputBase-input': { fontSize: { xs: '0.9rem', sm: '1rem' } } }}
                 />
               </Box>
               <Box mb={2}>
@@ -336,6 +347,8 @@ function Profile(props) {
               </Button>
             </CardContent>
           </Card>
+
+
           <Card sx={{ gridArea: "goals" }} elevation={5}>
             <CardHeader
               title={"Your Goals"}
@@ -344,11 +357,13 @@ function Profile(props) {
             <CardContent
               sx={{
                 display: "grid",
-                gridTemplateColumns: "repeat(3, 1fr)",
+                gridTemplateColumns: { xs: "1fr", sm: "repeat(2, 1fr)", md: "repeat(3, 1fr)" },
                 gap: 2,
-                gridTemplateRows: "auto",
-                gridTemplateAreas: `"targetWeight activityLevel targetCalories"
-                                    ". saveButton ."`,
+                gridTemplateAreas: {
+                  xs: `"targetWeight" "activityLevel" "targetCalories" "saveButton"`,
+                  sm: `"targetWeight activityLevel" "targetCalories saveButton"`,
+                  md: `"targetWeight activityLevel targetCalories" ". saveButton ."`
+                },
                 paddingTop: "2rem",
                 
               }}
@@ -450,19 +465,16 @@ function Profile(props) {
               </Button>
             </CardContent>
           </Card>
-          <Card sx={{ gridArea: "bmi" }} elevation={5} alignItems="center">
+
+          <Card sx={{ gridArea: "bmi", textAlign: "center"  }} elevation={5} >
             <CardHeader
               title={"Your Body Mass Index (BMI)"}
               subheader={"Measured based on height and weight"}
+              titleTypography={{ fontSize: { xs: '1.2rem', sm: '1.5rem' } }}
+              subheaderTypography={{ fontSize: { xs: '0.8rem', sm: '1rem' } }}
             />
-            <CardContent
-              sx={{
-                gap: 2,
-                paddingTop: "2rem",
-                alignItems: "center",
-              }}
-            >
-              <Typography variant="h2" mt={2}>
+            <CardContent>
+              <Typography sx={{ fontSize: { xs: '2.5rem', sm: '3.5rem' } }}>
                 {BMI}
               </Typography>
             </CardContent>
