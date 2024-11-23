@@ -541,6 +541,7 @@ const handleUnenroll = (eventName) => {
           }
         }}>
         {events
+        .filter(eventObj => new Date(eventObj.date) >= new Date())
         .map((eventObj, ind) => (
         <ListItem
           key={`event-${ind}`}
