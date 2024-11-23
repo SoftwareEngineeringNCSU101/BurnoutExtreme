@@ -506,6 +506,7 @@ const handleUnenroll = (eventName) => {
       </form>
             </CardContent>
           </Card>
+
           <Card sx={{ gridArea: "events" }} elevation={5}>
             <CardHeader
               title={"Upcoming Events"}
@@ -539,7 +540,8 @@ const handleUnenroll = (eventName) => {
             }
           }
         }}>
-        {events.map((eventObj, ind) => (
+        {events
+        .map((eventObj, ind) => (
         <ListItem
           key={`event-${ind}`}
           sx={{
@@ -548,6 +550,7 @@ const handleUnenroll = (eventName) => {
             justifyContent: { xs: 'center', sm: 'space-between' },
           }}
         >
+
           <Box
             sx={{
               display: 'flex',

@@ -125,6 +125,7 @@ export default function Events(props) {
       const userEmail = props.state.userEmail; // Replace with actual user email logic
       const event = events.find((e) => e.title === eventTitle);
       const eventDate = event ? event.eventDate : null;
+
       console.log("Enrolling/unenrolling user:", userEmail, "for event:", eventTitle, "on date:", eventDate);
       axios.post("/is-enrolled", { eventTitle }, {
         headers: { Authorization: "Bearer " + props.state.token },
