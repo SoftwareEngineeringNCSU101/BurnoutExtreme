@@ -19,8 +19,11 @@ import { useTheme } from './ThemeContext';
 const commonContainerStyles = {
   width: '100%',
   display: 'flex',
-  justifyContent: 'center', // Center horizontally
-  alignItems: 'center' // Center vertically
+  flexDirection: { xs: 'column', sm: 'row' },// Center horizontally
+  justifyContent: 'center',
+  alignItems: 'center', // Center vertically
+  padding: { xs: '1rem', sm: '2rem' },
+  gap: { xs: '1rem', sm: '2rem' },
 }
 
 const commonBoxStyles = {
@@ -122,101 +125,145 @@ const Workouts = props => {
   }, [props.state.token])
 
   return (
-    <Container maxWidth={false} sx={{ width: '90%' }}>
+    <Container maxWidth={false} sx={{ width: '90%', padding: { xs: '10px', sm: '20px' } }}>
       <Box
         sx={{
           marginTop: '10px',
           backgroundImage: `url(${headerImage})`,
-          backgroundSize: '55%',
+          backgroundSize: { xs: '100%', sm: '55%' },
           backgroundPosition: 'center',
           backgroundRepeat: 'no-repeat',
-          padding: '100px',
+          padding: { xs: '20px', sm: '40px' },
           position: 'relative',
-          overflow: 'hidden'
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center'
         }}
       >
         <WorkOutHeader />
         <Container>
           <Box
             sx={{
-              justifyContent: 'space-between',
-              display: 'flex'
+              display: 'flex',
+              flexDirection: { xs: 'column', sm: 'row' },
+              justifyContent: { xs: 'center', sm: 'space-between' },
+              gap: '10px',
+              width: '100%',
+              maxWidth: '400px',
+              margin: '0 auto',
+              padding: { xs: '0 20px', sm: '0' }
             }}
           >
             <Button
               type='submit'
               variant='contained'
-              
-              size='small'
+              fullWidth
               onClick={() => {
                 setAddMode(!addMode)
               }}
-              style={{ backgroundColor: theme.headerColor, color: 'white', width: '100px'}}
-              
+              sx={{
+                backgroundColor: theme.headerColor,
+                color: 'white',
+                minHeight: '48px',
+                '&:hover': {
+        backgroundColor: '#FF8C00'
+      }
+              }}
             >
               Add
             </Button>
             <Button
               type='submit'
               variant='contained'
-              size='large'
-              onClick={() => {
-                setEditMode(!editMode)
+              fullWidth
+              onClick={() => setEditMode(!editMode)}
+              sx={{
+                backgroundColor: theme.headerColor,
+                color: 'white',
+                minHeight: '48px',
+                '&:hover': {
+        backgroundColor: '#FF8C00'
+      }
               }}
-              style={{ backgroundColor: theme.headerColor, color: 'white', width: '100px'}}
             >
               Edit
             </Button>
           </Box>
         </Container>
       </Box>
+
+      {addMode && (
       <Container>
-        {addMode && (
           <WorkoutForm
             addMode={addMode}
             setAddMode={setAddMode}
             onChange={handleAddSchedule}
             schedules={schedules[day]}
           />
-        )}
-      </Container>
+        </Container>
+      )}
       <Container
         sx={{
-          ...commonContainerStyles
+          ...commonContainerStyles,
+          mt: { xs: 2, sm: 3 }
         }}
         disableGutters
         maxWidth={false}
       >
-        <Box sx={{ ...commonBoxStyles }}
-        >
-          <Tabs
-
-            value={day}
-            onChange={(e, newValue) => {
+        <Box sx={{
+              ...commonBoxStyles,
+              backgroundColor: 'rgba(255, 248, 240, 0.9)',
+              borderRadius: '8px',
+              padding: { xs: '12px', sm: '24px' },
+              margin: { xs: '8px 0', sm: '16px 0' }
+            }}>
+            <Tabs
+              value={day}
+              onChange={(e, newValue) => {
               setDay(newValue)
-              
             }}
             TabIndicatorProps={{
-              sx: { backgroundColor: theme.headerColor }
-              
+              sx: { backgroundColor: theme.headerColor, height: '2px' }
             }}
             sx={{
-              width: '100%',
               '& .MuiTab-root': {
-                color: 'black',
+                color: '#666',
+                minWidth: { xs: '100px', sm: '140px' },
+                flex: { xs: 'none', sm: 1 },
+                padding: { xs: '6px 4px', sm: '12px 16px' },
+                fontSize: { xs: '0.7rem', sm: '0.875rem' },
+                textTransform: 'uppercase',
                 '&.Mui-selected': {
-                  color: theme.headerColor
+                  color: 'orange',
+                  fontWeight: 500
                 }
-              }
-            }}
-            centered
-            variant='fullWidth'
+              },
+              '& .MuiTabs-flexContainer': {
+      justifyContent: { xs: 'flex-start', sm: 'space-between' }, // Start alignment in mobile, space-between in desktop
+      width: '100%',
+      gap: { xs: '8px', sm: 0 } // Add gap only in mobile view
+    },
+    '& .MuiTabs-scroller': {
+      overflowX: { xs: 'auto !important', sm: 'hidden' }, // Enable scroll only in mobile
+      '::-webkit-scrollbar': { height: '0px' },
+      scrollBehavior: 'smooth'
+    }
+  }}
+  variant={{ xs: 'scrollable', sm: 'fullWidth' }} // Scrollable in mobile, fullWidth in desktop
+  scrollButtons={false}
           >
             {DAYSOFWEEK.map(day => (
               <Tab key={day.value} label={day.label} value={day.value} />
             ))}
           </Tabs>
-          <Divider sx={{ width: '100%', margin: '8px 0' , backgroundColor: theme.headerColor }} />
+          <Divider sx={{ 
+            width: '100%', 
+            height: '1px',
+            margin: '0',  
+            backgroundColor: theme.headerColor ,
+             position: 'relative',
+            top: '-1px'
+            }}  />
           {schedules && day && (
             <WorkoutDisplay
               schedules={schedules[day]}
