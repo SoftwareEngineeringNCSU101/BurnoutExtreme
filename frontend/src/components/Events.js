@@ -103,6 +103,13 @@ export default function Events(props) {
           [eventTitle]: response.data.isEnrolled,
         }));
         const event = events.find((e) => e.title === eventTitle);
+        console.log("Hello")
+        console.log(events);
+        console.log(event);
+        console.log(event.latitude);
+        console.log(event.longitude);
+        // const latitude = "35.7822";
+        // const longitude = "-78.6713";
         if (event) {
           setMapLocation({ lat: Number(event.latitude), lng: Number(event.longitude) });
         }

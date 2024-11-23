@@ -4,13 +4,12 @@ from flask_mail import Mail
 from flask_cors import CORS
 import os
 from dotenv import load_dotenv
-
-# Load environment variables from .env file
 load_dotenv()
 
+
 class App:
-    def __init__(self):
-        self.app = Flask(__name__)
+    def _init_(self):
+        self.app = Flask(_name_)
         CORS(self.app)
         self.app.secret_key = 'secret'
         self.app.config['MONGO_URI'] = os.getenv('MONGODB_URI')
