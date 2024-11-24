@@ -26,6 +26,7 @@ from flasgger import Swagger
 import os
 from llama_index.llms.ollama import Ollama  
 from mistralai import Mistral
+import ollama
 
 api = Flask(__name__)
 api.secret_key = 'secret'
@@ -1283,6 +1284,139 @@ def deleteSchedule(selected_day, workout_title):
     except Exception as e:
         return jsonify({"status": "Error", "message": str(e)}), 500
 
+logging.basicConfig(level=logging.ERROR)
+
+
+@api.route("/generateFitnessPlan", methods=["POST"])
+@jwt_required()
+def generateFitnessPlan():
+    """
+    Generate fitness plan based on user's info
+
+    This endpoint allows an authenticated user to retrieve the user's info, use Mistral AI to generate a fitness plan
+
+    ---
+    tags:
+      - Events
+    security:
+      - JWT: []
+    responses:
+      200:
+        description: Successfully retrieved the user's info and generated a fitness plan
+        schema:
+          type: object
+          properties:
+            fitness_plan:
+              type: String
+              description: String in the format of html to be rendered easily
+            calories:
+      401:
+        description: Unauthorized. User must be logged in to retrieve their registered events.
+      500:
+        description: An error occurred while retrieving the user's info/in generating the fitness plan
+    """
+    try:
+        current_user = get_jwt_identity()
+        user_data = mongo.user.find_one({"email": current_user})
+        print(user_data)
+
+        if user_data:
+            fitness_plan = generate_fitness_plan(user_data)
+            mongo.user.update_one({"email": current_user},{"$set": {"fitness_plan": fitness_plan}})
+            response = {
+                "status": "Success",
+                "fitness_plan": fitness_plan
+            }
+            statusCode = 200
+        else:
+            response = {
+                "status": "Not Found",
+                "message": "User not found."
+            }
+            statusCode = 404
+    except Exception as e:
+        response = {"status": "Error", "message": str(e)}
+        statusCode = 500
+    
+    return jsonify(response), statusCode    
+
+def generate_fitness_plan(user_data):
+
+    prompt = (
+        f"You are a fitness coach. Generate and stick to the fitness plan in plain text with html tags such as <b>,<h>,<br> for new lines; don't use markdown for the format below. You can add the relevant suggestions for each column and add <br> after every meal/exercise."
+        f"1. Nutrition Plan : Meals/Hydration etc"
+        f"2. Workout Plan: Depending on activity level"
+        f"3. Any other comments"
+        f"for the user having the attributes: "
+        f"first name: {user_data['first_name']}, "
+        f"last name: {user_data['last_name']}, "
+        f"age: {user_data['age']}, "
+        f"weight: {user_data['weight']} lbs, "
+        f"height: {user_data['height']} feet, "
+        f"BMI: {user_data['bmi']}, "
+        f"sex: {user_data['sex']}, "
+        f"activity level: {user_data['activity_level']}, "
+        f"target calories: {user_data['target_calories']}, "
+        f"target weight: {user_data['target_weight']} lbs."
+    )
+
+    response = ollama.generate(
+        model='llama3.2', 
+        prompt=prompt
+    )
+    print(response)
+    return response['response']
+
+@api.route("/getFitnessPlan", methods=["GET"])
+@jwt_required()
+def getFitnessPlan():
+    """
+    Retrieve the user's fitness plan if present
+
+    This endpoint allows an authenticated user to retrieve their fitness plan
+
+    ---
+    tags:
+      - Events
+    security:
+      - JWT: []
+    responses:
+      200:
+        description: Successfully retrieved the user's fitness plan
+        schema:
+          type: object
+          properties:
+            fitness_plan:
+              type: String
+              description: String in the format of html to be rendered easily
+            calories:
+      401:
+        description: Unauthorized. User must be logged in to retrieve their registered events.
+      500:
+        description: An error occurred while retrieving the user's info/in generating the fitness plan
+    """
+    try:
+        current_user = get_jwt_identity()
+        user_data = mongo.user.find_one({"email": current_user})
+
+        if user_data and "fitness_plan" in user_data:
+            fitness_plan = user_data["fitness_plan"]
+            response = {
+                "status": "Success",
+                "fitness_plan": fitness_plan
+            }
+            statusCode = 200
+        else:
+            response = {
+                "status": "Not Found",
+                "message": "Fitness plan not found."
+            }
+            statusCode = 404
+    except Exception as e:
+        response = {"status": "Error", "message": str(e)}
+        statusCode = 500
+    
+    return jsonify(response), statusCode
 
 model= Ollama(model="llama3.2")
 
@@ -1327,8 +1461,6 @@ def chatbot():
     answer = get_model_response(question)
 
     return jsonify({"answer": answer})
-
-logging.basicConfig(level=logging.ERROR)
 
 def get_model_response(question):
     attempts = 3

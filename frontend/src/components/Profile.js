@@ -15,6 +15,7 @@ import {
   FormControl,
   InputLabel,
   Select,
+  CircularProgress,
 } from "@mui/material";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import Box from "@mui/material/Box";
@@ -24,6 +25,7 @@ import DirectionsRunIcon from '@mui/icons-material/DirectionsRun';
 import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import { useTheme } from "./ThemeContext";
+import { toast, ToastContainer } from "react-toastify"
 
 const weightCardStyles = {
   weightContainer: {
@@ -113,6 +115,7 @@ function Profile(props) {
   const initialHeight = "";
   const initialBMI = 0;
   const initialsex = "";
+  const initalDiet = "";
   var postHeight = 0;
   var postWeight = 0;
   const [firstName, setFirstName] = useState(initialFirstName);
@@ -123,6 +126,10 @@ function Profile(props) {
   const [BMI, setBMI] = useState(initialBMI);
   const [sex, setSex] = useState(initialsex)
   const [profileImage, setProfileImage] = useState(null);
+  const [diet, setDiet] = useState(initalDiet);
+  const [fitnessPlan, setFitnessPlan] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [planExists, setPlanExists] = useState(false);
 
   const handleImageUpload = (e) => {
     const file = e.target.files[0];
@@ -206,18 +213,84 @@ function Profile(props) {
       });
   };
 
+  // Check if a fitness plan exists on component mount
+  useEffect(() => {
+    axios({
+      method: 'GET',
+      url: '/getFitnessPlan', // Assuming you create this endpoint
+      headers: {
+        Authorization: 'Bearer ' + props.state.token,
+      },
+    })
+      .then((response) => {
+        const res = response.data;
+        if (res.status === 'Success') {
+          setFitnessPlan(res.fitness_plan);
+          setPlanExists(true);
+        }
+      })
+      .catch((error) => {
+        if (error.response) {
+          console.error('Error fetching fitness plan:', error.response);
+        }
+      });
+  }, [props.state.token]);
+
+  const handleGeneratePlan = () => {
+    setLoading(true);
+    if(age || weight || height || BMI || sex || diet)
+    {
+    axios({
+      method: 'POST',
+      url: '/generateFitnessPlan',
+      headers: {
+        Authorization: 'Bearer ' + props.state.token,
+      },
+    })
+      .then((response) => {
+        const res = response.data;
+        if (res.status === 'Success') {
+          setFitnessPlan(res.fitness_plan);
+          setPlanExists(true);
+          console.log({ fitnessPlan })
+        }
+      })
+      .catch((error) => {
+        if (error.response) {
+          console.error('Error generating fitness plan:', error.response);
+        }
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+    }
+    else 
+    {
+      toast.error("Please fill at least one of the following: Age, Weight, Height, Sex, or Diet", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+    }
+  };
+
   return (
     <>
       <Container maxWidth>
         <Box
           sx={{
             display: "grid",
-            gridTemplateColumns: { xs: "1fr", sm: "repeat(2, 1fr)", md: "repeat(5, 1fr)" },
+            gridTemplateColumns: { xs: "1fr", sm: "repeat(2, 1fr)", md: "repeat(3, 1fr)" },
             gap: 2,
             gridTemplateAreas: {
-              xs: `"profile" "goals" "bmi"`,
-              sm: `"profile goals" "profile goals" "bmi bmi"`,
-              md: `"profile goals goals goals bmi" "profile . . . ."`
+              xs: `"profile" "goals" "bmi" "fitness"`,
+              sm: `"profile goals" "bmi bmi" "fitness fitness"`,
+              md: `"profile goals goals bmi" "profile fitness fitness fitness"`
             },
             paddingTop: "2rem",
           }}
@@ -361,7 +434,7 @@ function Profile(props) {
                 gap: 2,
                 gridTemplateAreas: {
                   xs: `"targetWeight" "activityLevel" "targetCalories" "saveButton"`,
-                  sm: `"targetWeight activityLevel" "targetCalories saveButton"`,
+                  sm: `"targetWeight activityLevel" "targetCalories ." "saveButton saveButton"`,
                   md: `"targetWeight activityLevel targetCalories" ". saveButton ."`
                 },
                 paddingTop: "2rem",
@@ -479,6 +552,65 @@ function Profile(props) {
               </Typography>
             </CardContent>
           </Card>
+
+          <Card sx={{ 
+            gridArea: 'fitness',
+            minHeight: { xs: '200px', sm: '250px' },
+            display: 'flex',
+            flexDirection: 'column'
+            }} elevation={2}>
+            <CardHeader
+              title={"Your Fitness Plan"}
+              subheader={"Customize your fitness goals"}
+              sx={{
+                '& .MuiCardHeader-title': {
+                  fontSize: { xs: '1.2rem', sm: '1.5rem', md: '1.8rem' },
+                  fontWeight: 600
+                },
+                '& .MuiCardHeader-subheader': {
+                  fontSize: { xs: '0.8rem', sm: '1rem' }
+                }
+              }}
+            />
+            <CardContent sx={{
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    gap: 2,
+    flex: 1,
+    padding: { xs: 2, sm: 3 }
+  }} >
+              <Button
+                variant="contained"
+                color="primary"
+                style={{ backgroundColor: 'orange' }}
+                onClick={handleGeneratePlan}
+                disabled={loading}
+              >
+                {loading ? <CircularProgress size={24} /> : 'Generate Fitness Plan'}
+              </Button>
+
+              {planExists ? (
+                <Box
+                dangerouslySetInnerHTML={{ __html: fitnessPlan }}
+                sx={{
+                  width: '100%',
+                  marginTop: 2,
+                  padding: 2,
+                  backgroundColor: 'rgba(255, 255, 255, 0.8)',
+                  borderRadius: 2,
+                  overflowY: 'auto',
+                  maxHeight: { xs: '300px', sm: '400px' }
+                }}
+              />
+              ) : (
+                <Typography variant="body2" color="textSecondary" mt={2}>
+                  No fitness plan available. Click "Generate Fitness Plan" to create one!
+                </Typography>
+              )}
+            </CardContent>
+          </Card>
+
         </Box>
       </Container>
       <Footer />
