@@ -1,0 +1,18 @@
+.react-chatbot-kit-chat-bot-message {
+    background-color: orange;
+}
+.react-chatbot-kit-chat-bot-message-arrow {
+    border-right: 8px solid orange;
+}
+.react-chatbot-kit-chat-btn-send {
+    background-color: orange;
+}
+.A {
+    background-color: lightgrey;
+    width: 40px;
+    height: 40px;
+    display: grid;
+    place-items: center;
+    color: white;
+    border-radius: 100%;
+}

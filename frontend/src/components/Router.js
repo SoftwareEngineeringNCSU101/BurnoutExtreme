@@ -1,5 +1,5 @@
-import React, { useReducer } from "react";
-import { Switch, Route } from "react-router-dom";
+import React, { useReducer, useEffect } from "react";
+import { Switch, Route, Redirect } from "react-router-dom";
 import SignUp from "./authentication/SignUp";
 import SignIn from "./authentication/SignIn";
 import ContactUs from "./ContactUs";
@@ -26,6 +26,8 @@ const initialState = {
 function Router() {
   const { getToken, token } = useToken();
   const [state, dispatch] = useReducer(burnoutReducer, initialState);
+
+  // Check token and update login state if not already logged in
   if (!state.loggedIn) {
     let loggedInUserJWTtoken = getToken();
     if (loggedInUserJWTtoken) {

@@ -3,7 +3,7 @@ import UserCaloriesPage from './UserCaloriesPage';
 function Home(props) {
   return (
     <div className="Home">
-        <UserCaloriesPage {...props}/>
+        <UserCaloriesPage {...props} />
     </div>
   );
 }

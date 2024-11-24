@@ -19,6 +19,7 @@ import { useHistory } from "react-router-dom";
 import { updateState } from "../../burnoutReducer";
 import { useGoogleLogin } from '@react-oauth/google';
 
+
 function SignIn(props) {
   const history = useHistory();
   const defaultTheme = createTheme();
@@ -30,8 +31,7 @@ function SignIn(props) {
   const { saveToken } = useToken();
 
   function logMeIn(event) {
-    console.log(loginForm.email);
-    console.log(loginForm.password);
+    event.preventDefault();
 
     axios({
       method: "POST",
@@ -42,7 +42,6 @@ function SignIn(props) {
       },
     })
       .then((response) => {
-        console.log(response.data.message);
         let logInState = {
           loggedIn: true,
           token: response.data.access_token,
@@ -63,8 +62,6 @@ function SignIn(props) {
       email: "",
       password: "",
     });
-
-    event.preventDefault();
   }
 
   function handleChange(event) {

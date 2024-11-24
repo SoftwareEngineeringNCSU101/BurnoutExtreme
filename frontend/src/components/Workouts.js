@@ -12,7 +12,7 @@ import {
 import Footer from './Footer'
 import WorkoutDisplay from './WorkoutDisplay'
 import WorkoutForm from './WorkoutForm'
-import { DAYSOFWEEK, workoutTitles } from '../constants/DaysOfWeek'
+import { DAYSOFWEEK } from '../constants/DaysOfWeek'
 import headerImage from '../images/header.webp'
 import { useTheme } from './ThemeContext';
 
