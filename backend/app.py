@@ -8,8 +8,8 @@ load_dotenv()
 
 
 class App:
-    def _init_(self):
-        self.app = Flask(_name_)
+    def __init__(self):
+        self.app = Flask(__name__)
         CORS(self.app)
         self.app.secret_key = 'secret'
         self.app.config['MONGO_URI'] = os.getenv('MONGODB_URI')

@@ -716,6 +716,7 @@ def createFood():
     data = request.get_json()  # get data from POST request
     foodName = data['foodName']
     calories = data['calories']
+    
     try:
         # Insert data into MongoDB
         mongo.food.insert_one({'food': foodName, "calories": calories})
@@ -1277,3 +1278,123 @@ def deleteSchedule(selected_day, workout_title):
 
     except Exception as e:
         return jsonify({"status": "Error", "message": str(e)}), 500
+
+
+# Added today
+
+from datetime import datetime
+
+
+@api.route('/track-weight', methods=['POST'])  # pragma: no cover
+@jwt_required()
+def track_weight():
+    """
+    Record weekly weight
+
+    This endpoint allows an authenticated user to log their weight for a given week.
+
+    ---
+    tags:
+      - Weight Tracker
+    parameters:
+      - in: body
+        name: data
+        description: Data containing the weight information
+        required: true
+        schema:
+          type: object
+          properties:
+            weight:
+              type: number
+              description: The user's current weight
+            week:
+              type: string
+              description: The week for which the weight is recorded (e.g., "2024-W47")
+            targetWeight:
+              type: number
+              description: The user's target weight
+        example:
+          weight: 75.0
+          week: "2024-W47"
+          targetWeight: 70.0
+    security:
+      - JWT: []
+    responses:
+      200:
+        description: Weight recorded successfully
+        schema:
+          type: object
+          properties:
+            status:
+              type: string
+              example: "Weight recorded successfully"
+      500:
+        description: An error occurred while recording the weight
+    """
+    data = request.get_json()  # Get data from POST request
+    current_user = get_jwt_identity()
+    try:
+        # Insert or update weight tracking information
+        mongo.weight_tracker.update_one(
+            {
+                "email": current_user,
+                "week": data['week']
+            },
+            {
+                "$set": {
+                    "weight": data['weight'],
+                    "targetWeight": data['targetWeight'],
+                    "dateUpdated": datetime.utcnow()
+                }
+            },
+            upsert=True
+        )
+        response = {"status": "Weight recorded successfully"}
+    except Exception as e:
+        response = {"status": "Error", "message": str(e)}
+
+    return jsonify(response)
+
+
+@api.route('/get-weight-tracker', methods=['GET'])  # pragma: no cover
+@jwt_required()
+def get_weight_tracker():
+    """
+    Retrieve weight tracking history
+
+    This endpoint allows an authenticated user to retrieve their weekly weight tracking history.
+
+    ---
+    tags:
+      - Weight Tracker
+    responses:
+      200:
+        description: A list of weight tracking records
+        schema:
+          type: array
+          items:
+            type: object
+            properties:
+              week:
+                type: string
+              weight:
+                type: number
+              targetWeight:
+                type: number
+              progress:
+                type: string
+                description: Progress towards the target weight
+      404:
+        description: No weight records found
+    """
+    current_user = get_jwt_identity()
+    weight_records = list(mongo.weight_tracker.find({"email": current_user}))
+    if weight_records:
+        for record in weight_records:
+            record["_id"] = str(record["_id"])  # Convert ObjectId to string
+            progress = round((record["weight"] - record["targetWeight"]), 2)
+            record["progress"] = f"{progress} kg from target"
+        return jsonify(weight_records)
+    else:
+        return jsonify({"message": "No weight records found"}), 404
+
