@@ -1,5 +1,8 @@
 import json
 import bcrypt
+import logging
+import requests
+import time
 from flask_pymongo import PyMongo
 from flask import Flask, request, jsonify
 from flask_pymongo import PyMongo
@@ -21,6 +24,8 @@ from bson import json_util
 from pymongo import MongoClient
 from flasgger import Swagger
 import os
+from llama_index.llms.ollama import Ollama  
+from mistralai import Mistral
 
 api = Flask(__name__)
 api.secret_key = 'secret'
@@ -1277,3 +1282,84 @@ def deleteSchedule(selected_day, workout_title):
 
     except Exception as e:
         return jsonify({"status": "Error", "message": str(e)}), 500
+
+
+model= Ollama(model="llama3.2")
+
+@api.route('/chatbot', methods=["POST"])
+def chatbot():
+    """
+    Chatbot
+
+    This endpoint allows the user to chat with the chatbot.
+
+    ---
+    tags:
+      - Chatbot
+    parameters:
+      - name: body
+        in: body
+        required: true
+        schema:
+          type: object
+          properties:
+            message:
+              type: string
+              description: The message sent by the user.
+    responses:
+      200:
+        description: Successfully retrieved the response from the chatbot.
+        schema:
+          type: object
+          properties:
+            response:
+              type: string
+              description: The response from the chatbot.
+        example:
+          {
+            "response": "Hello! How can I help you today?"
+          }
+      500:
+        description: An error occurred while processing the chatbot message.
+    """
+    data = request.get_json()
+    question= data.get('question')
+    answer = get_model_response(question)
+
+    return jsonify({"answer": answer})
+
+logging.basicConfig(level=logging.ERROR)
+
+def get_model_response(question):
+    attempts = 3
+    for attempt in range(attempts):
+        try:
+            modified_prompt = "Answer concisely by default. " + question
+            result = model.complete(modified_prompt)
+            print(result) 
+
+            if hasattr(result, 'text'):
+                return result.text.strip()
+            else:
+                return str(result).strip()
+
+        except requests.exceptions.Timeout:
+            logging.error("Timeout error occurred. Retrying...")
+            if attempt < attempts - 1:
+                time.sleep(2)  
+            else:
+                return "Error: Request timed out. Please try again later."
+
+        except requests.exceptions.ConnectionError:
+            logging.error("Connection error occurred. Retrying...")
+            if attempt < attempts - 1:
+                time.sleep(2) 
+            else:
+                return "Error: Network issue. Please check your connection."
+
+        except Exception as e:
+            logging.error(f"An unexpected error occurred: {str(e)}")
+            if attempt < attempts - 1:
+                time.sleep(2)  
+            else:
+                return f"Error: {str(e)}"
