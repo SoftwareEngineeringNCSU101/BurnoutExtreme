@@ -43,7 +43,12 @@
 
 ![BurnoutExtreme](frontend/public/assets/BurnoutExtreme.gif)
 
-
+---
+### Team 96
+#### Members
+* Dinesh Kannan
+* Harshwardhan Patil
+* Sakshi Phatak
 
 # Table of Contents
 
@@ -73,28 +78,6 @@
 Are you determined to achieve your dream physique? Desiring to take charge of your health? Looking for a platform that offers everything from calorie counting to enrolling in exciting fitness events? Welcome to **BurnoutExtreme** – the only health and fitness companion you'll ever need.
 
 ---
-
-## 🚀What's New?
-
-### New and Improved Features!
-
-- **🗺️ Google Maps Integration for Events**  
-  Easily find and join local fitness events in your area. Discover meet-ups, classes, and other events happening near you with integrated Google Maps functionality.
-
-- **🎨 Personalized Themes**  
-  Customize BurnoutExtreme with a variety of themes, including dark mode, minimalist, or vibrant options to match your personal style.
-
-- **🏋️‍♂️ Custom Workout Plans**  
-  Personalize your fitness journey with custom workout routines tailored to your goals. Includes a built-in calendar to keep you on schedule and motivated.
-
-- **🍲 Enhanced Diet Tracker**  
-  Track your nutrition more effectively! Our improved diet tracker records the calorie count of each ingredient in your meals, helping you stay within daily goals.
-
-- **📈 Advanced Activity Monitoring**  
-  Track real-time data on steps, calories burned, and workout intensity, providing deep insights to keep you motivated.
-
----
-
 ## 💡 Why Choose BurnoutExtreme?
 
 - **📊 Comprehensive Tracking**: From what you eat to how much you burn, monitor everything in one place. Our app integrates **diet tracking** and **activity tracking**, allowing you to see a complete picture of your health journey.
@@ -116,10 +99,7 @@ Are you determined to achieve your dream physique? Desiring to take charge of yo
 - **📍 Event Mapping**: Our Google Maps integration enhances your experience by providing detailed information about fitness events. Find nearby activities, view routes, and explore new locations, making every event an adventure.
 
 In today's fast-paced world, maintaining health is a challenge. But with the right tools and community, this challenge becomes an enjoyable journey. And BurnoutExtreme is here to make sure of that.
-
-
 ---
-
 ## 🌟 Key Features
 
 - **🍎 Nutrition Made Simple:**
@@ -146,6 +126,35 @@ In today's fast-paced world, maintaining health is a challenge. But with the rig
 So, are you ready to take the leap towards a healthier, happier you? Dive into **BurnoutExtreme** now and elevate your fitness game!
 
 🔥 _Because it's not just about burning calories; it's about burning doubts, burning procrastination, and lighting up confidence!_ 🔥
+---
+
+## What existed 
+As version i-1, forked this repo from this [link](https://github.com/Software-Engineering-2024-Group/BurnoutExtreme)
+
+- **🗺️ Google Maps Integration for Events**  
+  Easily find and join local fitness events in your area. Discover meet-ups, classes, and other events happening near you with integrated Google Maps functionality.
+
+- **🎨 Personalized Themes**  
+  Customize BurnoutExtreme with a variety of themes, including dark mode, minimalist, or vibrant options to match your personal style.
+
+- **🏋️‍♂️ Custom Workout Plans**  
+  Personalize your fitness journey with custom workout routines tailored to your goals. Includes a built-in calendar to keep you on schedule and motivated.
+
+- **🍲 Enhanced Diet Tracker**  
+  Track your nutrition more effectively! Our improved diet tracker records the calorie count of each ingredient in your meals, helping you stay within daily goals.
+
+- **📈 Advanced Activity Monitoring**  
+  Track real-time data on steps, calories burned, and workout intensity, providing deep insights to keep you motivated.
+
+---
+
+## 🚀What's New?
+This version enhanced and built on the previous version, making it more interesting and easier to use! 
+Here's what we added in this release.
+
+1.  Mobile Support: Now the application has Fully optimized interface for seamless use across all devices, ensuring users can access their fitness journey anywhere.
+2.  A fitness companion as a chatbot.
+3.  Generating fitness and diet plan based on the user
 
 ---
 
@@ -239,6 +248,9 @@ Step 5:
 Open the URL in your browser:  
  http://127.0.0.1:3000
 
+#### Note
+- Additionally, to utilize the chatbot and for generating fitness plan, you need to have [Ollama](https://ollama.com/library/llama3.2) (with llama 3.2 Model) running locally on your machine. 
+
 ---
 ## Bug Fixes
 
@@ -331,6 +343,34 @@ The BurnoutExtreme application can be extended with the following features:
   <table>
     <tr>
       <td align="center">
+        <a href="https://github.com/dineshkannan010">
+          <img src="https://avatars.githubusercontent.com/u/55702844?v=4" width="100px;" alt="Dinesh kannan"/><br />
+          <sub><b>Dinesh Kannan</b></sub>
+        </a><br />
+      </td>
+      <td align="center">
+        <a href="https://github.com/Harshvardhan14">
+          <img src="https://avatars.githubusercontent.com/u/59688282?v=4" width="100px;" alt="Harshvardhan  Patil"/><br />
+          <sub><b>Harshvardhan Patil</b></sub>
+        </a><br />
+      </td>
+      <td align="center">
+        <a href="https://github.com/SakshiPhatak">
+          <img src="https://avatars.githubusercontent.com/u/70831926?v=4" width="100px;" alt="Sakshi Phatak"/><br />
+          <sub><b>Sakshi Phatak</b></sub>
+        </a><br />
+      </td>
+    </tr>
+  </table>
+</center>
+
+## 🌟 Previous Team Contributors
+
+<center>
+  <center>
+  <table>
+    <tr>
+      <td align="center">
         <a href="https://github.com/SoundaryaKhanapur">
           <img src="https://avatars.githubusercontent.com/u/36791174?v=4" width="100px;" alt="Soundarya Khanapur"/><br />
           <sub><b>Soundarya Khanapur</b></sub>
@@ -352,38 +392,6 @@ The BurnoutExtreme application can be extended with the following features:
   </table>
 </center>
 
-## 🌟 Previous Team Contributors
-
-<center>
-  <table>
-    <tr>
-      <td align="center">
-        <a href="https://github.com/aiyer786">
-          <img src="https://avatars.githubusercontent.com/u/60314222?s=400&u=0984f88aeb3a9c30f4ec8145176134e626843fd5&v=4" width="100px;" alt="Aditya Iyer"/><br />
-          <sub><b>Aditya Iyer</b></sub>
-        </a><br />
-      </td>
-      <td align="center">
-        <a href="https://github.com/aditikilledar">
-          <img src="https://avatars.githubusercontent.com/u/73051765?v=4" width="100px;" alt="Aditi Killedar"/><br />
-          <sub><b>Aditi Killedar</b></sub>
-        </a>
-      </td>
-      <td align="center">
-        <a href="https://github.com/shashank-madan">
-          <img src="https://avatars.githubusercontent.com/u/52149707?s=80&v=4" width="100px;" alt="Shashank Madan"/><br />
-          <sub><b>Shashank Madan</b></sub>
-        </a><br />
-      </td>
-      <td align="center">
-        <a href="https://github.com/srina1h">
-          <img src="https://avatars.githubusercontent.com/u/47570142?v=4" width="100px;" alt="Srinath Srinivasan"/><br />
-          <sub><b>Srinath Srinivasan</b></sub>
-        </a><br />
-      </td>
-    </tr>
-  </table>
-</center>
 
 ## 🤝Contribution
 
