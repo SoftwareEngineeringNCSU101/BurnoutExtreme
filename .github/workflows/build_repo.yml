@@ -3,6 +3,7 @@ on:
   push:
     branches:
       - main
+      - dkannan
   pull_request:
     branches:
       - main

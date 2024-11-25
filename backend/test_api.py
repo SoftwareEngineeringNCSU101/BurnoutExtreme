@@ -2,17 +2,27 @@ import unittest
 from base import api, setup_mongo_client
 from unittest.mock import patch, Mock
 from flask import request
-
+from flask_jwt_extended import create_access_token
 
 class APITestCase(unittest.TestCase):
 
     def setUp(self):
         self.app = api
         self.app.config['TESTING'] = True
+        self.app_context = self.app.app_context()
+        self.app_context.push()
+        self.request_context = self.app.test_request_context()
+        self.request_context.push()
         # Set up the mongo client after changing the TESTING flag
         setup_mongo_client(self.app)
         self.client = self.app.test_client()
+        self.jwt_token = "test_jwt_token"
         print("Using MongoDB client:", type(self.app.mongo_client))
+
+    def tearDown(self):
+        # Pop the contexts after tests
+        self.request_context.pop()
+        self.app_context.pop()
 
     def test_get_events(self):
         # Create a mock collection
@@ -276,6 +286,58 @@ class APITestCase(unittest.TestCase):
 
         self.assertEqual(response.status_code, 401)
 
+    def test_chatbot_valid_question(self):
+        app_client = api.test_client()
+        response = app_client.post('/chatbot', json={'question': 'What are some benefits of exercise?'})
+        
+        data = response.get_json()
+        self.assertEqual(response.status_code, 200)
+        self.assertIn('answer', data)
+        self.assertNotEqual(data['answer'], "")
+
+    def test_logout(self):
+        app_client = api.test_client()
+        response = app_client.post('/logout', headers={"Authorization": f"Bearer {self.jwt_token}"})
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.json, {"msg": "logout successful"})
+
+    def test_register_success(self):
+        app_client = api.test_client()
+        response = app_client.post('/register', json={
+            'email': 'test@example.com',
+            'password': 'testpassword',
+            'firstName': 'Test',
+            'lastName': 'User'
+        })
+        self.assertEqual(response.status_code, 200)
+        self.assertIn(b'register successful', response.data)
+
+    def test_logout_success(self):
+        app_client = api.test_client()
+        response = app_client.post('/logout')
+        self.assertEqual(response.status_code, 200)
+        self.assertIn(b'logout successful', response.data)
+
+    @patch('base.get_jwt_identity')  # Mock JWT identity
+    def test_get_fitness_plan_not_found(self, mock_get_jwt_identity):
+        app_client = api.test_client()
+        db = self.app.mongo_client['test']
+        collection = db['users']
+        mock_get_jwt_identity.return_value = 'user@example.com'
+        
+        # Mock the database call to return None (user not found)
+        collection.find_one = Mock(return_value=None) 
+
+        
+        token = create_access_token(identity='user@example.com')
+
+        response = app_client.get('/getFitnessPlan', headers={"Authorization": f"Bearer {token}"})
+
+        # Assert
+        self.assertEqual(response.status_code, 404)
+        self.assertEqual(response.json['status'], "Not Found")
+        self.assertIn("message", response.json)
+        
 
 if __name__ == "__main__":
     unittest.main()

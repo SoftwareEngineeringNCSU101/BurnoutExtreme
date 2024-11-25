@@ -1318,7 +1318,7 @@ def generateFitnessPlan():
     try:
         current_user = get_jwt_identity()
         user_data = mongo.user.find_one({"email": current_user})
-        print(user_data)
+        print("User Data:", user_data)
 
         if user_data:
             fitness_plan = generate_fitness_plan(user_data)
