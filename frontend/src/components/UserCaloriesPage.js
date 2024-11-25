@@ -72,6 +72,8 @@ function UserCaloriesPage(props) {
   
   const [weightHistory, setWeightHistory] = useState([]);  // State to store all weight data
   const [weekWeightHistory, setWeekWeightHistory] = useState([]);  // State to store the weekly weight data
+  const [weightHistoryWithChange, setWeightHistoryWithChange] = useState([]); // State to store weight data with changes
+
 
   const [reloadTodayData, setReloadTodayData] = useState(false);
   const toggleTodayUpdate = () => {
@@ -149,6 +151,41 @@ function UserCaloriesPage(props) {
 
     // ADDED TODAY
 
+    // axios({
+    //   method: "POST",
+    //   url: "/weightHistory",
+    //   headers: {
+    //     Authorization: "Bearer " + props.state.token,
+    //   },
+    //   data: {
+    //     todayDate: dayjs().format("MM/DD/YYYY"),
+    //   },
+    // })
+    //   .then((response) => {
+    //     const res = response.data;
+    //     setWeightHistory(res.sort((a, b) => b.dayIndex - a.dayIndex));
+    //     let weekData = [];
+    //     for (let i = -3; i <= 3; i++) {
+    //       const date = dayjs().add(i, "day").format("YYYY-MM-DD");
+    //       const dataForDay = res.find(
+    //         (d) => dayjs(d.date).format("YYYY-MM-DD") === date
+    //       );
+    
+    //       weekData.push({
+    //         date: date,
+    //         weight: dataForDay ? dataForDay.weight : 0,
+    //       });
+    //     }
+    //     setWeekWeightHistory(weekData);
+    //   })
+    //   .catch((error) => {
+    //     if (error.response) {
+    //       console.log(error.response);
+    //       console.log(error.response.status);
+    //       console.log(error.response.headers);
+    //     }
+    //   });    
+
     axios({
       method: "POST",
       url: "/weightHistory",
@@ -161,28 +198,29 @@ function UserCaloriesPage(props) {
     })
       .then((response) => {
         const res = response.data;
-        setWeightHistory(res.sort((a, b) => b.dayIndex - a.dayIndex));
-        let weekData = [];
-        for (let i = -3; i <= 3; i++) {
-          const date = dayjs().add(i, "day").format("YYYY-MM-DD");
-          const dataForDay = res.find(
-            (d) => dayjs(d.date).format("YYYY-MM-DD") === date
-          );
     
-          weekData.push({
-            date: date,
-            weight: dataForDay ? dataForDay.weight : 0,
-          });
-        }
-        setWeekWeightHistory(weekData);
+        // Sort data by date in ascending order (oldest first)
+        const sortedData = res.sort((a, b) => new Date(a.date) - new Date(b.date));
+        setWeightHistory(sortedData);
+    
+        // Compute weight changes
+        const historyWithChange = sortedData.map((entry, index) => {
+          const previousEntry = index > 0 ? sortedData[index - 1] : null; // Get previous day data
+          const weightChange = previousEntry
+            ? entry.weight - previousEntry.weight
+            : 0; // Calculate change if previous data exists
+          return { ...entry, weightChange };
+        });
+    
+        setWeightHistoryWithChange(historyWithChange); // Update the state
       })
       .catch((error) => {
         if (error.response) {
-          console.log(error.response);
-          console.log(error.response.status);
-          console.log(error.response.headers);
+          console.error("Error:", error.response);
         }
-      });    
+      });
+    
+    
 
     axios({
       method: "GET",
@@ -709,7 +747,7 @@ function UserCaloriesPage(props) {
 
           <Card sx={{ gridArea: "week" }} elevation={5}>
             <CardHeader
-              title="Weekly Stats"
+              title="Weekly Weight Stats"
               subheader="Track your performance over the last week"
               avatar={<TimelineIcon />}
               sx={{
@@ -733,66 +771,106 @@ function UserCaloriesPage(props) {
             >
               <ResponsiveContainer width="100%" height={300}> 
               <LineChart
-                  data={weightHistory} // Example: [{ date: '2024-11-01', weight: 180 }, ...]
-                  margin={{
-                    top: 5,
-                    right: 20,
-                    left: 0,
-                    bottom: 5,
+                data={weightHistoryWithChange} // Data with weight and weightChange
+                margin={{
+                  top: 10,
+                  right: 50, // Extra space for the secondary Y-axis labels
+                  left: 20,
+                  bottom: 10,
+                }}
+              >
+                {/* Grid */}
+                <CartesianGrid strokeDasharray="3 3" stroke="#e0e0e0" />
+                
+                {/* X-Axis */}
+                <XAxis
+                  dataKey="date"
+                  tick={{ fontSize: 12 }}
+                  angle={-45}
+                  textAnchor="end"
+                  height={60}
+                  label={{
+                    value: "Date",
+                    position: "insideBottom",
+                    offset: -10,
+                    fontSize: 14,
                   }}
-                >
-                  <CartesianGrid strokeDasharray="3 3" stroke="#e0e0e0" />
-                  <XAxis
-                    dataKey="date"
-                    tick={{ fontSize: 12 }}
-                    angle={-45}
-                    textAnchor="end"
-                    height={60}
-                    interval={0}
-                    label={{
-                      value: "Date",
-                      position: "insideBottom",
-                      offset: -10,
-                      fontSize: 14,
-                    }}
-                  />
-                  <YAxis
-                    tick={{ fontSize: 12 }}
-                    width={40}
-                    label={{
-                      value: "Weight (lbs)",
-                      angle: -90,
-                      position: "insideLeft",
-                      fontSize: 14,
-                    }}
-                  />
-                  <Tooltip
-                    contentStyle={{
-                      backgroundColor: "rgba(255, 255, 255, 0.9)",
-                      border: "1px solid #ccc",
-                      borderRadius: "4px",
-                      fontSize: "12px",
-                    }}
-                    formatter={(value) => `${value} lbs`}
-                  />
-                  <Legend
-                    verticalAlign="top"
-                    height={36}
-                    wrapperStyle={{
-                      paddingTop: "10px",
-                      fontSize: "12px",
-                    }}
-                  />
-                  <Line
-                    type="monotone"
-                    dataKey="weight"
-                    stroke="#2196f3"
-                    name="Weight"
-                    strokeWidth={2}
-                    dot={{ r: 3 }}
-                    activeDot={{ r: 6 }}
-                  />
-                </LineChart>
+                />
+                
+                {/* Left Y-Axis (for Weight) */}
+                <YAxis
+                  tick={{ fontSize: 12 }}
+                  width={40}
+                  label={{
+                    value: "Weight (lbs)",
+                    angle: -90,
+                    position: "insideLeft",
+                    fontSize: 14,
+                  }}
+                />
+
+                {/* Right Y-Axis (for Weight Change) */}
+                <YAxis
+                  yAxisId="right"
+                  orientation="right"
+                  tick={{ fontSize: 12 }}
+                  width={40}
+                  label={{
+                    value: "Change in Weight (lbs)",
+                    angle: 90,
+                    position: "insideRight",
+                    fontSize: 14,
+                  }}
+                />
+                
+                {/* Tooltip */}
+                <Tooltip
+                  contentStyle={{
+                    backgroundColor: "rgba(255, 255, 255, 0.9)",
+                    border: "1px solid #ccc",
+                    borderRadius: "4px",
+                    fontSize: "12px",
+                  }}
+                  formatter={(value, name) =>
+                    name === "Weight"
+                      ? `${value} lbs`
+                      : `${value > 0 ? "+" : ""}${value} lbs`
+                  }
+                />
+                
+                {/* Legend */}
+                <Legend
+                  verticalAlign="top"
+                  height={36}
+                  wrapperStyle={{
+                    paddingTop: "10px",
+                    fontSize: "12px",
+                  }}
+                />
+
+                {/* Line for Weight */}
+                <Line
+                  type="monotone"
+                  dataKey="weight"
+                  stroke="#2196f3"
+                  name="Weight"
+                  strokeWidth={2}
+                  dot={{ r: 3 }}
+                  activeDot={{ r: 6 }}
+                />
+
+                {/* Line for Weight Change (Uses Right Y-Axis) */}
+                <Line
+                  type="monotone"
+                  dataKey="weightChange"
+                  stroke="#ff5722"
+                  name="Change in Weight"
+                  strokeWidth={2}
+                  yAxisId="right" // Bind to the right Y-axis
+                  dot={{ r: 3 }}
+                  activeDot={{ r: 6 }}
+                />
+              </LineChart>
 
                 <LineChart
                   data={weekHistory}
