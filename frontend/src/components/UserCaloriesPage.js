@@ -248,8 +248,6 @@ function UserCaloriesPage(props) {
         }
       });
   };
-  console.log(todayCaloriesBurned)
-  console.log(todayCaloriesConsumed)
 
   const history = useHistory();
 
@@ -283,7 +281,7 @@ const handleUnenroll = (eventName) => {
 
   return (
     <>
-      <Container maxWidth>
+      <Container maxWidth="lg">
         <Box
           sx={{
             display: "grid",

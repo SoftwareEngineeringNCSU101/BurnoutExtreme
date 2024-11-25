@@ -33,7 +33,6 @@ const ActivityTracker = () => {
         });
 
         const data = await response.json();
-        console.log(data);
 
         // Update activity data state
         setActivityData([...activityData, data]);

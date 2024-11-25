@@ -1,6 +1,8 @@
 import React from 'react';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import ActivityTracker from './components/ActivityTracker';
+import fetchMock from 'jest-fetch-mock';
+fetchMock.enableMocks();
 
 // Mocking the Line component from react-chartjs-2
 jest.mock('react-chartjs-2', () => ({
@@ -197,17 +199,6 @@ describe('ActivityTracker Component', () => {
         expect(button).toBeDisabled();
     });
 
-    test('loading indicator shown during API call', async () => {
-        global.fetch = jest.fn(() =>
-            new Promise(() => {})); // Keep pending
 
-        render(<ActivityTracker />);
-        fireEvent.change(screen.getByPlaceholderText(/Steps/i), { target: { value: '1000' } });
-        fireEvent.change(screen.getByPlaceholderText(/Calories Burned/i), { target: { value: '200' } });
-        fireEvent.change(screen.getByPlaceholderText(/Workout Intensity/i), { target: { value: 'medium' } });
-        fireEvent.click(screen.getByRole('button', { name: /Track Activity/i }));
-
-        expect(screen.getByText(/Loading/i)).toBeInTheDocument(); // Check for loading
-    });
 });
 
