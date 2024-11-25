@@ -98,7 +98,6 @@ Are you determined to achieve your dream physique? Desiring to take charge of yo
 
 - **📍 Event Mapping**: Our Google Maps integration enhances your experience by providing detailed information about fitness events. Find nearby activities, view routes, and explore new locations, making every event an adventure.
 
-In today's fast-paced world, maintaining health is a challenge. But with the right tools and community, this challenge becomes an enjoyable journey. And BurnoutExtreme is here to make sure of that.
 ---
 ## 🌟 Key Features
 
