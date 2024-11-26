@@ -680,6 +680,66 @@ def addUserBurnedCalories():  # pragma: no cover
     return jsonify(response), statusCode
 
 
+@api.route('/addWeight', methods=["POST"])
+@jwt_required()
+def addUserWeight():  # pragma: no cover
+    """
+    Add user's weight
+
+    This endpoint allows an authenticated user to add their weight for a specific date.
+
+    ---
+    tags:
+      - User
+    security:
+      - JWT: []
+    parameters:
+      - name: body
+        in: body
+        required: true
+        schema:
+          type: object
+          properties:
+            weightDate:
+              type: string
+              format: date
+              description: The date for the weight entry.
+            todaysWeight:
+              type: number
+              description: The user's weight on the specified date.
+    responses:
+      200:
+        description: Weight data saved successfully.
+        schema:
+          type: object
+        example:
+          {
+            "status": "Data saved successfully"
+          }
+      401:
+        description: Unauthorized. User must be logged in to add weight data.
+      500:
+        description: An error occurred while saving the weight data.
+    """
+    data = request.get_json()  # get data from POST request
+    print(data)
+    current_user = get_jwt_identity()
+    try:
+        # Insert or update weight data into MongoDB
+        mongo.user.update_one(
+            {'email': current_user, "weightDate": data['weightDate']},
+            {"$set": {"weight": float(data["todaysWeight"])}},
+            upsert=True
+        )
+        response = {"status": "Data saved successfully"}
+        statusCode = 200
+    except Exception as e:
+        response = {"status": "Error", "message": str(e)}
+        statusCode = 500
+    return jsonify(response), statusCode
+
+
+
 @api.route('/createFood', methods=["POST"])
 def createFood():
     """
@@ -722,6 +782,7 @@ def createFood():
     data = request.get_json()  # get data from POST request
     foodName = data['foodName']
     calories = data['calories']
+    
     try:
         # Insert data into MongoDB
         mongo.food.insert_one({'food': foodName, "calories": calories})
@@ -943,6 +1004,8 @@ def getWeekHistory():  # pragma: no cover
             res = {}
             data = mongo.user.find_one(
                 {'email': current_user, "consumedDate": dateToFind})
+            if data:
+              print(data)
             res["dayIndex"] = index
             res["date"] = dateToFind
             if data:
@@ -967,7 +1030,105 @@ def getWeekHistory():  # pragma: no cover
     except Exception as e:
         response = {"status": "Error", "message": str(e)}
         statusCode = 500
+    print("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&")
+    print(result[0])
     return jsonify(response), statusCode
+
+
+@api.route('/weightHistory', methods=["POST"])
+@jwt_required()
+def getWeightHistory():  # pragma: no cover
+    """
+    Get user's weekly weight history
+
+    This endpoint allows an authenticated user to retrieve their weight history for the past week.
+
+    ---
+    tags:
+      - User
+    security:
+      - JWT: []
+    parameters:
+      - name: body
+        in: body
+        required: true
+        schema:
+          type: object
+          properties:
+            todayDate:
+              type: string
+              format: date
+              description: The date for the end of the week (today's date).
+    responses:
+      200:
+        description: Successfully retrieved the user's weekly weight history.
+        schema:
+          type: array
+          items:
+            type: object
+            properties:
+              dayIndex:
+                type: integer
+                description: Integer from 0 to 6 representing the day index.
+              date:
+                type: string
+                format: date
+                description: The date for each day in the week.
+              weight:
+                type: number
+                description: The user's weight on that day.
+        example:
+          [
+            {
+              "dayIndex": 0,
+              "date": "10/13/2023",
+              "weight": 180
+            },
+            {
+              "dayIndex": 1,
+              "date": "10/12/2023",
+              "weight": 179
+            },
+            ...
+          ]
+      401:
+        description: Unauthorized. User must be logged in to retrieve weekly history.
+      500:
+        description: An error occurred while retrieving the user's weekly weight history.
+    """
+    data = request.get_json()  # get data from POST request
+    current_user = get_jwt_identity()
+    todayDate = datetime.strptime(data["todayDate"], "%m/%d/%Y")
+    dates = [(todayDate - timedelta(days=x)).strftime("%m/%d/%Y")
+             for x in range(7)]
+    result = []
+    try:
+        for index, dateToFind in enumerate(dates):
+            # Every day's res item should look like this:
+            # {
+            #   dayIndex: 0,              # Integer from 0-6
+            #   date: "10/13/2023",       # Date 0=today, 6=7th day ago from today
+            #   weight: 180               # The weight recorded on that day
+            # }
+            res = {}
+            data = mongo.user.find_one(
+                {'email': current_user, "weightDate": dateToFind})
+            if data:
+                res["dayIndex"] = index
+                res["date"] = dateToFind
+                res["weight"] = data.get("weight", 0)  # Get the weight, default to 0 if not available
+            else:
+                res["dayIndex"] = index
+                res["date"] = dateToFind
+                res["weight"] = 0  # Default value if no data found for the day
+            result.append(res)
+        response = result
+        statusCode = 200
+    except Exception as e:
+        response = {"status": "Error", "message": str(e)}
+        statusCode = 500
+    return jsonify(response), statusCode
+
 
 
 @api.route("/myMeals", methods=["GET"])
@@ -1495,3 +1656,123 @@ def get_model_response(question):
                 time.sleep(2)  
             else:
                 return f"Error: {str(e)}"
+
+
+# Added today
+
+from datetime import datetime
+
+
+@api.route('/track-weight', methods=['POST'])  # pragma: no cover
+@jwt_required()
+def track_weight():
+    """
+    Record weekly weight
+
+    This endpoint allows an authenticated user to log their weight for a given week.
+
+    ---
+    tags:
+      - Weight Tracker
+    parameters:
+      - in: body
+        name: data
+        description: Data containing the weight information
+        required: true
+        schema:
+          type: object
+          properties:
+            weight:
+              type: number
+              description: The user's current weight
+            week:
+              type: string
+              description: The week for which the weight is recorded (e.g., "2024-W47")
+            targetWeight:
+              type: number
+              description: The user's target weight
+        example:
+          weight: 75.0
+          week: "2024-W47"
+          targetWeight: 70.0
+    security:
+      - JWT: []
+    responses:
+      200:
+        description: Weight recorded successfully
+        schema:
+          type: object
+          properties:
+            status:
+              type: string
+              example: "Weight recorded successfully"
+      500:
+        description: An error occurred while recording the weight
+    """
+    data = request.get_json()  # Get data from POST request
+    current_user = get_jwt_identity()
+    try:
+        # Insert or update weight tracking information
+        mongo.weight_tracker.update_one(
+            {
+                "email": current_user,
+                "week": data['week']
+            },
+            {
+                "$set": {
+                    "weight": data['weight'],
+                    "targetWeight": data['targetWeight'],
+                    "dateUpdated": datetime.utcnow()
+                }
+            },
+            upsert=True
+        )
+        response = {"status": "Weight recorded successfully"}
+    except Exception as e:
+        response = {"status": "Error", "message": str(e)}
+
+    return jsonify(response)
+
+
+@api.route('/get-weight-tracker', methods=['GET'])  # pragma: no cover
+@jwt_required()
+def get_weight_tracker():
+    """
+    Retrieve weight tracking history
+
+    This endpoint allows an authenticated user to retrieve their weekly weight tracking history.
+
+    ---
+    tags:
+      - Weight Tracker
+    responses:
+      200:
+        description: A list of weight tracking records
+        schema:
+          type: array
+          items:
+            type: object
+            properties:
+              week:
+                type: string
+              weight:
+                type: number
+              targetWeight:
+                type: number
+              progress:
+                type: string
+                description: Progress towards the target weight
+      404:
+        description: No weight records found
+    """
+    current_user = get_jwt_identity()
+    weight_records = list(mongo.weight_tracker.find({"email": current_user}))
+    if weight_records:
+        for record in weight_records:
+            record["_id"] = str(record["_id"])  # Convert ObjectId to string
+            progress = round((record["weight"] - record["targetWeight"]), 2)
+            record["progress"] = f"{progress} kg from target"
+        return jsonify(weight_records)
+    else:
+        return jsonify({"message": "No weight records found"}), 404
+
