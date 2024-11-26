@@ -8,7 +8,7 @@
   <p align="center">
     Your daily health companion 🏃‍♀️
     <br />
-    <a href="https://github.com/Software-Engineering-2024-Group/BurnoutExtreme/blob/master/backend/html/backend/index.html"><strong>Explore the API docs »</strong></a>
+    <a href="https://github.com/SoftwareEngineeringNCSU101/BurnoutExtreme/blob/master/backend/html/backend/index.html"><strong>Explore the API docs »</strong></a>
     <br />
     <br />
     <a href="">View Demo</a>
@@ -29,7 +29,7 @@
 [![DOI](https://zenodo.org/badge/878072890.svg)](https://doi.org/10.5281/zenodo.14020325)
 [![made-with-python](https://img.shields.io/badge/Made%20with-Python-1f425f.svg)](https://www.python.org/)
 [![Build Status](https://github.com/Software-Engineering-2024-Group/BurnoutExtreme/actions/workflows/build_repo.yml/badge.svg)](https://github.com/Software-Engineering-2024-Group/BurnoutExtreme/actions/workflows/build_repo.yml)
-[![AutoPep8](https://github.com/Software-Engineering-2024-Group/BurnoutExtreme/actions/workflows/autopep8.yml/badge.svg)](https://github.com/Software-Engineering-2024-Group/BurnoutExtreme/actions/workflows/autopep8.yml)
+[![AutoPep8](https://github.com/SoftwareEngineeringNCSU101/BurnoutExtreme/actions/workflows/autopep8.yml/badge.svg)](https://github.com/SoftwareEngineeringNCSU101/BurnoutExtreme/actions/workflows/autopep8.yml)
 [![PEP8](https://img.shields.io/badge/code%20style-pep8-orange.svg)](https://www.python.org/dev/peps/pep-0008/)
 
 # Developer Documentation
@@ -75,37 +75,48 @@ Before you begin, make sure you have the following installed:
 - [Node.js](https://nodejs.org/en/download)
 - [MongoDB](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-windows)
  
- Step 1: 
-  Git Clone the Repository 
-  
-    git clone https://github.com/aditikilledar/burnout-proj3](https://github.com/Software-Engineering-2024-Group/BurnoutExtreme.git
+ Step 1:
+Git Clone the Repository
+
+    https://github.com/Software-Engineering-2024-Group/BurnoutExtreme.git
 
 Step 2:
-   Ensure mongodb is running and execute the below to populate the tables:
-   Navigate to the backend folder using "cd backend".
+Ensure mongodb is running and execute the below to populate the tables:
+Navigate to the backend folder.
 
-  Once in the backend, run:
-  
+    cd backend
+
+Add the following .env File under the backend folder
+```
+MONGODB_URI='mongodb://localhost:27017/test'
+
+MAIL_USERNAME = "bogusdummy123@gmail.com"
+MAIL_PASSWORD = "helloworld123!"
+```
+Once in the backend, run:
+
     python insert_event_data.py
     python insert_food_data.py
 
- Step 3:
-   Remain in the backend folder and run the following command to start the server:
-    
+Step 3:
+Remain in the backend folder and run the following command to start the server:
+
     pip install -r requirements.txt
     flask run
 
- Step 4:
-   Navigate to the frontend folder and run the below to start the React app:
-    
+Step 4:
+Navigate to the frontend folder and run the below to start the React app:
+
     cd frontend
-    npm install 
+    npm install
     npm start
-    
- Step 5:
-    Open the URL in your browser:  
-      http://127.0.0.1:3000
+
+Step 5:
+Open the URL in your browser:  
+ http://127.0.0.1:3000
       
+#### Note
+- Additionally, to utilize the chatbot and for generating fitness plan, you need to have [Ollama](https://ollama.com/library/llama3.2) (with llama 3.2 Model) running locally on your machine. 
 
 ## Third-Party Dependencies
   
@@ -155,50 +166,41 @@ We fixed many bugs, but here are the most notable ones...
 2. The proxy in the config files were wrong, making it difficult to run the website. Proxy issues were fixed.
 3. UIs fixed
 
-:bulb: **Tip:** More enhancements/fixes can be found here : https://github.com/adi-kiran/burnout-healthgoalsapp/issues
+:bulb: **Tip:** More enhancements/fixes can be found here : https://github.com/SoftwareEngineeringNCSU101/BurnoutExtreme/issues
    
 # Contributors
  <center>
   <table>
     <tr>
-          <td align="center">
-            <a href="https://github.com/SoundaryaKhanapur"
-              ><img
-                src="https://avatars.githubusercontent.com/u/36791174?v=4"
-                width="100px;"
-                alt=""
-              /><br /><sub><b>Soundarya Khanapur</b></sub></a
-            ><br />
-          </td>
-          <td align="center">
-            <a href="https://github.com/mugdhaajoshi"
-              ><img
-                src="https://avatars.githubusercontent.com/u/157236410?v=4"
-                width="100px;"
-                alt=""
-              /><br /><sub><b>Mugdha Joshi</b></sub></a
-            ><br />
-          </td>
-          <td align="center">
-            <a href="https://github.com/Jing27540"
-              ><img
-                src="https://avatars.githubusercontent.com/u/131999715?v=4"
-                width="100px;"
-                alt=""
-              /><br /><sub><b>Jing Huang</b></sub></a
-            ><br />
-          </td>
-        </tr>
+      <td align="center">
+        <a href="https://github.com/dineshkannan010">
+          <img src="https://avatars.githubusercontent.com/u/55702844?v=4" width="100px;" alt="Dinesh kannan"/><br />
+          <sub><b>Dinesh Kannan</b></sub>
+        </a><br />
+      </td>
+      <td align="center">
+        <a href="https://github.com/Harshvardhan14">
+          <img src="https://avatars.githubusercontent.com/u/59688282?v=4" width="100px;" alt="Harshvardhan  Patil"/><br />
+          <sub><b>Harshvardhan Patil</b></sub>
+        </a><br />
+      </td>
+      <td align="center">
+        <a href="https://github.com/SakshiPhatak">
+          <img src="https://avatars.githubusercontent.com/u/70831926?v=4" width="100px;" alt="Sakshi Phatak"/><br />
+          <sub><b>Sakshi Phatak</b></sub>
+        </a><br />
+      </td>
+    </tr>
   </table>
 </center>
 
   # Contribution
   
-  Please refer the [CONTRIBUTING.md](https://github.com/adi-kiran/burnout-healthgoalsapp/blob/main/CONTRIBUTING.md) file for instructions on how to contribute to our repository.
+  Please refer the [CONTRIBUTING.md](https://github.com/SoftwareEngineeringNCSU101/BurnoutExtreme/blob/master/CONTRIBUTING.md) file for instructions on how to contribute to our repository.
 
   # License
   
-  This project is licensed under the MIT License. Please refer to [LICENSE](https://github.com/adi-kiran/burnout-healthgoalsapp/blob/main/LICENSE) for more details.
+  This project is licensed under the MIT License. Please refer to [LICENSE](https://github.com/SoftwareEngineeringNCSU101/BurnoutExtreme/blob/master/LICENSE) for more details.
   
   
 

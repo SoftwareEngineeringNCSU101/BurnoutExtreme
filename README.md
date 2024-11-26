@@ -24,22 +24,20 @@
 </div>
 <br>
 
-[![GitHub license](https://img.shields.io/github/license/Naereen/StrapDown.js.svg)](https://github.com/Naereen/StrapDown.js/blob/master/LICENSE)
+[![GitHub license](https://img.shields.io/github/license/Naereen/StrapDown.js.svg)](https://github.com/SoftwareEngineeringNCSU101/BurnoutExtreme/blob/master/LICENSE)
 [![DOI](https://zenodo.org/badge/878072890.svg)](https://doi.org/10.5281/zenodo.14020325)
 [![made-with-python](https://img.shields.io/badge/Made%20with-Python-1f425f.svg)](https://www.python.org/)
-[![Unit Test Status](https://github.com/Software-Engineering-2024-Group/BurnoutExtreme/actions/workflows/unit_test.yml/badge.svg?branch=master)](https://github.com/Software-Engineering-2024-Group/BurnoutExtreme/actions/workflows/unit_test.yml)
-[![AutoPep8](https://github.com/Software-Engineering-2024-Group/BurnoutExtreme/actions/workflows/autopep8.yml/badge.svg)](https://github.com/Software-Engineering-2024-Group/BurnoutExtreme/actions/workflows/autopep8.yml)
+[![Unit Test Status](https://github.com/SoftwareEngineeringNCSU101/BurnoutExtreme/actions/workflows/unit_test.yml/badge.svg?branch=master)](https://github.com/SoftwareEngineeringNCSU101/BurnoutExtreme/actions/workflows/unit_test.yml)
+[![AutoPep8](https://github.com/SoftwareEngineeringNCSU101/BurnoutExtreme/actions/workflows/autopep8.yml/badge.svg)](https://github.com/SoftwareEngineeringNCSU101/BurnoutExtreme/actions/workflows/autopep8.yml)
 [![PEP8](https://img.shields.io/badge/code%20style-pep8-orange.svg)](https://www.python.org/dev/peps/pep-0008/)
-[![Flake8 Status](https://github.com/Software-Engineering-2024-Group/BurnoutExtreme/workflows/Flake8/badge.svg)](https://github.com/Software-Engineering-2024-Group/BurnoutExtreme/actions)
-[![Repository size](https://img.shields.io/github/repo-size/Software-Engineering-2024-Group/BurnoutExtreme)](https://github.com/Software-Engineering-2024-Group/BurnoutExtreme)
-[![Open Issues](https://img.shields.io/github/issues/Software-Engineering-2024-Group/BurnoutExtreme?color=red&label=Open%20Issues&style=flat-square)](https://github.com/Software-Engineering-2024-Group/BurnoutExtreme/issues?q=is%3Aopen)
-[![Closed Issues](https://img.shields.io/github/issues-closed/Software-Engineering-2024-Group/BurnoutExtreme?color=success&label=Closed%20Issues&style=flat-square)](https://github.com/Software-Engineering-2024-Group/BurnoutExtreme/issues?q=is%3Aissue+is%3Aclosed)
-[![Closed Pull Requests](https://img.shields.io/badge/Closed%20PRs-19-success?style=flat-square)](https://github.com/Software-Engineering-2024-Group/BurnoutExtreme/pulls?q=is%3Apr+is%3Aclosed)
-[![Python Style Checker](https://github.com/Software-Engineering-2024-Group/BurnoutExtreme/actions/workflows/flake8.yml/badge.svg)](https://github.com/Software-Engineering-2024-Group/BurnoutExtreme/actions/workflows/flake8.yml)
-[![Contributors](https://img.shields.io/github/contributors/Software-Engineering-2024-Group/BurnoutExtreme)](https://github.com/Software-Engineering-2024-Group/BurnoutExtreme/graphs/contributors)
+[![Flake8 Status](https://github.com/SoftwareEngineeringNCSU101/BurnoutExtreme/workflows/Flake8/badge.svg)](https://github.com/SoftwareEngineeringNCSU101/BurnoutExtreme/actions/workflows/flake8.yml)
+[![Repository size](https://img.shields.io/github/repo-size/SoftwareEngineeringNCSU101/BurnoutExtreme)](https://github.com/SoftwareEngineeringNCSU101/BurnoutExtreme)
+[![Open Issues](https://img.shields.io/github/issues/SoftwareEngineeringNCSU101/BurnoutExtreme?color=red&label=Open%20Issues&style=flat-square)](https://github.com/SoftwareEngineeringNCSU101/BurnoutExtreme/issues?q=is%3Aopen+is%3Aissue)
+[![Closed Issues](https://img.shields.io/github/issues-closed/SoftwareEngineeringNCSU101/BurnoutExtreme?color=success&label=Closed%20Issues&style=flat-square)](https://github.com/SoftwareEngineeringNCSU101/BurnoutExtreme/issues?q=is%3Aissue+is%3Aclosed)
+[![Closed Pull Requests](https://img.shields.io/badge/Closed%20PRs-19-success?style=flat-square)](https://github.com/SoftwareEngineeringNCSU101/BurnoutExtreme/pulls?q=is%3Apr+is%3Aclosed)
+[![Contributors](https://img.shields.io/github/contributors/SoftwareEngineeringNCSU101/BurnoutExtreme)](https://github.com/SoftwareEngineeringNCSU101/BurnoutExtreme/graphs/contributors)
 [![Forks](https://img.shields.io/github/forks/Software-Engineering-2024-Group/BurnoutExtreme?style=social)](https://github.com/Software-Engineering-2024-Group/BurnoutExtreme/network/members) 
 [![Stars](https://img.shields.io/github/stars/Software-Engineering-2024-Group/BurnoutExtreme?style=social)](https://github.com/Software-Engineering-2024-Group/BurnoutExtreme/stargazers)
-[![Join the Discord Server](https://img.shields.io/badge/Join%20the%20Discord%20Server-7289DA?style=flat&logo=discord&logoColor=white)](https://discord.gg/jqCNWqET)
 
 ![BurnoutExtreme](frontend/public/assets/BurnoutExtreme.gif)
 
