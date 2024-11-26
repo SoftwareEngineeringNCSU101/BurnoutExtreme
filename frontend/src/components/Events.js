@@ -22,31 +22,30 @@ import headerImage from '../images/e.jpg';
 import { useTheme } from './ThemeContext';
 
 const SearchBar = ({ setSearchQuery }) => (
-  <form style={{ paddingTop: '20px' }}> {/* Add top padding here */}
+  <form style={{ paddingTop: '20px' }}>
     <TextField
       id="search-bar"
       className="text"
-      onInput={(e) => {
+      onChange={(e) => { // Use onChange for controlled input
         const query = e.target.value;
-        console.log("Search query:", query);
-        setSearchQuery(query);
+        setSearchQuery(query); // Update the search query state
       }}
       label="Enter an event"
       variant="outlined"
       placeholder="Search..."
       size="small"
       sx={{
-        backgroundColor: 'white', 
-        borderRadius: '5px', // Rounded corners
+        backgroundColor: 'white',
+        borderRadius: '5px',
         '& .MuiOutlinedInput-root': {
           '& fieldset': {
-            borderColor: '#588157', // Customize border color
+            borderColor: '#588157',
           },
           '&:hover fieldset': {
-            borderColor: '#a3b18a', 
+            borderColor: '#a3b18a',
           },
           '&.Mui-focused fieldset': {
-            borderColor: '#588157', 
+            borderColor: '#588157',
           },
         },
       }}
@@ -55,12 +54,14 @@ const SearchBar = ({ setSearchQuery }) => (
 );
 
 const filterData = (query, cards) => {
+  console.log("All event titles:", cards.map((e) => e.title));
   if (!query) {
     return cards;
   } else {
     const filtered = cards.filter((e) =>
       e.title.toLowerCase().includes(query.toLowerCase())
     );
+    console.log("Filtered event titles:", filtered.map((e) => e.title));
     console.log("Filtered events count:", filtered.length);
     return filtered;
   }
@@ -70,27 +71,29 @@ const defaultTheme = createTheme();
 
 export default function Events(props) {
   const { theme } = useTheme();
-  const [events, setEvents] = useState([]);
+  // const [events, setEvents] = useState([]);
   const [enrollmentStatus, setEnrollmentStatus] = useState({});
   const [eventModals, setEventModals] = useState({});
-  const [searchQuery, setSearchQuery] = useState("");
+  // const [searchQuery, setSearchQuery] = useState("");
   const [mapLocation, setMapLocation] = useState(null);
   const [errorMessage, setErrorMessage] = useState(""); // For error messages
   const [successMessage, setSuccessMessage] = useState(""); // For success messages
-  const eventsFiltered = filterData(searchQuery, events);
+  // const eventsFiltered = filterData(searchQuery, events);
   const location = useLocation();
+
+  const [events, setEvents] = useState([]); // Events state
+  const [searchQuery, setSearchQuery] = useState(""); // Search query state
+  const eventsFiltered = filterData(searchQuery, events); // Filtered events
 
   useEffect(() => {
     axios.get("/events")
       .then((response) => {
-        console.log("Fetched events:", response.data);
-        setEvents(response.data);
+        setEvents(response.data); // Ensure data is in the correct format
       })
       .catch((error) => {
         console.error("Error fetching events:", error);
-        setErrorMessage("Error fetching events. Please try again later.");
       });
-  }, [location.state]);
+  }, []);
 
   const handleOpenModal = (eventTitle) => {
     axios
@@ -126,6 +129,13 @@ export default function Events(props) {
       const event = events.find((e) => e.title === eventTitle);
       const eventDate = event ? event.eventDate : null;
 
+      if (new Date(eventDate) && new Date(eventDate) < new Date()) {
+        // Event date is in the past
+        console.log("Cannot enroll/unenroll in past events:", eventTitle);
+        setErrorMessage("You cannot enroll in events with a past date.");
+        return; // Exit the function
+      }
+      
       console.log("Enrolling/unenrolling user:", userEmail, "for event:", eventTitle, "on date:", eventDate);
       axios.post("/is-enrolled", { eventTitle }, {
         headers: { Authorization: "Bearer " + props.state.token },
@@ -166,56 +176,59 @@ export default function Events(props) {
     }
   };
 
-  return (
-    <ThemeProvider theme={defaultTheme}>
-      <CssBaseline />
-      <main>
-        <Box
-          sx={{
-            bgcolor: 'background.paper',
-            backgroundImage: `url(${headerImage})`,
-            backgroundSize: '45%',
-            backgroundPosition: 'center',
-            backgroundRepeat: 'no-repeat',
-            pt: 8,
-            pb: 6,
-          }}
-        >
-          <Container maxWidth="sm">
-            <Typography
-              component="h1"
-              variant="h2"
-              align="center"
-              color="text.primary"
-              gutterBottom
-            >
-              Events
-            </Typography>
-            <Typography variant="h5" align="center" color="text.secondary" paragraph>
-              Start your wellness journey with us today! Discover yoga, swimming, gym, and more. Click "More Information" for event details, and enroll into events that motivate you.
-            </Typography>
-            <Stack sx={{ pt: 4 }} direction="row" spacing={2} justifyContent="center">
-              <SearchBar setSearchQuery={setSearchQuery} />
-            </Stack>
-          </Container>
-        </Box>
+return (
+  <ThemeProvider theme={defaultTheme}>
+    <CssBaseline />
+    <main>
+      {/* Header Section */}
+      <Box
+        sx={{
+          bgcolor: 'background.paper',
+          backgroundImage: `url(${headerImage})`,
+          backgroundSize: '45%',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat',
+          pt: 8,
+          pb: 6,
+        }}
+      >
+        <Container maxWidth="sm">
+          <Typography
+            component="h1"
+            variant="h2"
+            align="center"
+            color="text.primary"
+            gutterBottom
+          >
+            Events
+          </Typography>
+          <Typography variant="h5" align="center" color="text.secondary" paragraph>
+            Start your wellness journey with us today! Discover yoga, swimming, gym, and more. 
+            Click "More Information" for event details, and enroll into events that motivate you.
+          </Typography>
+          <Stack sx={{ pt: 4 }} direction="row" spacing={2} justifyContent="center">
+            <SearchBar setSearchQuery={setSearchQuery} />
+          </Stack>
+        </Container>
+      </Box>
 
-        <Container sx={{ py: 8 }} maxWidth="md">
-          <Grid container spacing={4}>
-            {eventsFiltered.map((event) => (
-              <Grid item key={event.title} xs={12} sm={6} md={4}>
+      {/* Events Grid Section */}
+      <Container sx={{ py: 8 }} maxWidth="md">
+        <Grid container spacing={4}>
+          {eventsFiltered.map((event) => (
+            <Grid item key={event.title} xs={12} sm={6} md={4}>
               <Card
-  sx={{
-    height: '100%',
-    display: 'flex',
-    flexDirection: 'column',
-    transition: 'transform 0.2s, box-shadow 0.2s', // Smooth transition for hover effects
-    '&:hover': {
-      transform: 'scale(1.05)', // Scale effect on hover
-      boxShadow: '0px 40px 50px rgba(0,0,0,0.4)', // Green glow effect
-    },
-  }}
->
+                sx={{
+                  height: '100%',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  transition: 'transform 0.2s, box-shadow 0.2s',
+                  '&:hover': {
+                    transform: 'scale(1.05)',
+                    boxShadow: '0px 40px 50px rgba(0,0,0,0.4)',
+                  },
+                }}
+              >
                 <CardActionArea onClick={() => handleOpenModal(event.title)}>
                   <CardMedia
                     component="div"
@@ -232,16 +245,21 @@ export default function Events(props) {
                   </CardContent>
                 </CardActionArea>
               </Card>
-              <Modal open={eventModals[event.title]} onClose={() => handleCloseModal(event.title)}>
+
+              {/* Modal for Event Details */}
+              <Modal
+                open={eventModals[event.title]}
+                onClose={() => handleCloseModal(event.title)}
+              >
                 <Box
                   sx={{
-                    position: "absolute",
-                    top: "50%",
-                    left: "50%",
-                    transform: "translate(-50%, -50%)",
-                    width: "50%",
-                    bgcolor: "background.paper",
-                    border: "2px solid #000",
+                    position: 'absolute',
+                    top: '50%',
+                    left: '50%',
+                    transform: 'translate(-50%, -50%)',
+                    width: '50%',
+                    bgcolor: 'background.paper',
+                    border: '2px solid #000',
                     boxShadow: 24,
                     p: 4,
                   }}
@@ -274,29 +292,35 @@ export default function Events(props) {
                       {successMessage}
                     </Typography>
                   )}
-                  <Stack spacing={2} direction="row" justifyContent="space-between" sx={{ mt: 2 }}>
+                  <Stack
+                    spacing={2}
+                    direction="row"
+                    justifyContent="space-between"
+                    sx={{ mt: 2 }}
+                  >
                     <Button
-                    style={{ backgroundColor: theme.headerColor, color: 'white' }}
+                      style={{ backgroundColor: theme.headerColor, color: 'white' }}
                       variant="contained"
                       onClick={() => handleEnrollUnenroll(event.title)}
                     >
-                      {enrollmentStatus[event.title] ? "Unenroll" : "Enroll"}
+                      {enrollmentStatus[event.title] ? 'Unenroll' : 'Enroll'}
                     </Button>
                     <Button
-                    style={{ backgroundColor: 'white' , color: theme.headerColor }}
-                     variant="outlined" onClick={() => handleCloseModal(event.title)}>
+                      style={{ backgroundColor: 'white', color: theme.headerColor }}
+                      variant="outlined"
+                      onClick={() => handleCloseModal(event.title)}
+                    >
                       Close
                     </Button>
                   </Stack>
                 </Box>
               </Modal>
             </Grid>
-            
-            ))}
-          </Grid>
-        </Container>
-      </main>
-      <Footer />
-    </ThemeProvider>
-  );
+          ))}
+        </Grid>
+      </Container>
+    </main>
+    <Footer />
+  </ThemeProvider>
+);
 }

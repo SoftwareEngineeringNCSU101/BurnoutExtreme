@@ -135,24 +135,24 @@ function UserCaloriesPage(props) {
         }
       });
 
-      axios({
-        method: "GET",
-        url: "/profile",
-        headers: {
-          Authorization: "Bearer " + props.state.token,
-        },
+    axios({
+      method: "GET",
+      url: "/profile",
+      headers: {
+        Authorization: "Bearer " + props.state.token,
+      },
+    })
+      .then((response) => {
+        const res = JSON.parse(response['data']);
+        setTodayGoal(res.target_calories)
       })
-        .then((response) => {
-          const res = JSON.parse(response['data']);
-          setTodayGoal(res.target_calories)
-        })
-        .catch((error) => {
-          if (error.response) {
-            console.log(error.response);
-            console.log(error.response.status);
-            console.log(error.response.headers);
-          }
-        });
+      .catch((error) => {
+        if (error.response) {
+          console.log(error.response);
+          console.log(error.response.status);
+          console.log(error.response.headers);
+        }
+      });
 
     // Make API call to backend to get events user registered for from DB.
     axios({
@@ -253,33 +253,33 @@ function UserCaloriesPage(props) {
 
   const history = useHistory();
 
-const redirectToEventWithModalOpen = (eventName) => {
-  history.push({
-    pathname: '/Events',
-    state: { openModalForEvent: eventName }
-  });
-};
+  const redirectToEventWithModalOpen = (eventName) => {
+    history.push({
+      pathname: '/Events',
+      state: { openModalForEvent: eventName }
+    });
+  };
 
-const handleUnenroll = (eventName) => {
-  
-  console.log("Unenrolling from event:", eventName);
-  axios.post("/unenroll", {
-    
-    eventTitle: eventName
-  }, {
-    headers: {
-      Authorization: "Bearer " + props.state.token,
-    },
-  })
-  .then(response => {
-    window.location.reload(false)
-    console.log("Unenrollment successful:", response.data);
-    console.log(response.data);
-  })
-  .catch(error => {
-    console.error("An error occurred while unenrolling: ", error);
-  });
-};
+  const handleUnenroll = (eventName) => {
+
+    console.log("Unenrolling from event:", eventName);
+    axios.post("/unenroll", {
+
+      eventTitle: eventName
+    }, {
+      headers: {
+        Authorization: "Bearer " + props.state.token,
+      },
+    })
+      .then(response => {
+        window.location.reload(false)
+        console.log("Unenrollment successful:", response.data);
+        console.log(response.data);
+      })
+      .catch(error => {
+        console.error("An error occurred while unenrolling: ", error);
+      });
+  };
 
   return (
     <>
@@ -336,45 +336,45 @@ const handleUnenroll = (eventName) => {
             />
             <CardContent>
               <ResponsiveContainer width="100%" height={200}>
-              <PieChart width={375} height={160}>
-                <Pie
-                  data={[
-                    { name: "Calories Consumed", value: todayCaloriesConsumed },
-                    {
-                      name: "Calories to goal",
-                      value: 0>(todayGoal - todayCaloriesConsumed)?0:(todayGoal - todayCaloriesConsumed),
-                    },
-                  ]}
-                  dataKey="value"
-                  nameKey="name"
-                  cx="50%"
-                  cy="50%"
-                  outerRadius={80}
-                  innerRadius={60}
-                  fill="#8b0e0e"
-                >
-                  {COLORS.map((entry, index) => (
-                    <Cell
-                      key={`cell-${index}`}
-                      fill={COLORS[index % COLORS.length]}
-                    />
-                  ))}
-                </Pie>
-                <Pie
-                  data={[
-                    { name: "Calories Burned", value: todayCaloriesBurned },
-                  ]}
-                  dataKey="value"
-                  nameKey="name"
-                  cx="50%"
-                  cy="50%"
-                  innerRadius={30}
-                  outerRadius={50}
-                  fill="#19229e"
-                />
-                <Tooltip />
-  
-              </PieChart>
+                <PieChart width={375} height={160}>
+                  <Pie
+                    data={[
+                      { name: "Calories Consumed", value: todayCaloriesConsumed },
+                      {
+                        name: "Calories to goal",
+                        value: 0 > (todayGoal - todayCaloriesConsumed) ? 0 : (todayGoal - todayCaloriesConsumed),
+                      },
+                    ]}
+                    dataKey="value"
+                    nameKey="name"
+                    cx="50%"
+                    cy="50%"
+                    outerRadius={80}
+                    innerRadius={60}
+                    fill="#8b0e0e"
+                  >
+                    {COLORS.map((entry, index) => (
+                      <Cell
+                        key={`cell-${index}`}
+                        fill={COLORS[index % COLORS.length]}
+                      />
+                    ))}
+                  </Pie>
+                  <Pie
+                    data={[
+                      { name: "Calories Burned", value: todayCaloriesBurned },
+                    ]}
+                    dataKey="value"
+                    nameKey="name"
+                    cx="50%"
+                    cy="50%"
+                    innerRadius={30}
+                    outerRadius={50}
+                    fill="#19229e"
+                  />
+                  <Tooltip />
+
+                </PieChart>
               </ResponsiveContainer>
             </CardContent>
           </Card>
@@ -409,20 +409,20 @@ const handleUnenroll = (eventName) => {
                     flexDirection: "column",
                   }}
                 >
-                {/* Food Item Select - Full Width */}
-                <Box sx={{ paddingBottom: "1rem" }}>
-                  <FormControl fullWidth>
-                  <InputLabel id="intakeFoodName">Food Item Name</InputLabel>
-                  <Select
-                    MenuProps={{ autoFocus: false }}
-                    labelId="intakeFoodName"
-                    id="search-select"
-                    value={intakeItem}
-                    label="Food Item Name"
-                    onChange={handleIntakeItemChange}
-                    required
-                  >
-                <ListSubheader>
+                  {/* Food Item Select - Full Width */}
+                  <Box sx={{ paddingBottom: "1rem" }}>
+                    <FormControl fullWidth>
+                      <InputLabel id="intakeFoodName">Food Item Name</InputLabel>
+                      <Select
+                        MenuProps={{ autoFocus: false }}
+                        labelId="intakeFoodName"
+                        id="search-select"
+                        value={intakeItem}
+                        label="Food Item Name"
+                        onChange={handleIntakeItemChange}
+                        required
+                      >
+                        <ListSubheader>
                           <TextField
                             size="small"
                             // Autofocus on textfield
@@ -451,59 +451,59 @@ const handleUnenroll = (eventName) => {
                           </MenuItem>
                         )
                         )}
-                  </Select>
-                  </FormControl>
-                </Box>
+                      </Select>
+                    </FormControl>
+                  </Box>
 
-                {/* Bottom Row - Calories, Date, and Button */}
-                <Box
-                  sx={{
-                    display: "flex",
-                    flexDirection: { xs: "column", md: "row" },
-                    gap: 2,
-                    alignItems: { xs: "stretch", md: "center" },
-                    "& .MuiTextField-root": {
-                    flex: 1,
-                    minWidth: { xs: "100%", md: "150px" }
-                  },
-                "& .MuiButton-root": {
-                minWidth: { xs: "100%", md: "100px" },
-                height: { md: "56px" }  // Match height with other inputs
-              }
-            }}
-          >
-          <TextField
-            label="Calories"
-            id="intakeCalorieCount"
-            value={intakeCalories}
-            onChange={(event) => {
-            setIntakeCalories(event.target.value);
-            }}
-          type="number"
-          required
-          />
-          <DatePicker
-          label="Date"
-          value={intakeDate}
-          onChange={(newValue) => setIntakeDate(newValue)}
-          maxDate={dayjs()}
-          required
-          sx={{ flex: 1 }}
-          />
-          <Button
-          type="submit"
-          variant="contained"
-          size="large"
-          sx={{
-            backgroundColor: theme.headerColor,
-            color: 'white',
-          }}
-          >
-            Add
-          </Button>
-        </Box>
-      </Box>
-      </form>
+                  {/* Bottom Row - Calories, Date, and Button */}
+                  <Box
+                    sx={{
+                      display: "flex",
+                      flexDirection: { xs: "column", md: "row" },
+                      gap: 2,
+                      alignItems: { xs: "stretch", md: "center" },
+                      "& .MuiTextField-root": {
+                        flex: 1,
+                        minWidth: { xs: "100%", md: "150px" }
+                      },
+                      "& .MuiButton-root": {
+                        minWidth: { xs: "100%", md: "100px" },
+                        height: { md: "56px" }  // Match height with other inputs
+                      }
+                    }}
+                  >
+                    <TextField
+                      label="Calories"
+                      id="intakeCalorieCount"
+                      value={intakeCalories}
+                      onChange={(event) => {
+                        setIntakeCalories(event.target.value);
+                      }}
+                      type="number"
+                      required
+                    />
+                    <DatePicker
+                      label="Date"
+                      value={intakeDate}
+                      onChange={(newValue) => setIntakeDate(newValue)}
+                      maxDate={dayjs()}
+                      required
+                      sx={{ flex: 1 }}
+                    />
+                    <Button
+                      type="submit"
+                      variant="contained"
+                      size="large"
+                      sx={{
+                        backgroundColor: theme.headerColor,
+                        color: 'white',
+                      }}
+                    >
+                      Add
+                    </Button>
+                  </Box>
+                </Box>
+              </form>
             </CardContent>
           </Card>
 
@@ -516,212 +516,212 @@ const handleUnenroll = (eventName) => {
                   <SportsMartialArtsIcon />
                   <DirectionsRunIcon />
                 </Box>
-            }
-            sx={{
-              '& .MuiCardHeader-title': {
-                fontSize: { xs: '1.1rem', md: '1.25rem' }
-              },
-              '& .MuiCardHeader-subheader': {
-                fontSize: { xs: '0.875rem', md: '1rem' }
               }
-            }}
+              sx={{
+                '& .MuiCardHeader-title': {
+                  fontSize: { xs: '1.1rem', md: '1.25rem' }
+                },
+                '& .MuiCardHeader-subheader': {
+                  fontSize: { xs: '0.875rem', md: '1rem' }
+                }
+              }}
             />
             <CardContent>
-            <List sx={{ 
-              padding: 0,
-              '& .MuiListItem-root': {
-              flexDirection: { xs: 'column', sm: 'row' },
-              gap: { xs: 2, sm: 1 },
-              padding: 2,
-              borderBottom: '1px solid',
-              borderColor: 'divider',
-              '&:last-child': {
-              borderBottom: 'none'
-            }
-          }
-        }}>
-        {events
-        .filter(eventObj => new Date(eventObj.date) >= new Date())
-        .map((eventObj, ind) => (
-        <ListItem
-          key={`event-${ind}`}
-          sx={{
-            display: 'flex',
-            alignItems: { xs: 'stretch', sm: 'center' },
-            justifyContent: { xs: 'center', sm: 'space-between' },
-          }}
-        >
+              <List sx={{
+                padding: 0,
+                '& .MuiListItem-root': {
+                  flexDirection: { xs: 'column', sm: 'row' },
+                  gap: { xs: 2, sm: 1 },
+                  padding: 2,
+                  borderBottom: '1px solid',
+                  borderColor: 'divider',
+                  '&:last-child': {
+                    borderBottom: 'none'
+                  }
+                }
+              }}>
+                {events
+                  .filter(eventObj => new Date(eventObj.date) >= new Date())
+                  .map((eventObj, ind) => (
+                    <ListItem
+                      key={`event-${ind}`}
+                      sx={{
+                        display: 'flex',
+                        alignItems: { xs: 'stretch', sm: 'center' },
+                        justifyContent: { xs: 'center', sm: 'space-between' },
+                      }}
+                    >
 
-          <Box
-            sx={{
-              display: 'flex',
-              flexDirection: { xs: 'column', sm: 'row' },
-              gap: { xs: 1, sm: 2 },
-              alignItems: { xs: 'center', sm: 'center' },
-              flex: 1,
-              textAlign: { xs: 'center', sm: 'left' },
-            }}
-          >
-            <Typography
-              variant="body1"
-              component="div"
-              onClick={() => redirectToEventWithModalOpen(eventObj.eventName)}
+                      <Box
+                        sx={{
+                          display: 'flex',
+                          flexDirection: { xs: 'column', sm: 'row' },
+                          gap: { xs: 1, sm: 2 },
+                          alignItems: { xs: 'center', sm: 'center' },
+                          flex: 1,
+                          textAlign: { xs: 'center', sm: 'left' },
+                        }}
+                      >
+                        <Typography
+                          variant="body1"
+                          component="div"
+                          onClick={() => redirectToEventWithModalOpen(eventObj.eventName)}
+                          sx={{
+                            cursor: 'pointer',
+                            '&:hover': {
+                              color: 'primary.main',
+                              textDecoration: 'underline'
+                            },
+                            fontWeight: 'medium'
+                          }}
+                        >
+                          {eventObj.eventName}
+                        </Typography>
+
+                        <Typography
+                          variant="body2"
+                          color="text.secondary"
+                          sx={{
+                            minWidth: { sm: '120px' },
+                            textAlign: { xs: 'center', sm: 'left' }
+                          }}
+                        >
+                          {eventObj.date}
+                        </Typography>
+                      </Box>
+
+                      <Button
+                        variant="contained"
+                        onClick={() => handleUnenroll(eventObj.eventName)}
+                        sx={{
+                          backgroundColor: theme.headerColor,
+                          width: { xs: '100%', sm: 'auto' },
+                          minWidth: { sm: '100px' },
+                          '&:hover': {
+                            backgroundColor: alpha(theme.headerColor, 0.9)
+                          }
+                        }}
+                      >
+                        Unenroll
+                      </Button>
+                    </ListItem>
+                  ))}
+              </List>
+            </CardContent>
+          </Card>
+
+          <Card sx={{ gridArea: "week" }} elevation={5}>
+            <CardHeader
+              title="Weekly Stats"
+              subheader="Track your performance over the last week"
+              avatar={<TimelineIcon />}
               sx={{
-                cursor: 'pointer',
-                '&:hover': {
-                  color: 'primary.main',
-                  textDecoration: 'underline'
+                '& .MuiCardHeader-title': {
+                  fontSize: { xs: '1.1rem', md: '1.25rem' }
                 },
-                fontWeight: 'medium'
+                '& .MuiCardHeader-subheader': {
+                  fontSize: { xs: '0.875rem', md: '1rem' }
+                }
               }}
-            >
-              {eventObj.eventName}
-            </Typography>
-
-            <Typography
-              variant="body2"
-              color="text.secondary"
+            />
+            <CardContent
               sx={{
-                minWidth: { sm: '120px' },
-                textAlign: { xs: 'center', sm: 'left' }
+                padding: { xs: 1, sm: 2 },
+                '& .recharts-wrapper': {
+                  maxWidth: '100%',
+                  height: 'auto !important',
+                  minHeight: { xs: '250px', sm: '300px' }
+                }
               }}
             >
-              {eventObj.date}
-            </Typography>
-          </Box>
-
-          <Button
-            variant="contained"
-            onClick={() => handleUnenroll(eventObj.eventName)}
-            sx={{
-              backgroundColor: theme.headerColor,
-              width: { xs: '100%', sm: 'auto' },
-              minWidth: { sm: '100px' },
-              '&:hover': {
-                backgroundColor: alpha(theme.headerColor, 0.9)
-              }
-            }}
-          >
-            Unenroll
-          </Button>
-        </ListItem>
-        ))}
-      </List>
-    </CardContent>
-  </Card>
-
-  <Card sx={{ gridArea: "week" }} elevation={5}>
-    <CardHeader
-      title="Weekly Stats"
-      subheader="Track your performance over the last week"
-      avatar={<TimelineIcon />}
-      sx={{
-        '& .MuiCardHeader-title': {
-          fontSize: { xs: '1.1rem', md: '1.25rem' }
-        },
-        '& .MuiCardHeader-subheader': {
-          fontSize: { xs: '0.875rem', md: '1rem' }
-        }
-      }}
-    />
-    <CardContent
-      sx={{
-        padding: { xs: 1, sm: 2 },
-        '& .recharts-wrapper': {
-          maxWidth: '100%',
-          height: 'auto !important',
-          minHeight: { xs: '250px', sm: '300px' }
-        }
-      }}
-    >
-      <ResponsiveContainer width="100%" height={300}>
-      <LineChart
-        data={weekHistory}
-        margin={{
-          top: 5,
-          right: 20,
-          left: 0,
-          bottom: 5,
-        }}
-      >
-        <CartesianGrid 
-          strokeDasharray="3 3"
-          stroke="#e0e0e0"
-        />
-        <XAxis 
-          dataKey="date"
-          tick={{ fontSize: 12 }}
-          angle={-45}
-          textAnchor="end"
-          height={60}
-          interval={0}
-        />
-        <YAxis
-          tick={{ fontSize: 12 }}
-          width={40}
-        />
-        <Tooltip
-          contentStyle={{
-            backgroundColor: 'rgba(255, 255, 255, 0.9)',
-            border: '1px solid #ccc',
-            borderRadius: '4px',
-            fontSize: '12px'
-          }}
-        />
-        <Legend
-          verticalAlign="top"
-          height={36}
-          wrapperStyle={{
-            paddingTop: '10px',
-            fontSize: '12px'
-          }}
-        />
-        <Line
-          type="monotone"
-          dataKey="consumedCalories"
-          stroke="#19229e"
-          name="Calories Consumed"
-          strokeWidth={2}
-          dot={{ r: 3 }}
-          activeDot={{ r: 6 }}
-        />
-        <Line
-          type="monotone"
-          dataKey="burntCalories"
-          stroke="#8b0e0e"
-          name="Calories Burnt"
-          strokeWidth={2}
-          dot={{ r: 3 }}
-          activeDot={{ r: 6 }}
-        />
-        </LineChart>
-      </ResponsiveContainer>
-    </CardContent>
-    </Card>
+              <ResponsiveContainer width="100%" height={300}>
+                <LineChart
+                  data={weekHistory}
+                  margin={{
+                    top: 5,
+                    right: 20,
+                    left: 0,
+                    bottom: 5,
+                  }}
+                >
+                  <CartesianGrid
+                    strokeDasharray="3 3"
+                    stroke="#e0e0e0"
+                  />
+                  <XAxis
+                    dataKey="date"
+                    tick={{ fontSize: 12 }}
+                    angle={-45}
+                    textAnchor="end"
+                    height={60}
+                    interval={0}
+                  />
+                  <YAxis
+                    tick={{ fontSize: 12 }}
+                    width={40}
+                  />
+                  <Tooltip
+                    contentStyle={{
+                      backgroundColor: 'rgba(255, 255, 255, 0.9)',
+                      border: '1px solid #ccc',
+                      borderRadius: '4px',
+                      fontSize: '12px'
+                    }}
+                  />
+                  <Legend
+                    verticalAlign="top"
+                    height={36}
+                    wrapperStyle={{
+                      paddingTop: '10px',
+                      fontSize: '12px'
+                    }}
+                  />
+                  <Line
+                    type="monotone"
+                    dataKey="consumedCalories"
+                    stroke="#19229e"
+                    name="Calories Consumed"
+                    strokeWidth={2}
+                    dot={{ r: 3 }}
+                    activeDot={{ r: 6 }}
+                  />
+                  <Line
+                    type="monotone"
+                    dataKey="burntCalories"
+                    stroke="#8b0e0e"
+                    name="Calories Burnt"
+                    strokeWidth={2}
+                    dot={{ r: 3 }}
+                    activeDot={{ r: 6 }}
+                  />
+                </LineChart>
+              </ResponsiveContainer>
+            </CardContent>
+          </Card>
 
 
-    <Card sx={{ gridArea: "burntout" }} elevation={5}>
-      <CardHeader
-        title={"Calorie Burn Out"}
-        subheader={"Enter the calories burnt out"}
-        avatar={<WhatshotIcon />}
-        />
-        <CardContent>
-        <form onSubmit={handleAddCalorieBurnout}>
-        <Box sx={{
-          display: "flex",
-          flexDirection: { xs: "column", md: "row" },
-          gap: 2,
-          alignItems: { xs: "stretch", md: "center" },
-          "& .MuiTextField-root": {
-          flex: 1,
-          minWidth: { xs: "100%", md: "150px" }
-          },
-          "& .MuiButton-root": {
-            minWidth: { xs: "100%", md: "100px" },
-            height: { md: "56px" }
-          }
-        }}>
+          <Card sx={{ gridArea: "burntout" }} elevation={5}>
+            <CardHeader
+              title={"Calorie Burn Out"}
+              subheader={"Enter the calories burnt out"}
+              avatar={<WhatshotIcon />}
+            />
+            <CardContent>
+              <form onSubmit={handleAddCalorieBurnout}>
+                <Box sx={{
+                  display: "flex",
+                  flexDirection: { xs: "column", md: "row" },
+                  gap: 2,
+                  alignItems: { xs: "stretch", md: "center" },
+                  "& .MuiTextField-root": {
+                    flex: 1,
+                    minWidth: { xs: "100%", md: "150px" }
+                  },
+                  "& .MuiButton-root": {
+                    minWidth: { xs: "100%", md: "100px" },
+                    height: { md: "56px" }
+                  }
+                }}>
                   <TextField
                     label="Calories"
                     id="burntoutCalorieCount"
@@ -746,39 +746,39 @@ const handleUnenroll = (eventName) => {
               </form>
             </CardContent>
             <Card sx={{ gridArea: "activity" }} elevation={5}>
-          <CardHeader
-              title={"Advanced Activity Monitoring"}
-              subheader={"Track your steps, calories burned, and workout intensity"}
-              avatar={<FitnessCenterIcon />}
-            />
-            <CardContent>
-    <ResponsiveContainer width="100%" height={300}>
-      <LineChart
-        width={500}
-        height={300}
-        data={[
-          { day: "Mon", steps: 6000, calories: 200, intensity: 7 },
-          { day: "Tue", steps: 8000, calories: 250, intensity: 8 },
-          { day: "Wed", steps: 7000, calories: 230, intensity: 7.5 },
-          { day: "Thu", steps: 9000, calories: 270, intensity: 9 },
-          { day: "Fri", steps: 10000, calories: 300, intensity: 9.5 },
-          { day: "Sat", steps: 12000, calories: 350, intensity: 10 },
-          { day: "Sun", steps: 11000, calories: 320, intensity: 9 },
-        ]}
-        margin={{ top: 20, right: 30, left: 20, bottom: 5 }}
-      >
-        <CartesianGrid strokeDasharray="3 3" />
-        <XAxis dataKey="day" />
-        <YAxis yAxisId="left" label={{ value: "Steps", angle: -90, position: "insideLeft" }} />
-        <YAxis yAxisId="right" orientation="right" label={{ value: "Calories Burned", angle: 90, position: "insideRight" }} />
-        <Tooltip />
-        <Line yAxisId="left" type="monotone" dataKey="steps" stroke="#8884d8" activeDot={{ r: 8 }} />
-        <Line yAxisId="right" type="monotone" dataKey="calories" stroke="#82ca9d" />
-      </LineChart>
-      </ResponsiveContainer>
-    </CardContent>
-           
-          </Card>
+              <CardHeader
+                title={"Advanced Activity Monitoring"}
+                subheader={"Track your steps, calories burned, and workout intensity"}
+                avatar={<FitnessCenterIcon />}
+              />
+              <CardContent>
+                <ResponsiveContainer width="100%" height={300}>
+                  <LineChart
+                    width={500}
+                    height={300}
+                    data={[
+                      { day: "Mon", steps: 6000, calories: 200, intensity: 7 },
+                      { day: "Tue", steps: 8000, calories: 250, intensity: 8 },
+                      { day: "Wed", steps: 7000, calories: 230, intensity: 7.5 },
+                      { day: "Thu", steps: 9000, calories: 270, intensity: 9 },
+                      { day: "Fri", steps: 10000, calories: 300, intensity: 9.5 },
+                      { day: "Sat", steps: 12000, calories: 350, intensity: 10 },
+                      { day: "Sun", steps: 11000, calories: 320, intensity: 9 },
+                    ]}
+                    margin={{ top: 20, right: 30, left: 20, bottom: 5 }}
+                  >
+                    <CartesianGrid strokeDasharray="3 3" />
+                    <XAxis dataKey="day" />
+                    <YAxis yAxisId="left" label={{ value: "Steps", angle: -90, position: "insideLeft" }} />
+                    <YAxis yAxisId="right" orientation="right" label={{ value: "Calories Burned", angle: 90, position: "insideRight" }} />
+                    <Tooltip />
+                    <Line yAxisId="left" type="monotone" dataKey="steps" stroke="#8884d8" activeDot={{ r: 8 }} />
+                    <Line yAxisId="right" type="monotone" dataKey="calories" stroke="#82ca9d" />
+                  </LineChart>
+                </ResponsiveContainer>
+              </CardContent>
+
+            </Card>
           </Card>
           <Card sx={{ gridArea: "hist" }} elevation={5}>
             <CardHeader
@@ -794,95 +794,95 @@ const handleUnenroll = (eventName) => {
             <CardContent
               sx={{
                 display: 'flex',
-        flexDirection: { xs: 'column', md: 'row' },
-        gap: 2,
-        overflowX: { xs: 'hidden', md: 'auto' },
-        padding: { xs: 1, md: 2 },
-        '::-webkit-scrollbar': {
-          height: '8px',
-        },
-        '::-webkit-scrollbar-thumb': {
-          backgroundColor: 'rgba(0,0,0,0.2)',
-          borderRadius: '4px',
-        },
+                flexDirection: { xs: 'column', md: 'row' },
+                gap: 2,
+                overflowX: { xs: 'hidden', md: 'auto' },
+                padding: { xs: 1, md: 2 },
+                '::-webkit-scrollbar': {
+                  height: '8px',
+                },
+                '::-webkit-scrollbar-thumb': {
+                  backgroundColor: 'rgba(0,0,0,0.2)',
+                  borderRadius: '4px',
+                },
               }}
             >
               {dietHistory.map((day) => (
-        <Card 
-          key={day.dayIndex}
-          elevation={3}
-          sx={{
-            minWidth: { xs: '100%', md: '250px' },
-            flex: { md: '0 0 auto' },
-            marginBottom: { xs: 2, md: 0 },
-          }}
-        >
-          <CardHeader 
-            title={day.date}
-            avatar={<TodayIcon />}
-            sx={{
-              '& .MuiCardHeader-title': {
-                fontSize: { xs: '0.9rem', md: '1rem' },
-              },
-            }}
-          />
-          <CardContent>
-            <Typography
-              variant="subtitle1"
-              sx={{
-                color: day.exceededDailyLimit ? 'error.main' : 'success.main',
-                textAlign: 'center',
-                fontWeight: 'bold',
-                paddingBottom: '10px',
-              }}
-            >
-              {`Total Calories : ${day.caloriesConsumed}`}
-            </Typography>
-            
-            <Typography
-              variant="subtitle2"
-              sx={{
-                textAlign: 'center',
-                fontWeight: 'bold',
-                borderBottom: 1,
-                borderColor: 'divider',
-                paddingBottom: 1,
-                marginBottom: 1,
-              }}
-              >
-              Food Consumed
-              </Typography>
-
-              <List sx={{ 
-              padding: 0,
-              '& .MuiListItem-root': {
-                padding: '4px 0',
-                minHeight: '40px',
-                }
-              }}>
-                {day.foodConsumed.map((itemObj, ind) => (
-                  <ListItem
-                    key={`item-${ind}`}
+                <Card
+                  key={day.dayIndex}
+                  elevation={3}
+                  sx={{
+                    minWidth: { xs: '100%', md: '250px' },
+                    flex: { md: '0 0 auto' },
+                    marginBottom: { xs: 2, md: 0 },
+                  }}
+                >
+                  <CardHeader
+                    title={day.date}
+                    avatar={<TodayIcon />}
+                    sx={{
+                      '& .MuiCardHeader-title': {
+                        fontSize: { xs: '0.9rem', md: '1rem' },
+                      },
+                    }}
+                  />
+                  <CardContent>
+                    <Typography
+                      variant="subtitle1"
                       sx={{
-                      display: 'flex',
-                      justifyContent: 'space-between',
-                      '& > *': {
-                        fontSize: { xs: '0.875rem', md: '1rem' },
-                        }
+                        color: day.exceededDailyLimit ? 'error.main' : 'success.main',
+                        textAlign: 'center',
+                        fontWeight: 'bold',
+                        paddingBottom: '10px',
                       }}
-                      >
-                      <Typography variant="body2" sx={{ flex: 1, marginRight: 2 }}>
-                        {itemObj.item}
-                      </Typography>
-                      <Typography variant="body2" color="text.secondary">
-                      {itemObj.calories}
-                      </Typography>
-                    </ListItem>
-                  ))}
-                </List>
-              </CardContent>
-            </Card>
-            ))}
+                    >
+                      {`Total Calories : ${day.caloriesConsumed}`}
+                    </Typography>
+
+                    <Typography
+                      variant="subtitle2"
+                      sx={{
+                        textAlign: 'center',
+                        fontWeight: 'bold',
+                        borderBottom: 1,
+                        borderColor: 'divider',
+                        paddingBottom: 1,
+                        marginBottom: 1,
+                      }}
+                    >
+                      Food Consumed
+                    </Typography>
+
+                    <List sx={{
+                      padding: 0,
+                      '& .MuiListItem-root': {
+                        padding: '4px 0',
+                        minHeight: '40px',
+                      }
+                    }}>
+                      {day.foodConsumed.map((itemObj, ind) => (
+                        <ListItem
+                          key={`item-${ind}`}
+                          sx={{
+                            display: 'flex',
+                            justifyContent: 'space-between',
+                            '& > *': {
+                              fontSize: { xs: '0.875rem', md: '1rem' },
+                            }
+                          }}
+                        >
+                          <Typography variant="body2" sx={{ flex: 1, marginRight: 2 }}>
+                            {itemObj.item}
+                          </Typography>
+                          <Typography variant="body2" color="text.secondary">
+                            {itemObj.calories}
+                          </Typography>
+                        </ListItem>
+                      ))}
+                    </List>
+                  </CardContent>
+                </Card>
+              ))}
             </CardContent>
           </Card>
         </Box>
