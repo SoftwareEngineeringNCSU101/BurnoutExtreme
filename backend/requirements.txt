@@ -12,3 +12,4 @@ setuptools==68.0.0
 Werkzeug==2.2.3
 mistralai==1.1.0
 requests==2.26.0
+llama-index-llms-ollama
