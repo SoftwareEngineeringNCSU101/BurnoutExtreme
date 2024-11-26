@@ -337,7 +337,100 @@ class APITestCase(unittest.TestCase):
         self.assertEqual(response.status_code, 404)
         self.assertEqual(response.json['status'], "Not Found")
         self.assertIn("message", response.json)
+
+    @patch('base.get_jwt_identity')
+    @patch('base.mongo.user.find_one')
+    def test_get_fitness_plan_success(self, mock_find_one, mock_get_jwt_identity):
+        mock_get_jwt_identity.return_value = 'user@example.com'
+        mock_find_one.return_value = {
+        'email': 'user@example.com',
+        'fitness_plan': '<h1>Fitness Plan</h1><br>Details...'
+        }
+    
+        with self.app.app_context():
+            access_token = create_access_token(identity='user@example.com')
+    
+        headers = {'Authorization': f'Bearer {access_token}'}
+        response = self.client.get('/getFitnessPlan', headers=headers)
+    
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.json['status'], "Success")
+        self.assertIn('fitness_plan', response.json)
+        self.assertEqual(response.json['fitness_plan'], '<h1>Fitness Plan</h1><br>Details...')
+
+    @patch('base.get_jwt_identity')
+    @patch('base.mongo.user.find_one')
+    def test_get_fitness_plan_no_plan(self, mock_find_one, mock_get_jwt_identity):
+        mock_get_jwt_identity.return_value = 'user@example.com'
+        mock_find_one.return_value = {'email': 'user@example.com'}  # User exists but no fitness plan
+    
+        with self.app.app_context():
+            access_token = create_access_token(identity='user@example.com')
+    
+        headers = {'Authorization': f'Bearer {access_token}'}
+        response = self.client.get('/getFitnessPlan', headers=headers)
+    
+        self.assertEqual(response.status_code, 404)
+        self.assertEqual(response.json['status'], "Not Found")
+        self.assertEqual(response.json['message'], "Fitness plan not found.")
+
+    @patch('base.mongo.user.find_one')
+    @patch('base.generate_fitness_plan')
+    @patch('base.mongo.user.update_one')
+    def test_generate_fitness_plan_success(self, mock_update_one, mock_generate_fitness_plan, mock_find_one):
+        # Mock database response for user data
+        mock_find_one.return_value = {
+            'first_name': 'John',
+            'last_name': 'Doe',
+            'age': 30,
+            'weight': 180,
+            'height': 6,
+            'bmi': 25,
+            'sex': 'male',
+            'activity_level': 'moderate',
+            'target_calories': 2500,
+            'target_weight': 170
+        }
+
+        # Mock fitness plan generation response
+        mock_generate_fitness_plan.return_value = "<h1>Fitness Plan</h1><br>Nutrition Plan: ...<br>Workout Plan: ...<br>"
+
+        # Mock update operation to simulate successful database update
+        mock_update_one.return_value = Mock(matched_count=1)
+
+        # Use app context to create a JWT token
+        with self.app.app_context():
+            access_token = create_access_token(identity='test_user@example.com')
+
+        # Include the token in the request headers
+        headers = {
+            'Authorization': f'Bearer {access_token}'
+        }
+
+        response = self.client.post('/generateFitnessPlan', headers=headers)
         
+        # Assert response status code and content
+        self.assertEqual(response.status_code, 200)
+        response_data = response.get_json()
+        self.assertEqual(response_data['status'], "Success")
+        self.assertIn('fitness_plan', response_data)
+
+    @patch('base.get_jwt_identity')
+    @patch('base.mongo.user.find_one')
+    def test_generate_fitness_plan_exception(self, mock_find_one, mock_get_jwt_identity):
+        mock_get_jwt_identity.return_value = 'test@example.com'
+        mock_find_one.side_effect = Exception("Database error")
+    
+        with self.app.app_context():
+            access_token = create_access_token(identity='test@example.com')
+    
+        headers = {'Authorization': f'Bearer {access_token}'}
+        response = self.client.post('/generateFitnessPlan', headers=headers)
+    
+        self.assertEqual(response.status_code, 500)
+        self.assertEqual(response.json['status'], "Error")
+        self.assertIn("Database error", response.json['message'])
+
 
 if __name__ == "__main__":
     unittest.main()
