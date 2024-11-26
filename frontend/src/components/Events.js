@@ -227,15 +227,7 @@ export default function Events(props) {
 
         {/* Events Grid Section */}
         <Container sx={{ py: 8 }} maxWidth="md">
-          {/* Debug Information */}
-          <Typography variant="h6">
-            Total Events: {events.length}
-            <br />
-            Filtered Events: {eventsFiltered.length}
-            <br />
-            Search Query: {searchQuery}
-          </Typography>
-        
+
           <Grid container spacing={4}>
             {eventsFiltered.map((event) => (
               <Grid item key={event.title} xs={12} sm={6} md={4}>
