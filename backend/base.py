@@ -840,6 +840,7 @@ def createMeal():
     current_user = get_jwt_identity()
     mealName = data['mealName']
     ingredients = data['ingredients']
+    mealType = data['mealType']
     calories = 0
     ingredientCalories = []
     for item in ingredients:
@@ -852,6 +853,7 @@ def createMeal():
         mongo.user.insert_one({
             "email": current_user,
             "meal_name": mealName,
+            "mealType": mealType,
             "ingredients": ingredients,
             "ingredientCalories": ingredientCalories,
             "total_calories": calories
@@ -1182,6 +1184,9 @@ def getMyMeals():
             res['ingredients'] = meal['ingredients']
             res['ingredientCalories'] = meal.get('ingredientCalories', [])
             res['total_calories'] = meal['total_calories']
+            # res['mealType'] = meal['mealType']
+            res['mealType'] = meal.get('mealType', 'Unknown')  # Add mealType, default to 'Unknown' if not present
+      
             result.append(res)
         response = result
         statusCode = 200

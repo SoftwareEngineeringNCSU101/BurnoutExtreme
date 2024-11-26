@@ -41,7 +41,7 @@ export default function Meals (props) {
   const [searchText, setSearchText] = useState('')
   const [foodItems, setFoodItems] = useState({})
   const [meals, setMeals] = useState([])
-
+  const [mealType, setMealType] = useState('');
   const displayedOptions = useMemo(
     () =>
       Object.keys(foodItems).filter(option => containsText(option, searchText)),
@@ -49,28 +49,30 @@ export default function Meals (props) {
   )
 
   const handleCreateMeal = event => {
+    event.preventDefault(); // Prevent form submission default behavior
     axios({
       method: 'post',
       url: '/createMeal',
       headers: {
-        Authorization: 'Bearer ' + props.state.token
+        Authorization: 'Bearer ' + props.state.token,
       },
       data: {
         mealName: mealName,
-        ingredients: ingredients
-      }
+        ingredients: ingredients,
+        mealType: mealType, // Include meal type in the payload
+      },
     })
       .then(response => {
-        const res = response.data
-        console.log(res)
+        const res = response.data;
+        console.log(res);
       })
       .catch(error => {
         if (error.response) {
-          console.log(error.response)
-          console.log(error.response.status)
-          console.log(error.response.headers)
+          console.log(error.response);
+          console.log(error.response.status);
+          console.log(error.response.headers);
         }
-      })
+      });
   }
 
   const handleCreateCustomFood = event => {
@@ -244,197 +246,289 @@ export default function Meals (props) {
               </form>
             </CardContent>
           </Card>
+          
+          
           <Card sx={{ gridArea: 'create-meal' }} elevation={5}>
-            <CardHeader
-              title={'Create Meal'}
-              subheader={
-                'Enter the meal name and select the ingredients to create a meal'
-              }
-              avatar={<FastfoodIcon />}
-            />
-            <CardContent>
-              <form onSubmit={handleCreateMeal}>
-                <Box
-                  sx={{
-                    display: 'flex',
-                    flexDirection: 'column'
-                  }}
-                >
-                  <Box sx={{ paddingBottom: '1rem' }}>
-                    <FormControl fullWidth>
-                      <TextField
-                        label='Meal Name'
-                        id='mealName'
-                        value={mealName}
-                        onChange={event => {
-                          setMealName(event.target.value)
-                        }}
-                        type='text'
-                        required
-                      />
-                    </FormControl>
-                  </Box>
-                  <Box sx={{ paddingBottom: '1rem' }}>
-                    <FormControl fullWidth>
-                      <InputLabel id='ingredients'>Ingredient Name</InputLabel>
-                      <Select
-                        MenuProps={{ autoFocus: false }}
-                        labelId='ingredientName'
-                        id='search-select'
-                        multiple
-                        value={ingredients}
-                        label='Ingredient Name'
-                        onChange={handleIngredientSelection}
-                        required
-                      >
-                        <ListSubheader>
-                          <TextField
-                            size='small'
-                            // Autofocus on textfield
-                            autoFocus
-                            placeholder='Type to search...'
-                            fullWidth
-                            InputProps={{
-                              startAdornment: (
-                                <InputAdornment position='start'>
-                                  <SearchIcon />
-                                </InputAdornment>
-                              )
-                            }}
-                            onChange={e => setSearchText(e.target.value)}
-                            onKeyDown={e => {
-                              if (e.key !== 'Escape') {
-                                // Prevents autoselecting item while typing (default Select behaviour)
-                                e.stopPropagation()
-                              }
-                            }}
-                          />
-                        </ListSubheader>
-                        {displayedOptions.map((option, i) => (
-                          <MenuItem key={i} value={option}>
-                            {option}
-                          </MenuItem>
-                        ))}
-                      </Select>
-                    </FormControl>
-                  </Box>
-                  <Button
-                    type='submit'
-                    variant='contained'
-                    size='large'
-                    style={{ backgroundColor: theme.headerColor, color: 'white' }}
-                  >
-                    Create Meal
-                  </Button>
+          <CardHeader
+            title={'Create Meal'}
+            subheader={
+              'Enter the meal name and select the ingredients to create a meal'
+            }
+            avatar={<FastfoodIcon />}
+          />
+          <CardContent>
+            <form onSubmit={handleCreateMeal}>
+              <Box
+                sx={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                }}
+              >
+                <Box sx={{ paddingBottom: '1rem' }}>
+                  <FormControl fullWidth>
+                    <TextField
+                      label="Meal Name"
+                      id="mealName"
+                      value={mealName}
+                      onChange={(event) => {
+                        setMealName(event.target.value);
+                      }}
+                      type="text"
+                      required
+                    />
+                  </FormControl>
                 </Box>
-              </form>
-            </CardContent>
-          </Card>
-          <Card sx={{ gridArea: 'meal' }} elevation={5}>
-            <CardHeader
-              title={'My Meals'}
-              subheader={'Your custom created meals'}
-              avatar={
-                <>
-                  <LunchDiningIcon />
-                  <LocalCafeIcon />
-                </>
-              }
-            />
-            <CardContent
+                <Box sx={{ paddingBottom: '1rem' }}>
+                  <FormControl fullWidth>
+                    <InputLabel id="ingredients">Ingredient Name</InputLabel>
+                    <Select
+                      MenuProps={{ autoFocus: false }}
+                      labelId="ingredientName"
+                      id="search-select"
+                      multiple
+                      value={ingredients}
+                      label="Ingredient Name"
+                      onChange={handleIngredientSelection}
+                      required
+                    >
+                      <ListSubheader>
+                        <TextField
+                          size="small"
+                          autoFocus
+                          placeholder="Type to search..."
+                          fullWidth
+                          InputProps={{
+                            startAdornment: (
+                              <InputAdornment position="start">
+                                <SearchIcon />
+                              </InputAdornment>
+                            ),
+                          }}
+                          onChange={(e) => setSearchText(e.target.value)}
+                          onKeyDown={(e) => {
+                            if (e.key !== 'Escape') {
+                              e.stopPropagation();
+                            }
+                          }}
+                        />
+                      </ListSubheader>
+                      {displayedOptions.map((option, i) => (
+                        <MenuItem key={i} value={option}>
+                          {option}
+                        </MenuItem>
+                      ))}
+                    </Select>
+                  </FormControl>
+                </Box>
+                {/* Added Meal Type Dropdown */}
+                <Box sx={{ paddingBottom: '1rem' }}>
+                  <FormControl fullWidth>
+                    <InputLabel id="mealType">Meal Type</InputLabel>
+                    <Select
+                      labelId="mealType"
+                      id="mealType-select"
+                      value={mealType}
+                      onChange={(event) => setMealType(event.target.value)}
+                      label="Meal Type"
+                      required
+                    >
+                      <MenuItem value="Breakfast">Breakfast</MenuItem>
+                      <MenuItem value="Lunch">Lunch</MenuItem>
+                      <MenuItem value="Dinner">Dinner</MenuItem>
+                    </Select>
+                  </FormControl>
+                </Box>
+                <Button
+                  type="submit"
+                  variant="contained"
+                  size="large"
+                  style={{ backgroundColor: theme.headerColor || 'blue', color: 'white' }}
+                >
+                  Create Meal
+                </Button>
+              </Box>
+            </form>
+          </CardContent>
+        </Card>
+
+        <Card sx={{ gridArea: 'meal', borderRadius: '12px', boxShadow: 5 }}>
+  <CardHeader
+    title="My Meals"
+    subheader="Your custom created meals"
+    avatar={
+      <>
+        <LunchDiningIcon sx={{ color: '#FFA500', fontSize: 30 }} />
+        <LocalCafeIcon sx={{ color: '#FF6347', fontSize: 30 }} />
+      </>
+    }
+    sx={{
+      backgroundColor: theme.headerColor || 'blue', // Using the same background color as the button
+      borderTopLeftRadius: '12px',
+      borderTopRightRadius: '12px',
+      padding: '20px',
+    }}
+  />
+  <CardContent
+    sx={{
+      display: 'flex',
+      flexDirection: 'column',
+      gap: 3,
+      padding: '20px',
+    }}
+  >
+    {['Breakfast', 'Lunch', 'Dinner'].map((mealType) => {
+      const filteredMeals = meals.filter((meal) => meal.mealType === mealType);
+
+      if (filteredMeals.length === 0) {
+        return (
+          <div key={mealType} style={{ marginBottom: '20px' }}>
+            <Typography
+              variant="h5"
               sx={{
-                display: 'flex',  // Change from 'grid' to 'flex'
-    flexDirection: 'column',  // Use column direction
-    alignItems: 'center',  // Center align the content
-    gap: 2,
-                
-            
+                textAlign: 'center',
+                marginBottom: '10px',
+                fontWeight: 'bold',
+                color: '#B0B0B0',
               }}
             >
-              {meals.map((meal, index) => {
-                console.log(meal.ingredients)
-                return (
-                  <Card sx={{ gridArea: `meal-${index}` }} elevation={5}>
-                    <CardHeader
-                      title={'Custom Meal'}
-                      avatar={<LunchDiningIcon />}
-                    />
-                    <CardContent>
-                      <div
-                        style={{
-                          textAlign: 'center',
-                          fontWeight: 'bold',
-                          paddingBottom: '5px',
-                    
+              No meals for {mealType}
+            </Typography>
+          </div>
+        );
+      }
+
+      return (
+        <div key={mealType} style={{ marginBottom: '20px' }}>
+          <Typography
+            variant="h5"
+            sx={{
+              textAlign: 'center',
+              marginBottom: '10px',
+              fontWeight: 'bold',
+              color: '#333',
+            }}
+          >
+            {mealType}
+          </Typography>
+          <Box
+            sx={{
+              display: 'flex',
+              gap: 3,
+              overflowX: 'auto',
+              padding: '10px',
+              justifyContent: 'center',
+            }}
+          >
+            {filteredMeals.map((meal, index) => (
+              <Card
+                key={index}
+                sx={{
+                  minWidth: '280px',
+                  maxWidth: '320px',
+                  flexShrink: 0,
+                  borderRadius: '8px',
+                  boxShadow: 3,
+                  overflow: 'hidden',
+                  backgroundColor: '#fafafa',
+                  transition: 'transform 0.3s ease-in-out',
+                  '&:hover': {
+                    transform: 'scale(1.05)',
+                    boxShadow: 10,
+                  },
+                }}
+              >
+                <CardHeader
+                  title={meal.meal_name}
+                  sx={{
+                    textAlign: 'center',
+                    fontWeight: 'bold',
+                    backgroundColor: theme.headerColor || 'blue', // Same background color here
+                    color: '#333',
+                  }}
+                />
+                <CardContent>
+                  <Typography variant="body2" sx={{ textAlign: 'center', marginBottom: '10px' }}>
+                    Ingredients:
+                  </Typography>
+                  <List sx={{ textAlign: 'left' }}>
+                    {meal.ingredients.map((item, idx) => (
+                      <ListItem
+                        key={idx}
+                        sx={{
+                          display: 'flex',
+                          justifyContent: 'flex-start', // Align left
+                          padding: '5px 10px',
                         }}
                       >
-                        {meal.meal_name}
-                      </div>
-                      <div style={{ textAlign: 'center' }}>Ingredients</div>
-                      <div>
-                        <List>
-                          {meal.ingredients.map((item, index) => {
-                            return (
-                              <ListItem
-                                key={item}
-                                sx={{
-                                  display: 'flex',
-                                  justifyContent: 'space-between'
-                                }}
-                              >
-                                <div>{index + 1}</div>
-                                <div>{item}</div>
-                              </ListItem>
-                            )
-                          })}
-                        </List>
-                        <div style={{ textAlign: 'center' }}>
-                          Total Calories
-                        </div>
-                        <div
-                          style={{ textAlign: 'center', fontWeight: 'bold' }}
-                        >
-                          {meal.total_calories}
-                        </div>
-                      </div>
-                      <div>
-                        {(() => {
-                          const data = meal?.ingredientCalories?.map((calories, index) => ({
-                            name: meal?.ingredients[index],
-                            calories,
-                          })) || [];
+                        <Typography variant="body2" sx={{ flex: 1 }}>
+                          {idx + 1}. {item}
+                        </Typography>
+                      </ListItem>
+                    ))}
+                  </List>
+                  <Typography
+                    variant="body2"
+                    sx={{ textAlign: 'center', marginTop: '10px', fontWeight: 'bold' }}
+                  >
+                    Total Calories:
+                  </Typography>
+                  <Typography
+                    variant="h6"
+                    sx={{
+                      textAlign: 'center',
+                      fontWeight: 'bold',
+                      color: '#FF5722',
+                      marginBottom: '20px',
+                    }}
+                  >
+                    {meal.total_calories}
+                  </Typography>
+                  <div style={{ textAlign: 'center' }}>
+                    {(() => {
+                      const data =
+                        meal?.ingredientCalories?.map((calories, idx) => ({
+                          name: meal?.ingredients[idx],
+                          calories,
+                        })) || [];
 
-                          console.log("data", data);
+                      return (
+                        <PieChart width={200} height={200}>
+                          <Pie
+                            data={data}
+                            dataKey="calories"
+                            nameKey="name"
+                            cx="50%"
+                            cy="50%"
+                            outerRadius={60}
+                            innerRadius={30}
+                            fill="#82ca9d"
+                            label
+                          >
+                            {data.map((entry, idx) => (
+                              <Cell
+                                key={`cell-${idx}`}
+                                fill={COLORS[idx % COLORS.length]}
+                              />
+                            ))}
+                          </Pie>
+                          <Tooltip />
+                          <Legend />
+                        </PieChart>
+                      );
+                    })()}
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </Box>
+        </div>
+      );
+    })}
+  </CardContent>
+</Card>
 
-                          return (
-                            <PieChart width={800} height={300}>
-                              <Pie
-                                data={data}
-                                dataKey="calories"  // The key representing calorie count in each object
-                                nameKey="name" // The key representing ingredient name in each objec
-                                cx="50%"
-                                cy="50%"
-                                outerRadius={100}
-                               innerRadius={30}
-                                fill="#8884d8"
-                                label
-                              >
-                                {data.map((entry, index) => (
-                                  <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-                                ))}
-                              </Pie>
-                              <Tooltip />
-                              <Legend />
-                            </PieChart>
-                          );
-                        })()}
-                      </div>
-                    </CardContent>
-                  </Card>
-                )
-              })}
-            </CardContent>
-          </Card>
+
+
         </Box>
       </Container>
       <Footer />
