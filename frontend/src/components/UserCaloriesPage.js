@@ -381,8 +381,8 @@ function UserCaloriesPage(props) {
 
   const redirectToEventWithModalOpen = (eventName) => {
     history.push({
-      pathname: "/Events",
-      state: { openModalForEvent: eventName },
+      pathname: '/Events',
+      state: { openModalForEvent: eventName }
     });
   };
 
@@ -585,7 +585,8 @@ function UserCaloriesPage(props) {
                           <MenuItem key={i} value={option}>
                             {option}
                           </MenuItem>
-                        ))}
+                        )
+                        )}
                       </Select>
                     </FormControl>
                   </Box>
@@ -641,6 +642,7 @@ function UserCaloriesPage(props) {
               </form>
             </CardContent>
           </Card>
+
           <Card sx={{ gridArea: "events" }} elevation={5}>
             <CardHeader
               title={"Upcoming Events"}
@@ -661,57 +663,56 @@ function UserCaloriesPage(props) {
               }}
             />
             <CardContent>
-              <List
-                sx={{
-                  padding: 0,
-                  "& .MuiListItem-root": {
-                    flexDirection: { xs: "column", sm: "row" },
-                    gap: { xs: 2, sm: 1 },
-                    padding: 2,
-                    borderBottom: "1px solid",
-                    borderColor: "divider",
-                    "&:last-child": {
-                      borderBottom: "none",
-                    },
-                  },
-                }}
-              >
-                {events.map((eventObj, ind) => (
-                  <ListItem
-                    key={`event-${ind}`}
-                    sx={{
-                      display: "flex",
-                      alignItems: { xs: "stretch", sm: "center" },
-                      justifyContent: { xs: "center", sm: "space-between" },
-                    }}
-                  >
-                    <Box
+              <List sx={{
+                padding: 0,
+                '& .MuiListItem-root': {
+                  flexDirection: { xs: 'column', sm: 'row' },
+                  gap: { xs: 2, sm: 1 },
+                  padding: 2,
+                  borderBottom: '1px solid',
+                  borderColor: 'divider',
+                  '&:last-child': {
+                    borderBottom: 'none'
+                  }
+                }
+              }}>
+                {events
+                  .filter(eventObj => new Date(eventObj.date) >= new Date())
+                  .map((eventObj, ind) => (
+                    <ListItem
+                      key={`event-${ind}`}
                       sx={{
-                        display: "flex",
-                        flexDirection: { xs: "column", sm: "row" },
-                        gap: { xs: 1, sm: 2 },
-                        alignItems: { xs: "center", sm: "center" },
-                        flex: 1,
-                        textAlign: { xs: "center", sm: "left" },
+                        display: 'flex',
+                        alignItems: { xs: 'stretch', sm: 'center' },
+                        justifyContent: { xs: 'center', sm: 'space-between' },
                       }}
                     >
-                      <Typography
-                        variant="body1"
-                        component="div"
-                        onClick={() =>
-                          redirectToEventWithModalOpen(eventObj.eventName)
-                        }
+
+                      <Box
                         sx={{
-                          cursor: "pointer",
-                          "&:hover": {
-                            color: "primary.main",
-                            textDecoration: "underline",
-                          },
-                          fontWeight: "medium",
+                          display: 'flex',
+                          flexDirection: { xs: 'column', sm: 'row' },
+                          gap: { xs: 1, sm: 2 },
+                          alignItems: { xs: 'center', sm: 'center' },
+                          flex: 1,
+                          textAlign: { xs: 'center', sm: 'left' },
                         }}
                       >
-                        {eventObj.eventName}
-                      </Typography>
+                        <Typography
+                          variant="body1"
+                          component="div"
+                          onClick={() => redirectToEventWithModalOpen(eventObj.eventName)}
+                          sx={{
+                            cursor: 'pointer',
+                            '&:hover': {
+                              color: 'primary.main',
+                              textDecoration: 'underline'
+                            },
+                            fontWeight: 'medium'
+                          }}
+                        >
+                          {eventObj.eventName}
+                        </Typography>
 
                       <Typography
                         variant="body2"
