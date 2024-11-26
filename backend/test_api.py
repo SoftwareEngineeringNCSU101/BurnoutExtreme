@@ -277,5 +277,76 @@ class APITestCase(unittest.TestCase):
         self.assertEqual(response.status_code, 401)
 
 
+
+    @patch('base.get_jwt_identity')
+    @patch('base.mongo.weight_tracker.find')
+    def test_get_weight_tracker_success(self, mock_find, mock_get_jwt_identity):
+        mock_get_jwt_identity.return_value = 'user@example.com'
+    
+        mock_find.return_value = [{
+        '_id': '123456789',
+        'week': '2024-W47',
+        'weight': 75.0,
+        'targetWeight': 70.0
+        }]
+    
+        with self.app.app_context():
+            access_token = create_access_token(identity='user@example.com')
+    
+        headers = {'Authorization': f'Bearer {access_token}'}
+        response = self.client.get('/get-weight-tracker', headers=headers)
+    
+        self.assertEqual(response.status_code, 200)
+        data = response.get_json()
+        self.assertEqual(len(data), 1)
+        self.assertEqual(data[0]['week'], '2024-W47')
+        self.assertEqual(data[0]['progress'], '5.0 kg from target')
+
+    @patch('base.get_jwt_identity')
+    @patch('base.mongo.weight_tracker.find')
+    def test_get_weight_tracker_no_records(self, mock_find, mock_get_jwt_identity):
+        mock_get_jwt_identity.return_value = 'user@example.com'
+        mock_find.return_value = []
+    
+        with self.app.app_context():
+            access_token = create_access_token(identity='user@example.com')
+    
+        headers = {'Authorization': f'Bearer {access_token}'}
+        response = self.client.get('/get-weight-tracker', headers=headers)
+    
+        self.assertEqual(response.status_code, 404)
+        data = response.get_json()
+        self.assertEqual(data['message'], 'No weight records found')
+
+    @patch('base.get_jwt_identity')
+    def test_get_weight_tracker_unauthorized(self, mock_get_jwt_identity):
+        mock_get_jwt_identity.return_value = None
+    
+        response = self.client.get('/get-weight-tracker')
+    
+        self.assertEqual(response.status_code, 401)
+
+    @patch('base.get_jwt_identity')
+    @patch('base.mongo.weight_tracker.update_one')
+    def test_track_weight_success(self, mock_update_one, mock_get_jwt_identity):
+        mock_get_jwt_identity.return_value = 'user@example.com'
+        mock_update_one.return_value = Mock(matched_count=1)
+    
+        with self.app.app_context():
+            access_token = create_access_token(identity='user@example.com')
+    
+        headers = {'Authorization': f'Bearer {access_token}'}
+        data = {
+            'weight': 75.0,
+            'week': '2024-W47',
+            'targetWeight': 70.0
+        }
+        response = self.client.post('/track-weight', json=data, headers=headers)
+    
+        self.assertEqual(response.status_code, 200)
+        response_data = response.get_json()
+        self.assertEqual(response_data['status'], 'Weight recorded successfully')
+
+
 if __name__ == "__main__":
     unittest.main()
