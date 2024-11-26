@@ -4,7 +4,7 @@ import os
 import importlib.util
 
 # Specify the path to app.py
-app_path = os.path.abspath(os.path.join(os.path.dirname(_file_), '..', 'app.py'))
+app_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'app.py'))
 
 # Load the app module
 spec = importlib.util.spec_from_file_location("app", app_path)
@@ -14,9 +14,9 @@ spec.loader.exec_module(app_module)
 app = app_module.App()
 mongo = app.mongo
 
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(_file_), '..', '..')))
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..')))
 
-file_path = os.path.join(os.path.dirname(_file_), 'food_data', 'calories.csv')
+file_path = os.path.join(os.path.dirname(__file__), 'food_data', 'calories.csv')
 
 with open(file_path, 'r', encoding="ISO-8859-1") as f:
     l = f.readlines()
