@@ -930,6 +930,7 @@ function UserCaloriesPage(props) {
             </CardContent>
           </Card>
 
+          
           <Card sx={{ gridArea: "burntout" }} elevation={5}>
             <CardHeader
               title={"Calorie Burn Out"}
