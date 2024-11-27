@@ -38,13 +38,13 @@
 [![Forks](https://img.shields.io/github/forks/Software-Engineering-2024-Group/BurnoutExtreme?style=social)](https://github.com/Software-Engineering-2024-Group/BurnoutExtreme/network/members) 
 [![Stars](https://img.shields.io/github/stars/Software-Engineering-2024-Group/BurnoutExtreme?style=social)](https://github.com/Software-Engineering-2024-Group/BurnoutExtreme/stargazers)
 
-![BurnoutExtreme](frontend/public/assets/BurnoutExtreme.gif)
+<!-- ![BurnoutExtreme](frontend/public/assets/BurnoutExtreme.gif) -->
 
 ---
-### Team 96
+### Team 74
 #### Members
 * Dinesh Kannan
-* Harshwardhan Patil
+* Harshvardhan Patil
 * Sakshi Phatak
 
 # Table of Contents
@@ -98,6 +98,21 @@ Are you determined to achieve your dream physique? Desiring to take charge of yo
 ---
 ## 🌟 Key Features
 
+- **🤖 Implementation of ChatBot**
+Receive personalized meal and workout recommendations from an intelligent chatbot, tailored to your preferences, goals, and health data, making it easier to stay on track with your wellness journey.
+
+- **📱 Mobile Support**
+Enjoy a fully optimized interface that adapts seamlessly to all devices, ensuring a smooth user experience whether you're on a smartphone, tablet, or desktop.
+
+- **🍽️ Meal Categorization**
+Meals are automatically categorized into breakfast, lunch, and dinner, streamlining meal planning and calorie tracking, making it quicker and more intuitive for users to stay on top of their nutrition.
+
+- **🪟 Sorting & Filtering Capabilities**
+Easily sort and filter meal and workout suggestions based on your health data, ensuring personalized and balanced recommendations that align with your specific health goals.
+
+- **📊 Weekly Weight Tracking**
+Track your weight weekly, with visual progress reports highlighting changes, so you can monitor your gradual weight loss journey and make informed decisions for continued success.
+
 - **🍎 Nutrition Made Simple:**
   Navigating the complex world of nutrition can be daunting. With BurnoutExtreme, you can effortlessly track what you eat and gain insights into your calorie consumption. Whether you're having a quick salad or indulging in a cheat meal, every bite counts. And we're here to count it for you!
 
@@ -142,15 +157,47 @@ As version i-1, forked this repo from this [link](https://github.com/Software-En
 - **📈 Advanced Activity Monitoring**  
   Track real-time data on steps, calories burned, and workout intensity, providing deep insights to keep you motivated.
 
+- **🍎 Nutrition Made Simple:**
+  Navigating the complex world of nutrition can be daunting. With BurnoutExtreme, you can effortlessly track what you eat and gain insights into your calorie consumption. Whether you're having a quick salad or indulging in a cheat meal, every bite counts. And we're here to count it for you!
+
+- **🔥 Ignite Your Calorie Burn:**
+  Exercise isn't just about looking good; it's about feeling good too. Track every step taken, every calorie burned, and every drop of sweat shed. Watch yourself progress as BurnoutExtreme pushes you to achieve your health goals.
+
+- **🏋️ Custom Workouts, Your Way:** 
+  Build and personalize your own workout routines. Choose exercises, set durations, and craft the ideal workout for you. With BurnoutExtreme, your fitness plan is in your hands.
+
+- **🚶 Activity Tracking Feature:** 
+  Monitor your daily activity by tracking the number of steps taken and calculating the calories burned throughout the week. Stay accountable and motivated as you see your activity levels improve day by day.
+
+- **🍽️ Diet Tracking Feature:** 
+  Easily record the calories consumed through your daily meals. This feature allows you to see how much you’ve eaten and how many calories you need to burn to reach your goals. Keep your nutrition on track with insights tailored to your dietary habits.
+
+- **🏊 Dive into Exciting Fitness Events:**
+  Bored of your routine workout? Dive into an array of fitness events – from calming yoga sessions to adrenaline-pumping gym workouts. Whether you're into swimming, walking, or exploring new activities, there's something for everyone. Get social, challenge yourself, and discover activities you love.
+
+- **📊 Tailored To You:**
+  Everyone's health journey is unique. Input your age, current weight, height, target weight, and goals, and let BurnoutExtreme craft a personalized plan for you. Watch in real-time as you inch closer to your goals and celebrate each milestone with us.  
+
 ---
 
 ## 🚀What's New?
 This version enhanced and built on the previous version, making it more interesting and easier to use! 
 Here's what we added in this release.
 
-1.  Mobile Support: Now the application has Fully optimized interface for seamless use across all devices, ensuring users can access their fitness journey anywhere.
-2.  A fitness companion as a chatbot.
-3.  Generating fitness and diet plan based on the user
+- **🤖 Implementation of ChatBot**
+Receive personalized meal and workout recommendations from an intelligent chatbot, tailored to your preferences, goals, and health data, making it easier to stay on track with your wellness journey.
+
+- **📱 Mobile Support**
+Enjoy a fully optimized interface that adapts seamlessly to all devices, ensuring a smooth user experience whether you're on a smartphone, tablet, or desktop.
+
+- **🍽️ Meal Categorization**
+Meals are automatically categorized into breakfast, lunch, and dinner, streamlining meal planning and calorie tracking, making it quicker and more intuitive for users to stay on top of their nutrition.
+
+- **🪟 Sorting & Filtering Capabilities**
+Easily sort and filter meal and workout suggestions based on your health data, ensuring personalized and balanced recommendations that align with your specific health goals.
+
+- **📊 Weekly Weight Tracking**
+Track your weight weekly, with visual progress reports highlighting changes, so you can monitor your gradual weight loss journey and make informed decisions for continued success.
 
 ---
 
