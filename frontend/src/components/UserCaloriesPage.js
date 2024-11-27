@@ -149,42 +149,6 @@ function UserCaloriesPage(props) {
         }
       });
 
-    // ADDED TODAY
-
-    // axios({
-    //   method: "POST",
-    //   url: "/weightHistory",
-    //   headers: {
-    //     Authorization: "Bearer " + props.state.token,
-    //   },
-    //   data: {
-    //     todayDate: dayjs().format("MM/DD/YYYY"),
-    //   },
-    // })
-    //   .then((response) => {
-    //     const res = response.data;
-    //     setWeightHistory(res.sort((a, b) => b.dayIndex - a.dayIndex));
-    //     let weekData = [];
-    //     for (let i = -3; i <= 3; i++) {
-    //       const date = dayjs().add(i, "day").format("YYYY-MM-DD");
-    //       const dataForDay = res.find(
-    //         (d) => dayjs(d.date).format("YYYY-MM-DD") === date
-    //       );
-    
-    //       weekData.push({
-    //         date: date,
-    //         weight: dataForDay ? dataForDay.weight : 0,
-    //       });
-    //     }
-    //     setWeekWeightHistory(weekData);
-    //   })
-    //   .catch((error) => {
-    //     if (error.response) {
-    //       console.log(error.response);
-    //       console.log(error.response.status);
-    //       console.log(error.response.headers);
-    //     }
-    //   });    
 
     axios({
       method: "POST",
@@ -431,26 +395,28 @@ function UserCaloriesPage(props) {
                 "intake"
                 "burntout"
                 "events"
-                "week"
+                "week_weight"
+                "week_calorie"
                 "hist"
               `,
               sm: `
                 "today today"
                 "exercise intake"
                 "burntout events"
-                "week week"
+                "week_weight week_weight"
+                "week_calorie week_calorie"
                 "hist hist"
               `,
               md: `
-                "today today today"
-                "exercise intake burntout"
-                "week week events"
-                "hist hist hist"
+                "today today exercise"
+          "week_weight week_weight intake"
+          "week_calorie burntout events"
+          "hist hist hist"
               `,
               lg: `
                 "today today exercise exercise intake intake intake"
-                "week week week week burntout burntout burntout"
-                "week week week week events events events"
+                "week_weight week_weight week_weight week_weight burntout burntout burntout"
+                "week_calorie week_calorie week_calorie week_calorie events events events"
                 "hist hist hist hist hist hist hist"
               `,
             },
@@ -746,7 +712,7 @@ function UserCaloriesPage(props) {
             </CardContent>
           </Card>
 
-          <Card sx={{ gridArea: "week" }} elevation={5}>
+          <Card sx={{ gridArea: "week_weight" }} elevation={5}>
             <CardHeader
               title="Weekly Weight Stats"
               subheader="Track your performance over the last week"
@@ -872,8 +838,36 @@ function UserCaloriesPage(props) {
                   activeDot={{ r: 6 }}
                 />
               </LineChart>
-
-                <LineChart
+              </ResponsiveContainer>
+            </CardContent>
+          </Card>
+          
+          <Card sx={{ gridArea: "week_calorie" }} elevation={5}>
+            <CardHeader
+              title="Weekly Calorie Stats"
+              subheader="Track your performance over the last week"
+              avatar={<TimelineIcon />}
+              sx={{
+                "& .MuiCardHeader-title": {
+                  fontSize: { xs: "1.1rem", md: "1.25rem" },
+                },
+                "& .MuiCardHeader-subheader": {
+                  fontSize: { xs: "0.875rem", md: "1rem" },
+                },
+              }}
+            />
+            <CardContent
+              sx={{
+                padding: { xs: 1, sm: 2 },
+                "& .recharts-wrapper": {
+                  maxWidth: "100%",
+                  height: "auto !important",
+                  minHeight: { xs: "250px", sm: "300px" },
+                },
+              }}
+            >
+              <ResponsiveContainer width="100%" height={300}> 
+          <LineChart
                   data={weekHistory}
                   margin={{
                     top: 5,
@@ -927,33 +921,36 @@ function UserCaloriesPage(props) {
                     activeDot={{ r: 6 }}
                   />
                 </LineChart>
-              </ResponsiveContainer>
+                </ResponsiveContainer>
             </CardContent>
           </Card>
-
           
-          <Card sx={{ gridArea: "burntout" }} elevation={5}>
+          <Card sx={{ gridArea: "burntout", width: "100%" }} elevation={5}>
             <CardHeader
               title={"Calorie Burn Out"}
               subheader={"Enter the calories burnt out"}
               avatar={<WhatshotIcon />}
+              sx={{
+                '& .MuiCardHeader-content': {
+                  overflow: 'hidden',
+                  textOverflow: 'ellipsis'
+                }
+              }}
             />
             <CardContent>
               <form onSubmit={handleAddCalorieBurnout}>
                 <Box
                   sx={{
-                    display: "flex",
-                    flexDirection: { xs: "column", md: "row" },
+                    display: 'flex',
+                    flexDirection: 'column',
                     gap: 2,
-                    alignItems: { xs: "stretch", md: "center" },
-                    "& .MuiTextField-root": {
-                      flex: 1,
-                      minWidth: { xs: "100%", md: "150px" },
+                    '& .MuiTextField-root': {
+                      width: '100%'
                     },
-                    "& .MuiButton-root": {
-                      minWidth: { xs: "100%", md: "100px" },
-                      height: { md: "56px" },
-                    },
+                    '& .MuiButton-root': {
+                      width: '100%',
+                      mt: 1
+                    }
                   }}
                 >
                   <TextField
@@ -965,6 +962,7 @@ function UserCaloriesPage(props) {
                     }}
                     type="number"
                     required
+                    fullWidth
                   />
                   <DatePicker
                     label="Date"
@@ -972,14 +970,21 @@ function UserCaloriesPage(props) {
                     onChange={(newValue) => setBurnoutDate(newValue)}
                     maxDate={dayjs()}
                     required
+                    sx={{ width: '100%' }}
                   />
                   <Button
                     type="submit"
                     variant="contained"
                     size="large"
-                    style={{
+                    fullWidth
+                    sx={{
                       backgroundColor: theme.headerColor,
-                      color: "white",
+                      color: 'white',
+                      py: 1.5,
+                      '&:hover': {
+                        backgroundColor: theme.headerColor,
+                        opacity: 0.9
+                      }
                     }}
                   >
                     Add
@@ -989,28 +994,32 @@ function UserCaloriesPage(props) {
             </CardContent>
 
             {/* Another Field */}
-            <Card sx={{ gridArea: "WeightTracker" }} elevation={5}>
+            <Card sx={{ gridArea: "WeightTracker", width: "100%" }} elevation={5}>
             <CardHeader
               title={"Weight Tracker"}
               subheader={"Enter weight recorded on date"}
               avatar={<WhatshotIcon />}
+              sx={{
+                '& .MuiCardHeader-content': {
+                  overflow: 'hidden',
+                  textOverflow: 'ellipsis'
+                }
+              }}
             />
             <CardContent>
               <form onSubmit={handleAddWeight}>
                 <Box
                   sx={{
-                    display: "flex",
-                    flexDirection: { xs: "column", md: "row" },
+                    display: 'flex',
+                    flexDirection: 'column',
                     gap: 2,
-                    alignItems: { xs: "stretch", md: "center" },
-                    "& .MuiTextField-root": {
-                      flex: 1,
-                      minWidth: { xs: "100%", md: "150px" },
+                    '& .MuiTextField-root': {
+                      width: '100%'
                     },
-                    "& .MuiButton-root": {
-                      minWidth: { xs: "100%", md: "100px" },
-                      height: { md: "56px" },
-                    },
+                    '& .MuiButton-root': {
+                      width: '100%',
+                      mt: 1
+                    }
                   }}
                 >
                   <TextField
@@ -1029,14 +1038,20 @@ function UserCaloriesPage(props) {
                     onChange={(newValue) => setWeightDate(newValue)}
                     maxDate={dayjs()}
                     required
+                    sx={{ width: '100%' }}
                   />
                   <Button
                     type="submit"
                     variant="contained"
                     size="large"
-                    style={{
+                    sx={{
                       backgroundColor: theme.headerColor,
-                      color: "white",
+                      color: 'white',
+                      py: 1.5,
+                      '&:hover': {
+                        backgroundColor: theme.headerColor,
+                        opacity: 0.9
+                      }
                     }}
                   >
                     Add

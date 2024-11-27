@@ -281,7 +281,7 @@ export default function Events(props) {
                     <Typography variant="h6" component="div">
                       <strong>{event.title}</strong>
                     </Typography>
-                    <Typography sx={{ mt: 2 }}>{event.eventInfo}</Typography>
+                    <Typography sx={{ mt: 2 }}> <strong>Description:</strong> {event.description}</Typography>
                     <Typography sx={{ mt: 2 }}>
                       <strong>Location:</strong> {event.eventLocation}
                     </Typography>

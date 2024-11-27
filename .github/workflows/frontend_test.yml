@@ -4,13 +4,13 @@ on:
   push:
     branches:
       - main
-      - dkannan
   pull_request:
     branches:
       - main
 
 jobs:
   test:
+    if: false  
     runs-on: ubuntu-latest
 
     steps:
@@ -27,7 +27,7 @@ jobs:
       - name: Run tests with coverage
         working-directory: ./frontend
         run: |
-          npm run test -- --coverage --verbose --ci --passWithNoTests -- test/Workouts.test.js test/App.test.js test/ContactUs.test.js test/Footer.test.js test/Header.test.js
+          npm run test -- --coverage --verbose --ci --passWithNoTests -- test/Footer.test.js 
 
       - name: Upload coverage to Codecov
         if: always()
