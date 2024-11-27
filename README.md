@@ -10,16 +10,15 @@
     <br />
     A holistic platform to help you manage fitness, diet, and health goals, built on the success of the original Burnout project.
     <br />
-    <a href="https://github.com/Software-Engineering-2024-Group/BurnoutExtreme/blob/master/backend/html/backend/index.html"><strong>Explore the API docs »</strong></a>
+    <a href="https://github.com/SoftwareEngineeringNCSU101/BurnoutExtreme/blob/master/backend/html/backend/index.html"><strong>Explore the API docs »</strong></a>
     <br />
     <br />
     <a href="https://youtu.be/xQB6AbBLLWU?si=4RX05gmUf6D-M-7v">View Demo</a>
+    <!-- <a href="https://github.com/Software-Engineering-2024-Group/BurnoutExtreme/blob/master/Tutorials.md">View Detail Demo</a> -->
+    <!-- ·
+    <a href="https://github.com/Software-Engineering-2024-Group/BurnoutExtreme?tab=readme-ov-file#-score-card">Scores</a> -->
     ·
-    <a href="https://github.com/Software-Engineering-2024-Group/BurnoutExtreme/blob/master/Tutorials.md">View Detail Demo</a>
-    ·
-    <a href="https://github.com/Software-Engineering-2024-Group/BurnoutExtreme?tab=readme-ov-file#-score-card">Scores</a>
-    ·
-    <a href="https://github.com/Software-Engineering-2024-Group/BurnoutExtreme/blob/master/Developer_README.md">Developer Documentation</a>
+    <a href="https://github.com/SoftwareEngineeringNCSU101/BurnoutExtreme/blob/master/Developer_README.md">Developer Documentation</a>
   </p>
 </div>
 <br>
