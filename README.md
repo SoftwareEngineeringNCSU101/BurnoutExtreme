@@ -207,20 +207,35 @@ Track your weight weekly, with visual progress reports highlighting changes, so 
 ![image](https://github.com/user-attachments/assets/1cfa2dfe-284d-48d1-9bdc-a4588924b0e8)
 
 ## 🏠Homepage
-![alt text](<WhatsApp Image 2024-11-26 at 16.22.31_28d1d4e7.jpg>)
-![image](https://github.com/user-attachments/assets/9b72fca2-937e-4146-afcb-0c78cf69dbd3)
+![alt text](<WhatsApp Image 2024-11-26 at 21.55.53_3773f693.jpg>)
+
+## Weekly Weight Tracking
+![alt text](image-2.png)
 
 ## 🎨Personalised Themes
-![image](https://github.com/user-attachments/assets/1f608def-59c8-4e48-b317-8901e043e76a)
+![alt text](<WhatsApp Image 2024-11-26 at 16.36.12_59e15271.jpg>)
 
 ## 👤Profile
-![image](https://github.com/user-attachments/assets/e13f7785-baed-432a-8e7e-d99fae7b8441)
+![alt text](<WhatsApp Image 2024-11-26 at 21.59.20_95104216.jpg>)
 
-## Events
-![image](https://github.com/user-attachments/assets/e80bb60a-39bf-4624-b864-8a1c05ced4dc)
+## Filtering Events
+![alt text](image.png)
+![alt text](image-1.png)
 
 ## My Meals
 ![image](https://github.com/user-attachments/assets/31ebf532-b129-4696-8ff7-8962f9298b5c)
+
+## Meal Categorization
+![alt text](<WhatsApp Image 2024-11-26 at 16.35.36_7a51b746.jpg>)
+
+## AI ChatBot
+![alt text](<WhatsApp Image 2024-11-26 at 20.50.33_3c1177c7.jpg>)
+
+## Personalized Fitness Plan
+![alt text](<WhatsApp Image 2024-11-26 at 20.51.47_62f935ba.jpg>)
+
+## Mobile Support
+![alt text](BurnoutExtreme_MobileView.gif)
 
 ## My Workouts
 ![image](https://github.com/user-attachments/assets/67f52cf7-72ec-455c-ac8c-b7137af4d464)
@@ -230,8 +245,6 @@ Track your weight weekly, with visual progress reports highlighting changes, so 
 
 ## 📞Contact Us
 ![image](https://github.com/user-attachments/assets/a1b829c7-ece2-4ae4-8af7-b81364999ec5)
-
-### :memo: **Note:** Additional screenshots and a mini tutorials can be found here:[Tutorials.md](https://github.com/Software-Engineering-2024-Group/BurnoutExtreme/blob/master/Tutorials.md) 
 
 # Project TechStack
 
@@ -255,7 +268,7 @@ Before you begin, make sure you have the following installed:
 Step 1:
 Git Clone the Repository
 
-    https://github.com/Software-Engineering-2024-Group/BurnoutExtreme.git
+    https://github.com/SoftwareEngineeringNCSU101/BurnoutExtreme.git
 
 Step 2:
 Ensure mongodb is running and execute the below to populate the tables:
@@ -272,8 +285,8 @@ MAIL_PASSWORD = "helloworld123!"
 ```
 Once in the backend, run:
 
-    python insert_event_data.py
-    python insert_food_data.py
+    python database\insert_event_data.py
+    python database\insert_food_data.py
 
 Step 3:
 Remain in the backend folder and run the following command to start the server:
@@ -305,80 +318,17 @@ We fixed many bugs, more details in our Issues view...
 
 The BurnoutExtreme application can be extended with the following features:
 
-1. **🍽️ Categorize Meals**  
-   Automatically categorize meals into breakfast, lunch, dinner, or snacks, making meal tracking faster and more intuitive.
+1. **⏰ Integration with Wearable Devices**
+   Support direct syncing with popular fitness wearables (e.g., Fitbit, Apple Watch, Garmin) for seamless activity tracking.
+ 
+2. **📲 Gamification**
+   Introduce achievement badges, fitness streaks, and rewards to make the fitness journey more engaging and fun.
 
-2. **📱 Mobile Support**  
-   Fully optimized interface for seamless use across all devices, ensuring users can access their fitness journey anywhere.
+3. **👫🏼 Family & Friends Collaboration**
+   Introduce shared goals and tracking for families or friends who want to work on fitness together.
 
-3. **📅 Weekly Tracking**  
-   Track weight weekly and compare actual progress with target goals, helping users stay accountable and motivated.
-
-4. **🔍 Sorting & Filtering Capabilities**  
-   Implement sorting and filtering options to help users easily navigate their meals and workouts.
-
-5. **🍏 Personalized Suggestions**  
-   Receive personalized meal and workout suggestions tailored to individual health goals, promoting a balanced and effective approach to wellness.
-
----
-
-## 📊 Score Card
-#### Total Grade: 151
-
-| Factor | Score | Notes |
-| --- | --- | --- |
-| Video | 3 | https://youtu.be/xQB6AbBLLWU?si=4RX05gmUf6D-M-7v |
-| Workload | 3 | Distributed |
-| Number of commits | 3 | 50+ |
-| Number of commits: by different people | 3 | https://github.com/Software-Engineering-2024-Group/BurnoutExtreme/graphs/contributors |
-| Issues report: There are many | 3 | https://github.com/Software-Engineering-2024-Group/BurnoutExtreme/pulse |
-| Issues are being closed | 3 | https://github.com/Software-Engineering-2024-Group/BurnoutExtreme/pulse |
-| DOI badge | 3 |  |
-| Docs: format | 3 |  |
-| Docs: description  | 3 |  |
-| Docs: short animated video | 3 |  |
-| Docs: strong punchlines | 3 |  |
-| Docs: mini tutorials | 3 | https://github.com/Software-Engineering-2024-Group/BurnoutExtreme/blob/master/Tutorials.md#signup-and-sign-in |
-| Use of version control tools | 3 |  |
-| Use of style checkers | 3 | https://github.com/Software-Engineering-2024-Group/BurnoutExtreme/blob/master/.github/workflows/autopep8.yml |
-| Use of code formatters. | 3 |  |
-| Use of syntax checkers. | 3 |  |
-| Use of code coverage | 3 |  |
-| Other automated analysis tools | 2 |  |
-| Test cases exist | 3 |  |
-| Test cases are routinely executed | 2 |  |
-| The files http://contributing.md/ lists coding standards and lots of tips | 3 |  |
-| Issues are discussed before they are closed | 3 |  |
-| Chat channel: exists | 3 | whatsapp, discord |
-| Test cases: a large proportion of the issues related to handling failing cases. | 3 |  |
-| Evidence that the whole team is using the same tools | 3 |  |
-| Evidence that the members of the team are working across multiple places in the code base | 3 |  |
-| Short release cycles | 3 |  |
-| Does your website and documentation provide a clear, high-level overview of your software? | 3 |  |
-| Does your website and documentation clearly describe the type of user who should use your software? | 3 |  |
-| Do you publish case studies to show how your software has been used by yourself and others? | 3 |  |
-| Is the name of your project/software unique? | 3 |  |
-| Is your project/software name free from trademark violations? | 3 |  |
-| Is your software available as a package that can be deployed without building it? | 3 |  |
-| Is your software available for free? | 3 |  |
-| Is your source code publicly available to download, either as a downloadable bundle or via access to a source code repository? | 3 |  |
-| Is your software hosted in an established, third-party repository like GitHub? | 3 |  |
-| Is your documentation clearly available on your website or within your software? | 3 |  |
-| Does your documentation include a "quick start" guide, that provides a short overview of how to use your software with some basic examples of use? | 2 |  |
-| If you provide more extensive documentation, does this provide clear, step-by-step instructions on how to deploy and use your software? | 3 |  |
-| Do you provide a comprehensive guide to all your software’s commands, functions and options? | 3 |  |
-| Do you provide troubleshooting information that describes the symptoms and step-by-step solutions for problems and error messages? | 3 |  |
-| If your software can be used as a library, package or service by other software, do you provide comprehensive API documentation? | 3 | https://github.com/Software-Engineering-2024-Group/BurnoutExtreme/blob/master/backend/html/backend/index.html |
-| Do you store your documentation under revision control with your source code? | 2 |  |
-| Do you publish your release history e.g. release data, version numbers, key features of each release etc. on your web site or in your documentation? | 3 |  |
-| Does your software describe how a user can get help with using your software? | 3 |  |
-| Does your website and documentation describe what support, if any, you provide to users and developers? | 3 |  |
-| Does your project have an e-mail address or forum that is solely for supporting users? | 3 |  |
-| Are e-mails to your support e-mail address received by more than one person? | 3 |  |
-| Does your project have a ticketing system to manage bug reports and feature requests? | 2 |  |
-| Is your project's ticketing system publicly visible to your users, so they can view bug reports and feature requests? | 3 |  |
-
-
+4. **📧 Weekly Progress Emails**
+   Send a summary email with stats, insights, and motivational tips based on weekly performance.
 
 ---
 ## 🙌Contributors
@@ -439,8 +389,8 @@ The BurnoutExtreme application can be extended with the following features:
 
 ## 🤝Contribution
 
-Please refer to the [CONTRIBUTING.md](https://github.com/adi-kiran/burnout-healthgoalsapp/blob/main/CONTRIBUTING.md) file for instructions on how to contribute to our repository.
+Please refer to the [CONTRIBUTING.md](https://github.com/SoftwareEngineeringNCSU101/BurnoutExtreme/blob/master/CONTRIBUTING.md) file for instructions on how to contribute to our repository.
 
 ## 📜License
 
-This project is licensed under the MIT License. Please refer to the [LICENSE](https://github.com/adi-kiran/burnout-healthgoalsapp/blob/main/LICENSE) for more details.
+This project is licensed under the MIT License. Please refer to the [LICENSE](https://github.com/SoftwareEngineeringNCSU101/BurnoutExtreme/blob/master/LICENSE) for more details.
