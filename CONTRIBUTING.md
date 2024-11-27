@@ -170,4 +170,4 @@ By integrating these tools into your development process, you'll enhance your pr
 
 
 ## References
-[Contributing.md](https://github.com/atom/atom/blob/master/CONTRIBUTING.md#specs-styleguide)
+[Contributing.md](https://github.com/SoftwareEngineeringNCSU101/BurnoutExtreme/blob/master/CONTRIBUTING.md)
