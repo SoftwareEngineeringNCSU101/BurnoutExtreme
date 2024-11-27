@@ -25,7 +25,7 @@
 [![GitHub license](https://img.shields.io/github/license/Naereen/StrapDown.js.svg)](https://github.com/SoftwareEngineeringNCSU101/BurnoutExtreme/blob/master/LICENSE)
 [![DOI](https://zenodo.org/badge/878072890.svg)](https://zenodo.org/records/14226978?token=eyJhbGciOiJIUzUxMiJ9.eyJpZCI6IjVmNmNmNzJiLTBkZjQtNGQyZS04N2EwLWU0OWZhMmZlMDIxZiIsImRhdGEiOnt9LCJyYW5kb20iOiIwMjYzN2U1NzdlMDA5ZDkxMWM2ZDZhNmVjYTkwNzBlOSJ9.wNZjNYqMhtZR2vIar0-88Kvczxz1ajscZUxPudy-w_msPineRuoIJoHyYTQsRwERMTUYIfLh7zgf5V08p8C1Rw)
 [![made-with-python](https://img.shields.io/badge/Made%20with-Python-1f425f.svg)](https://www.python.org/)
-[![Build Status](https://github.com/Software-Engineering-2024-Group/BurnoutExtreme/actions/workflows/build_repo.yml/badge.svg)](https://github.com/SoftwareEngineeringNCSU101/BurnoutExtreme/actions/workflows/build_repo.yml)
+[![Flake8 Status](https://github.com/SoftwareEngineeringNCSU101/BurnoutExtreme/workflows/Flake8/badge.svg)](https://github.com/SoftwareEngineeringNCSU101/BurnoutExtreme/actions/workflows/flake8.yml)
 [![AutoPep8](https://github.com/SoftwareEngineeringNCSU101/BurnoutExtreme/actions/workflows/autopep8.yml/badge.svg)](https://github.com/SoftwareEngineeringNCSU101/BurnoutExtreme/actions/workflows/autopep8.yml)
 [![PEP8](https://img.shields.io/badge/code%20style-pep8-orange.svg)](https://www.python.org/dev/peps/pep-0008/)
 
@@ -142,7 +142,7 @@ Open the URL in your browser:
 | mongomock      | 4.1.2      |   BSD |
 | flasgger      | 0.9.7.1      |   MIT License |
 | coverage      | 7.2.7      |   Apache Software License (Apache-2.0) |
-
+| requests      | 2.31.0     |                         |
   
 # What's new?
 

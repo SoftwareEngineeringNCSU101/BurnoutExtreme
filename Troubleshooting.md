@@ -58,9 +58,9 @@ Before troubleshooting, ensure:
 **Solution:** 
 1. Run the following commands to populate events collection:
    
-      `cd BurnOut-HealthGoalsApp`
+      `cd backend`
   
-      `python insert_event_data.py`
+      `python database/insert_event_data.py`
 2. Refresh Events Page. 
 
 ### Issue 5: Flask server doesn't start
@@ -87,6 +87,6 @@ Before troubleshooting, ensure:
 
 If you're still facing issues:
 
-1. Check if the problem has been reported in the [Issues](https://github.com/adi-kiran/burnout-healthgoalsapp/issues) section.
+1. Check if the problem has been reported in the [Issues](https://github.com/SoftwareEngineeringNCSU101/BurnoutExtreme/issues)  or [PreviousRepo_Issues] (https://github.com/Software-Engineering-2024-Group/BurnoutExtreme/issues) section.
 2. If not listed, create a new issue with as much detail as possible.
-3. For questions, refer to [Discussions](https://github.com/adi-kiran/burnout-healthgoalsapp/discussions).
+
