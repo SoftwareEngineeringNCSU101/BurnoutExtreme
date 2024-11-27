@@ -16,19 +16,16 @@
     <a href="">Report Bug</a>
     ·
     <a href="">Request Feature</a>
-    <br>
+    ·
     <a href="">View Video</a>
-    ·
-    <a href="https://github.com/Software-Engineering-2024-Group/BurnoutExtreme/blob/master/Project2_Group23.md">Scores</a>
-    ·
   </p>
 </div>
 <br>
 
-[![GitHub license](https://img.shields.io/github/license/Naereen/StrapDown.js.svg)](https://github.com/Naereen/StrapDown.js/blob/master/LICENSE)
-[![DOI](https://zenodo.org/badge/878072890.svg)](https://doi.org/10.5281/zenodo.14020325)
+[![GitHub license](https://img.shields.io/github/license/Naereen/StrapDown.js.svg)](https://github.com/SoftwareEngineeringNCSU101/BurnoutExtreme/blob/master/LICENSE)
+[![DOI](https://zenodo.org/badge/878072890.svg)](https://zenodo.org/records/14226978?token=eyJhbGciOiJIUzUxMiJ9.eyJpZCI6IjVmNmNmNzJiLTBkZjQtNGQyZS04N2EwLWU0OWZhMmZlMDIxZiIsImRhdGEiOnt9LCJyYW5kb20iOiIwMjYzN2U1NzdlMDA5ZDkxMWM2ZDZhNmVjYTkwNzBlOSJ9.wNZjNYqMhtZR2vIar0-88Kvczxz1ajscZUxPudy-w_msPineRuoIJoHyYTQsRwERMTUYIfLh7zgf5V08p8C1Rw)
 [![made-with-python](https://img.shields.io/badge/Made%20with-Python-1f425f.svg)](https://www.python.org/)
-[![Build Status](https://github.com/Software-Engineering-2024-Group/BurnoutExtreme/actions/workflows/build_repo.yml/badge.svg)](https://github.com/Software-Engineering-2024-Group/BurnoutExtreme/actions/workflows/build_repo.yml)
+[![Build Status](https://github.com/Software-Engineering-2024-Group/BurnoutExtreme/actions/workflows/build_repo.yml/badge.svg)](https://github.com/SoftwareEngineeringNCSU101/BurnoutExtreme/actions/workflows/build_repo.yml)
 [![AutoPep8](https://github.com/SoftwareEngineeringNCSU101/BurnoutExtreme/actions/workflows/autopep8.yml/badge.svg)](https://github.com/SoftwareEngineeringNCSU101/BurnoutExtreme/actions/workflows/autopep8.yml)
 [![PEP8](https://img.shields.io/badge/code%20style-pep8-orange.svg)](https://www.python.org/dev/peps/pep-0008/)
 
@@ -78,7 +75,7 @@ Before you begin, make sure you have the following installed:
  Step 1:
 Git Clone the Repository
 
-    https://github.com/Software-Engineering-2024-Group/BurnoutExtreme.git
+    https://github.com/SoftwareEngineeringNCSU101/BurnoutExtreme.git
 
 Step 2:
 Ensure mongodb is running and execute the below to populate the tables:
@@ -95,8 +92,8 @@ MAIL_PASSWORD = "helloworld123!"
 ```
 Once in the backend, run:
 
-    python insert_event_data.py
-    python insert_food_data.py
+    python database\insert_event_data.py
+    python database\insert_food_data.py
 
 Step 3:
 Remain in the backend folder and run the following command to start the server:
@@ -152,21 +149,36 @@ Open the URL in your browser:
 This version enhanced and built on the previous version, making it 10x more interesting and easier to use!
 Here's what we added in this release.
 
-1. Google maps integration for events.
-2. Advanced activity monitoring.
-3. Custom workout plans.
-4. Personalized themes.
-5. Diet Tracker enhancements.
-6. Enhanced UIs.
+- **Implementation of ChatBot**
+Receive personalized meal and workout recommendations from an intelligent chatbot, tailored to your preferences, goals, and health data, making it easier to stay on track with your wellness journey.
+
+- **Mobile Support**
+Enjoy a fully optimized interface that adapts seamlessly to all devices, ensuring a smooth user experience whether you're on a smartphone, tablet, or desktop.
+
+- **Meal Categorization**
+Meals are automatically categorized into breakfast, lunch, and dinner, streamlining meal planning and calorie tracking, making it quicker and more intuitive for users to stay on top of their nutrition.
+
+- **Sorting & Filtering Capabilities**
+Easily sort and filter meal and workout suggestions based on your health data, ensuring personalized and balanced recommendations that align with your specific health goals.
+
+- **Weekly Weight Tracking**
+Track your weight weekly, with visual progress reports highlighting changes, so you can monitor your gradual weight loss journey and make informed decisions for continued success.
 
 ## Bug Fixes
 We fixed many bugs, but here are the most notable ones...
 
-1. Testcases were updated and fixed.
-2. The proxy in the config files were wrong, making it difficult to run the website. Proxy issues were fixed.
-3. UIs fixed
+1. Upcoming events include events with date in past
+2. User Password was not encrypted in database
+3. Event Search Bar not working
+4. User was able to enroll for an event with past enrollment date
+5. Map was not getting populated in Event Page
+6. Initial Home.test.js failing during testing
+7. Inaccessible Event Modal
+8. Wrong event info retrieval
+9. Event dates not matching in main board
 
-:bulb: **Tip:** More enhancements/fixes can be found here : https://github.com/SoftwareEngineeringNCSU101/BurnoutExtreme/issues
+
+**Tip:** More enhancements/fixes can be found here : https://github.com/SoftwareEngineeringNCSU101/BurnoutExtreme/issues
    
 # Contributors
  <center>
