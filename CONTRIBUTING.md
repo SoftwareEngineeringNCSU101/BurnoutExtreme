@@ -1,6 +1,6 @@
-# Contributing to BurnOut 4!!
+# Contributing to BurnOut 5!!
 <h3>Hello!👋</h3>
-<p>Firstly, thank you so much for showing interest in BurnOut 4 and contributing to our project.👍</p>
+<p>Firstly, thank you so much for showing interest in BurnOut 5 and contributing to our project.👍</p>
 The following are a set of guidelines for contributing to BurnOut. We are open to suggestions to enhance our project so feel free to propose changes to this document in a pull request.
 
 
@@ -22,7 +22,7 @@ The following are a set of guidelines for contributing to BurnOut. We are open t
 
 
 ### Code of Conduct
-Everyone participating in this project needs to abide by the aPAS - A Personal Agile Scheduler Code of Conduct that can be found under the main repository link as a CODE_OF_CONDUCT.md file. By participating, you are expected to uphold this code. Please report unacceptable behavior to any of the original team members listed at the bottom of [README.md](README.md).
+Everyone participating in this project needs to abide by the aPAS - A Personal Agile Scheduler Code of Conduct that can be found under the main repository link as a CODE_OF_CONDUCT.md file. By participating, you are expected to uphold this code. Please report unacceptable behavior to any of the original team members listed at the bottom of [README.md](https://github.com/SoftwareEngineeringNCSU101/BurnoutExtreme/blob/master/README.md ).
 
 ## How Can I Contribute?
 
@@ -166,7 +166,7 @@ For a robust and efficient development practice, consider incorporating the foll
 By integrating these tools into your development process, you'll enhance your productivity, maintain better control over your project dependencies, and ensure a more organized and efficient coding experience.
 
 ### <h2>Need Additional Help?</h2>
-<p>Due to any reason, if you feel like you have reservations related to the process, feel free to reach us out at [apatil25@ncsu.edu] Github process can be a bit complex and we don't want to lose your valuable contributions because of that reason. We are extremely glad that you have visited us and will make our project much better.</p>
+<p>Due to any reason, if you feel like you have reservations related to the process, feel free to reach us out at [ssphata2@ncsu.edu] Github process can be a bit complex and we don't want to lose your valuable contributions because of that reason. We are extremely glad that you have visited us and will make our project much better.</p>
 
 
 ## References
