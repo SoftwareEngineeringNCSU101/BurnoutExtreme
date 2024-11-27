@@ -100,7 +100,7 @@ e.g. release announcements, publications, workshops, conference presentations|No
 |Is your software released under an open source licence?|Yes|MIT is an open source license.<br>https://github.com/SoftwareEngineeringNCSU101/BurnoutExtreme/blob/master/LICENSE|
 |Is your software released under an OSI-approved open-source licence?|Yes|MIT is an OSI-approved open source license.<br>https://github.com/SoftwareEngineeringNCSU101/BurnoutExtreme/blob/master/LICENSE|
 |Does each of your source code files include a licence header?|Yes|All source files include the license header.<br>https://github.com/SoftwareEngineeringNCSU101/BurnoutExtreme/blob/master/LICENSE|
-|Do you have a recommended citation for your software?|Yes|https://github.com/SoftwareEngineeringNCSU101/BurnoutExtreme/blob/master/CITATIONS.md|
+|Do you have a recommended citation for your software?|Yes|https://github.com/SoftwareEngineeringNCSU101/BurnoutExtreme/blob/master/CITATION.md|
 |Does your website or documentation include a project roadmap (a list of project and development milestones for the next 3, 6 and 12 months)?|Yes|https://github.com/SoftwareEngineeringNCSU101/BurnoutExtreme/blob/master/README.md|
 |Does your website or documentation describe how your project is funded, and the period over which funding is guaranteed?|N/A|not applicable|
 |Do you make timely announcements of the deprecation of components, APIs, etc.?|N/A|Not applicable|
