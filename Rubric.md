@@ -5,7 +5,7 @@
 
 |TOTAL|102| |
 |-----|-|---------|
-|Video|3|https://drive.google.com/file/d/16slSsPs1yCkgR6VO1seG3Fy4EdmboAFv/view?usp=sharing|
+|Video|3|https://drive.google.com/file/d/14sP-9NxSOCc5jyDw9dcXGmF8kJBCBfH1/view?usp=sharing|
 |workload is spread over the whole team (so one team member is often Xtimes more productive than the others...but nevertheless, here is a track record that everyone is contributing a lot)|3|Work has been divided equally among all team members.Everyone has almost same number of commits. https://github.com/SoftwareEngineeringNCSU101/BurnoutExtreme/graphs/contributors|
 |Number of commits  |3|https://github.com/SoftwareEngineeringNCSU101/BurnoutExtreme/graphs/commit-activity|
 |Number of commits: by different people  |3|The number of commits are almost equal across all team members. https://github.com/SoftwareEngineeringNCSU101/BurnoutExtreme/graphs/contributors|
@@ -100,7 +100,7 @@ e.g. release announcements, publications, workshops, conference presentations|No
 |Is your software released under an open source licence?|Yes|MIT is an open source license.<br>https://github.com/SoftwareEngineeringNCSU101/BurnoutExtreme/blob/master/LICENSE|
 |Is your software released under an OSI-approved open-source licence?|Yes|MIT is an OSI-approved open source license.<br>https://github.com/SoftwareEngineeringNCSU101/BurnoutExtreme/blob/master/LICENSE|
 |Does each of your source code files include a licence header?|Yes|All source files include the license header.<br>https://github.com/SoftwareEngineeringNCSU101/BurnoutExtreme/blob/master/LICENSE|
-|Do you have a recommended citation for your software?|Yes|https://github.com/SoftwareEngineeringNCSU101/BurnoutExtreme/blob/master/CITATIONS.md|
+|Do you have a recommended citation for your software?|Yes|https://github.com/SoftwareEngineeringNCSU101/BurnoutExtreme/blob/master/CITATION.md|
 |Does your website or documentation include a project roadmap (a list of project and development milestones for the next 3, 6 and 12 months)?|Yes|https://github.com/SoftwareEngineeringNCSU101/BurnoutExtreme/blob/master/README.md|
 |Does your website or documentation describe how your project is funded, and the period over which funding is guaranteed?|N/A|not applicable|
 |Do you make timely announcements of the deprecation of components, APIs, etc.?|N/A|Not applicable|
