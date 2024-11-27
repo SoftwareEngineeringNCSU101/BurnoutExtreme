@@ -11,13 +11,13 @@
     <a href="https://github.com/SoftwareEngineeringNCSU101/BurnoutExtreme/blob/master/backend/html/backend/index.html"><strong>Explore the API docs »</strong></a>
     <br />
     <br />
-    <a href="">View Demo</a>
+    <a href="https://drive.google.com/file/d/14sP-9NxSOCc5jyDw9dcXGmF8kJBCBfH1/view?usp=sharing">View Demo</a>
     ·
     <a href="">Report Bug</a>
     ·
     <a href="">Request Feature</a>
     ·
-    <a href="">View Video</a>
+    <a href="https://drive.google.com/file/d/14sP-9NxSOCc5jyDw9dcXGmF8kJBCBfH1/view?usp=sharing">View Video</a>
   </p>
 </div>
 <br>

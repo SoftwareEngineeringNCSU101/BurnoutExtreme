@@ -26,7 +26,7 @@
 <br>
 
 [![GitHub license](https://img.shields.io/github/license/Naereen/StrapDown.js.svg)](https://github.com/SoftwareEngineeringNCSU101/BurnoutExtreme/blob/master/LICENSE)
-[![DOI](https://zenodo.org/badge/878072890.svg)](https://doi.org/10.5281/zenodo.14020325)
+[![DOI](https://zenodo.org/badge/878072890.svg)](https://zenodo.org/records/14226978?token=eyJhbGciOiJIUzUxMiJ9.eyJpZCI6IjVmNmNmNzJiLTBkZjQtNGQyZS04N2EwLWU0OWZhMmZlMDIxZiIsImRhdGEiOnt9LCJyYW5kb20iOiIwMjYzN2U1NzdlMDA5ZDkxMWM2ZDZhNmVjYTkwNzBlOSJ9.wNZjNYqMhtZR2vIar0-88Kvczxz1ajscZUxPudy-w_msPineRuoIJoHyYTQsRwERMTUYIfLh7zgf5V08p8C1Rw)
 [![made-with-python](https://img.shields.io/badge/Made%20with-Python-1f425f.svg)](https://www.python.org/)
 [![Unit Test Status](https://github.com/SoftwareEngineeringNCSU101/BurnoutExtreme/actions/workflows/unit_test.yml/badge.svg?branch=master)](https://github.com/SoftwareEngineeringNCSU101/BurnoutExtreme/actions/workflows/unit_test.yml)
 [![AutoPep8](https://github.com/SoftwareEngineeringNCSU101/BurnoutExtreme/actions/workflows/autopep8.yml/badge.svg)](https://github.com/SoftwareEngineeringNCSU101/BurnoutExtreme/actions/workflows/autopep8.yml)
@@ -209,16 +209,16 @@ Track your weight weekly, with visual progress reports highlighting changes, so 
 ![image](https://github.com/user-attachments/assets/1cfa2dfe-284d-48d1-9bdc-a4588924b0e8)
 
 ## 🏠Homepage
-![alt text](<WhatsApp Image 2024-11-26 at 21.55.53_3773f693.jpg>)
+![alt text](Homepage1.jpg)
 
 ## Weekly Weight Tracking
 ![alt text](image-2.png)
 
 ## 🎨Personalised Themes
-![alt text](<WhatsApp Image 2024-11-26 at 16.36.12_59e15271.jpg>)
+![alt text](ColorTheme.jpg)
 
 ## 👤Profile
-![alt text](<WhatsApp Image 2024-11-26 at 21.59.20_95104216.jpg>)
+![alt text](Profile.jpg)
 
 ## Filtering Events
 ![alt text](image.png)
@@ -228,13 +228,13 @@ Track your weight weekly, with visual progress reports highlighting changes, so 
 ![image](https://github.com/user-attachments/assets/31ebf532-b129-4696-8ff7-8962f9298b5c)
 
 ## Meal Categorization
-![alt text](<WhatsApp Image 2024-11-26 at 16.35.36_7a51b746.jpg>)
+![alt text](MealCategorize.jpg)
 
 ## AI ChatBot
-![alt text](<WhatsApp Image 2024-11-26 at 20.50.33_3c1177c7.jpg>)
+![alt text](ChatBot.jpg)
 
 ## Personalized Fitness Plan
-![alt text](<WhatsApp Image 2024-11-26 at 20.51.47_62f935ba.jpg>)
+![alt text](FitnessPlan.jpg)
 
 ## Mobile Support
 ![alt text](BurnoutExtreme_MobileView.gif)

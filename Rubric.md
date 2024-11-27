@@ -5,7 +5,7 @@
 
 |TOTAL|102| |
 |-----|-|---------|
-|Video|3|https://drive.google.com/file/d/16slSsPs1yCkgR6VO1seG3Fy4EdmboAFv/view?usp=sharing|
+|Video|3|https://drive.google.com/file/d/14sP-9NxSOCc5jyDw9dcXGmF8kJBCBfH1/view?usp=sharing|
 |workload is spread over the whole team (so one team member is often Xtimes more productive than the others...but nevertheless, here is a track record that everyone is contributing a lot)|3|Work has been divided equally among all team members.Everyone has almost same number of commits. https://github.com/SoftwareEngineeringNCSU101/BurnoutExtreme/graphs/contributors|
 |Number of commits  |3|https://github.com/SoftwareEngineeringNCSU101/BurnoutExtreme/graphs/commit-activity|
 |Number of commits: by different people  |3|The number of commits are almost equal across all team members. https://github.com/SoftwareEngineeringNCSU101/BurnoutExtreme/graphs/contributors|
