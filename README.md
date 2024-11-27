@@ -18,7 +18,9 @@
     <!-- ·
     <a href="https://github.com/Software-Engineering-2024-Group/BurnoutExtreme?tab=readme-ov-file#-score-card">Scores</a> -->
     ·
-    <a href="https://github.com/SoftwareEngineeringNCSU101/BurnoutExtreme/blob/master/Developer_README.md">Developer Documentation</a>
+    <a href="https://github.com/SoftwareEngineeringNCSU101/BurnoutExtreme/blob/master/Developer_README.md">Developer ReadMe</a>
+    ·
+    <a href="https://drive.google.com/file/d/1x7M-IRLmt6QMAoefGyaYQCiYQqJxMugP/view?usp=sharing">Documentation</a>
   </p>
 </div>
 <br>
