@@ -207,6 +207,7 @@ Track your weight weekly, with visual progress reports highlighting changes, so 
 ![image](https://github.com/user-attachments/assets/1cfa2dfe-284d-48d1-9bdc-a4588924b0e8)
 
 ## 🏠Homepage
+![alt text](<WhatsApp Image 2024-11-26 at 16.22.31_28d1d4e7.jpg>)
 ![image](https://github.com/user-attachments/assets/9b72fca2-937e-4146-afcb-0c78cf69dbd3)
 
 ## 🎨Personalised Themes
