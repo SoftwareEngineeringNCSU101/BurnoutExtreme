@@ -13,7 +13,7 @@
     <a href="https://github.com/SoftwareEngineeringNCSU101/BurnoutExtreme/blob/master/backend/html/backend/index.html"><strong>Explore the API docs »</strong></a>
     <br />
     <br />
-    <a href="https://youtu.be/xQB6AbBLLWU?si=4RX05gmUf6D-M-7v">View Demo</a>
+    <a href="https://drive.google.com/file/d/14sP-9NxSOCc5jyDw9dcXGmF8kJBCBfH1/view?usp=sharing">View Demo</a>
     <!-- <a href="https://github.com/Software-Engineering-2024-Group/BurnoutExtreme/blob/master/Tutorials.md">View Detail Demo</a> -->
     <!-- ·
     <a href="https://github.com/Software-Engineering-2024-Group/BurnoutExtreme?tab=readme-ov-file#-score-card">Scores</a> -->
